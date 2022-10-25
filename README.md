@@ -19,6 +19,10 @@ niRvana · 轻拟物WordPress主题
 
 在 [Release](https://github.com/michaelliunsky/niRvana-theme/releases) 页面下载 .zip 文件，在 WordPress 后台 "主题" 页面上传并安装。
 
+# 文档
+
+[作者博客 : https://michaelliunsky.cn/](https://michaelliunsky.cn/)
+
 # Demo
 
 [dreamhouse.org.cn](https://dreamhouse.org.cn)
