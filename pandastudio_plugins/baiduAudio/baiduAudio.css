@@ -1,0 +1,51 @@
+#baiduAudioPlayer {
+	display: inline-flex;
+	justify-content: center;
+	padding: 5px 2px 5px 12px;
+	background: #20a0ff;
+	color: #fff;
+	border-radius: 100px;
+	margin-bottom: 10px;
+}
+#baiduAudioPlayer i {
+	cursor: pointer;
+	font-size: 26px;
+	line-height: 22px;
+	width: 0;
+	margin: 0;
+	transform: scale(0);
+	visibility: hidden;
+	opacity: 0;
+	transition: .5s;
+}
+#baiduAudioPlayer i.active:hover {
+	opacity: 1;
+	transition: .25s;
+}
+#baiduAudioPlayer .decoration {
+	line-height: 22px;
+	margin-right: 5px;
+}
+#baiduAudioPlayer i.active {
+	width: 26px;
+	margin-left: 3px;
+	transform: scale(1);
+	opacity: .6;
+	visibility: visible;
+}
+.baiduAudioWrap {
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+#baiduAudioPlayer {
+    background: linear-gradient(90deg,#50c0ff,#20a0ff 8%,#50c0ff);
+    box-shadow: 2px 4px 8px rgba(0,150,255,.3);
+    border-radius: 0 100px 100px 0;
+    padding: 8px 3px 8px 12px;
+    animation: swipLeft .5s;
+}
+@keyframes swipLeft {
+    from {transform:scaleX(0);transform-origin:left;opacity:0}
+    to {transform:scaleX(1);transform-origin:left;}
+}
