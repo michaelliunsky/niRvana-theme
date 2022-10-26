@@ -33,13 +33,14 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 您**必须在页脚保留 niRvana 主题的名称及作者链接**，否则请不要使用 niRvana 主题。
 
 # 更新日志
-## 20221025 v4.0.0
-+ 新主题发布
-+ 本主题由pandastudio不再维护的niRvana主题开发而成，版权归michaelliunsky所有。
 
 ## 20221026 v4.0.1
 + 删除所有eval加密，增强主题兼容性。
 + 继续优化代码，修复若干BUG
+
+## 20221025 v4.0.0
++ 新主题发布
++ 本主题由pandastudio不再维护的niRvana主题开发而成，版权归michaelliunsky所有。
 
 # 捐赠
 如果你觉得 niRvana 主题不错，可以请我一杯咖啡来支持我的开发。
