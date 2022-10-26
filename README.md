@@ -21,7 +21,7 @@ niRvana · 轻拟物WordPress主题
 
 # 文档
 
-[作者博客 : https://michaelliunsky.cn/](https://michaelliunsky.cn/)
+[作者博客中的文档 : https://michaelliunsky.cn/](https://michaelliunsky.cn/web/nirvana.html)
 
 # Demo
 
