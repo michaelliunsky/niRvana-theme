@@ -61,7 +61,7 @@ $cmt_face_arr = get_faces_from_dir();$cmt_face_imgs = '';foreach ($cmt_face_arr 
 <input name="url" v-model="comment_url" class="hidden">
 <p class="form-meta">
 <?php
-do_action('pf_comment_form_before_face');if (count($cmt_face_arr) > 0) {echo '<a id="comment_faces_toggle" tabindex="0"><i class="far fa-smile-wink" data-toggle="tooltip" title="表情"></i></a>';}do_action('pf_comment_form_after_face');?><a class="comment-meta nick-name guests" tabindex="0" v-show="!this.is_user_loggedin" :html="this.comment_author ? this.comment_author.replace(/ /g, '') != '' ? this.comment_author : '昵称' : '昵称'">
+do_action('pf_comment_form_before_face');if (count($cmt_face_arr) > 0) {echo '<a id="comment_faces_toggle" tabindex="0"><i class="far fa-smile-wink" data-toggle="tooltip" title="表情"></i></a>';}do_action('pf_comment_form_after_face');?><a @click="javascript:SIMPALED.Editor.quote()"><span data-toggle="tooltip" title="插入引用"><i class="fa fa-quote-left"></i></span></a><a @click="javascript:SIMPALED.Editor.ahref()"><span data-toggle="tooltip" title="插入链接"><i class="fa fa-link"></i></span></a><a class="comment-meta nick-name guests" tabindex="0" v-show="!this.is_user_loggedin" :html="this.comment_author ? this.comment_author.replace(/ /g, '') != '' ? this.comment_author : '昵称' : '昵称'">
 </a><a class="comment-meta nick-name loggedin" tabindex="0" v-show="this.is_user_loggedin">
 <?php global $current_user;get_currentuserinfo();echo $current_user->user_login; ?>
 </a><span class="big_fa_ding" data-toggle="tooltip" title="同时点赞">

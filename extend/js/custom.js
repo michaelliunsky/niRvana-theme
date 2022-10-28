@@ -1,3 +1,45 @@
+$(function() {
+        function addEditor(a, b, c) {
+            if (document.selection) {
+                a.focus();
+                sel = document.selection.createRange();
+                c ? sel.text = b + sel.text + c: sel.text = b;
+                a.focus()
+            } else {
+                if (a.selectionStart || a.selectionStart == "0") {
+                    var d = a.selectionStart;
+                    var e = a.selectionEnd;
+                    var f = e;
+                    c ? a.value = a.value.substring(0, d) + b + a.value.substring(d, e) + c + a.value.substring(e, a.value.length) : a.value = a.value.substring(0, d) + b + a.value.substring(e, a.value.length);
+                    c ? f += b.length + c.length: f += b.length - e + d;
+                    if (d == e && c) {
+                        f -= c.length
+                    }
+                    a.focus();
+                    a.selectionStart = f;
+                    a.selectionEnd = f
+                } else {
+                    a.value += b + c;
+                    a.focus()
+                }
+            }
+        }
+        var g = document.getElementById("comment") || 0;
+        var h = {
+            quote: function() {
+                addEditor(g, "<blockquote>", "</blockquote>")
+            },
+            ahref: function() {
+                var a = prompt("请输入链接地址", "http(s)://");
+                var b = prompt("请输入要显示成文字链接的描述", "");
+                if (a) {
+                    addEditor(g, '<a target="_blank" href="' + a + '" rel="external nofollow">' + b + "</a>", "")
+                }
+            },
+        };
+        window["SIMPALED"] = {};
+        window["SIMPALED"]["Editor"] = h
+});
 jQuery(document).ready(function ($) {
     $(
         ".postLists.lists .card h2,.pf_hotposts h4"

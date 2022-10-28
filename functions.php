@@ -4,6 +4,56 @@ $bd_type   = 'client_credentials';
 $bd_key    = 'Q70cNABhpAOEzSvDn81HGD3B';
 $bd_secret = 'Qm9VAlGRdxfhY0nPCyY5xGeWylZh3xGp';
 $bd_url    = "{$bd_uri}?grant_type={$bd_type}&client_id={$bd_key}&client_secret={$bd_secret}";
+//网站欢迎语弹框
+function show_addr(){
+    $blog_title = get_bloginfo('name');
+echo "<div id=\"welcome\" style=\"text-align:center;\">欢迎访问".$blog_title."的朋友！<br><center>今日：<iframe width=\"180\"scrolling=\"no\" height=\"18\" frameborder=\"0\" allowtransparency=\"true\" src=\"https://i.tianqi.com/index.php?c=code&id=1&icon=1&wind=0&num=1\">
+</iframe></center><div class=\"closebox\"><a href=\"javascript:void(0)\"onclick=\"$('#welcome'). slideUp('slow');$('.closebox').css('display','none');\" title=\"关闭\">关闭</a></div></div>";  //输出欢迎语及关闭
+}
+//说说页面
+add_action('init', 'my_custom_shuoshuo_init');
+function my_custom_shuoshuo_init() { 
+    $labels = array( 
+        'name' => '说说',
+        'singular_name' => '说说', 
+        'all_items' => '所有说说',
+        'add_new' => '发表说说', 
+        'add_new_item' => '撰写新说说',
+        'edit_item' => '编辑说说', 
+        'new_item' => '新说说', 
+        'view_item' => '查看说说', 
+        'search_items' => '搜索说说', 
+        'not_found' => '暂无说说', 
+        'not_found_in_trash' => '回收站中没有说说', 
+        'parent_item_colon' => '',
+        'menu_name' => '说说'
+    ); 
+    $args = array( 
+        'labels' => $labels, 
+        'public' => true, 
+        'publicly_queryable' => true, 
+        'show_ui' => true, 
+        'show_in_menu' => true, 
+        'query_var' => true, 
+        'rewrite' => true, 
+        'capability_type' => 'post', 
+        'has_archive' => true, 
+        'hierarchical' => false, 
+        'menu_position' => null, 
+        'supports' => array('title','editor','author'),
+        'menu_icon' => 'dashicons-format-quote'
+    ); 
+    register_post_type('shuoshuo',$args); 
+}
+//评论插入代码
+add_action('pf_comment_form_after_face','pf_add_comment_form_insert_code');function pf_add_comment_form_insert_code() {echo '<a @click="this.insert_code_to_comment_form()"><span data-toggle="tooltip" title="插入代码"><i class="far fa-file-code"></i></span></a>';}
+//评论插入图片
+add_action('pf_comment_form_after_face','pf_add_comment_form_insert_images');function pf_add_comment_form_insert_images() {echo '<a @click="this.insert_images_to_comment_form()"><span data-toggle="tooltip" title="插入图片"><i class="far fa-images"></i></span></a>';}
+//评论支持MD回复
+add_filter( 'comment_text', function( $comment_text ) {
+	return str_ireplace('&lt;', '<', $comment_text );
+});
+//评论自动邮件回复
 function ludou_comment_mail_notify($comment_id, $comment_status) {
 // 评论必须经过审核才会发送通知邮件
 if ($comment_status !== 'approve' && $comment_status !== 1)

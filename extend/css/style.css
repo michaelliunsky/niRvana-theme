@@ -1,3 +1,24 @@
+#welcome {background:#ffffff;border:0px solid #ffffff;color:#000000;font-size:14px;opacity:0.9;filter:alpha(opacity=70);padding:10px 20px;position:fixed;right:50px;bottom:30px;z-index:99999;border-top-left-radius: 15px;border-bottom-right-radius: 15px;border-top-right-radius: 15px;border-bottom-left-radius: 15px;}
+.from-url{color:#3d3b4f;font-weight: 700;}
+.closebox{float:center;text-align:center;font-size:16px;margin-top:10px;}
+.rainbow {
+        background: -webkit-linear-gradient(45deg, lightpink, lightgreen, pink, orange,#e03997,#e54d42,#9c26b0,#fdefac,lightblue);
+        color: transparent;
+        /*设置字体颜色透明*/
+        -webkit-background-clip: text;
+        /*背景裁剪为文本形式*/
+        animation: ran 10s linear infinite;
+        /*动态10s展示*/
+    }
+    @keyframes ran {
+        from {
+            backgroud-position: 0 0;
+           }
+
+        to {
+            background-position: 2000px 0;
+        }
+}
 .cmt_faces {max-width: 32px;}
 article h1, article h2, article h3, article h4, article h5 {font-weight:bold;}
 #wrapper {background: url(../imgs/bl.png) no-repeat fixed bottom left, url(../imgs/tr.png) no-repeat fixed top right, #f0f2f7;}
