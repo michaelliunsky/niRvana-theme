@@ -1,4 +1,4 @@
-![niRvana](https://raw.githubusercontent.com/michaelliunsky/niRvana-theme/main/screenshot.png)
+![niRvana](https://michaelliunsky.cn/wp-content/uploads/2022/10/screenshot.png)
 
 # niRvana-theme
 niRvana · 轻拟物WordPress主题
@@ -36,6 +36,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20221113 v4.1.1
++ 修复某些迷惑提示
++ 修复**评论不能正常代码高亮问题**
++ 最近不会有太大的更新
+
 ## 20221106 v4.1.0 重大升级，请尽量更新！
 + **移除主题所有插件依赖，直接安装不会有任何报错，优化其他bug，可以在虚拟主机上完美使用。**
 + 评论打字**粒子爆炸效果**
@@ -45,7 +50,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 + 后台登录页面**采用必应每日一图为背景**
 
 ## 20221028 v4.0.2
-+ 全局rainbow彩虹字特效，在文章或评论中插入<font class="rainbow">输入内容</font>即可有**彩虹扫光字体**效果
++ 全局rainbow彩虹字特效，在文章或评论中插入
+```html
+<font class="rainbow">输入内容</font>
+```
+即可有**彩虹扫光字体**效果
 + 增加**MD回复**功能
 + 评论可插入**图片，代码，引用文字，链接**
 + 添加**简短说说功能，随时随地记录您的想法**

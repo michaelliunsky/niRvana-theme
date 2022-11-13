@@ -1,3 +1,13 @@
+$('.comments pre').each(function(i, block) {
+    var codearea = $(block).children('code');
+    block = codearea.length > 0 ? codearea.get(0) : block; 
+    if ($(block).hasClass('hljs')) {return false;}
+    if ($(block).parent().hasClass('disable_highlightjs')) {return false;}
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block, {
+    singleLine: true
+    });
+});
 $(function() {
         function addEditor(a, b, c) {
             if (document.selection) {
