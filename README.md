@@ -18,6 +18,7 @@ niRvana · 轻拟物WordPress主题
 
 # 安装
 
+环境要求：**PHP7.4兼容最佳**
 在 [Release](https://github.com/michaelliunsky/niRvana-theme/releases) 页面下载 .zip 文件，在 WordPress 后台 "主题" 页面上传并安装。
 您**主题自带评论邮件回复，如果您需要评论回复自动邮件提醒功能，请安装WP-SMTP插件，或自行配置邮箱发送，如果不需要，则不需要采取操作**
 
@@ -35,6 +36,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 您**必须在页脚保留 niRvana 主题的名称及作者链接**，否则请不要使用 niRvana 主题。
 
 # 更新日志
+
+## 20221127 v4.1.2
++ 网站欢迎语对话框切换为**只有首页显示**
++ 修复后台图标重复问题
++ 修复若干小BUG
 
 ## 20221113 v4.1.1
 + 修复某些迷惑提示
