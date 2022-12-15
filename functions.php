@@ -23,7 +23,7 @@ include('extend/template/archives.php');
 function show_addr(){
     if ( is_home() || is_front_page() ) {
     $blog_title = get_bloginfo('name');
-echo "<div id=\"welcome\" style=\"text-align:center;\">欢迎访问".$blog_title."的朋友！<br><center>今日：<iframe width=\"180\"scrolling=\"no\" height=\"18\" frameborder=\"0\" allowtransparency=\"true\" src=\"https://i.tianqi.com/index.php?c=code&id=1&icon=1&wind=0&num=1\">
+echo "<div id=\"welcome\" style=\"text-align:center;\">欢迎访问".$blog_title."的朋友！<br><center>今日：<iframe width=\"170\"scrolling=\"no\" height=\"18\" frameborder=\"0\" allowtransparency=\"true\" src=\"https://i.tianqi.com/?c=code&id=1\">
 </iframe></center><div class=\"closebox\"><a href=\"javascript:void(0)\"onclick=\"$('#welcome'). slideUp('slow');$('.closebox').css('display','none');\" title=\"关闭\">关闭</a></div></div>";  //输出欢迎语及关闭
     }
 }

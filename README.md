@@ -37,6 +37,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20221215 v4.1.3
++ 主题自带**fontawesome升级到六版本**
++ **复制时显示版权提示框**
++ 天气部件优化
+
 ## 20221127 v4.1.2
 + 网站欢迎语对话框切换为**只有首页显示**
 + 修复后台图标重复问题
