@@ -28,7 +28,9 @@ niRvana · 轻拟物WordPress主题
 
 # Demo
 
-[dreamhouse.org.cn](https://dreamhouse.org.cn)
+~~[dreamhouse.org.cn](https://dreamhouse.org.cn)~~
+
+目前员Demo关闭，最近抓紧新建一个。
 
 # 注意
 
