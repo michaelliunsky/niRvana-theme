@@ -24,13 +24,13 @@ niRvana · 轻拟物WordPress主题
 
 # 文档
 
-[作者博客中的文档 : https://michaelliunsky.cn/](https://michaelliunsky.cn/web/nirvana.html)
+[作者博客中的文档 : https://michaelliunsky.cn/](https://michaelliunsky.cn/135.html)
 
 # Demo
 
 ~~[dreamhouse.org.cn](https://dreamhouse.org.cn)~~
 
-目前员Demo关闭，最近抓紧新建一个。
+目原Demo关闭，最近抓紧新建一个。
 
 # 注意
 
