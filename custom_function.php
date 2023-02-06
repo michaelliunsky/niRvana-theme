@@ -9,13 +9,12 @@
 想要在head引入样式/脚本，可以这么做：
 
 function add_some_style_to_head() {
-	echo '
-	<style>
-	body {background: #f00;}
-	</style>
-	';
+    echo '
+    <style>
+    body {background: #f00;}
+    </style>
+    ';
 }
 add_action( 'wp_head', 'add_some_style_to_head' );
 
 */
-?>
