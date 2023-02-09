@@ -217,7 +217,7 @@
           },
           {
             "type": "input",
-            "placeholder": "FontAwesome5",
+            "placeholder": "FontAwesome6",
             "name": "icon",
             "label": "图标"
           },
@@ -238,7 +238,7 @@
         "name": "sidebars",
         "gear_name": "",
         "gear_value": "",
-        "decoration": "1、图标请从<a target=\"_blank\" href=\"https://fontawesome.com/icons\">FontAwesome5</a>图标中选择，复制&lt;i&gt;标签即可，如：&lt;i class=&quot;fab fa-apple&quot;&gt;&lt;/i&gt;</li><br>\n2、对边栏的排序仅改变边栏名称与图标。内部的小工具顺序及位置请前往“外观/小工具”进行调整<br>\n3、新增边栏后，若页面未显示“外观/小工具”菜单，请刷新页面后再试。在此处清空边栏（数量为0）将不再显示“外观/小工具”菜单<br>\n注：由于此图标库实时更新，若选择的图标太新，则可能不显示。此时请联系主题开发者更新主题内的图标库<br>\n4、为了更好地让搜索引擎索引，因此边栏的任何数据都不会被搜索引擎。边栏内容被伪装成脚本进行加载。故，边栏中若自定义HTML，请不要再次出现script标签，若需要，则务必将尖括号转义，可写为%3cscript%3e<br>\n左侧尖括号的转移符为：%3c<br>\n右侧尖括号的转移符为：%3e<br>"
+        "decoration": "1、图标请从<a target=\"_blank\" href=\"https://fontawesome.com/icons\">FontAwesome6</a>图标中选择，复制&lt;i&gt;标签即可，如：&lt;i class=&quot;fab fa-apple&quot;&gt;&lt;/i&gt;</li><br>\n2、对边栏的排序仅改变边栏名称与图标。内部的小工具顺序及位置请前往“外观/小工具”进行调整<br>\n3、新增边栏后，若页面未显示“外观/小工具”菜单，请刷新页面后再试。在此处清空边栏（数量为0）将不再显示“外观/小工具”菜单<br>\n注：由于此图标库实时更新，若选择的图标太新，则可能不显示。此时请联系主题开发者更新主题内的图标库<br>\n4、为了更好地让搜索引擎索引，因此边栏的任何数据都不会被搜索引擎。边栏内容被伪装成脚本进行加载。故，边栏中若自定义HTML，请不要再次出现script标签，若需要，则务必将尖括号转义，可写为%3cscript%3e<br>\n左侧尖括号的转移符为：%3c<br>\n右侧尖括号的转移符为：%3e<br>"
       },
       {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">分类通用显示</span>",

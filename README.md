@@ -23,7 +23,7 @@ niRvana · 轻拟物 WordPress 主题
 
 环境要求：**PHP7.4 兼容最佳**
 在 [Release](https://github.com/michaelliunsky/niRvana-theme/releases) 页面下载 .zip 文件，在 WordPress 后台 "主题" 页面上传并安装。
-您**主题自带评论邮件回复，如果您需要评论回复自动邮件提醒功能，请安装 WP-SMTP 插件，或自行配置邮箱发送，如果不需要，则不需要采取操作**
+**主题自带评论邮件回复，如果您需要评论回复自动邮件提醒功能，请安装 WP-SMTP 插件，或自行配置邮箱发送，如果不需要，则不需要采取操作**
 
 # 文档
 
@@ -31,9 +31,7 @@ niRvana · 轻拟物 WordPress 主题
 
 # Demo
 
-~~[dreamhouse.org.cn](https://dreamhouse.org.cn)~~
-
-目前 Demo 关闭，正在新建 Demo。
+[michaelliunsky.cn](https://michaelliunsky.cn/)
 
 # 注意
 
@@ -41,6 +39,14 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 您**必须在页脚保留 niRvana 主题的名称及作者链接**，否则请不要使用 niRvana 主题。
 
 # 更新日志
+
+## 20230209 v4.2.1 修复重要 BUG！请务必更新
+
+- **修复了边栏重要 BUG**
+- 修改主题设置数据
+- 修复了提示样式
+- 修复提示显示不正常的问题
+- 去除无用文件
 
 ## 20230206 v4.2.0 重大升级，请务必更新！
 
@@ -101,5 +107,5 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 # 捐赠
 
 如果你觉得 niRvana 主题不错，可以请我一杯咖啡来支持我的开发。
-![微信捐赠码](https://michaelliunsky.cn/wp-content/uploads/2022/08/wechat.jpg)
-![支付宝捐赠码](https://michaelliunsky.cn/wp-content/uploads/2022/08/alipay.jpg)
+![微信捐赠码](https://michaelliunsky.cn/wp-content/uploads/2023/02/wechat.jpg)
+![支付宝捐赠码](https://michaelliunsky.cn/wp-content/uploads/2023/02/alipay.jpg)

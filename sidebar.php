@@ -13,7 +13,7 @@ for ($i=0; $i < count($sidebars); $i++) {
             $showString .= ' show-on-'.$item;
         }
     }?>
-            <li data-id="<?php echo $dataId;?>" <?php echo $showString; ?>%pcs-comment-end#* /><a data-toggle="tooltip" data-placement="auto top" title="<?php echo $sidebars[$i]['name'];?>"><?php echo $sidebars[$i]['icon'] ? $sidebars[$i]['icon'] : '　';?></a></li><?php
+<li data-id="<?php echo $dataId;?>" <?php echo $showString; ?>><a data-toggle="tooltip" data-placement="auto top" title="<?php echo $sidebars[$i]['name'];?>"><?php echo $sidebars[$i]['icon'] ? $sidebars[$i]['icon'] : '　';?></a></li><?php
 }?>
         </ul>
     </div>
