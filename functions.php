@@ -1,4 +1,12 @@
 <?php
+//文章图片灯箱
+function auto_post_link($content)
+{
+    global $post;
+    $content = preg_replace('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', "<a href=\"$2\" alt=\"".$post->post_title."\" title=\"".$post->post_title."\"><img src=\"$2\" alt=\"".$post->post_title."\" title=\"".$post->post_title."\" /></a>", $content);
+    return $content;
+}
+add_filter('the_content', 'auto_post_link', 0);
 //调用每日一图作为登录页背景
 function custom_login_head()
 {

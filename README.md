@@ -40,6 +40,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230227 v4.2.2
+
+- 主题兼容了 WEBP 格式
+- 添加主题图片灯箱
+
 ## 20230209 v4.2.1 修复重要 BUG！请务必更新
 
 - **修复了边栏重要 BUG**
