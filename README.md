@@ -1,4 +1,4 @@
-![niRvana](https://michaelliunsky.cn/wp-content/uploads/2022/10/screenshot.png)
+![niRvana](http://s-sh-4619-blog.oss.dogecdn.com/screenshot.png)
 
 # niRvana-theme
 
@@ -112,5 +112,5 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 # 捐赠
 
 如果你觉得 niRvana 主题不错，可以请我一杯咖啡来支持我的开发。
-![微信捐赠码](https://michaelliunsky.cn/wp-content/uploads/2023/02/wechat.jpg)
-![支付宝捐赠码](https://michaelliunsky.cn/wp-content/uploads/2023/02/alipay.jpg)
+![微信捐赠码](http://s-sh-4619-blog.oss.dogecdn.com/wechat.jpg)
+![支付宝捐赠码](http://s-sh-4619-blog.oss.dogecdn.com/alipay.jpg)
