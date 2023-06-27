@@ -40,6 +40,13 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230627 v5.0beta1
+
+- 修改摘要字数显示
+- 修复一些 php8.X 中的错误
+- 压缩一些文件缩小体积
+- 更改版权网址
+
 ## 20230227 v4.2.2
 
 - 主题兼容了 WEBP 格式

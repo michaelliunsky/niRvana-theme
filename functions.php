@@ -556,7 +556,7 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
     }
     echo '</ul></div></div>';
 }
-function p_link($i, $title = '', $linktype = '', $disabled)
+function p_link($i, $disabled, $title = '', $linktype = '')
 {
     if ($title == '') {
         $title = "The {$i} page";
@@ -1652,7 +1652,7 @@ function get_category_text($pid, $showFull = false, $separate = ' / ')
     }
     return $categoryText;
 }
-function get_the_description($pid, $trim_words = 36)
+function get_the_description($pid, $trim_words = 150)
 {
     $result = '';
     $excerpt = get_the_excerpt($pid);

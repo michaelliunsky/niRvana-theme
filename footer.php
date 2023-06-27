@@ -3,7 +3,7 @@
         echo '<div class="copyright silver-color">'.get_option('footer版权文本').'</div>';
     }?>
         <div class="beian <?php echo(_opt('cn_record_breakline') ? 'breakline' : ''); ?>" :template="beian"></div>
-        <div class="copyright silver-color">Theme <strong>niRvana</strong> By <a href="https://michaelliunsky.cn/" target="_blank"><span>michaelliunsky</span></a></div><?php if (!wp_is_mobile()) {?><?php show_addr();?><?php }?><script>
+        <div class="copyright silver-color">Theme <strong>niRvana</strong> By <a href="https://blog.mkliu.top/" target="_blank"><span>michaelliunsky</span></a></div><?php if (!wp_is_mobile()) {?><?php show_addr();?><?php }?><script>
             <?php global $pf_dirty_selector;
     if (count($pf_dirty_selector) > 0) {
         echo "pandastudio_framework.article_dirty_selector = ['".implode("','", $pf_dirty_selector)."']";
