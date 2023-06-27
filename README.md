@@ -27,11 +27,11 @@ niRvana · 轻拟物 WordPress 主题
 
 # 文档
 
-[作者博客中的文档 : https://michaelliunsky.cn/](https://michaelliunsky.cn/135.html)
+[作者博客中的文档 : https://blog.mkliu.top/](https://blog.mkliu.top/135.html)
 
 # Demo
 
-[michaelliunsky.cn](https://michaelliunsky.cn/)
+[blog.mkliu.top](https://blog.mkliu.top/)
 
 # 注意
 
