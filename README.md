@@ -40,6 +40,12 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230718 v5.0beta2 虽然是 v5.0 beta 版，但修复了重要 BUG，请务必更新！
+
+- 重写了主题 JS
+- 修复了评论 BUG
+- 优化提示
+
 ## 20230627 v5.0beta1
 
 - 修改摘要字数显示
