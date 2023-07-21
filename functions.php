@@ -556,7 +556,7 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
     }
     echo '</ul></div></div>';
 }
-function p_link($i, $disabled, $title = '', $linktype = '')
+function p_link($i, $title = '', $linktype = '', $disabled)
 {
     if ($title == '') {
         $title = "The {$i} page";
@@ -965,7 +965,7 @@ add_filter('get_avatar', 'inlojv_custom_avatar', 10, 5);
 function inlojv_custom_avatar($avatar, $id_or_email, $size, $default, $alt)
 {
     global $comment, $current_user;
-    if (count(get_option('random_avatar')) > 0) {
+    if (count((array)get_option('random_avatar')) > 0) {
         $current_email = is_int($id_or_email) ? get_user_by('ID', $id_or_email)->user_email : $id_or_email;
         $current_email = is_object($current_email) ? $current_email->comment_author_email : $current_email;
         $email = !empty($comment->comment_author_email) ? $comment->comment_author_email : $current_email;
