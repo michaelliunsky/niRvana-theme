@@ -51,15 +51,6 @@ function add_view_times_to_cookie()
     }
 }add_action('wp', 'add_view_times_to_cookie');
 include('extend/template/archives.php');
-//网站欢迎语弹框
-function show_addr()
-{
-    if (is_home() || is_front_page()) {
-        $blog_title = get_bloginfo('name');
-        echo "<div id=\"welcome\" style=\"text-align:center;\">欢迎访问".$blog_title."的朋友！<br><center>今日：<iframe width=\"170\"scrolling=\"no\" height=\"18\" frameborder=\"0\" allowtransparency=\"true\" src=\"https://i.tianqi.com/?c=code&id=1\">
-</iframe></center><div class=\"closebox\"><a href=\"javascript:void(0)\"onclick=\"$('#welcome'). slideUp('slow');$('.closebox').css('display','none');\" title=\"关闭\">关闭</a></div></div>";  //输出欢迎语及关闭
-    }
-}
 //说说页面
 add_action('init', 'my_custom_shuoshuo_init');
 function my_custom_shuoshuo_init()
@@ -121,25 +112,7 @@ function html_page_permalink()
         $wp_rewrite->page_structure = $wp_rewrite->page_structure . '.html';
     }
 }
-//百度语音
-$bd_uri    = 'https://openapi.baidu.com/oauth/2.0/token';
-$bd_type   = 'client_credentials';
-$bd_key    = 'Q70cNABhpAOEzSvDn81HGD3B';
-$bd_secret = 'Qm9VAlGRdxfhY0nPCyY5xGeWylZh3xGp';
-$bd_url    = "{$bd_uri}?grant_type={$bd_type}&client_id={$bd_key}&client_secret={$bd_secret}";
-if (!get_cache('bd_audio_tok')) {
-    $bd_response = wp_safe_remote_get(esc_url_raw($bd_url), array('timeout' => 60));
-
-    if (is_array($bd_response) && !is_wp_error($bd_response) && $bd_response['response']['code'] == '200') {
-        $bd_audio_tok     = json_decode($bd_response['body'], true);
-        $bd_audio_tok_arr = array(
-            'access_token' => $bd_audio_tok['access_token'],
-            'session_key'  => $bd_audio_tok['session_key'],
-        );
-        set_cache('bd_audio_tok', $bd_audio_tok_arr, 86400 * 20);
-    }
-}
-
+//restapi
 add_action('rest_api_init', function () {
     register_rest_route('pandastudio/nirvana', '/restapi/', array('methods' => 'post', 'callback' => 'pf_rest_api'));
 });

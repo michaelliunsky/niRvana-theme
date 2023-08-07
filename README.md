@@ -40,6 +40,14 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230807 v5.0beta3 大优化更新
+
+- 删去反馈不好功能：复制提示，修复复制问题
+- 删去反馈不好功能：首页提示语
+- 综合所有小插件
+- 优化百度语音
+- 优化整合并适配了主题的夜间模式 CSS
+
 ## 20230721 v5.0beta2-hotfix 紧急修复重要 BUG
 
 - **紧急修复 BUG**
