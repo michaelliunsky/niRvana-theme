@@ -40,6 +40,10 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230813 v5.0beta4 压缩文件
+
+- 压缩前端加载文件 JS,CSS
+
 ## 20230807 v5.0beta3 大优化更新
 
 - 删去反馈不好功能：复制提示，修复复制问题
