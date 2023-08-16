@@ -1,4 +1,11 @@
 <?php
+//自动更新
+require_once(get_template_directory() . '/theme-update-checker/plugin-update-checker.php');
+$niRvanaThemeUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+    'https://blog.mkliu.top/source/info.json',
+    get_template_directory() . '/functions.php',
+    'niRvana'
+);
 //小工具修复
 add_filter('gutenberg_use_widgets_block_editor', '__return_false');
 add_filter('use_widgets_block_editor', '__return_false');
