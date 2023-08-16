@@ -590,7 +590,7 @@
   },
   {
     "title": "评论",
-    "icon": "fa-commenting-o",
+    "icon": "fa-comment",
     "labelWidth": "130px",
     "content": [
       {
@@ -648,7 +648,7 @@
   },
   {
     "title": "文章",
-    "icon": "fa-file-text-o",
+    "icon": "fa-file-lines",
     "labelWidth": "130px",
     "content": [
       {
@@ -883,7 +883,7 @@
   },
   {
     "title": "文章分类",
-    "icon": "fa-folder-o",
+    "icon": "fa-folder",
     "labelWidth": "130px",
     "content": [
       {
@@ -1000,7 +1000,7 @@
   },
   {
     "title": "相册",
-    "icon": "fa-photo",
+    "icon": "fa-image",
     "labelWidth": "130px",
     "content": [
       {
@@ -1091,7 +1091,7 @@
   },
   {
     "title": "下载",
-    "icon": "fa-arrow-circle-down",
+    "icon": "fa-circle-arrow-down",
     "labelWidth": "130px",
     "content": [
       {
@@ -1129,7 +1129,7 @@
   },
   {
     "title": "留言板",
-    "icon": "fa-pencil-square-o",
+    "icon": "fa-pen-to-square",
     "labelWidth": "130px",
     "content": [
       {

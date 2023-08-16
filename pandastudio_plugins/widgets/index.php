@@ -28,7 +28,7 @@ function pf_user_info_load_widgets()
     {
         $widget_ops = array( 'classname' => 'pf_user_info', 'description' => '展示博主基本信息');
         $control_ops = array( 'width' => 200, 'height' => 350, 'id_base' => 'pf_user_info-widget' );
-        $this->WP_Widget('pf_user_info-widget', '博主信息', $widget_ops, $control_ops);
+        parent::__construct('pf_user_info-widget', '博主信息', $widget_ops, $control_ops);
     }public function widget($args, $instance)
     {
         extract($args);
@@ -104,7 +104,7 @@ function pf_tag_cloud_load_widgets()
     {
         $widget_ops = array( 'classname' => 'pf_tag_cloud', 'description' => '可用于：自定义标签、链接、社交信息展示等');
         $control_ops = array( 'width' => 500, 'height' => 350, 'id_base' => 'pf_tag_cloud-widget' );
-        $this->WP_Widget('pf_tag_cloud-widget', '标签与链接', $widget_ops, $control_ops);
+        parent::__construct('pf_tag_cloud-widget', '标签与链接', $widget_ops, $control_ops);
     }public function widget($args, $instance)
     {
         extract($args);
@@ -140,7 +140,7 @@ function pf_tag_cloud_load_widgets()
         return $instance;
     }public function form($instance)
     {
-        $defaults = array( 'tags'=> array(array('text'=>'','url'=>'','target'=>'_blank')));
+        $defaults = array( 'tags' => array(array('text' => '','url' => '','target' => '_blank')));
         $instance = wp_parse_args((array) $instance, $defaults);?>
 <p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
 <p><label for="<?php echo $this->get_field_id('display_type'); ?>">显示形式：</label><select id="<?php echo $this->get_field_id('display_type'); ?>" name="<?php echo $this->get_field_name('display_type'); ?>" class="widefat" style="width:100%;">
@@ -222,7 +222,7 @@ function pf_microblog_load_widgets()
     {
         $widget_ops = array( 'classname' => 'pf_microblog', 'description' => '轻博客展示');
         $control_ops = array( 'width' => 200, 'height' => 200, 'id_base' => 'pf_microblog-widget' );
-        $this->WP_Widget('pf_microblog-widget', '轻博客', $widget_ops, $control_ops);
+        parent::__construct('pf_microblog-widget', '轻博客', $widget_ops, $control_ops);
     }public function widget($args, $instance)
     {
         extract($args);
@@ -234,7 +234,7 @@ function pf_microblog_load_widgets()
         }echo '<ul>';
         wp_reset_query();
         $args = array(
-        'post_type'=> 'microblog',
+        'post_type' => 'microblog',
         'posts_per_page' => intval($number),
         );
         query_posts($args);
@@ -257,7 +257,7 @@ function pf_microblog_load_widgets()
         return $instance;
     }public function form($instance)
     {
-        $defaults = array('number'=>'5');
+        $defaults = array('number' => '5');
         $instance = wp_parse_args((array) $instance, $defaults);?>
 <p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
 <p><label for="<?php echo $this->get_field_id('number'); ?>">显示轻博客的数量：</label><input id="<?php echo $this->get_field_id('number'); ?>" class="tiny-text" name="<?php echo $this->get_field_name('number'); ?>" value="<?php echo $instance['number']; ?>" type="number" step="1" min="1" size="3" /></p><?php
@@ -273,7 +273,7 @@ function pf_hotposts_load_widgets()
     {
         $widget_ops = array( 'classname' => 'pf_hotposts', 'description' => '展示评论最多/点赞最多的文章');
         $control_ops = array( 'width' => 200, 'height' => 200, 'id_base' => 'pf_hotposts-widget' );
-        $this->WP_Widget('pf_hotposts-widget', '热门文章展示', $widget_ops, $control_ops);
+        parent::__construct('pf_hotposts-widget', '热门文章展示', $widget_ops, $control_ops);
     }public function widget($args, $instance)
     {
         extract($args);
@@ -336,7 +336,7 @@ function pf_hotposts_load_widgets()
         return $instance;
     }public function form($instance)
     {
-        $defaults = array('number'=>'5','filter'=>'most_likes');
+        $defaults = array('number' => '5','filter' => 'most_likes');
         $instance = wp_parse_args((array) $instance, $defaults);?>
 <p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
 <p><label for="<?php echo $this->get_field_id('filter'); ?>">文章筛选：</label><select id="<?php echo $this->get_field_id('filter'); ?>" name="<?php echo $this->get_field_name('filter'); ?>" class="widefat" style="width:100%;">

@@ -40,6 +40,14 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230816 v5.0beta5 重大更新，请务必升级
+
+- **主题紧急适配 wordpress6.3 版本**,修复 Gutenberg block
+- 主题前端后台所有 fontawesome 全部升级至 6.4.2
+- fontawesome gutenberg 显示问题修复
+- 修复小工具问题
+- 主题代码细节优化
+
 ## 20230813 v5.0beta4 压缩文件
 
 - 压缩前端加载文件 JS,CSS
