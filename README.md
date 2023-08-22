@@ -3,6 +3,11 @@
 # niRvana-theme
 
 niRvana · 轻拟物 WordPress 主题
+typecho 版本 : [github.com/michaelliunsky/typecho-theme-niRvana](https://github.com/michaelliunsky/typecho-theme-niRvana)
+
+[![GitHub release](https://img.shields.io/github/v/release/michaelliunsky/niRvana-theme?color=%235e72e4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub All Releases](https://img.shields.io/github/downloads/michaelliunsky/niRvana-theme/total?style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub](https://img.shields.io/github/license/michaelliunsky/niRvana-theme?color=blue&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/blob/master/LICENSE) [![Author](https://img.shields.io/badge/author-michaelliunsky-yellow?style=for-the-badge)](https://github.com/michaelliunsky) [![GitHub stars](https://img.shields.io/github/stars/michaelliunsky/niRvana-theme?color=ff69b4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/stargazers)
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/commits/master) [![GitHub Release Date](https://img.shields.io/github/release-date/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/releases) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/michaelliunsky/niRvana-theme?style=flat-square)
 
 # 主题基本特性
 
