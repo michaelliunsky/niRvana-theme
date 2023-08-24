@@ -1,4 +1,4 @@
-! [niRvana](http://s-sh-4619-blog.oss.dogecdn.com/screenshot.png)
+![niRvana](http://s-sh-4619-blog.oss.dogecdn.com/screenshot.png)
 
 [简体中文](README.md) | [繁體中文](README_tw.md) | **English** | [Russian](README_ru.md)
 
@@ -6,13 +6,13 @@
 
 niRvana · Light replica WordPress theme
 
-Typecho version: [github.com/michaelliunsky/typecho-theme-niRvana] (https://github.com/michaelliunsky/typecho-theme-niRvana)
+Typecho version: [github.com/michaelliunsky/typecho-theme-niRvana](https://github.com/michaelliunsky/typecho-theme-niRvana)
 
 [![GitHub release](https://img.shields.io/github/v/release/michaelliunsky/niRvana-theme?color=%235e72e4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub All Releases](https://img.shields.io/github/downloads/michaelliunsky/niRvana-theme/total?style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub](https://img.shields.io/github/license/michaelliunsky/niRvana-theme?color=blue&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/blob/master/LICENSE)
 
-[![Author](https://img.shields.io/badge/author-michaelliunsky-yellow?style=for-the-badge)](https://github.com/michaelliuns ky) [![GitHub stars](https://img.shields.io/github/stars/michaelliunsky/niRvana-theme?color=ff69b4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/stargazers)
+[![Author](https://img.shields.io/badge/author-michaelliunsky-yellow?style=for-the-badge)](https://github.com/michaelliunsky) [![GitHub stars](https://img.shields.io/github/stars/michaelliunsky/niRvana-theme?color=ff69b4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/stargazers)
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/commits/master) [![GitHub Release Date](https://img.shields.io/github/release-date/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/releases) ! [GitHub code size in bytes](https://img.shields.io/github/languages/code-size/michaelliunsky/niRvana-theme?style=flat-square)
+[![GitHub last commit](https://img.shields.io/github/last-commit/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/commits/master) [![GitHub Release Date](https://img.shields.io/github/release-date/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/releases) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/michaelliunsky/niRvana-theme?style=flat-square)
 
 # Basic features of the theme
 
@@ -33,13 +33,13 @@ Typecho version: [github.com/michaelliunsky/typecho-theme-niRvana] (https://gith
 
 Environment requirements: **PHP7.4 compatible best**
 
-In [Release] (https://github.com/michaelliunsky/niRvana-theme/releases) page download. Zip file, upload and install the WordPress backend "theme" page.
+In [Release](https://github.com/michaelliunsky/niRvana-theme/releases) page download. Zip file, upload and install the WordPress backend "theme" page.
 
 **Theme comes with comment email reply, if you need comment reply automatic email reminder function, please install WP-SMTP plug-in, or configure your own mailbox to send, if not, you do not need to take action**
 
 # Document
 
-[the author document in the blog: https://blog.mkliu.top/] (https://blog.mkliu.top/135.html)
+[the author document in the blog: https://blog.mkliu.top/](https://blog.mkliu.top/135.html)
 
 # Demo
 
@@ -47,7 +47,7 @@ In [Release] (https://github.com/michaelliunsky/niRvana-theme/releases) page dow
 
 # Attention
 
-NiRvana to use [the GPL V3.0] agreement open source (https://github.com/michaelliunsky/niRvana-theme/blob/main/LICENSE), please follow this protocol for secondary development, etc.
+NiRvana to use [the GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/main/LICENSE)agreement open source, please follow this protocol for secondary development, etc.
 
 You **must keep the niRvana topic name and author link** in the footer, otherwise please do not use the niRvana topic.
 

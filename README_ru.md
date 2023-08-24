@@ -1,4 +1,4 @@
-! [niRvana] (http://s-sh-4619-blog.oss.dogecdn.com/screenshot.png)
+![niRvana](http://s-sh-4619-blog.oss.dogecdn.com/screenshot.png)
 
 [简体中文](README.md) | [繁體中文](README_tw.md) | [English](README_en.md) | **Русский**
 
@@ -6,13 +6,13 @@
 
 niRvana · Легкая реплика темы WordPress
 
-Версия Typecho: [github.com/michaelliunsky/typecho-theme-niRvana] (https://github.com/michaelliunsky/typecho-theme-niRvana)
+Версия Typecho: [github.com/michaelliunsky/typecho-theme-niRvana](https://github.com/michaelliunsky/typecho-theme-niRvana)
 
-[![Выпуск GitHub](https://img.shields.io/github/v/release/michaelliunsky/niRvana-theme?color=%235e72e4&style=for-the-badge)] (https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub Все выпуски](https://img.shields.io/github/downloads/michaelliunsky/niRvana-theme/total?style=for-the-badge)] (https://githu b.com/michaelliunsky/niRvana-theme/releases) [![GitHub](https://img.shields.io/github/license/michaelliunsky/niRvana-theme?color=blue&style=for-the-badge)] (https://github.com/michaelliunsky/niRvana-theme/blob/master/LICENSE)
+[![Выпуск GitHub](https://img.shields.io/github/v/release/michaelliunsky/niRvana-theme?color=%235e72e4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub Все выпуски](https://img.shields.io/github/downloads/michaelliunsky/niRvana-theme/total?style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub](https://img.shields.io/github/license/michaelliunsky/niRvana-theme?color=blue&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/blob/master/LICENSE)
 
-[![Автор](https://img.shields.io/badge/author-michaelliunsky-yellow?style=for-the-badge)](https://github.com/michaelliuns Кентукки) [![Звезды GitHub](https://img.shields.io/github/stars/michaelliunsky/niRvana-theme?color=ff69b4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/stargazers)
+[![Автор](https://img.shields.io/badge/author-michaelliunsky-yellow?style=for-the-badge)](https://github.com/michaelliunsky) [![Звезды GitHub](https://img.shields.io/github/stars/michaelliunsky/niRvana-theme?color=ff69b4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/stargazers)
 
-[![Последняя фиксация GitHub](https://img.shields.io/github/last-commit/michaelliunsky/niRvana-theme?style=flat-square)] (https://github.com/michaelliunsky/niRvana-theme/commits/master) [![Дата выпуска GitHub](https://img.shields.io/github/release-date/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/releases) ![Размер кода GitHub в байтах](https://img.shields.io/github/languages/code-size/michaelliunsky/niRvana-theme?style=flat-square)
+[![Последняя фиксация GitHub](https://img.shields.io/github/last-commit/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/commits/master) [![Дата выпуска GitHub](https://img.shields.io/github/release-date/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/releases) ![Размер кода GitHub в байтах](https://img.shields.io/github/languages/code-size/michaelliunsky/niRvana-theme?style=flat-square)
 
 # Основные возможности темы
 
@@ -33,21 +33,21 @@ niRvana · Легкая реплика темы WordPress
 
 Требования к среде: **Совместимость с PHP7.4 лучше всего**
 
-На странице загрузки [Релиз] (https://github.com/michaelliunsky/niRvana-theme/releases). Заархивируйте файл, загрузите и установите страницу «темы» серверной части WordPress.
+На странице загрузки [Релиз](https://github.com/michaelliunsky/niRvana-theme/releases). Заархивируйте файл, загрузите и установите страницу «темы» серверной части WordPress.
 
 **Тема поставляется с ответом на комментарий по электронной почте, если вам нужна функция автоматического напоминания об ответе на комментарий по электронной почте, пожалуйста, установите плагин WP-SMTP или настройте свой собственный почтовый ящик для отправки, если нет, вам не нужно предпринимать никаких действий**
 
 # Документ
 
-[Автор документа в блоге: https://blog.mkliu.top/] (https://blog.mkliu.top/135.html)
+[Автор документа в блоге: https://blog.mkliu.top/](https://blog.mkliu.top/135.html)
 
 # Демо
 
-[blog.mkliu.top] (https://blog.mkliu.top/)
+[blog.mkliu.top](https://blog.mkliu.top/)
 
 # Внимание
 
-NiRvana использует соглашение [GPL V3.0] с открытым исходным кодом (https://github.com/michaelliunsky/niRvana-theme/blob/main/LICENSE), пожалуйста, следуйте этому протоколу для вторичной разработки и т. д.
+NiRvana использует соглашение [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/main/LICENSE)с открытым исходным кодом , пожалуйста, следуйте этому протоколу для вторичной разработки и т. д.
 
 Вы **должны сохранить название темы niRvana и ссылку на автора** в нижнем колонтитуле, в противном случае, пожалуйста, не используйте тему niRvana.
 
