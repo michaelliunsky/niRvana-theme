@@ -47,7 +47,7 @@ In [Release](https://github.com/michaelliunsky/niRvana-theme/releases) page down
 
 # Attention
 
-NiRvana to use [the GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/main/LICENSE)agreement open source, please follow this protocol for secondary development, etc.
+NiRvana to use [the GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/main/LICENSE) agreement open source, please follow this protocol for secondary development, etc.
 
 You **must keep the niRvana topic name and author link** in the footer, otherwise please do not use the niRvana topic.
 
