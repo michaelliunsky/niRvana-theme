@@ -111,6 +111,19 @@ function pf_add_comment_form_insert_images()
 {
     echo '<a @click="this.insert_images_to_comment_form()"><span data-toggle="tooltip" title="插入图片"><i class="far fa-images"></i></span></a>';
 }
+//评论标签支持
+add_action('pre_comment_on_post', 'add_post_comment_html_tags');
+function add_post_comment_html_tags($commentdata)
+{
+    global $allowedtags;
+    $new_tags = [
+      'img' => [
+        'src' => true
+      ],
+      'pre' => []
+    ];
+    $allowedtags = array_merge($allowedtags, $new_tags);
+}
 // 页面链接添加html后缀
 add_action('init', 'html_page_permalink', -1);
 function html_page_permalink()

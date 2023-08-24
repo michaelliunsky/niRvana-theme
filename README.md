@@ -1,5 +1,7 @@
 ![niRvana](http://s-sh-4619-blog.oss.dogecdn.com/screenshot.png)
 
+**简体中文** | [繁體中文](README_tw.md) | [English](README_en.md) | [Russian](README_ru.md)
+
 # niRvana-theme
 
 niRvana · 轻拟物 WordPress 主题
@@ -51,9 +53,14 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230824 v5.0beta8
+
+- 修复了评论 pre,img 标签失效问题
+- 修复了评论图片输入框
+
 ## 20230818 v5.0beta7
 
-- ** 紧急修复 BUG**
+- **紧急修复 BUG**
 - 升级了主题更新程序
 
 ## 20230816 v5.0beta6
