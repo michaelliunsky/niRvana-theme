@@ -53,6 +53,12 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230828 v5.0beta9
+
+- 修复了回复可见失效的 bug
+- 删除 rainbow 彩虹字体功能
+- 添加了加密文章的 CSS 优化
+
 ## 20230824 v5.0beta8
 
 - 修复了评论 pre,img 标签失效问题
