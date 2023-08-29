@@ -17,7 +17,7 @@ function add_baiduAudio_translation_array($translation_array)
         $bd_response = file_get_contents($bd_url);
         $bd_response = json_decode($bd_response, true);
         if ($bd_response['access_token']) {
-            set_cache('bd_audio_tok', ['access_token' => $bd_response['access_token'], 'session_key' => $bd_response['session_key']], $bd_response[expires_in] * 0.9);
+            set_cache('bd_audio_tok', ['access_token' => $bd_response['access_token'], 'session_key' => $bd_response['session_key']], $bd_response['expires_in'] * 0.9);
         }
     }
     $translation_array['baiduAudio'] = array_merge(get_cache('bd_audio_tok'), array(	'spd' => get_option('baidu_ai_audio_spd') ? get_option('baidu_ai_audio_spd') : 5,'pit' => get_option('baidu_ai_audio_pit') ? get_option('baidu_ai_audio_pit') : 5,'per' => get_option('baidu_ai_audio_per') ? get_option('baidu_ai_audio_per') : 0,'enable' => get_option('baidu_ai_audio_enable') == 'checked'

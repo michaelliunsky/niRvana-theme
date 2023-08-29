@@ -31,7 +31,7 @@ Typecho version: [github.com/michaelliunsky/typecho-theme-niRvana](https://githu
 
 # Install
 
-Environment requirements: **PHP7.4 compatible best**
+Environment requirements: **PHP8.2 compatible best**
 
 In [Release](https://github.com/michaelliunsky/niRvana-theme/releases) page download. Zip file, upload and install the WordPress backend "theme" page.
 

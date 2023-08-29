@@ -2,7 +2,7 @@
 
 if (function_exists('register_block_type')) {
     add_theme_support('align-wide');
-    add_filter('block_categories', function ($categories, $post) {
+    add_filter('block_categories_all', function ($categories, $post) {
         return array_merge(
             $categories,
             array(
@@ -99,14 +99,14 @@ array(
     $images = isset($attributes["images"]) ? $attributes["images"] : [];
     $indicators = "";
     $items = "";
-    for ($i=0; $i < count($images); $i++) {
-        $indicators = $i==0 ?
+    for ($i = 0; $i < count($images); $i++) {
+        $indicators = $i == 0 ?
         $indicators.'<li data-target="#'.$id.'" data-slide-to="'.$i.'" class="active"></li>
 '
         :
         $indicators.'<li data-target="#'.$id.'" data-slide-to="'.$i.'"></li>
 ';
-        $items = $i==0 ?
+        $items = $i == 0 ?
         $items.'<div class="item active"><div class="img_wrapper"><img src="'.$images[$i].'"></div></div>'
         :
         $items.'<div class="item"><div class="img_wrapper"><img src="'.$images[$i].'"></div></div>';
@@ -122,7 +122,7 @@ array(
 {
     $arguments = is_array($arg) ? $arg : func_get_args();
     $express = $arguments[0];
-    for ($i=1; $i < count($arguments); $i++) {
+    for ($i = 1; $i < count($arguments); $i++) {
         $express = str_replace("{{".$i."}}", $arguments[$i], $express);
     }$express = preg_replace('/{{(.+?)}}/', '', $express);
     return $express;
@@ -135,7 +135,7 @@ array(
     $newArgs = [];
     $express = $number <= 1 ? $single : $multiple;
     $newArgs[] = $express;
-    for ($i=2; $i < count($arguments); $i++) {
+    for ($i = 2; $i < count($arguments); $i++) {
         $newArgs[] = $arguments[$i];
     }return _t8($newArgs);
 }function _et8($arg)

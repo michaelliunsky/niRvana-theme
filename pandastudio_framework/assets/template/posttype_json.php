@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 foreach ($myPostTypes['posttypes'] as $postType) {
     add_action(
         'init',
@@ -17,15 +18,15 @@ foreach ($myPostTypes['posttypes'] as $postType) {
         foreach ($postType['new_columns'] as $singleColumn) {
             $new_columns[$singleColumn['name']] = $singleColumn['display'];
         }$columns = array_merge($columns, $new_columns);
-        if ($columns['tags']) {
+        if (isset($columns['tags'])) {
             $tags = $columns['tags'];
             unset($columns['tags']);
-            $columns = array_merge($columns, $new_columns, array('tags'=>$tags));
+            $columns = array_merge($columns, $new_columns, array('tags' => $tags));
         }
         if ($columns['date']) {
             $date = $columns['date'];
             unset($columns['date']);
-            $columns = array_merge($columns, $new_columns, array('date'=>$date));
+            $columns = array_merge($columns, $new_columns, array('date' => $date));
         }return $columns;
     });
     if ($postType['allow_categorys']) {
@@ -33,7 +34,7 @@ foreach ($myPostTypes['posttypes'] as $postType) {
             register_taxonomy($postType['type'].'-category', $postType['type'], array('labels' => array('name' => $postType['name'].'分类目录','add_new_item' => '添加新分类目录','new_item_name' => '分类名称'
             ),'show_ui' => true,'show_in_rest' => true,'show_tagcloud' => false,'hierarchical' => true,));
         });
-    }if ($postType['allow_tags']) {
+    }if (isset($postType['allow_tags'])) {
         add_action('init', function () use ($postType) {
             register_taxonomy($postType['type'].'-tag', $postType['type'], array('labels' => array('name' => $postType['name'].'标签','add_new_item' => '添加新标签','new_item_name' => '标签名称'
             ),'show_ui' => true,'show_in_rest' => true,'show_tagcloud' => true,'hierarchical' => false,));

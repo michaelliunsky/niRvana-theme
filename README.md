@@ -31,7 +31,7 @@ typecho 版本 : [github.com/michaelliunsky/typecho-theme-niRvana](https://githu
 
 # 安装
 
-环境要求：**PHP7.4 兼容最佳**
+环境要求：**PHP8.2 兼容最佳**
 
 在 [Release](https://github.com/michaelliunsky/niRvana-theme/releases) 页面下载 .zip 文件，在 WordPress 后台 "主题" 页面上传并安装。
 
@@ -52,6 +52,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 您**必须在页脚保留 niRvana 主题的名称及作者链接**，否则请不要使用 niRvana 主题。
 
 # 更新日志
+
+## 20230829 v5.0beta10 **成功兼容了 PHP8.2，请务必更新！**
+
+- 支持 php8+
+- 修复评论表情预览大小过大的 bug
 
 ## 20230828 v5.0beta9
 

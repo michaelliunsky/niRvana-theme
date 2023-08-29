@@ -35,7 +35,7 @@ function count_words_read_time()
     global $post;
     $text_num = mb_strlen(preg_replace('/\s/', '', html_entity_decode(strip_tags($post->post_content))), 'UTF-8');
     $read_time = ceil($text_num / 300); // 修改数字300调整时间
-    $output .= '本文共' . $text_num . '个字 · 预计阅读' . $read_time  . '分钟';
+    $output = '本文共' . $text_num . '个字 · 预计阅读' . $read_time  . '分钟';
     return $output;
 }
 //显示已读次数
@@ -545,7 +545,7 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
     }
     echo '</ul></div></div>';
 }
-function p_link($i, $title = '', $linktype = '', $disabled)
+function p_link($i, $title, $linktype, $disabled)
 {
     if ($title == '') {
         $title = "The {$i} page";
@@ -656,6 +656,7 @@ function add_cookies_for_reply($commentdata)
     $email = $commentdata['comment_author_email'];
     if ($email) {
         $expire = time() + 99999999;
+        $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
         setcookie('current_user_email', $email, $expire, '/', $domain);
     }
     return $commentdata;
@@ -1077,11 +1078,11 @@ function pre_validate_comment_span($commentdata)
 <p></p><p>WP NONCE验证失败，判定为机器人恶意发送的垃圾评论！如果启用了“缓存”，则无法正常获取NONCE，因此也可能会判定为垃圾评论。若此操作是正常操作，请停用任何网站缓存功能。</p><p></p><p><a href="javascript:history.back()">« 返回</a></p><p></p>');
         return false;
     }
-    if (!isset($_COOKIE['bigfa_ding_' . $commentdata[comment_post_ID]]) & $_POST['big_fa_ding'] == 'on') {
-        update_post_meta($commentdata[comment_post_ID], 'bigfa_ding', (get_post_meta($commentdata[comment_post_ID], 'bigfa_ding', true) + 1));
+    if (!isset($_COOKIE['bigfa_ding_' . $commentdata['comment_post_ID']]) & $_POST['big_fa_ding'] == 'on') {
+        update_post_meta($commentdata['comment_post_ID'], 'bigfa_ding', (get_post_meta($commentdata['comment_post_ID'], 'bigfa_ding', true) + 1));
         $expire = time() + 99999999;
         $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
-        setcookie('bigfa_ding_' . $commentdata[comment_post_ID], $commentdata[comment_post_ID], $expire, '/', $domain, false);
+        setcookie('bigfa_ding_' . $commentdata['comment_post_ID'], $commentdata['comment_post_ID'], $expire, '/', $domain, false);
     }
     return $commentdata;
 }
