@@ -53,6 +53,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20230910 v5.0beta11
+
+- 修复了代码高亮显示不正确问题
+- 增加了桌面端设备代码一键复制功能
+
 ## 20230829 v5.0beta10 **成功兼容了 PHP8.2，请务必更新！**
 
 - 支持 php8+
