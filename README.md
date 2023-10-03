@@ -53,6 +53,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20231003 v5.0beta12
+
+- 修复了手机端 COPY CODE 不显示问题
+- 删除了评论无用的引用，链接键
+
 ## 20230910 v5.0beta11
 
 - 修复了代码高亮显示不正确问题
