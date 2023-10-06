@@ -53,6 +53,12 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20231006 v5.0beta13
+
+- **性能优化**：修复滚动图片 DOM 元素不断增加导致 JS 内存无法回收的严重问题
+- **修复**：“轻博客”内容包含百分号时，脚本报错导致边栏不加载的问题
+- **增加**：版权自动警告
+
 ## 20231003 v5.0beta12
 
 - 修复了手机端 COPY CODE 不显示问题

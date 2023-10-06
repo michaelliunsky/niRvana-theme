@@ -133,6 +133,21 @@ function html_page_permalink()
         $wp_rewrite->page_structure = $wp_rewrite->page_structure . '.html';
     }
 }
+//检测页面底部版权是否被修改
+function alert_footer_copyright_changed()
+{ ?>
+<div class='notice notice-error'>
+    <p><?php _e("警告：你可能修改了 niRvana 主题页脚的版权声明，niRvana 主题要求你必须保留 niRvana 主题的名称及作者链接。", 'niRvana');?></p>
+</div>
+<?php }
+function check_footer_copyright()
+{
+    $footer = file_get_contents(get_theme_root() . "/" . wp_get_theme() -> template . "/footer.php");
+    if ((strpos($footer, "michaelliunsky") === false) && (strpos($footer, "blog.mkliu.top") === false)) {
+        add_action('admin_notices', 'alert_footer_copyright_changed');
+    }
+}
+check_footer_copyright();
 //restapi
 add_action('rest_api_init', function () {
     register_rest_route('pandastudio/nirvana', '/restapi/', array('methods' => 'post', 'callback' => 'pf_rest_api'));
