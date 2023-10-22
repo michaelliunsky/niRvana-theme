@@ -53,6 +53,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20231022 v5.0beta14
+
+- **性能优化**：更改了 Gravatar 为更快镜像源
+- **修复**：后台“主题设置”页面“语音合成”部分拖拽 Slider 按钮层不被左侧菜单浮动遮罩的 BUG
+
 ## 20231006 v5.0beta13
 
 - **性能优化**：修复滚动图片 DOM 元素不断增加导致 JS 内存无法回收的严重问题

@@ -1012,7 +1012,7 @@ function inlojv_custom_avatar($avatar, $id_or_email, $size, $default, $alt)
         $email_hash = md5(strtolower(trim($email)));
         $random_avatar = array_rand($random_avatar_arr, 1);
         $src = $random_avatar_arr[$random_avatar]["avatar"];
-        $avatar = "<img alt='{$alt}' src='//cdn.helingqi.com/avatar/{$email_hash}?d=404' onerror='javascript:this.src=\"{$src}\";this.onerror=null;' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+        $avatar = "<img alt='{$alt}' src='//jsd.onmicrosoft.cn/avatar/{$email_hash}?d=404' onerror='javascript:this.src=\"{$src}\";this.onerror=null;' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
     }
     return $avatar;
 }
