@@ -124,15 +124,6 @@ function add_post_comment_html_tags($commentdata)
     ];
     $allowedtags = array_merge($allowedtags, $new_tags);
 }
-// 页面链接添加html后缀
-add_action('init', 'html_page_permalink', -1);
-function html_page_permalink()
-{
-    global $wp_rewrite;
-    if (!strpos($wp_rewrite->get_page_permastruct(), '.html')) {
-        $wp_rewrite->page_structure = $wp_rewrite->page_structure . '.html';
-    }
-}
 //检测页面底部版权是否被修改
 function alert_footer_copyright_changed()
 { ?>
@@ -1012,7 +1003,7 @@ function inlojv_custom_avatar($avatar, $id_or_email, $size, $default, $alt)
         $email_hash = md5(strtolower(trim($email)));
         $random_avatar = array_rand($random_avatar_arr, 1);
         $src = $random_avatar_arr[$random_avatar]["avatar"];
-        $avatar = "<img alt='{$alt}' src='//jsd.onmicrosoft.cn/avatar/{$email_hash}?d=404' onerror='javascript:this.src=\"{$src}\";this.onerror=null;' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
+        $avatar = "<img alt='{$alt}' src='//cdn.sep.cc/avatar/{$email_hash}?d=404' onerror='javascript:this.src=\"{$src}\";this.onerror=null;' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
     }
     return $avatar;
 }

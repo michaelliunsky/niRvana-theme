@@ -31,7 +31,7 @@ typecho 版本 : [github.com/michaelliunsky/typecho-theme-niRvana](https://githu
 
 # 安裝
 
-環境要求：**PHP8.2 兼容最佳**
+環境要求：**PHP8.3 兼容最佳**
 
 在 [Release](https://github.com/michaelliunsky/niRvana-theme/releases) 頁面下載 .zip 文件，在 WordPress 後臺 "主題" 頁面上傳並安裝。
 

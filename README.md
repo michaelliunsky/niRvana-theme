@@ -31,7 +31,7 @@ typecho 版本 : [github.com/michaelliunsky/typecho-theme-niRvana](https://githu
 
 # 安装
 
-环境要求：**PHP8.2 兼容最佳**
+环境要求：**PHP8.3 兼容最佳**
 
 在 [Release](https://github.com/michaelliunsky/niRvana-theme/releases) 页面下载 .zip 文件，在 WordPress 后台 "主题" 页面上传并安装。
 
@@ -52,6 +52,14 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 您**必须在页脚保留 niRvana 主题的名称及作者链接**，否则请不要使用 niRvana 主题。
 
 # 更新日志
+
+## 20240209 v5.0RC1 **更新后需要将所有已经存在的页面进入编辑器点一下更新，否则无法访问页面。**
+
+- **题外话**：**在除夕夜发布的 RC 版本预示着 v5.0 开发迈入新台阶。祝各位龙行龘龘，前程朤朤。龙年快乐！**
+- **删除**：自动添加页面 HTML 后缀功能。**注意**因此导致**更新后需要将所有已经存在的页面进入编辑器点一下更新，否则无法访问页面。**
+- **性能优化**：更改了 Gravatar 为更快镜像源
+- **更新**：fontawesome 版本
+- **更新**：**全新适配 PHP8.3**
 
 ## 20231022 v5.0beta14
 
