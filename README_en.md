@@ -1,4 +1,4 @@
-![niRvana](http://s-sh-4619-blog.oss.dogecdn.com/screenshot.png)
+![niRvana](https://raw.githubusercontent.com/michaelliunsky/cdn/master/screenshot.png)
 
 [简体中文](README.md) | [繁體中文](README_tw.md) | **English** | [Russian](README_ru.md)
 

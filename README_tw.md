@@ -1,4 +1,4 @@
-![niRvana](http://s-sh-4619-blog.oss.dogecdn.com/screenshot.png)
+![niRvana](https://raw.githubusercontent.com/michaelliunsky/cdn/master/screenshot.png)
 
 [简体中文](README.md) | **繁體中文** | [English](README_en.md) | [Russian](README_ru.md)
 
@@ -59,5 +59,5 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 如果你覺得 niRvana 主題不錯，可以請我一杯咖啡來支持我的開發。
 
-![微信捐贈碼](http://s-sh-4619-blog.oss.dogecdn.com/wechat.jpg)
-![支付寶捐贈碼](http://s-sh-4619-blog.oss.dogecdn.com/alipay.jpg)
+![微信捐贈碼](https://raw.githubusercontent.com/michaelliunsky/cdn/master/wechat.jpg)
+![支付寶捐贈碼](https://raw.githubusercontent.com/michaelliunsky/cdn/master/alipay.jpg)
