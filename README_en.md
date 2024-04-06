@@ -1,4 +1,4 @@
-![niRvana](https://raw.githubusercontent.com/michaelliunsky/cdn/master/screenshot.png)
+![niRvana](https://cdn.jsdelivr.net/gh/michaelliunsky/cdn@master/screenshot.png)
 
 [简体中文](README.md) | [繁體中文](README_tw.md) | **English** | [Russian](README_ru.md)
 

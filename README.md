@@ -1,4 +1,4 @@
-![niRvana](https://raw.githubusercontent.com/michaelliunsky/cdn/master/screenshot.png)
+![niRvana](https://cdn.jsdelivr.net/gh/michaelliunsky/cdn@master/screenshot.png)
 
 **简体中文** | [繁體中文](README_tw.md) | [English](README_en.md) | [Russian](README_ru.md)
 
@@ -222,5 +222,5 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 如果你觉得 niRvana 主题不错，可以请我一杯咖啡来支持我的开发。
 
-![微信捐赠码](https://raw.githubusercontent.com/michaelliunsky/cdn/master/wechat.jpg)
-![支付宝捐赠码](https://raw.githubusercontent.com/michaelliunsky/cdn/master/alipay.jpg)
+![微信捐赠码](https://cdn.jsdelivr.net/gh/michaelliunsky/cdn@master/wechat.jpg)
+![支付宝捐赠码](https://cdn.jsdelivr.net/gh/michaelliunsky/cdn@master/alipay.jpg)
