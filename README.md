@@ -53,6 +53,11 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日志
 
+## 20250626 v5.0RC3
+
+- **修复**：wp_enqueue_scripts钩子使用不正确的问题
+- **更新**：版权日期
+
 ## 20240404 v5.0RC2 **重要功能性修复，请务必更新！**
 
 - **重要修复**：**首页图片不取主题色的问题**
