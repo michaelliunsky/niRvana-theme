@@ -1,25 +1,49 @@
 <?php
 
-wp_register_script('pf_restapi', '');
-$pf_api_translation_array = array('route' => esc_url_raw(rest_url()),'blog_name' => get_bloginfo('name'),'nonce' => wp_create_nonce('wp_rest'),'home' => home_url());
-$theme = wp_get_theme();
-$pf_api_translation_array['theme'] = array('uri' => $theme->get('ThemeURI'),'author_uri' => $theme->get('AuthorURI'),'name' => $theme->get('Name'),'version' => $theme->get('Version'),'route' => get_stylesheet_directory_uri(),'sec1' => base64_encode(get_option('pay_info_nirvana')),'sec2' => base64_encode(get_option('charactor_info')));
-if (is_admin()) {
-    global $wpdb;
-    $request = "SELECT $wpdb->terms.term_id, name FROM $wpdb->terms ";
-    $request .= " LEFT JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id ";
-    $request .= " WHERE $wpdb->term_taxonomy.taxonomy = 'category' ";
-    $request .= " ORDER BY term_id asc";
-    $categorys = $wpdb->get_results($request);
-    $categorySelector = array();
-    foreach ($categorys as $category) {
-        $categorySelector[] = array('label' => $category->name,'value' => $category->term_id );
-    }$pf_api_translation_array['categorySelector'] = $categorySelector;
-}$current_user = wp_get_current_user();
-$pf_api_translation_array['current_user'] = array('logged_in' => is_user_logged_in(),'name' => $current_user->user_login,'email' => $current_user->user_email,'id' => $current_user->ID);
-$pf_api_translation_array = apply_filters('modify_pandastudio_translation_array', $pf_api_translation_array);
-wp_localize_script('pf_restapi', 'pandastudio_framework', $pf_api_translation_array);
-wp_enqueue_script('pf_restapi');
+function pf_framework_enqueue_scripts() {
+    wp_register_script('pf_restapi', '');
+    $pf_api_translation_array = array(
+        'route' => esc_url_raw(rest_url()),
+        'blog_name' => get_bloginfo('name'),
+        'nonce' => wp_create_nonce('wp_rest'),
+        'home' => home_url()
+    );
+    $theme = wp_get_theme();
+    $pf_api_translation_array['theme'] = array(
+        'uri' => $theme->get('ThemeURI'),
+        'author_uri' => $theme->get('AuthorURI'),
+        'name' => $theme->get('Name'),
+        'version' => $theme->get('Version'),
+        'route' => get_stylesheet_directory_uri(),
+        'sec1' => base64_encode(get_option('pay_info_nirvana')),
+        'sec2' => base64_encode(get_option('charactor_info'))
+    );
+    if (is_admin()) {
+        global $wpdb;
+        $request = "SELECT $wpdb->terms.term_id, name FROM $wpdb->terms ";
+        $request .= " LEFT JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id ";
+        $request .= " WHERE $wpdb->term_taxonomy.taxonomy = 'category' ";
+        $request .= " ORDER BY term_id asc";
+        $categorys = $wpdb->get_results($request);
+        $categorySelector = array();
+        foreach ($categorys as $category) {
+            $categorySelector[] = array('label' => $category->name, 'value' => $category->term_id );
+        }
+        $pf_api_translation_array['categorySelector'] = $categorySelector;
+    }
+    $current_user = wp_get_current_user();
+    $pf_api_translation_array['current_user'] = array(
+        'logged_in' => is_user_logged_in(),
+        'name' => $current_user->user_login,
+        'email' => $current_user->user_email,
+        'id' => $current_user->ID
+    );
+    $pf_api_translation_array = apply_filters('modify_pandastudio_translation_array', $pf_api_translation_array);
+    wp_localize_script('pf_restapi', 'pandastudio_framework', $pf_api_translation_array);
+    wp_enqueue_script('pf_restapi');
+}
+add_action('wp_enqueue_scripts', 'pf_framework_enqueue_scripts');
+add_action('admin_enqueue_scripts', 'pf_framework_enqueue_scripts');
 add_action('rest_api_init', function () {
     register_rest_route('pandastudio/framework', '/get_option_json/', array('methods' => 'get','callback' => 'get_option_json_by_RestAPI',));
 });

@@ -31,7 +31,7 @@
         "type": "input",
         "label": "版权文本",
         "value": "",
-        "placeholder": "如：©2024 michaelliunsky 版权所有",
+        "placeholder": "如：©2025 michaelliunsky 版权所有",
         "name": "footer版权文本",
         "decoration": ""
       },
