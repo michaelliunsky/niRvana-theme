@@ -10,6 +10,6 @@
     <link rel='stylesheet' id='rpi-css' href='<?php echo get_stylesheet_directory_uri(); ?>/extend/css/style.css' type='text/css' media='all' />
 </head>
 
-<body class="black-color <?php echo($_COOKIE['night'] == '1' ? 'night' : ''); ?>">
+<body class="black-color <?php echo (isset($_COOKIE['night']) && $_COOKIE['night'] == '1' ? 'night' : ''); ?>">
     <div id="wrapper" class="<?php sandbox_body_class() ?> niRvana"><?php include('assets/template/nav-main.php');?>
         <div id="main">

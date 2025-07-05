@@ -1022,22 +1022,22 @@ function get_the_naved_contentnav($content)
             $ul_li .= '<li class="h2_nav"><a href="#favlink-' . $i . '" class="h_nav" title="' . $category->name . '">' . $category->name . "</a></li>\n";
         }
     }
-    $rh = "/<h[23]>(.*?)<\/h[23]>/im";
+    $rh = "/<h([23])[^>]*>(.*?)<\/h[23]>/im";
     $h2_num = 0;
     $h3_num = 0;
     if (preg_match_all($rh, $content, $matches) || $ul_li) {
-        foreach ($matches[1] as $num => $title) {
-            $hx = substr($matches[0][$num], 0, 3);
+        foreach ($matches[2] as $num => $title) {
+            $hx = $matches[1][$num];
             $start = stripos($content, $matches[0][$num]);
             $end = strlen($matches[0][$num]);
-            if ($hx == "<h2") {
+            if ($hx == "2") {
                 $h2_num += 1;
                 $h3_num = 0;
                 $title = preg_replace('/<.+?>/', "", $title);
                 if ($title) {
                     $ul_li .= '<li class="h2_nav"><a href="#h2-' . $num . '" class="h_nav" title="' . $title . '">' . $title . "</a></li>\n";
                 }
-            } elseif ($hx == "<h3") {
+            } elseif ($hx == "3") {
                 $h3_num += 1;
                 $title = preg_replace('/<.+?>/', "", $title);
                 if ($title) {
@@ -1053,19 +1053,19 @@ function get_the_naved_contentnav($content)
 function get_the_naved_content($content)
 {
     $matches = array();
-    $rh = "/<h[23]>(.*?)<\/h[23]>/im";
+    $rh = "/<h([23])[^>]*>(.*?)<\/h[23]>/im";
     $h2_num = 0;
     $h3_num = 0;
     if (preg_match_all($rh, $content, $matches)) {
-        foreach ($matches[1] as $num => $title) {
-            $hx = substr($matches[0][$num], 0, 3);
+        foreach ($matches[2] as $num => $title) {
+            $hx = $matches[1][$num];
             $start = stripos($content, $matches[0][$num]);
             $end = strlen($matches[0][$num]);
-            if ($hx == "<h2") {
+            if ($hx == "2") {
                 $h2_num += 1;
                 $h3_num = 0;
                 $content = substr_replace($content, '<h2 id="h2-' . $num . '">' . $title . '</h2>', $start, $end);
-            } elseif ($hx == "<h3") {
+            } elseif ($hx == "3") {
                 $h3_num += 1;
                 $content = substr_replace($content, '<h3 id="h3-' . $num . '">' . $title . '</h3>', $start, $end);
             }
