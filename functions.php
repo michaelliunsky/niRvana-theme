@@ -1085,7 +1085,9 @@ function pre_validate_comment_span($commentdata)
         return false;
     }
     if (!isset($_COOKIE['bigfa_ding_' . $commentdata['comment_post_ID']]) & $_POST['big_fa_ding'] == 'on') {
-        update_post_meta($commentdata['comment_post_ID'], 'bigfa_ding', (get_post_meta($commentdata['comment_post_ID'], 'bigfa_ding', true) + 1));
+        $ding = get_post_meta($commentdata['comment_post_ID'], 'bigfa_ding', true);
+        $ding = is_numeric($ding) ? (int)$ding : 0;
+        update_post_meta($commentdata['comment_post_ID'], 'bigfa_ding', $ding + 1);
         $expire = time() + 99999999;
         $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
         setcookie('bigfa_ding_' . $commentdata['comment_post_ID'], $commentdata['comment_post_ID'], $expire, '/', $domain, false);
