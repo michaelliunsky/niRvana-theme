@@ -1,57 +1,96 @@
 <?php
 add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/framework', '/get_option/', array('methods' => 'post','callback' => 'get_option_by_RestAPI',));
-    register_rest_route('pandastudio/framework', '/update_option/', array('methods' => 'post','callback' => 'update_option_by_RestAPI',));
-    register_rest_route('pandastudio/framework', '/wp_query/', array('methods' => 'post','callback' => 'wp_query_by_RestAPI',));
+    register_rest_route('pandastudio/framework', '/get_option/', array(
+        'methods' => 'POST',
+        'callback' => 'get_option_by_RestAPI',
+        'permission_callback' => '__return_true',
+    ));
+    register_rest_route('pandastudio/framework', '/update_option/', array(
+        'methods' => 'POST',
+        'callback' => 'update_option_by_RestAPI',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
+    ));
+    register_rest_route('pandastudio/framework', '/wp_query/', array(
+        'methods' => 'POST',
+        'callback' => 'wp_query_by_RestAPI',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
+    ));
 });
+
 function get_option_by_RestAPI($data)
 {
     $dataArray = json_decode($data->get_body(), true);
-    if (count($dataArray) < 1) {
+    if (!is_array($dataArray) || count($dataArray) < 1) {
         return array('error' => '数据格式不正确或为空！');
-    }$return = array();
+    }
+    $return = array();
     foreach ($dataArray as $option_name => $value) {
         $return[$option_name] = get_option($option_name) ? get_option($option_name) : "";
-    }return $return;
-}function update_option_by_RestAPI($data)
+    }
+    return $return;
+}
+
+function update_option_by_RestAPI($data)
 {
     if (current_user_can('manage_options')) {
         $dataArray = json_decode($data->get_body(), true);
         foreach ($dataArray as $option_name => $value) {
             update_option($option_name, $value);
-        }return array('state'=>true);
+        }
+        return array('state' => true);
     } else {
-        return array('state'=>false,'error'=>'PANDA Studio framework 无法执行此操作，原因：您没有进行此操作的权限');
+        return array('state' => false, 'error' => 'PANDA Studio framework 无法执行此操作，原因：您没有进行此操作的权限');
     }
-}function wp_query_by_RestAPI($data)
+}
+
+function wp_query_by_RestAPI($data)
 {
     $dataArray = json_decode($data->get_body(), true);
     if (current_user_can('manage_options')) {
         $keyword = $dataArray['keyword'];
         if (gettype($keyword) == 'integer') {
-            $args = array('post_type' => 'any','p' => $keyword,);
+            $args = array('post_type' => 'any', 'p' => $keyword);
         } else {
-            $args = array('post_type' => 'any','s' => $keyword,);
-        }$query = new WP_Query($args);
+            $args = array('post_type' => 'any', 's' => $keyword);
+        }
+        $query = new WP_Query($args);
         $result = array();
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
-                $result[] = array('label'=>get_the_title(),'value'=>get_the_ID());
-            }wp_reset_postdata();
-        }return $result;
+                $result[] = array('label' => get_the_title(), 'value' => get_the_ID());
+            }
+            wp_reset_postdata();
+        }
+        return $result;
     } else {
-        return array('label'=>'无权限','value'=>'0');
+        return array('label' => '无权限', 'value' => '0');
     }
-}add_action('admin_menu', 'add_option_json_page');
+}
+
+add_action('admin_menu', 'add_option_json_page');
 function add_option_json_page()
 {
-    add_menu_page('setting', '主题设置', 'manage_options', 'pandastudio_framework_options', 'pandastudio_framework_create_json_option_page', 'dashicons-admin-customizer', 60);
-}function pandastudio_framework_create_json_option_page()
+    add_menu_page(
+        'setting',
+        '主题设置',
+        'manage_options',
+        'pandastudio_framework_options',
+        'pandastudio_framework_create_json_option_page',
+        'dashicons-admin-customizer',
+        60
+    );
+}
+
+function pandastudio_framework_create_json_option_page()
 {
     wp_enqueue_media();
     $adminColor = get_user_meta(get_current_user_id(), 'admin_color', true);
-    $supportColorArray = array('blue','coffee','ectoplasm','fresh','light','midnight','ocean','sunrise');
+    $supportColorArray = array('blue', 'coffee', 'ectoplasm', 'fresh', 'light', 'midnight', 'ocean', 'sunrise');
     $color = in_array($adminColor, $supportColorArray) ? $adminColor : 'fresh';
     echo '<script type="text/javascript" src="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/js/vue.js"></script><script type="text/javascript" src="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/js/element-ui.js"></script><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/'.$color.'.css"><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/rewrite.css"><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/font-awesome.css"><div id="vue_rest" class="wrap">';?><template><span v-if="false" style="color: red;">您的浏览器不支持ECMAScript 5，请更换至IE9及以上版本</span></template><template><el-tabs v-model="tabIndex" v-loading="loading" v-show="show"><el-tab-pane v-for="tab in tabs" v-if="gear_show(tab.gear_name,tab.gear_value)"><span slot="label"><i :class="tab.icon" class="fa"></i> {{tab.title}}</span><el-form ref="form" :label-width="tab.labelWidth" style="padding-right: 15px;" onsubmit="return false;"><el-form-item v-for="component in tab.content" v-if="gear_show(component.gear_name,component.gear_value)"><span slot="label" v-html="component.label"></span>
                     <div v-if=" component.type == 'input' "><el-input size="small" v-model="component.value" :placeholder="component.placeholder"></el-input></div>

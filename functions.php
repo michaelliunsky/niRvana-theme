@@ -141,7 +141,11 @@ function check_footer_copyright()
 check_footer_copyright();
 //restapi
 add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/nirvana', '/restapi/', array('methods' => 'post', 'callback' => 'pf_rest_api'));
+    register_rest_route('pandastudio/nirvana', '/restapi/', array(
+        'methods' => 'post',
+        'callback' => 'pf_rest_api',
+        'permission_callback' => '__return_true',
+    ));
 });
 include('production.php');
 add_filter('wp_title', 'pf_custom_wp_title', 10, 2);
@@ -1098,7 +1102,8 @@ add_filter('preprocess_comment', 'pre_validate_comment_span');
 add_action('rest_api_init', function () {
     register_rest_route('pandastudio/framework', '/assistance/', array(
         'methods' => 'post',
-        'callback' => 'pf_assistance'
+        'callback' => 'pf_assistance',
+        'permission_callback' => '__return_true',
     ));
 });
 function pf_assistance($data)

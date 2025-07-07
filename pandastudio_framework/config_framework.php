@@ -45,7 +45,11 @@ function pf_framework_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'pf_framework_enqueue_scripts');
 add_action('admin_enqueue_scripts', 'pf_framework_enqueue_scripts');
 add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/framework', '/get_option_json/', array('methods' => 'get','callback' => 'get_option_json_by_RestAPI',));
+    register_rest_route('pandastudio/framework', '/get_option_json/', array(
+        'methods' => 'get',
+        'callback' => 'get_option_json_by_RestAPI',
+        'permission_callback' => '__return_true',
+    ));
 });
 function get_option_json_by_RestAPI()
 {
@@ -57,7 +61,11 @@ function get_option_json_by_RestAPI()
     }$option_json = apply_filters('modify_pandastudio_options', $option_json);
     return $option_json;
 }add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/framework', '/get_posttype_and_meta_json/', array('methods' => 'get','callback' => 'get_posttype_and_meta_json_by_RestAPI',));
+    register_rest_route('pandastudio/framework', '/get_posttype_and_meta_json/', array(
+        'methods' => 'get',
+        'callback' => 'get_posttype_and_meta_json_by_RestAPI',
+        'permission_callback' => '__return_true',
+    ));
 });
 function get_posttype_and_meta_json_by_RestAPI()
 {
