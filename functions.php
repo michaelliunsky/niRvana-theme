@@ -1722,6 +1722,7 @@ function pf_sidebar_init()
     $sidebars = _opt('sidebars', array());
     for ($i = 0; $i < count($sidebars); $i++) {
         register_sidebar(array(
+        'id' => 'sidebar-'.($i + 1),
         'name' => $sidebars[$i]['name'] ? $sidebars[$i]['name'] : '边栏'.($i + 1).'（无标题）',
         'description' => '边栏数量、名称、图标均可在“主题设置”中添加',
         'before_widget' => '<li id="%1$s" class="widget %2$s">',

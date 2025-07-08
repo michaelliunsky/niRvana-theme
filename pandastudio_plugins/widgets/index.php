@@ -57,6 +57,7 @@ function pf_user_info_load_widgets()
         }return $str;
     }public function form($instance)
     {
+        $defaults = array('name' => '', 'description' => '', 'img' => '');
         $instance = wp_parse_args((array) $instance, $defaults);
         if (!did_action('wp_enqueue_media')) {
             wp_enqueue_media();
@@ -140,7 +141,11 @@ function pf_tag_cloud_load_widgets()
         return $instance;
     }public function form($instance)
     {
-        $defaults = array( 'tags' => array(array('text' => '','url' => '','target' => '_blank')));
+        $defaults = array( 
+            'title' => '',
+            'display_type' => 'tag',
+            'tags' => array(array('text' => '','url' => '','target' => '_blank'))
+        );
         $instance = wp_parse_args((array) $instance, $defaults);?>
 <p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
 <p><label for="<?php echo $this->get_field_id('display_type'); ?>">显示形式：</label><select id="<?php echo $this->get_field_id('display_type'); ?>" name="<?php echo $this->get_field_name('display_type'); ?>" class="widefat" style="width:100%;">
@@ -163,8 +168,8 @@ if (count($instance['tags']) > 0) {
             <td><input name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[text]'; ?>" value="<?php echo $this->exchangeQuotes($val['text']);?>" style="width:100%;" type="text" /></td>
             <td><input name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[url]'; ?>" value="<?php echo $this->exchangeQuotes($val['url']);?>" style="width:100%;" type="text" /></td>
             <td><select name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[target]'; ?>" class="widefat" style="width:100%;">
-                    <option <?php selected($instance['tags'][$i]['target'], '_self'); ?> value="_self">当前窗口</option>
-                    <option <?php selected($instance['tags'][$i]['target'], '_blank'); ?> value="_blank">新窗口</option>
+                    <option <?php selected($val['target'], '_self'); ?> value="_self">当前窗口</option>
+                    <option <?php selected($val['target'], '_blank'); ?> value="_blank">新窗口</option>
                 </select></td>
             <td><a class="del_table_row button" href="#"><span class="dashicons dashicons-trash" style="vertical-align: middle;"></span></a></td>
         </tr><?php
@@ -172,7 +177,7 @@ if (count($instance['tags']) > 0) {
 }?>
     </tbody>
 </table><a class="add_table_row button" style="margin-top: 4px;">新标签</a>
-<p style="font-size: 12px;color: #aaa;">* 地址：格式为URL格式（http://www.abc.com/）可留空</p>
+<p style="font-size: 12px;color: #aaa;">* 地址：格式为URL格式（https://www.abc.com/）可留空</p>
 </p>
 <script>
     jQuery(document).ready(function() {
@@ -257,7 +262,7 @@ function pf_microblog_load_widgets()
         return $instance;
     }public function form($instance)
     {
-        $defaults = array('number' => '5');
+        $defaults = array('title' => '', 'number' => '5');
         $instance = wp_parse_args((array) $instance, $defaults);?>
 <p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
 <p><label for="<?php echo $this->get_field_id('number'); ?>">显示轻博客的数量：</label><input id="<?php echo $this->get_field_id('number'); ?>" class="tiny-text" name="<?php echo $this->get_field_name('number'); ?>" value="<?php echo $instance['number']; ?>" type="number" step="1" min="1" size="3" /></p><?php
@@ -336,7 +341,7 @@ function pf_hotposts_load_widgets()
         return $instance;
     }public function form($instance)
     {
-        $defaults = array('number' => '5','filter' => 'most_likes');
+        $defaults = array('title' => '', 'number' => '5','filter' => 'most_likes');
         $instance = wp_parse_args((array) $instance, $defaults);?>
 <p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
 <p><label for="<?php echo $this->get_field_id('filter'); ?>">文章筛选：</label><select id="<?php echo $this->get_field_id('filter'); ?>" name="<?php echo $this->get_field_name('filter'); ?>" class="widefat" style="width:100%;">
