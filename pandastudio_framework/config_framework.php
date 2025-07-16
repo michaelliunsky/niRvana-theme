@@ -1,6 +1,7 @@
 <?php
 
-function pf_framework_enqueue_scripts() {
+function pf_framework_enqueue_scripts()
+{
     wp_register_script('pf_restapi', '');
     $pf_api_translation_array = array(
         'route' => esc_url_raw(rest_url()),
@@ -14,9 +15,7 @@ function pf_framework_enqueue_scripts() {
         'author_uri' => $theme->get('AuthorURI'),
         'name' => $theme->get('Name'),
         'version' => $theme->get('Version'),
-        'route' => get_stylesheet_directory_uri(),
-        'sec1' => base64_encode(get_option('pay_info_nirvana')),
-        'sec2' => base64_encode(get_option('charactor_info'))
+        'route' => get_stylesheet_directory_uri()
     );
     if (is_admin()) {
         global $wpdb;
