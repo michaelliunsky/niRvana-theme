@@ -36,10 +36,11 @@ function pf_user_info_load_widgets()
         $description = $instance['description'];
         $img = $instance['img'];
         echo $before_widget;?>
-<div class="authorImg" style="background-image: url(<?php echo $img; ?>);"></div>
+<div class="authorImg"
+	style="background-image: url(<?php echo $img; ?>);"></div>
 <div class="meta">
-    <div class="name"><?php echo $name; ?></div>
-    <div class="description"><?php echo $description; ?></div>
+	<div class="name"><?php echo $name; ?></div>
+	<div class="description"><?php echo $description; ?></div>
 </div><?php
         echo $after_widget;
     }public function update($new_instance, $old_instance)
@@ -62,36 +63,58 @@ function pf_user_info_load_widgets()
         if (!did_action('wp_enqueue_media')) {
             wp_enqueue_media();
         }?>
-<p><label for="<?php echo $this->get_field_id('name'); ?>">昵称：</label><input id="<?php echo $this->get_field_id('name'); ?>" name="<?php echo $this->get_field_name('name'); ?>" value="<?php echo $this->exchangeQuotes($instance['name']); ?>" style="width:100%;" type="text" /></p>
-<p><label for="<?php echo $this->get_field_id('description'); ?>">描述：</label><input id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" value="<?php echo $this->exchangeQuotes($instance['description']); ?>" style="width:100%;" type="text" /></p>
-<p><label for="<?php echo $this->get_field_id('img'); ?>" style="display:block;">头像：</label><input id="<?php echo $this->get_field_id('img'); ?>" name="<?php echo $this->get_field_name('img'); ?>" value="<?php echo $this->exchangeQuotes($instance['img']); ?>" style="width: calc(100% - 50px);vertical-align: top;" type="text" /><a id="<?php echo $this->get_field_name('img'); ?>" class="upload-custom-img button" href="#"><span class="dashicons dashicons-upload" style="vertical-align: middle;"></span></a></p>
+<p><label
+		for="<?php echo $this->get_field_id('name'); ?>">昵称：</label><input
+		id="<?php echo $this->get_field_id('name'); ?>"
+		name="<?php echo $this->get_field_name('name'); ?>"
+		value="<?php echo $this->exchangeQuotes($instance['name']); ?>"
+		style="width:100%;" type="text" /></p>
+<p><label
+		for="<?php echo $this->get_field_id('description'); ?>">描述：</label><input
+		id="<?php echo $this->get_field_id('description'); ?>"
+		name="<?php echo $this->get_field_name('description'); ?>"
+		value="<?php echo $this->exchangeQuotes($instance['description']); ?>"
+		style="width:100%;" type="text" /></p>
+<p><label
+		for="<?php echo $this->get_field_id('img'); ?>"
+		style="display:block;">头像：</label><input
+		id="<?php echo $this->get_field_id('img'); ?>"
+		name="<?php echo $this->get_field_name('img'); ?>"
+		value="<?php echo $this->exchangeQuotes($instance['img']); ?>"
+		style="width: calc(100% - 50px);vertical-align: top;" type="text" /><a
+		id="<?php echo $this->get_field_name('img'); ?>"
+		class="upload-custom-img button" href="#"><span class="dashicons dashicons-upload"
+			style="vertical-align: middle;"></span></a></p>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
-        var button_id;
-        jQuery(document).on('click', '.upload-custom-img', function(event) {
-            button_id = jQuery(this).attr('id');
-            event.preventDefault();
-            var _this = this;
-            if (window.pf_image_upload_modal) {
-                window.pf_image_upload_modal.open();
-                return;
-            }
-            window.pf_image_upload_modal = wp.media({
-                title: '上传',
-                button: {
-                    text: '插入',
-                },
-                multiple: false
-            });
-            window.pf_image_upload_modal.on('select', function() {
-                attachment = window.pf_image_upload_modal.state().get('selection').first().toJSON();
-                jQuery("input[name='" + button_id + "']").val(attachment.url);
-                window.pf_image_upload_modal.close();
-                jQuery("input[name='" + button_id + "']").parentsUntil('form').siblings('.widget-control-actions').find('.widget-control-save').removeAttr('disabled').trigger('click');
-            });
-            window.pf_image_upload_modal.open();
-        });
-    });
+	jQuery(document).ready(function() {
+		var button_id;
+		jQuery(document).on('click', '.upload-custom-img', function(event) {
+			button_id = jQuery(this).attr('id');
+			event.preventDefault();
+			var _this = this;
+			if (window.pf_image_upload_modal) {
+				window.pf_image_upload_modal.open();
+				return;
+			}
+			window.pf_image_upload_modal = wp.media({
+				title: '上传',
+				button: {
+					text: '插入',
+				},
+				multiple: false
+			});
+			window.pf_image_upload_modal.on('select', function() {
+				attachment = window.pf_image_upload_modal.state().get('selection').first()
+					.toJSON();
+				jQuery("input[name='" + button_id + "']").val(attachment.url);
+				window.pf_image_upload_modal.close();
+				jQuery("input[name='" + button_id + "']").parentsUntil('form').siblings(
+					'.widget-control-actions').find('.widget-control-save').removeAttr(
+					'disabled').trigger('click');
+			});
+			window.pf_image_upload_modal.open();
+		});
+	});
 </script><?php
     }
 }
@@ -141,79 +164,110 @@ function pf_tag_cloud_load_widgets()
         return $instance;
     }public function form($instance)
     {
-        $defaults = array( 
+        $defaults = array(
             'title' => '',
             'display_type' => 'tag',
             'tags' => array(array('text' => '','url' => '','target' => '_blank'))
         );
         $instance = wp_parse_args((array) $instance, $defaults);?>
-<p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
-<p><label for="<?php echo $this->get_field_id('display_type'); ?>">显示形式：</label><select id="<?php echo $this->get_field_id('display_type'); ?>" name="<?php echo $this->get_field_name('display_type'); ?>" class="widefat" style="width:100%;">
-        <option <?php selected($instance['display_type'], 'tag'); ?> value="tag">标签</option>
-        <option <?php selected($instance['display_type'], 'link'); ?> value="link">链接</option>
-        <option <?php selected($instance['display_type'], 'navigator'); ?> value="navigator">垂直导航</option>
-    </select></p>
-<p><label for="<?php echo $this->get_field_id('tags'); ?>">标签：</label>
-<table class="widefat fixed striped" style="margin-top: -12px" filedname="<?php echo $this->get_field_name('tags'); ?>">
-    <thead>
-        <th field="text">标签</th>
-        <th field="url">地址</th>
-        <th field="special:target" width="100">打开方式</th>
-        <th width="40px">操作</th>
-    </thead>
-    <tbody><?php
+<p><label
+		for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input
+		id="<?php echo $this->get_field_id('title'); ?>"
+		name="<?php echo $this->get_field_name('title'); ?>"
+		value="<?php echo $instance['title']; ?>"
+		style="width:100%;" type="text" /></p>
+<p><label
+		for="<?php echo $this->get_field_id('display_type'); ?>">显示形式：</label><select
+		id="<?php echo $this->get_field_id('display_type'); ?>"
+		name="<?php echo $this->get_field_name('display_type'); ?>"
+		class="widefat" style="width:100%;">
+		<option <?php selected($instance['display_type'], 'tag'); ?>
+			value="tag">标签</option>
+		<option <?php selected($instance['display_type'], 'link'); ?>
+			value="link">链接</option>
+		<option <?php selected($instance['display_type'], 'navigator'); ?>
+			value="navigator">垂直导航</option>
+	</select></p>
+<p><label
+		for="<?php echo $this->get_field_id('tags'); ?>">标签：</label>
+<table class="widefat fixed striped" style="margin-top: -12px"
+	filedname="<?php echo $this->get_field_name('tags'); ?>">
+	<thead>
+		<th field="text">标签</th>
+		<th field="url">地址</th>
+		<th field="special:target" width="100">打开方式</th>
+		<th width="40px">操作</th>
+	</thead>
+	<tbody><?php
 if (count($instance['tags']) > 0) {
     foreach ($instance['tags'] as $i => $val) {?>
-        <tr rowid="<?php echo $i; ?>">
-            <td><input name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[text]'; ?>" value="<?php echo $this->exchangeQuotes($val['text']);?>" style="width:100%;" type="text" /></td>
-            <td><input name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[url]'; ?>" value="<?php echo $this->exchangeQuotes($val['url']);?>" style="width:100%;" type="text" /></td>
-            <td><select name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[target]'; ?>" class="widefat" style="width:100%;">
-                    <option <?php selected($val['target'], '_self'); ?> value="_self">当前窗口</option>
-                    <option <?php selected($val['target'], '_blank'); ?> value="_blank">新窗口</option>
-                </select></td>
-            <td><a class="del_table_row button" href="#"><span class="dashicons dashicons-trash" style="vertical-align: middle;"></span></a></td>
-        </tr><?php
+		<tr rowid="<?php echo $i; ?>">
+			<td><input
+					name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[text]'; ?>"
+					value="<?php echo $this->exchangeQuotes($val['text']);?>"
+					style="width:100%;" type="text" /></td>
+			<td><input
+					name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[url]'; ?>"
+					value="<?php echo $this->exchangeQuotes($val['url']);?>"
+					style="width:100%;" type="text" /></td>
+			<td><select
+					name="<?php echo $this->get_field_name('tags').'['.$i.']'.'[target]'; ?>"
+					class="widefat" style="width:100%;">
+					<option <?php selected($val['target'], '_self'); ?>
+						value="_self">当前窗口</option>
+					<option <?php selected($val['target'], '_blank'); ?>
+						value="_blank">新窗口</option>
+				</select></td>
+			<td><a class="del_table_row button" href="#"><span class="dashicons dashicons-trash"
+						style="vertical-align: middle;"></span></a></td>
+		</tr><?php
     }
 }?>
-    </tbody>
+	</tbody>
 </table><a class="add_table_row button" style="margin-top: 4px;">新标签</a>
 <p style="font-size: 12px;color: #aaa;">* 地址：格式为URL格式（https://www.abc.com/）可留空</p>
 </p>
 <script>
-    jQuery(document).ready(function() {
-        jQuery(document).off('click', '.del_table_row');
-        jQuery(document).on('click', '.del_table_row', function(event) {
-            event.preventDefault();
-            var save_btn = jQuery(this).parentsUntil('form').siblings('.widget-control-actions').find('.widget-control-save');
-            jQuery(this).parents('tr').remove();
-            save_btn.removeAttr('disabled').trigger('click');
-        });
-        jQuery(document).off('click', '.add_table_row');
-        jQuery(document).on('click', '.add_table_row', function(event) {
-            event.preventDefault();
-            var table = jQuery(this).siblings('table'),
-                filedname = table.attr('filedname');
-            textfields = table.find('th[field]'),
-                max_index = parseInt(table.find('tr').last().attr('rowid')) + 1 || 0,
-                tableRow = jQuery('<tr rowid = ' + max_index + '>');
-            for (var i = 0; i < textfields.length; i++) {
-                var field = jQuery(textfields[i]).attr('field');
-                switch (field) {
-                    case 'special:target':
-                        var input = jQuery('<select name="' + filedname + '[' + max_index + ']' + '[target]" class="widefat" style="width:100%;"><option value="_self">当前窗口</option><option value="_blank">新窗口</option></select>');
-                        break;
-                    default:
-                        var input = jQuery('<input name="' + filedname + '[' + max_index + ']' + '[' + field + ']" value="" style="width:100%;" type="text"/>');
-                        break;
-                }
-                var td = jQuery('<td>');
-                td.append(input);
-                tableRow.append(td);
-            }
-            tableRow.append('<td><a class="del_table_row button" href="#"><span class="dashicons dashicons-trash" style="vertical-align: middle;"></span></a></td>');
-            table.find('tbody').append(tableRow);
-        });
-    });
+	jQuery(document).ready(function() {
+		jQuery(document).off('click', '.del_table_row');
+		jQuery(document).on('click', '.del_table_row', function(event) {
+			event.preventDefault();
+			var save_btn = jQuery(this).parentsUntil('form').siblings('.widget-control-actions').find(
+				'.widget-control-save');
+			jQuery(this).parents('tr').remove();
+			save_btn.removeAttr('disabled').trigger('click');
+		});
+		jQuery(document).off('click', '.add_table_row');
+		jQuery(document).on('click', '.add_table_row', function(event) {
+			event.preventDefault();
+			var table = jQuery(this).siblings('table'),
+				filedname = table.attr('filedname');
+			textfields = table.find('th[field]'),
+				max_index = parseInt(table.find('tr').last().attr('rowid')) + 1 || 0,
+				tableRow = jQuery('<tr rowid = ' + max_index + '>');
+			for (var i = 0; i < textfields.length; i++) {
+				var field = jQuery(textfields[i]).attr('field');
+				switch (field) {
+					case 'special:target':
+						var input = jQuery('<select name="' + filedname + '[' + max_index + ']' +
+							'[target]" class="widefat" style="width:100%;"><option value="_self">当前窗口</option><option value="_blank">新窗口</option></select>'
+						);
+						break;
+					default:
+						var input = jQuery('<input name="' + filedname + '[' + max_index + ']' + '[' +
+							field + ']" value="" style="width:100%;" type="text"/>');
+						break;
+				}
+				var td = jQuery('<td>');
+				td.append(input);
+				tableRow.append(td);
+			}
+			tableRow.append(
+				'<td><a class="del_table_row button" href="#"><span class="dashicons dashicons-trash" style="vertical-align: middle;"></span></a></td>'
+			);
+			table.find('tbody').append(tableRow);
+		});
+	});
 </script><?php
     }
 }
@@ -246,10 +300,12 @@ function pf_microblog_load_widgets()
         while (have_posts()) {
             the_post();?>
 <li>
-    <div class="date silver-color"><span><?php echo get_the_time('Y-n-j H:i'); ?></span></div>
-    <div class="main">
-        <p><?php the_content(); ?></p>
-    </div>
+	<div class="date silver-color">
+		<span><?php echo get_the_time('Y-n-j H:i'); ?></span>
+	</div>
+	<div class="main">
+		<p><?php the_content(); ?></p>
+	</div>
 </li><?php
         }echo '</ul>';
         echo $after_widget;
@@ -264,8 +320,19 @@ function pf_microblog_load_widgets()
     {
         $defaults = array('title' => '', 'number' => '5');
         $instance = wp_parse_args((array) $instance, $defaults);?>
-<p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
-<p><label for="<?php echo $this->get_field_id('number'); ?>">显示轻博客的数量：</label><input id="<?php echo $this->get_field_id('number'); ?>" class="tiny-text" name="<?php echo $this->get_field_name('number'); ?>" value="<?php echo $instance['number']; ?>" type="number" step="1" min="1" size="3" /></p><?php
+<p><label
+		for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input
+		id="<?php echo $this->get_field_id('title'); ?>"
+		name="<?php echo $this->get_field_name('title'); ?>"
+		value="<?php echo $instance['title']; ?>"
+		style="width:100%;" type="text" /></p>
+<p><label
+		for="<?php echo $this->get_field_id('number'); ?>">显示轻博客的数量：</label><input
+		id="<?php echo $this->get_field_id('number'); ?>"
+		class="tiny-text"
+		name="<?php echo $this->get_field_name('number'); ?>"
+		value="<?php echo $instance['number']; ?>"
+		type="number" step="1" min="1" size="3" /></p><?php
     }
 }
 add_action('widgets_init', 'pf_hotposts_load_widgets');
@@ -316,18 +383,23 @@ function pf_hotposts_load_widgets()
             the_post();
             $id = get_the_ID();?>
 <li>
-    <div class='single-wrapper clearfix'><a class='cover' style='background-image:url(<?php the_post_thumbnail_url(); ?>)' href='<?php the_permalink(); ?>'></a>
-        <div class='meta'><a class='post-title' href='<?php the_permalink(); ?>'>
-                <h4><?php the_title(); ?></h4>
-            </a>
-            <div class='summary'><span class='likes'><i class='fas fa-heart'></i><?php echo(
-                get_post_meta($id, 'bigfa_ding', true)
-                ?
-                get_post_meta($id, 'bigfa_ding', true)
-                :
-                "0"); ?></span><span class='comments'><i class='fas fa-comments'></i><?php echo get_post($id)->comment_count; ?></span></div>
-        </div>
-    </div>
+	<div class='single-wrapper clearfix'><a class='cover'
+			style='background-image:url(<?php the_post_thumbnail_url(); ?>)'
+			href='<?php the_permalink(); ?>'></a>
+		<div class='meta'><a class='post-title'
+				href='<?php the_permalink(); ?>'>
+				<h4><?php the_title(); ?></h4>
+			</a>
+			<div class='summary'><span class='likes'><i class='fas fa-heart'></i><?php echo(
+			    get_post_meta($id, 'bigfa_ding', true)
+			    ?
+			    get_post_meta($id, 'bigfa_ding', true)
+			    :
+			    "0"); ?></span><span class='comments'><i
+						class='fas fa-comments'></i><?php echo get_post($id)->comment_count; ?></span>
+			</div>
+		</div>
+	</div>
 </li><?php
         }echo '</ul>';
         echo $after_widget;
@@ -343,12 +415,29 @@ function pf_hotposts_load_widgets()
     {
         $defaults = array('title' => '', 'number' => '5','filter' => 'most_likes');
         $instance = wp_parse_args((array) $instance, $defaults);?>
-<p><label for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" type="text" /></p>
-<p><label for="<?php echo $this->get_field_id('filter'); ?>">文章筛选：</label><select id="<?php echo $this->get_field_id('filter'); ?>" name="<?php echo $this->get_field_name('filter'); ?>" class="widefat" style="width:100%;">
-        <option <?php selected($instance['filter'], 'most_likes'); ?> value="most_likes">点赞最多</option>
-        <option <?php selected($instance['filter'], 'most_comments'); ?> value="most_comments">评论最多</option>
-    </select></p>
-<p><label for="<?php echo $this->get_field_id('number'); ?>">显示文章的数量：</label><input id="<?php echo $this->get_field_id('number'); ?>" class="tiny-text" name="<?php echo $this->get_field_name('number'); ?>" value="<?php echo $instance['number']; ?>" type="number" step="1" min="1" size="3" /></p><?php
+<p><label
+		for="<?php echo $this->get_field_id('title'); ?>">标题：</label><input
+		id="<?php echo $this->get_field_id('title'); ?>"
+		name="<?php echo $this->get_field_name('title'); ?>"
+		value="<?php echo $instance['title']; ?>"
+		style="width:100%;" type="text" /></p>
+<p><label
+		for="<?php echo $this->get_field_id('filter'); ?>">文章筛选：</label><select
+		id="<?php echo $this->get_field_id('filter'); ?>"
+		name="<?php echo $this->get_field_name('filter'); ?>"
+		class="widefat" style="width:100%;">
+		<option <?php selected($instance['filter'], 'most_likes'); ?>
+			value="most_likes">点赞最多</option>
+		<option <?php selected($instance['filter'], 'most_comments'); ?>
+			value="most_comments">评论最多</option>
+	</select></p>
+<p><label
+		for="<?php echo $this->get_field_id('number'); ?>">显示文章的数量：</label><input
+		id="<?php echo $this->get_field_id('number'); ?>"
+		class="tiny-text"
+		name="<?php echo $this->get_field_name('number'); ?>"
+		value="<?php echo $instance['number']; ?>"
+		type="number" step="1" min="1" size="3" /></p><?php
     }
 }
 ?>
