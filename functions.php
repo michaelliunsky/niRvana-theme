@@ -1656,7 +1656,10 @@ function get_category_text($pid, $showFull = false, $separate = ' / ')
         }
         $categoryText = implode($separate, $catArr);
     } else {
-        $categoryText = get_the_category($pid) [0]->cat_name ? get_the_category($pid) [0]->cat_name : '未分类';
+        $categories = get_the_category($pid);
+        $categoryText = (!empty($categories)) 
+            ? $categories[0]->cat_name 
+            : '未分类';
     }
     return $categoryText;
 }
