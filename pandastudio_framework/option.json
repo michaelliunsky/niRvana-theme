@@ -306,6 +306,49 @@
         "gear_name": "",
         "gear_value": "",
         "decoration": "启用后，任何文章列表的“卡片”都将使用“瀑布流”样式。取决于特色图片尺寸、文章标题长度"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">深色模式</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "深色模式",
+        "name": "enable_dark_mode",
+        "value": "",
+        "decoration": "启用后，显示开关，用户可在页面上切换深色模式"
+      },
+      {
+        "type": "switch",
+        "label": "自动切换深色模式",
+        "name": "auto_dark_mode",
+        "value": "",
+        "gear_name": "enable_dark_mode",
+        "gear_value": "checked",
+        "decoration": "启用后，当用户没有手动切换深色模式时，自动根据时间段切换深色模式"
+      },
+      {
+        "type": "input",
+        "label": "深色模式开始时间",
+        "name": "dark_mode_time_start",
+        "value": "19:00",
+        "placeholder": "如：19:00",
+        "decoration": "请输入24小时制时间，例如 19:00",
+        "gear_name": "enable_dark_mode",
+        "gear_value": "checked"
+      },
+      {
+        "type": "input",
+        "label": "深色模式结束时间",
+        "name": "dark_mode_time_end",
+        "value": "07:00",
+        "placeholder": "如：07:00",
+        "decoration": "请输入24小时制时间，例如 07:00",
+        "gear_name": "enable_dark_mode",
+        "gear_value": "checked"
       }
     ],
     "gear_name": "",

@@ -151,9 +151,13 @@
                 class="tool-button backToTop unavailable" @click="this.backToTop()"><i class="fas fa-rocket"></i></div>
             <?php }if (_opt('enable_assistance')) {?><div
                 class="tool-button assistance" @click="this.showAssistance()"><i class="fas fa-headset"></i></div>
-            <?php }?><div id="colorSwitch" onclick="switchNightMode()"
-                data-description="色彩模式" data-placement="left" class="tool-button pandastudio_format_description"><i
-                    class="colorSwitch fas fa-moon"></i></div>
+            <?php }
+            if (_opt('enable_dark_mode')) { ?>
+            <div id="colorSwitch" onclick="switchNightMode()"
+                data-description="色彩模式" data-placement="left" class="tool-button pandastudio_format_description">
+                <i class="colorSwitch fas fa-moon"></i>
+            </div>
+            <?php } ?>
         </div>
     </script>
     <script type="text/html" jQVue-template="assistance_wrapper">
@@ -194,7 +198,7 @@
 <div id="assistance" class="unavailable"></div>
 </body>
 <script type='text/javascript'
-    src='<?php echo get_stylesheet_directory_uri(); ?>/extend/js/custom.js'
+    src='<?php echo get_stylesheet_directory_uri(); ?>/extend/js/custom.min.js'
     id='custom-js'></script>
 
 </html>
