@@ -1057,9 +1057,12 @@ function get_the_naved_content($content)
     return $content;
 }
 add_filter("the_content", "get_the_naved_content");
-if (_opt('design_font') == "checked") {
-    wp_enqueue_style('font', get_stylesheet_directory_uri() . '/assets/minify/play_font.min.css');
+function enqueue_play_font() {
+    if (_opt('design_font') == "checked") {
+        wp_enqueue_style('font', get_stylesheet_directory_uri() . '/assets/minify/play_font.min.css');
+    }
 }
+add_action('wp_enqueue_scripts', 'enqueue_play_font');
 function pre_validate_comment_span($commentdata)
 {
     if (!is_admin() & !wp_verify_nonce($_POST['wp_nonce'], 'wp_rest')) {
