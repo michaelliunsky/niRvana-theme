@@ -43,25 +43,38 @@ add_action('pf-post-meta-end', 'add_post_view_times_to_post_meta');
 function add_post_view_times_to_post_meta()
 {
     echo "<span class='inline-block'><i class='fas fa-book-reader'></i>"._meta('views', _meta('bigfa_ding', 0))."次已读</span>";
-}add_action('pf-post-card-meta-start', 'add_post_view_times_to_postcard_meta');
+}
+add_action('pf-post-card-meta-start', 'add_post_view_times_to_postcard_meta');
 function add_post_view_times_to_postcard_meta()
 {
     echo "<span class='views'><i class='fas fa-book-reader'></i> "._meta('views', _meta('bigfa_ding', 0))."</span>";
-}function add_view_times_to_single()
+}
+function add_view_times_to_single()
 {
     $pid = get_the_ID();
-    if (is_single() && is_main_query() && !isset($_COOKIE[$pid.'viewed'])) {
-        $views = (int)_meta('views', _meta('bigfa_ding', 0));
-        update_post_meta($pid, 'views', $views + 1, $views);
+    if (!is_single() || !is_main_query() || is_search_robot()) {
+        return;
     }
-}add_action('wp_head', 'add_view_times_to_single');
+    $cookie_key = $pid . '_viewed';
+    if (isset($_COOKIE[$cookie_key])) {
+        return;
+    }
+    $views = (int) _meta('views', _meta('bigfa_ding', 0));
+    update_post_meta($pid, 'views', $views + 1, $views);
+}
+add_action('wp_head', 'add_view_times_to_single');
 function add_view_times_to_cookie()
 {
     $pid = get_the_ID();
-    if (is_single() && is_main_query() && !isset($_COOKIE[$pid.'viewed'])) {
-        setcookie($pid.'viewed', true, time() + 2, COOKIEPATH, COOKIE_DOMAIN);
+    if (!is_single() || !is_main_query() || is_search_robot()) {
+        return;
     }
-}add_action('wp', 'add_view_times_to_cookie');
+    $cookie_key = $pid . '_viewed';
+    if (!isset($_COOKIE[$cookie_key])) {
+        setcookie($cookie_key, '1', time() + 15, COOKIEPATH, COOKIE_DOMAIN);
+    }
+}
+add_action('wp', 'add_view_times_to_cookie');
 //归档页面
 function niRvana_archives_list()
 {
