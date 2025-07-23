@@ -61,7 +61,7 @@ if (_opt('is_single_post_hide_sidebar')) {
 					<div class="toggle_sidebar" @click="this.single_toggle_sidebar()" data-toggle="tooltip" data-placement="auto top" title="切换边栏"><i class="fas fa-angle-right"></i></div>
 					<div class="article_wrapper post clearfix page">
 						<article class="clearfix">
-							<div id="archives"><?php zww_archives_list(); ?></div>
+							<div id="archives"><?php niRvana_archives_list(); ?></div>
 						</article>
 					</div><?php comments_template(); ?>
 				</div>
