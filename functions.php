@@ -8,6 +8,29 @@ $niRvanaThemeUpdateChecker = PucFactory::buildUpdateChecker(
     get_template_directory() . '/functions.php',
     'niRvana'
 );
+//初次使用时发送安装量统计信息 (数据仅用于统计安装量)
+function post_analytics_info()
+{
+    if (function_exists('file_get_contents')) {
+        $contexts = stream_context_create(
+            array(
+                'http' => array(
+                    'method' => "GET",
+                    'header' => "User-Agent: niRvanaTheme\r\n"
+                )
+            )
+        );
+        $nirvana_version = wp_get_theme()->get('Version');
+        $result = file_get_contents('https://blog.mkliu.top/source/stats/index.php?domain=' . urlencode($_SERVER['HTTP_HOST']) . '&version='. urlencode($nirvana_version), false, $contexts);
+        update_option('nirvana_has_inited', 'true');
+        return $result;
+    } else {
+        update_option('nirvana_has_inited', 'true');
+    }
+}
+if (get_option('nirvana_has_inited') != 'true') {
+    post_analytics_info();
+}
 //小工具修复
 add_filter('gutenberg_use_widgets_block_editor', '__return_false');
 add_filter('use_widgets_block_editor', '__return_false');

@@ -61,7 +61,7 @@ function sandbox_globalnav()
         $page_children = wp_list_pages("child_of=$pageID&echo=0");
         the_post();
         $c[] = 'page pageid-' . $pageID;
-        $c[] = 'page-author-' . sanitize_title_with_dashes(strtolower(get_the_author('login')));
+        $c[] = 'page-author-' . sanitize_title_with_dashes(strtolower(get_the_author_meta('login')));
         if ($page_children) {
             $c[] = 'page-parent';
         }if ($wp_query->post->post_parent) {
@@ -102,7 +102,7 @@ function sandbox_globalnav()
 {
     global $post, $sandbox_post_alt;
     $c = array( 'hentry', "p$sandbox_post_alt", $post->post_type, $post->post_status );
-    $c[] = 'author-' . sanitize_title_with_dashes(strtolower(get_the_author('login')));
+    $c[] = 'author-' . sanitize_title_with_dashes(strtolower(get_the_author_meta('login')));
     foreach ((array) get_the_category() as $cat) {
         $c[] = 'category-' . $cat->slug;
     }if (get_the_tags() == null) {
