@@ -58,10 +58,13 @@ if (_opt('is_single_post_hide_sidebar')) {
 		<div class="<?php echo $leftClass; ?>">
 			<div class="col-xs-12">
 				<div class="row postLists">
-					<div class="toggle_sidebar" @click="this.single_toggle_sidebar()" data-toggle="tooltip" data-placement="auto top" title="切换边栏"><i class="fas fa-angle-right"></i></div>
+					<div class="toggle_sidebar" @click="this.single_toggle_sidebar()" data-toggle="tooltip"
+						data-placement="auto top" title="切换边栏"><i class="fas fa-angle-right"></i></div>
 					<div class="article_wrapper post clearfix page">
 						<article class="clearfix">
-							<div id="archives"><?php niRvana_archives_list(); ?></div>
+							<div id="archives">
+								<?php niRvana_archives_list(); ?>
+							</div>
 						</article>
 					</div><?php comments_template(); ?>
 				</div>
@@ -76,43 +79,26 @@ if (_opt('is_single_post_hide_sidebar')) {
 			</div>
 		</div>
 	</div>
-</div><?php get_footer(); ?>
+</div>
 <script type="text/javascript">
-	(function($, window) {
+	(function($) {
 		$(function() {
-			var $a = $('#archives'),
-				$m = $('.al_mon', $a),
-				$l = $('.al_post_list', $a),
-				$l_f = $('.al_post_list:first', $a);
-			$l.hide();
-			$l_f.show();
-			$m.css('cursor', 's-resize').on('click', function() {
+			var $archives = $('#archives'),
+				$months = $archives.find('.al_mon'),
+				$lists = $archives.find('.al_post_list');
+			$lists.hide().first().show();
+			$months.css('cursor', 's-resize').on('click', function() {
 				$(this).next().slideToggle(400);
 			});
-			var animate = function(index, status, s) {
-				if (index > $l.length) {
-					return;
-				}
-				if (status == 'up') {
-					$l.eq(index).slideUp(s, function() {
-						animate(index + 1, status, (s - 10 < 1) ? 0 : s - 10);
-					});
-				} else {
-					$l.eq(index).slideDown(s, function() {
-						animate(index + 1, status, (s - 10 < 1) ? 0 : s - 10);
-					});
-				}
-			};
 			$('#al_expand_collapse').on('click', function(e) {
 				e.preventDefault();
-				if ($(this).data('s')) {
-					$(this).data('s', '');
-					animate(0, 'up', 100);
-				} else {
-					$(this).data('s', 1);
-					animate(0, 'down', 100);
-				}
+				var isCollapsed = !$(this).data('status');
+				$(this).data('status', isCollapsed);
+				$lists.each(function(i) {
+					var speed = Math.max(100 - i * 10, 0);
+					$(this).stop(true)[isCollapsed ? 'slideDown' : 'slideUp'](speed);
+				});
 			});
 		});
-	})(jQuery, window);
-</script>
+	})(jQuery);
+</script><?php get_footer(); ?>
