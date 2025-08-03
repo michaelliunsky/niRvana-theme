@@ -35,11 +35,11 @@ if (get_option('nirvana_has_inited') != 'true') {
 add_filter('gutenberg_use_widgets_block_editor', '__return_false');
 add_filter('use_widgets_block_editor', '__return_false');
 //文章图片灯箱
-function auto_post_link($content)
-{
+function auto_post_link($content) {
     global $post;
-    $content = preg_replace('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', "<a href=\"$2\" alt=\"".$post->post_title."\" title=\"".$post->post_title."\"><img src=\"$2\" alt=\"".$post->post_title."\" title=\"".$post->post_title."\" /></a>", $content);
-    return $content;
+    $pattern = '/<img\b([^>]*\bsrc=(["\'])(.*?)\2[^>]*)>/i';
+    $replacement = '<a href="$3">$0</a>';
+    return preg_replace($pattern, $replacement, $content);
 }
 add_filter('the_content', 'auto_post_link', 0);
 //调用每日一图作为登录页背景
