@@ -546,6 +546,12 @@ function get_cache($name)
         }
     }
 }
+function del_cache($name)
+{
+    $allCache = get_option('pd_cache');
+    unset($allCache[$name]);
+    update_option('pd_cache', $allCache);
+}
 if (function_exists('add_theme_support')) {
     add_theme_support('post-thumbnails');
 }
@@ -1091,61 +1097,54 @@ function get_the_naved_contentnav($content)
         ));
         for ($i = 0; $i < count($categories); $i++) {
             $category = $categories[$i];
-            $ul_li .= '<li class="h2_nav"><a href="#favlink-' . $i . '" class="h_nav" title="' . $category->name . '">' . $category->name . "</a></li>\n";
+            $ul_li .= '<li class="h2_nav"><a href="#favlink-' . $i . '" class="h_nav" title="' . esc_attr($category->name) . '">' . esc_html($category->name) . "</a></li>\n";
         }
     }
-    $rh = "/<h([23])[^>]*>(.*?)<\/h[23]>/im";
-    $h2_num = 0;
-    $h3_num = 0;
-    if (preg_match_all($rh, $content, $matches) || $ul_li) {
-        foreach ($matches[2] as $num => $title) {
-            $hx = $matches[1][$num];
-            $start = stripos($content, $matches[0][$num]);
-            $end = strlen($matches[0][$num]);
-            if ($hx == "2") {
-                $h2_num += 1;
-                $h3_num = 0;
-                $title = preg_replace('/<.+?>/', "", $title);
-                if ($title) {
-                    $ul_li .= '<li class="h2_nav"><a href="#h2-' . $num . '" class="h_nav" title="' . $title . '">' . $title . "</a></li>\n";
-                }
-            } elseif ($hx == "3") {
-                $h3_num += 1;
-                $title = preg_replace('/<.+?>/', "", $title);
-                if ($title) {
-                    $ul_li .= '<li class="h3_nav"><a href="#h3-' . $num . '" class="h_nav" title="' . $title . '">' . $title . "</a></li>\n";
-                }
-            }
-        }
-        return "<div class=\"post_nav\"><ul class=\"nav\" role=\"tablist\">" . $ul_li . "</ul></div>";
-    } else {
-        return false;
-    }
-}
-function get_the_naved_content($content)
-{
-    $matches = array();
-    $rh = "/<h([23])[^>]*>(.*?)<\/h[23]>/im";
-    $h2_num = 0;
-    $h3_num = 0;
+    $rh = '/<h([23])[^>]*>(.*?)<\/h[23]>/ims';
     if (preg_match_all($rh, $content, $matches)) {
         foreach ($matches[2] as $num => $title) {
             $hx = $matches[1][$num];
-            $start = stripos($content, $matches[0][$num]);
-            $end = strlen($matches[0][$num]);
+            $plain = trim(preg_replace('/<.+?>/s', '', $title));
+            if (!$plain) {
+                continue;
+            }
             if ($hx == "2") {
-                $h2_num += 1;
-                $h3_num = 0;
-                $content = substr_replace($content, '<h2 id="h2-' . $num . '">' . $title . '</h2>', $start, $end);
+                $ul_li .= '<li class="h2_nav"><a href="#h2-' . $num . '" class="h_nav" title="' . esc_attr($plain) . '">' . esc_html($plain) . "</a></li>\n";
             } elseif ($hx == "3") {
-                $h3_num += 1;
-                $content = substr_replace($content, '<h3 id="h3-' . $num . '">' . $title . '</h3>', $start, $end);
+                $ul_li .= '<li class="h3_nav"><a href="#h3-' . $num . '" class="h_nav" title="' . esc_attr($plain) . '">' . esc_html($plain) . "</a></li>\n";
             }
         }
     }
+    if ($ul_li) {
+        return "<div class=\"post_nav\"><ul class=\"nav\" role=\"tablist\">" . $ul_li . "</ul></div>";
+    }
+    return false;
+}
+function get_the_naved_content($content)
+{
+    $rh = '/<h([23])[^>]*>(.*?)<\/h[23]>/ims';
+    if (!preg_match_all($rh, $content, $matches, PREG_OFFSET_CAPTURE)) {
+        return $content;
+    }
+    $inserts = array();
+    foreach ($matches[0] as $num => $matchWithOffset) {
+        $fullMatch = $matchWithOffset[0];
+        $pos = $matchWithOffset[1];
+        $hx = $matches[1][$num][0];
+        $id = 'h' . $hx . '-' . $num;
+        $anchor = '<span id="' . $id . '" class="heading-anchor" aria-hidden="true"></span>';
+        $inserts[$pos] = $anchor;
+    }
+    if (empty($inserts)) {
+        return $content;
+    }
+    krsort($inserts);
+    foreach ($inserts as $pos => $html) {
+        $content = substr_replace($content, $html, $pos, 0);
+    }
     return $content;
 }
-add_filter("the_content", "get_the_naved_content");
+add_filter('the_content', 'get_the_naved_content');
 function enqueue_play_font() {
     if (_opt('design_font') == "checked") {
         wp_enqueue_style('font', get_stylesheet_directory_uri() . '/assets/minify/play_font.min.css');
