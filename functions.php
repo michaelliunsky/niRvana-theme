@@ -366,52 +366,46 @@ function mounted_hook() {alert("userAgent:\n"+navigator.userAgent+"\n\nappVersio
 }
 function pf_global_search($query_arg)
 {
-    $query_arg['showposts'] = 28;
+    $query_arg['posts_per_page'] = 28;
     $result = array();
     $query = new WP_Query($query_arg);
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
+            $post_id = get_the_ID();
             $tags = get_the_tags();
             if ($tags) {
                 $color_tags = array();
                 foreach ($tags as $tag) {
                     $name = $tag->name;
                     $colorInt = string_to_int8($name);
-                    $color_tags[] = array(
-                        'color' => $colorInt,
-                        'tag' => $name
-                    );
+                    $color_tags[] = array('color' => $colorInt, 'tag' => $name);
                 }
             } else {
-                $color_tags = array(
-                    array(
-                        'color' => 0,
-                        'tag' => '无标签'
-                    )
-                );
+                $color_tags = array(array('color' => 0, 'tag' => '无标签'));
             }
             $posttype = get_post_type();
             switch ($posttype) {
                 case 'post':
-                    $thumbnail = get_the_post_thumbnail_url();
+                    $thumbnail = get_the_post_thumbnail_url($post_id);
                     break;
-
                 case 'gallery':
-                    $gallery_images = get_post_meta(get_the_id(), "gallery_images", true);
-                    $gallery_images = $gallery_images ? $gallery_images : array();
-                    switch (get_option('gallery_thumbnail')) {
-                        case 'first':
-                            $thumbnail = $gallery_images[0];
-                            break;
-
-                        case 'last':
-                            $thumbnail = $gallery_images[count($gallery_images) - 1];
-                            break;
-
-                        default:
-                            $thumbnail = count($gallery_images) > 0 ? $gallery_images[array_rand($gallery_images, 1) ] : '';
-                            break;
+                    $gallery_images = get_post_meta($post_id, "gallery_images", true);
+                    $gallery_images = is_array($gallery_images) ? $gallery_images : array();
+                    if (!empty($gallery_images)) {
+                        switch (get_option('gallery_thumbnail')) {
+                            case 'first':
+                                $thumbnail = $gallery_images[0];
+                                break;
+                            case 'last':
+                                $thumbnail = $gallery_images[count($gallery_images) - 1];
+                                break;
+                            default:
+                                $thumbnail = $gallery_images[array_rand($gallery_images)];
+                                break;
+                        }
+                    } else {
+                        $thumbnail = '';
                     }
                     break;
 
@@ -419,18 +413,20 @@ function pf_global_search($query_arg)
                     $thumbnail = '';
                     break;
             }
+            $like_meta  = get_post_meta($post_id, 'bigfa_ding', true);
+            $like_count = $like_meta !== '' && $like_meta !== false && $like_meta !== null ? intval($like_meta) : 0;
             $result[] = array(
                 'thumbnail' => $thumbnail,
-                'title' => get_the_title() ,
-                'href' => get_the_permalink() ,
-                'date' => get_the_time('n月j日 · Y年') ,
-                'tags' => $color_tags,
-                'like' => get_post_meta($post->ID, 'bigfa_ding', true) ? get_post_meta($post->ID, 'bigfa_ding', true) : "0",
-                'comment' => get_post($post->ID)->comment_count,
+                'title'     => get_the_title(),
+                'href'      => get_the_permalink(),
+                'date'      => get_the_time('n月j日 · Y年'),
+                'tags'      => $color_tags,
+                'like'      => $like_count,
+                'comment'   => get_comments_number($post_id),
             );
         }
     }
-    wp_reset_query();
+    wp_reset_postdata();
     return $result;
 }
 function pf_post_ding($id)
