@@ -29,21 +29,23 @@ if (get_option('headLine_random') != "checked") {
     }wp_reset_query();
 }get_topSlider($cpids, _opt('frontpage_carousels_type'));?>
 <div class="container postListsModel">
-    <div class="row"><?php
-if (_opt('frontpage_hide_sidebar')=='checked') {
+	<div class="row"><?php
+if (_opt('frontpage_hide_sidebar') == 'checked') {
     $leftClass = 'col-xs-12 no-sidebar';
     $rightClass = 'hidden';
 } else {
     $leftClass = 'col-md-9 col-lg-9_5';
     $rightClass = 'col-md-3 col-lg-2_5 hidden-xs hidden-sm';
 }?>
-        <div class="<?php echo $leftClass; ?>"><?php
+		<div class="<?php echo $leftClass; ?>"><?php
 global $nav_category_list_type;
 $nav_category_list_type = _opt('frontpage_postlist_type', 'lists');
 include('assets/template/nav-category.php');?>
-            <div class="col-xs-12">
-                <div class="row"><?php $listType = _opt('frontpage_postlist_type', 'lists'); ?>
-                    <div class="row postLists <?php echo $listType; ?> <?php echo(_opt('enable_post_list_waterfall') ? 'waterfall' : ''); ?>" height-to="sidebar"><?php
+			<div class="col-xs-12">
+				<div class="row">
+					<?php $listType = _opt('frontpage_postlist_type', 'lists'); ?>
+					<div class="row postLists <?php echo $listType; ?> <?php echo(_opt('enable_post_list_waterfall') ? 'waterfall' : ''); ?>"
+						height-to="sidebar"><?php
 $newest_num = intval(get_option('frontpage_postlist_newest_num'));
 $like_num = intval(get_option('frontpage_postlist_like_num'));
 $comment_num = intval(get_option('frontpage_postlist_comment_num'));
@@ -97,7 +99,7 @@ if ($newest_num > 0) {
     }wp_reset_query();
 }$newestIds = array();
 $otherIds = array();
-for ($i=0; $i < count($ids); $i++) {
+for ($i = 0; $i < count($ids); $i++) {
     if ($i < $newest_num) {
         $newestIds[] = $ids[$i];
     } else {
@@ -109,27 +111,29 @@ global $post;
 foreach ($ids as $id) {
     $post = get_post($id);
     setup_postdata($post);?>
-                        <div class="col-xxs-6 col-xs-4 col-lg-3 post-card-wrapper"><?php include('assets/template/postlist-post.php'); ?></div><?php
+						<div class="col-xxs-6 col-xs-4 col-lg-3 post-card-wrapper">
+							<?php include('assets/template/postlist-post.php'); ?>
+						</div><?php
 }?>
-                    </div>
-                </div>
-                <div class="row postLists"><?php
+					</div>
+				</div>
+				<div class="row postLists"><?php
 if (_opt('index_time_url')) {
     echo '<div class="col-xs-12 readMore"><a href="'._opt('index_time_url').'">
 '._opt('read_more_text', '阅读更多').'
 <i class="fas fa-chevron-down"></i></a></div>';
 }?></div>
-            </div>
-        </div>
-        <div class="<?php echo $rightClass; ?>">
-            <div class="row">
-                <div class="sidebar">
-                    <div manual-template="sidebarMenu"></div>
-                    <div manual-template="sidebar" height-from="postLists"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+		<div class="<?php echo $rightClass; ?>">
+			<div class="row">
+				<div class="sidebar">
+					<div manual-template="sidebarMenu"></div>
+					<div manual-template="sidebar" height-from="postLists"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="long-model-wrapper"><?php
 $index_group = _opt('index_group', array());
@@ -146,18 +150,24 @@ foreach ($index_group as $group) {
     $query_posts = new WP_Query();
     $query_posts->query($args);
     $post_num_class = 'posts-'.$group['num'];?>
-    <div class="long-model <?php echo $post_num_class; ?>">
-        <div class="container"><span class="model-title"><?php echo $group['name']; ?></span><?php
-if ($group['href']) {?><a class="more" href="<?php echo $group['href']; ?>"><?php echo($group['more'] ? $group['more'] : '阅读更多'); ?><i class="fas fa-angle-right"></i></a><?php
+	<div class="long-model <?php echo $post_num_class; ?>">
+		<div class="container"><span
+				class="model-title"><?php echo $group['name']; ?></span><?php
+if ($group['href']) {?><a class="more"
+				href="<?php echo $group['href']; ?>"><?php echo($group['more'] ? $group['more'] : '阅读更多'); ?><i
+					class="fas fa-angle-right"></i></a><?php
 }?>
-            <div class="row postLists <?php echo $group['type']; ?>"><?php
+			<div
+				class="row postLists <?php echo $group['type']; ?>">
+				<?php
 while ($query_posts->have_posts()) {
     $query_posts->the_post();?>
-                <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper"><?php include('assets/template/postlist-post.php'); ?></div><?php
+				<div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+					<?php include('assets/template/postlist-post.php'); ?>
+				</div><?php
 }?>
-            </div>
-        </div>
-    </div><?php
+			</div>
+		</div>
+	</div><?php
 }?>
-</div><?php get_footer(); ?><?php
-?>
+</div><?php get_footer(); ?>

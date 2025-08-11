@@ -1,4 +1,5 @@
 <?php
+
 switch (_opt('404_type')) {
     case 'blank':
         include('assets/template/404-blank.php');
@@ -6,5 +7,4 @@ switch (_opt('404_type')) {
     default:
         include('assets/template/404-default.php');
         break;
-}?><?php
-?>
+}

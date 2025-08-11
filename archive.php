@@ -1,4 +1,5 @@
 <?php
+
 global $wp_query;
 $taxonomy = $wp_query->tax_query->queries[0]["taxonomy"];
 switch ($taxonomy) {
@@ -17,5 +18,4 @@ switch ($taxonomy) {
     default:
         do_action('modify_custom_taxonomy', $taxonomy);
         break;
-}?><?php
-?>
+}

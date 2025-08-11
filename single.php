@@ -1,4 +1,5 @@
 <?php
+
 switch (get_post_type()) {
     case 'gallery':
         include('assets/template/single-gallery.php');
@@ -16,5 +17,4 @@ switch (get_post_type()) {
     default:
         do_action('modify_single_type', get_post_type());
         break;
-}?><?php
-?>
+}

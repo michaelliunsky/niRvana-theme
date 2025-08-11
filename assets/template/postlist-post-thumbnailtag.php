@@ -23,12 +23,14 @@ switch ($posttype) {
     default:
         $thumbnail = '';
         break;
-}?>
+}$thumbnail_top_tag = _meta('img_top_tag') ? '<span class="thumbnail_top_tag" style="background-color:'._opt('img_top_tag_color').'">'._meta('img_top_tag').'</span>' : '';
+$thumbnail_bottom_tag = _meta('img_bottom_tag') ? '<span class="thumbnail_bottom_tag" style="background-color:'._opt('img_bottom_tag_color').'">'._meta('img_bottom_tag').'</span>' : '';?>
 <div class="card"><a href="<?php the_permalink(); ?>" class="cover"
         style="background-image: url(<?php echo $thumbnail; ?>);"
-        showas='padding'></a><a href="<?php the_permalink(); ?>"
-        showas='img'><img src="<?php echo $thumbnail; ?>"
-            class="cover" alt=""></a>
+        showas='padding'><?php echo $thumbnail_top_tag.$thumbnail_bottom_tag; ?></a><a
+        href="<?php the_permalink(); ?>" showas='img'><img
+            src="<?php echo $thumbnail; ?>" class="cover"
+            alt=""><?php echo $thumbnail_top_tag.$thumbnail_bottom_tag; ?></a>
     <div class="meta">
         <div class="date">
             <?php the_time('n月j日 · Y年') ?>
@@ -49,15 +51,11 @@ if ($tags) {
     echo '<a class="color-0">无标签</a>';
 }?>
         </div>
-        <div class="summary">
-            <?php do_action('pf-post-card-meta-start'); ?>
-            <span class="likes"><i class="fas fa-heart"></i>
+        <div class="summary"><span class="likes"><i class="fas fa-heart"></i>
                 <?php $like = get_post_meta($post->ID, 'bigfa_ding', true) ? get_post_meta($post->ID, 'bigfa_ding', true) : "0" ;
 echo $like;?></span>
-            <?php do_action('pf-post-card-meta-before-comments'); ?>
             <span class="comments"><i class="fas fa-comments"></i>
                 <?php echo $post->comment_count ?></span>
-            <?php do_action('pf-post-card-meta-end'); ?>
         </div>
         <article class="description">
             <?php echo get_the_description($post->ID); ?>
