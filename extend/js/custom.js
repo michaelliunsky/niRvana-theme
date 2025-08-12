@@ -190,71 +190,16 @@ function addCopyButtonToCodeBlock(codeBlock) {
 function initCodeBlocks() {
   // 为所有代码块添加复制按钮
   document.querySelectorAll(".wp-block-code").forEach(addCopyButtonToCodeBlock);
-
-  // 设置代码块样式
-  document.querySelectorAll(".wp-block-code pre").forEach((preElement) => {
-    preElement.style.color = "#fff";
-  });
-}
-
-/**
- * 初始化评论区域代码高亮
- */
-function initCommentCodeHighlight() {
-  $(".comments pre").each(function (_, element) {
-    const codeElement = $(element).children("code");
-    const targetElement = codeElement.length > 0 ? codeElement.get(0) : element;
-
-    if (
-      !$(targetElement).hasClass("hljs") &&
-      !$(targetElement).parent().hasClass("disable_highlightjs")
-    ) {
-      hljs.highlightBlock(targetElement);
-      hljs.lineNumbersBlock(targetElement, { singleLine: true });
-    }
-  });
-}
-
-/**
- * 初始化卡片悬停动画
- */
-function initCardHoverAnimations() {
-  jQuery(document).ready(($) => {
-    $(".postLists.lists .card h2, .pf_hotposts h4").hover(
-      function () {
-        $(this).stop().animate({ marginLeft: "15px" }, 300);
-      },
-      function () {
-        $(this).stop().animate({ marginLeft: "0px" }, 300);
-      }
-    );
-
-    // 点击动画
-    $(".postLists.lists .card h2, .pf_hotposts h4").click(function () {
-      const originalText = this.textContent;
-      $(this).text("正在努力加载中 …");
-
-      setTimeout(() => {
-        $(this).text(originalText);
-      }, 2011);
-    });
-  });
 }
 
 // 主初始化函数
 document.addEventListener("DOMContentLoaded", () => {
   initCodeBlocks();
-  initCommentCodeHighlight();
-  initCardHoverAnimations();
   initNightMode();
 });
 
-// AJAX加载完成后重新初始化代码块
+// AJAX加载完成后重新初始化
 add_action("ajax_render_complete", () => {
+  initNightMode();
   initCodeBlocks();
-
-  // 重新设置代码块样式
-  document.querySelectorAll(".wp-block-code pre").forEach((preElement) => {
-    preElement.style.color = "#fff";
-  });
 });

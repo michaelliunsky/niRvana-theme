@@ -201,18 +201,12 @@ function pf_add_comment_form_insert_images()
     echo '<a @click="this.insert_images_to_comment_form()"><span data-toggle="tooltip" title="插入图片"><i class="far fa-images"></i></span></a>';
 }
 //评论标签支持
-add_action('pre_comment_on_post', 'add_post_comment_html_tags');
-function add_post_comment_html_tags($commentdata)
-{
+add_filter('preprocess_comment', function ($commentdata) {
     global $allowedtags;
-    $new_tags = [
-      'img' => [
-        'src' => true
-      ],
-      'pre' => []
-    ];
-    $allowedtags = array_merge($allowedtags, $new_tags);
-}
+    $allowedtags['img'] = ['src' => true];
+    $allowedtags['pre'] = [];
+    return $commentdata;
+});
 //检测页面底部版权是否被修改
 function alert_footer_copyright_changed()
 { ?>
