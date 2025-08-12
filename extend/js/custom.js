@@ -1,90 +1,122 @@
-/**
- * 获取Cookie过期时间（当天结束）
- * @returns {string} GMT格式的过期时间字符串
- */
+let autoNightTimer = null;
+/** 获取当天结束时间的UTC字符串 */
 function getCookieExpireTime() {
-  const endOfDay = new Date();
-  endOfDay.setHours(23, 59, 59, 999);
-  return endOfDay.toGMTString();
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  return end.toUTCString();
 }
 
-/**
- * 应用深色模式状态
- * @param {boolean} isNight 是否为深色模式
- */
+/** 获取指定Cookie值（不存在返回空字符串） */
+function getCookie(name) {
+  if (typeof document === "undefined" || !document.cookie) return "";
+  const cookie = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(name + "="));
+  if (!cookie) return "";
+  return decodeURIComponent(cookie.split("=")[1] || "");
+}
+
+/** 设置Cookie（使用当天结束为过期时间） */
+function setCookie(name, value) {
+  const v = encodeURIComponent(String(value));
+  document.cookie = `${name}=${v}; path=/; expires=${getCookieExpireTime()}`;
+}
+
+/** 删除指定Cookie */
+function deleteCookie(name) {
+  document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+}
+
+/** 应用深色模式状态 */
 function applyNightMode(isNight) {
   document.body.classList.toggle("night", isNight);
-  if ($(".colorSwitch").length) {
-    $(".colorSwitch").attr(
-      "class",
-      `colorSwitch fa ${isNight ? "fa-sun" : "fas fa-moon"}`
-    );
-  }
+  const selector = document.querySelector(".colorSwitch");
+  if (selector)
+    selector.className = `colorSwitch fas ${isNight ? "fa-sun" : "fa-moon"}`;
 }
 
-/**
- * 切换深色模式
- */
+/** 切换深色模式并保存状态 */
 function switchNightMode() {
-  const nightMode =
-    document.cookie.replace(
-      /(?:(?:^|.*;\s*)night\s*=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    ) || "0";
-  const isNight = nightMode === "0";
-  applyNightMode(isNight);
-  document.cookie = `night=${
-    isNight ? "1" : "0"
-  };path=/;expires=${getCookieExpireTime()}`;
+  const willBeNight = !document.body.classList.contains("night");
+  applyNightMode(willBeNight);
+  setCookie("night", willBeNight ? "1" : "0");
 }
 
-/**
- * 初始化深色模式
- */
-function initNightMode() {
-  const framework = window.pandastudio_framework;
-  const darkModeConfig = (framework && framework.dark_mode) || {};
-  const {
-    enable = "unchecked",
-    auto = "unchecked",
-    time_start = "19:00",
-    time_end = "07:00",
-  } = darkModeConfig;
+/** 解析时间字符串为分钟数 */
+function parseTimeToMinutes(timeStr) {
+  if (typeof timeStr !== "string") return null;
 
+  const timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
+  if (!timeRegex.test(timeStr.trim())) {
+    return null;
+  }
+
+  const parts = timeStr.split(":");
+  const h = parseInt(parts[0], 10);
+  const m = parseInt(parts[1], 10);
+
+  if (h < 0 || h > 23 || m < 0 || m > 59) {
+    return null;
+  }
+
+  return h * 60 + m;
+}
+
+/** 初始化深色模式 */
+function initNightMode() {
+  const config = (window.pandastudio_framework || {}).dark_mode || {};
+  const { enable = "unchecked", auto = "unchecked" } = config;
+
+  // 先清理旧定时器，避免重复注册
+  if (autoNightTimer) {
+    clearInterval(autoNightTimer);
+    autoNightTimer = null;
+  }
+
+  // 未启用深色模式时删除cookie
   if (enable !== "checked") {
-    document.cookie = "night=0;path=/;expires=" + getCookieExpireTime();
+    deleteCookie("night");
     return applyNightMode(false);
   }
 
-  const nightModeCookie = document.cookie.replace(
-    /(?:(?:^|.*;\s*)night\s*=\s*([^;]*).*$)|^.*$/,
-    "$1"
-  );
-  if (nightModeCookie) return applyNightMode(nightModeCookie === "1");
-
-  if (auto === "checked") {
-    const checkAutoNight = () => {
-      const now = new Date();
-      const [startH, startM] = time_start.split(":").map(Number);
-      const [endH, endM] = time_end.split(":").map(Number);
-      const nowMinutes = now.getHours() * 60 + now.getMinutes();
-      const startMinutes = startH * 60 + startM;
-      const endMinutes = endH * 60 + endM;
-
-      const isNight =
-        startMinutes > endMinutes
-          ? nowMinutes >= startMinutes || nowMinutes < endMinutes
-          : nowMinutes >= startMinutes && nowMinutes < endMinutes;
-
-      applyNightMode(isNight);
-    };
-
-    checkAutoNight();
-    setInterval(checkAutoNight, 60000);
-  } else {
-    document.cookie = `night=0;path=/;expires=${getCookieExpireTime()}`;
-    applyNightMode(false);
+  // 如果已有 cookie，直接按 cookie 生效。
+  const nightCookie = getCookie("night");
+  if (nightCookie !== "") {
+    return applyNightMode(nightCookie === "1");
   }
+
+  if (auto !== "checked") {
+    deleteCookie("night");
+    return applyNightMode(false);
+  }
+
+  const DEFAULT_TIMES = { start: "19:00", end: "07:00" };
+  const startMinutes =
+    parseTimeToMinutes(config.time_start) !== null &&
+    parseTimeToMinutes(config.time_start) !== undefined
+      ? parseTimeToMinutes(config.time_start)
+      : parseTimeToMinutes(DEFAULT_TIMES.start);
+  const endMinutes =
+    parseTimeToMinutes(config.time_end) !== null &&
+    parseTimeToMinutes(config.time_end) !== undefined
+      ? parseTimeToMinutes(config.time_end)
+      : parseTimeToMinutes(DEFAULT_TIMES.end);
+
+  const checkAutoNight = () => {
+    // 自动模式下，如果用户后来手动设置 cookie，就不再覆盖用户的选择
+    if (getCookie("night") !== "") return;
+
+    const now = new Date();
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+    const isNight =
+      startMinutes > endMinutes
+        ? nowMinutes >= startMinutes || nowMinutes < endMinutes
+        : nowMinutes >= startMinutes && nowMinutes < endMinutes;
+    applyNightMode(isNight);
+  };
+
+  checkAutoNight();
+  autoNightTimer = setInterval(checkAutoNight, 60000);
 }
 
 /**
