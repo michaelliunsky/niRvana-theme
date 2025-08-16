@@ -182,7 +182,9 @@
             </div>
             <div class="wait"><span>封面生成中...</span></div>
         </div>
-    </script><?php wp_footer() ?><?php if (get_option('custom_javascript')) {
+    </script>
+    <?php wp_footer() ?>
+    <?php if (get_option('custom_javascript')) {
         echo "<script>try{"._opt('custom_javascript')."}catch(e){console.log(e)}</script>";
     }if (get_option('custom_css')) {
         echo "<style>"._opt('custom_css')."</style>";

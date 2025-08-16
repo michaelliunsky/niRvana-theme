@@ -3,16 +3,15 @@
 
 <head>
     <meta charset="utf8">
-    <title><?php wp_title('-', true, 'right');
-echo _wp_specialchars(get_bloginfo('name'), 1) ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />
-    <meta name="renderer" content="webkit">
+	<meta name="renderer" content="webkit">
+    <?php wp_head(); ?>
 </head>
 
 <body>
     <div class="four04"><?php
-if (_opt('404页面图片')) {?><a href="<?php echo home_url(); ?>"><img src="<?php _eopt('404页面图片'); ?>" /></a><?php
+if (_opt('404页面图片')) {?><a href="<?php echo esc_url(home_url()); ?>"><img src="<?php _eopt('404页面图片'); ?>" /></a><?php
 } else {?>
         <hr>
         <hr>

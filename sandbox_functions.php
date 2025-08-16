@@ -232,7 +232,7 @@ function sandbox_comment_class($print = true)
     $options = get_option('widget_sandbox_search');
     $title = empty($options['title']) ? __('Search', 'sandbox') : esc_attr($options['title']);
     $button = empty($options['button']) ? __('Find', 'sandbox') : esc_attr($options['button']);?><?php echo $before_widget ?><?php echo $before_title ?><label for="s"><?php echo $title ?></label><?php echo $after_title ?>
-<form id="searchform" class="blog-search" method="get" action="<?php bloginfo('home') ?>">
+<form id="searchform" class="blog-search" method="get" action="<?php echo esc_url(home_url()) ?>">
     <div><input id="s" name="s" type="text" class="text" value="<?php the_search_query() ?>" size="10" tabindex="1" /><input type="submit" class="button" value="<?php echo $button ?>" tabindex="2" /></div>
 </form><?php echo $after_widget ?><?php
 }function widget_sandbox_search_control()

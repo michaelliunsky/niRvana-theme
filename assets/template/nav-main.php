@@ -1,7 +1,7 @@
 <div class="main-nav">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-3 logo"><a href="<?php echo home_url(); ?>"><img src="<?php _eopt('logo'); ?>" /></a></div>
+            <div class="col-sm-12 col-md-3 logo"><a href="<?php echo esc_url(home_url()); ?>"><img src="<?php _eopt('logo'); ?>" /></a></div>
             <div class="col-sm-12 col-md-8 col-xl-8_5 menu-wrap">
                 <div class="row">
                     <div class="menuLeft">

