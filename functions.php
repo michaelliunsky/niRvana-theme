@@ -5,6 +5,7 @@ function theme_component_setup()
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     add_theme_support('automatic-feed-links');
+    remove_theme_support('widgets-block-editor');
 }
 add_action('after_setup_theme', 'theme_component_setup');
 //自动更新
@@ -30,18 +31,6 @@ function post_analytics_info()
 if (get_option('nirvana_has_inited') != 'true') {
     post_analytics_info();
 }
-//小工具修复
-add_filter('gutenberg_use_widgets_block_editor', '__return_false');
-add_filter('use_widgets_block_editor', '__return_false');
-//深色模式
-function add_night_mode_body_class($classes)
-{
-    if (isset($_COOKIE['night']) && $_COOKIE['night'] === '1') {
-        $classes[] = 'night';
-    }
-    return $classes;
-}
-add_filter('body_class', 'add_night_mode_body_class');
 //文章图片灯箱
 function auto_post_link($content)
 {
@@ -425,25 +414,28 @@ function pf_global_search($query_arg)
     wp_reset_postdata();
     return $result;
 }
-function pf_post_ding($id)
+function pf_post_ding(int $post_id): int
 {
-    $bigfa_raters = get_post_meta($id, 'bigfa_ding', true);
-    $expire = time() + 99999999;
-    $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
-    setcookie('bigfa_ding_' . $id, $id, [
-    'expires' => $expire,
-    'path' => '/',
-    'domain' => $domain,
-    'secure' => false,
-    'httponly' => false,
-    'samesite' => 'Strict'
-]);
-    if (!$bigfa_raters || !is_numeric($bigfa_raters)) {
-        update_post_meta($id, 'bigfa_ding', 1);
-    } else {
-        update_post_meta($id, 'bigfa_ding', ($bigfa_raters + 1));
+    $meta_key = 'bigfa_ding';
+    $current   = max(0, (int) get_post_meta($post_id, $meta_key, true));
+    $expire    = time() + 99999999;
+    $host   = wp_parse_url(home_url(), PHP_URL_HOST) ?: ($_SERVER['HTTP_HOST'] ?? '');
+    $host   = sanitize_text_field(wp_unslash($host));
+    $domain = 'localhost' !== $host ? $host : '';
+    $cookie_options = [
+        'expires'  => $expire,
+        'path'     => '/',
+        'secure'   => false,
+        'httponly' => false,
+        'samesite' => 'Strict',
+    ];
+    if ('' !== $domain) {
+        $cookie_options['domain'] = $domain;
     }
-    return get_post_meta($id, 'bigfa_ding', true);
+    setcookie('bigfa_ding_' . $post_id, (string) $post_id, $cookie_options);
+    $new = $current + 1;
+    update_post_meta($post_id, $meta_key, $new);
+    return $new;
 }
 function pf_faq($query)
 {
@@ -1146,20 +1138,38 @@ function enqueue_play_font() {
     }
 }
 add_action('wp_enqueue_scripts', 'enqueue_play_font');
-function pre_validate_comment_span($commentdata)
+function pre_validate_comment_span(array $commentdata): array
 {
-    if (!is_admin() & !wp_verify_nonce($_POST['wp_nonce'], 'wp_rest')) {
-        wp_die('
-<p></p><p>WP NONCE验证失败，判定为机器人恶意发送的垃圾评论！如果启用了“缓存”，则无法正常获取NONCE，因此也可能会判定为垃圾评论。若此操作是正常操作，请停用任何网站缓存功能。</p><p></p><p><a href="javascript:history.back()">« 返回</a></p><p></p>');
-        return false;
+    if (! is_admin()) {
+        $nonce = isset($_POST['wp_nonce']) ? sanitize_text_field(wp_unslash($_POST['wp_nonce'])) : '';
+        if (! wp_verify_nonce($nonce, 'wp_rest')) {
+            wp_die(
+                '<p>WP NONCE验证失败，判定为机器人恶意发送的垃圾评论！如果启用了“缓存”，则无法正常获取NONCE，因此也可能会判定为垃圾评论。若此操作是正常操作，请停用任何网站缓存功能。</p><p><a href="javascript:history.back()">« 返回</a></p>'
+            );
+        }
     }
-    if (!isset($_COOKIE['bigfa_ding_' . $commentdata['comment_post_ID']]) & $_POST['big_fa_ding'] == 'on') {
-        $ding = get_post_meta($commentdata['comment_post_ID'], 'bigfa_ding', true);
-        $ding = is_numeric($ding) ? (int)$ding : 0;
-        update_post_meta($commentdata['comment_post_ID'], 'bigfa_ding', $ding + 1);
+    $post_id             = isset($commentdata['comment_post_ID']) ? (int) $commentdata['comment_post_ID'] : 0;
+    $bigfa_ding_value    = isset($_POST['big_fa_ding']) ? sanitize_text_field(wp_unslash($_POST['big_fa_ding'])) : '';
+    $cookie_key          = 'bigfa_ding_' . $post_id;
+    if (0 !== $post_id && ! isset($_COOKIE[ $cookie_key ]) && 'on' === $bigfa_ding_value) {
+        $ding = get_post_meta($post_id, 'bigfa_ding', true);
+        $ding = is_numeric($ding) ? (int) $ding : 0;
+        update_post_meta($post_id, 'bigfa_ding', $ding + 1);
+        $host   = wp_parse_url(home_url(), PHP_URL_HOST);
+        $domain = ('localhost' !== $host) ? $host : '';
         $expire = time() + 99999999;
-        $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
-        setcookie('bigfa_ding_' . $commentdata['comment_post_ID'], $commentdata['comment_post_ID'], $expire, '/', $domain, false);
+        setcookie(
+            $cookie_key,
+            (string) $post_id,
+            array(
+                'expires'  => $expire,
+                'path'     => '/',
+                'domain'   => $domain,
+                'secure'   => false,
+                'httponly' => false,
+                'samesite' => 'Strict',
+            )
+        );
     }
     return $commentdata;
 }

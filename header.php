@@ -12,7 +12,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('black-color'); ?>>
+<body class="black-color <?= (isset($_COOKIE['night']) && $_COOKIE['night'] === '1') ? 'night' : '' ?>">
 	<?php wp_body_open(); ?>
 	<div id="wrapper" class="<?php sandbox_body_class() ?> niRvana">
 		<?php include('assets/template/nav-main.php');?>
