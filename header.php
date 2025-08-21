@@ -14,6 +14,6 @@
 
 <body class="black-color <?= (isset($_COOKIE['night']) && $_COOKIE['night'] === '1') ? 'night' : '' ?>">
 	<?php wp_body_open(); ?>
-	<div id="wrapper" class="<?php sandbox_body_class() ?> niRvana">
+	<div id="wrapper" <?php body_class(); ?>>
 		<?php include('assets/template/nav-main.php');?>
 		<div id="main">

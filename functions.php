@@ -273,7 +273,6 @@ function _emeta($metaName, $default = false)
     $result = get_post_meta(get_the_ID(), $metaName, true);
     echo $result ? $result : $default;
 }
-include('sandbox_functions.php');
 function frontend_opts()
 {
     $enable_pageLoader = _opt('enable_pageLoader');

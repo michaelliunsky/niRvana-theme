@@ -5,7 +5,7 @@ if ( 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 
 if ( post_password_required() ) {
     echo '<div id="comments">';
-    echo '<div class="nopassword">' . __( 'This post is protected. Enter the password to view any comments.', 'sandbox' ) . '</div>';
+    echo '<div class="nopassword">' . __( 'This post is protected. Enter the password to view any comments.', 'nirvana' ) . '</div>';
     echo '</div><!-- .comments -->';
     return;
 }
