@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes() ?> >
+<html <?php language_attributes(); ?>>
 
 <head>
     <meta charset="utf8">
@@ -10,25 +10,31 @@
 </head>
 
 <body>
-    <div class="four04"><?php
-if (_opt('404页面图片')) {?><a href="<?php echo esc_url(home_url()); ?>"><img src="<?php _eopt('404页面图片'); ?>" /></a><?php
-} else {?>
-        <hr>
-        <hr>
-        <hr>
-        <hr>
-        <h1>404</h1>
-        <hr>
-        <hr>
-        <hr>
-        <hr><?php
-}?>
+    <div class="four04">
+        <?php
+        if ( _opt( '404页面图片' ) ) {
+            ?>
+            <a href="<?php echo esc_url( home_url() ); ?>"><img src="<?php _eopt( '404页面图片' ); ?>" /></a>
+            <?php
+        } else {
+            ?>
+            <hr>
+            <hr>
+            <hr>
+            <hr>
+            <h1>404</h1>
+            <hr>
+            <hr>
+            <hr>
+            <hr>
+            <?php
+        }
+        ?>
     </div>
     <style>
         html,
         body {
-            background:
-                <?php _eopt('404_background', '#fff'); ?>
+            background: <?php _eopt( '404_background', '#fff' ); ?>;
         }
 
         body {

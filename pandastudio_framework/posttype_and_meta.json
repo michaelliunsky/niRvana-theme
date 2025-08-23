@@ -260,7 +260,7 @@
         "name": "相册",
         "type": "gallery",
         "allow_categorys": true,
-        "supports": ["title", "comments", "editor"],
+        "supports": ["title", "comments", "editor", "thumbnail", "excerpt"],
         "menu_icon": "dashicons-format-gallery",
         "unset_columns": ["tags"],
         "new_columns": [
