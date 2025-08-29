@@ -28,6 +28,7 @@ typecho 版本 : [github.com/michaelliunsky/typecho-theme-niRvana](https://githu
 - **点赞** - 每篇文章均提供点赞功能，可展示访客最喜欢的文章列表（后台可以修改点赞数据）
 - **生成封面二维码** - 每篇文章均可生成二维码用于分享到微信等社交平台
 - **说说功能** - 简短说说功能，随时随地记录您的想法
+- **多语言** - 安装[niRvana-translate 多语言翻译插件](https://github.com/michaelliunsky/niRvana-translate)，享受极速多语言切换
 
 # 安装
 
@@ -51,7 +52,28 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 您**必须在页脚保留 niRvana 主题的名称及作者链接**，否则请不要使用 niRvana 主题。
 
+# Telegram 频道
+
+[t.me/nvgrp](https://t.me/nvgrp)
+
+自动推送更新消息以及其他关于 niRvana 的消息
+
+# Telegram 群组
+
+[t.me/nvgpchat](https://t.me/nvgpchat)
+
+自由提问、讨论、交流关于 niRvana 主题的问题
+
 # 更新日志
+
+## 20250829 v5.0RC7 **最后一个测试版本**
+
+- **优化**：**完全重构了边栏小组件以及评论模块的代码**
+- **修复**：**增强了深色模式切换逻辑的鲁棒性**
+- **优化**：**按照 WP 官方标准现代化代码**
+- **优化**：**完全删除了旧版遗产性代码**
+- **优化**：合并部分 CSS 样式
+- **优化**：全面格式化代码
 
 ## 20250809 v5.0RC6.1 **重要修复，请务必升级！**
 

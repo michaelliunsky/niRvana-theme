@@ -2,55 +2,75 @@
 
 [简体中文](README.md) | [繁體中文](README_tw.md) | [English](README_en.md) | **Русский**
 
-# niRvana-тема
+# niRvana-theme
 
-niRvana · Легкая реплика темы WordPress
+niRvana · Лёгкая неоморфная тема WordPress
 
-Версия Typecho: [github.com/michaelliunsky/typecho-theme-niRvana](https://github.com/michaelliunsky/typecho-theme-niRvana)
+версия typecho : [github.com/michaelliunsky/typecho-theme-niRvana](https://github.com/michaelliunsky/typecho-theme-niRvana)
 
-[![Выпуск GitHub](https://img.shields.io/github/v/release/michaelliunsky/niRvana-theme?color=%235e72e4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub Все выпуски](https://img.shields.io/github/downloads/michaelliunsky/niRvana-theme/total?style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub](https://img.shields.io/github/license/michaelliunsky/niRvana-theme?color=blue&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/michaelliunsky/niRvana-theme?color=%235e72e4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub All Releases](https://img.shields.io/github/downloads/michaelliunsky/niRvana-theme/total?style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/releases) [![GitHub](https://img.shields.io/github/license/michaelliunsky/niRvana-theme?color=blue&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/blob/master/LICENSE)
 
-[![Автор](https://img.shields.io/badge/author-michaelliunsky-yellow?style=for-the-badge)](https://github.com/michaelliunsky) [![Звезды GitHub](https://img.shields.io/github/stars/michaelliunsky/niRvana-theme?color=ff69b4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/stargazers)
+[![Author](https://img.shields.io/badge/author-michaelliunsky-yellow?style=for-the-badge)](https://github.com/michaelliunsky) [![GitHub stars](https://img.shields.io/github/stars/michaelliunsky/niRvana-theme?color=ff69b4&style=for-the-badge)](https://github.com/michaelliunsky/niRvana-theme/stargazers)
 
-[![Последняя фиксация GitHub](https://img.shields.io/github/last-commit/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/commits/master) [![Дата выпуска GitHub](https://img.shields.io/github/release-date/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/releases) ![Размер кода GitHub в байтах](https://img.shields.io/github/languages/code-size/michaelliunsky/niRvana-theme?style=flat-square)
+[![GitHub last commit](https://img.shields.io/github/last-commit/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/commits/master) [![GitHub Release Date](https://img.shields.io/github/release-date/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/releases) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/michaelliunsky/niRvana-theme?style=flat-square)
 
 # Основные возможности темы
 
-- **HTML5, CSS3** - Написан на стандартных языках, поддерживает браузеры выше IE10
-- **Отзывчивый** - Дисплей в наилучшем состоянии на настольных компьютерах, планшетах и мобильных устройствах
-- **Ответить на загрузку** - Пользователи могут быть вынуждены прокомментировать статью, прежде чем предоставить адрес загрузки
-- **Ответы на контент видны** - Укажите определенный контент, который требует комментариев читателей перед просмотром, позволяя читателям взаимодействовать с вами (можно настроить так, чтобы пользователи регистрировались для входа в систему и комментирования перед отображением определенного контента)
-- **Виджеты боковой панели** - Количество боковых панелей можно настроить, полностью используя официальную модель виджетов WP, и для этой темы было разработано больше виджетов
-- **Чтение голоса** - Использование технологии синтеза речи Baidu для чтения статей для вас
-- **Смайлик комментария** - Эта тема имеет собственную функцию смайлика комментария, которую можно установить без плагина в фоновом режиме
-- **Загрузка без обновления** - Обеспечьте загрузку статей ajax по всему миру
-- **Совет** - Разрешить чаевые различными способами, такими как: QR-код Alipay, QR-код wechat PayPal ссылка
-- **Like** - Каждая статья предоставляет функцию like, которая может отображать список любимых статей посетителей (данные о лайках могут быть изменены в фоновом режиме)
-- **Сгенерировать QR-код обложки** - Каждая статья может генерировать QR-код для публикации в Wechat и других социальных сетях
-- **Поговорите о функции** - Кратко расскажите о функции, запишите свои мысли в любое время и в любом месте
+- **HTML5, CSS3** - написано стандартными технологиями, поддерживает IE10 и новее
+- **Адаптивный дизайн** - оптимальне отображение на десктопе, планшете и мобильных устройствах
+- **Ответ для скачивания** - можно требовать от пользователя оставить комментарий к записи перед тем, как предоставить ссылку для скачивания
+- **Контент видим после ответа** - можно указать, что определённый контент станет видимым только после того, как читатель оставит комментарий, чтобы поощрять взаимодействие (возможно настроить требование регистрации/входа и комментария для просмотра контента)
+- **Виджеты боковой панели** - настраиваемое число боковых панелей; полностью использует официальную модель виджетов WP и содержит дополнительные виджеты, подходящие для этой темы
+- **Озвучивание текста** - использует синтез речи Baidu для чтения статей вслух
+- **Эмодзи в комментариях** - встроенная поддержка эмодзи для комментариев; настраивается в теме без плагинов
+- **Загрузка без перезагрузки** - глобальная загрузка записей через ajax
+- **Пожертвования / Чаевые** - поддерживает различные способы пожертвований, например: QR-код Alipay, QR-код WeChat, ссылка PayPal
+- **Лайки** - у каждой записи есть функция лайков; можно показывать список любимых посетителями записей (число лайков можно изменить в админке)
+- **Создание QR-кода обложки** - для каждой записи можно сгенерировать QR-код для шаринга в WeChat и других платформах
+- **Функция коротких записей** - краткая функция «shuoshuo» для записи мыслей в любое время
+- **Мультиязычность** - установите [niRvana-translate плагин для мультиязычности](https://github.com/michaelliunsky/niRvana-translate) для быстрой смены языков
 
-# Установить
+# Установка
 
-Требования к среде: **Совместимость с PHP8.3 лучше всего**
+Требования: **Лучшая совместимость с PHP 8.3**
 
-На странице загрузки [Релиз](https://github.com/michaelliunsky/niRvana-theme/releases). Заархивируйте файл, загрузите и установите страницу «темы» серверной части WordPress.
+Скачайте .zip файл со страницы [Release](https://github.com/michaelliunsky/niRvana-theme/releases) и загрузите/установите его через страницу «Темы» в админке WordPress.
 
-**Тема поставляется с ответом на комментарий по электронной почте, если вам нужна функция автоматического напоминания об ответе на комментарий по электронной почте, пожалуйста, установите плагин WP-SMTP или настройте свой собственный почтовый ящик для отправки, если нет, вам не нужно предпринимать никаких действий**
+**Тема включает электронные письма с ответами на комментарии. Если вам нужна автоматическая отправка уведомлений по электронной почте о ответах на комментарии, установите плагин WP-SMTP или настройте отправку почты самостоятельно. Если эта функция не нужна — никаких действий не требуется.**
 
-# Документ
+# Документация
 
-[Автор документа в блоге: https://blog.mkliu.top/](https://blog.mkliu.top/135.html)
+[Документация в блоге автора : https://blog.mkliu.top/](https://blog.mkliu.top/135.html)
 
-# Демо
+# Демo
 
 [blog.mkliu.top](https://blog.mkliu.top/)
 
-# Внимание
+# Примечание
 
-NiRvana использует соглашение [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/main/LICENSE) с открытым исходным кодом , пожалуйста, следуйте этому протоколу для вторичной разработки и т. д.
+niRvana распространяется на условиях открытой лицензии [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/main/LICENSE). Пожалуйста, соблюдайте эту лицензию при доработках.
 
-Вы **должны сохранить название темы niRvana и ссылку на автора** в нижнем колонтитуле, в противном случае, пожалуйста, не используйте тему niRvana.
+Вы **обязаны** сохранять название темы niRvana и ссылку на автора в футере; в противном случае не используйте тему niRvana.
 
-# Журнал обновлений
+# Telegram канал
 
-Смотрите [readme.md китайская версия](https://github.com/michaelliunsky/niRvana-theme#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97).
+[t.me/nvgrp](https://t.me/nvgrp)
+
+Автоматическая рассылка обновлений и других новостей о niRvana
+
+# Telegram группа
+
+[t.me/nvgpchat](https://t.me/nvgpchat)
+
+Свободно задавайте вопросы, обсуждайте и обменивайтесь по теме niRvana
+
+# Журнал изменений
+
+См. [readme.md](https://github.com/michaelliunsky/niRvana-theme#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+
+# Пожертвовать
+
+Если вам нравится тема niRvana, вы можете угостить меня чашкой кофе в поддержку разработки.
+
+![WeChat donation](https://cdn.jsdelivr.net/gh/michaelliunsky/cdn@master/wechat.jpg)
+![Alipay donation](https://cdn.jsdelivr.net/gh/michaelliunsky/cdn@master/alipay.jpg)
