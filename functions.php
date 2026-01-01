@@ -799,17 +799,7 @@ function recover_comment_fields($comment_fields)
     return $comment_fields;
 }
 add_filter('comment_form_fields', 'recover_comment_fields');
-function rss_show_thumbnail($content)
-{
-    global $post;
-    if (has_post_thumbnail($post->ID)) {
-        $output = get_the_post_thumbnail($post->ID);
-        $content = $output;
-    }
-    return $content;
-}
-add_filter('the_excerpt_rss', 'rss_show_thumbnail');
-add_filter('the_content_feed', 'rss_show_thumbnail');
+
 add_filter('upload_mimes', 'my_upload_mimes');
 function my_upload_mimes($mimes = array())
 {
