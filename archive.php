@@ -1,7 +1,12 @@
 <?php
 
 global $wp_query;
-$taxonomy = $wp_query->tax_query->queries[0]["taxonomy"];
+if (
+    empty($wp_query->tax_query->queries)
+) {
+    wp_die('该页面不支持直接访问。', '403', ['response' => 403]);
+}
+$taxonomy = $wp_query->tax_query->queries[0]["taxonomy"] ?? '';
 switch ($taxonomy) {
     case 'gallery-category':
         include('assets/template/archive-gallery.php');
