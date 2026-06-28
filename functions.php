@@ -1054,7 +1054,7 @@ function inlojv_custom_avatar($avatar, $id_or_email, $size, $default, $alt)
                 )
             );
         }
-        $email_hash = md5(strtolower(trim($email)));
+        $email_hash = hash('sha256', strtolower(trim($email)));
         $random_avatar = array_rand($random_avatar_arr, 1);
         $src = $random_avatar_arr[$random_avatar]["avatar"];
         $avatar = "<img alt='{$alt}' src='//cdn.sep.cc/avatar/{$email_hash}?d=404' onerror='javascript:this.src=\"{$src}\";this.onerror=null;' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
