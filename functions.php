@@ -1021,6 +1021,7 @@ function mytheme_nav_menu_css_class($classes)
     return $classes;
 }
 add_filter('nav_menu_css_class', 'mytheme_nav_menu_css_class');
+
 function showFace($atts, $content = null)
 {
     extract(shortcode_atts(array(
@@ -1037,30 +1038,38 @@ function showFace($atts, $content = null)
     return '<img src=' . get_stylesheet_directory_uri() . '/faces/' . $name . '.' . $format . ' class="cmt_faces">';
 }
 add_shortcode("face", "showFace");
-add_filter('get_avatar', 'inlojv_custom_avatar', 10, 5);
-function inlojv_custom_avatar($avatar, $id_or_email, $size, $default, $alt)
-{
-    global $comment, $current_user;
-    if (count((array)get_option('random_avatar')) > 0) {
-        $current_email = is_int($id_or_email) ? get_user_by('ID', $id_or_email)->user_email : $id_or_email;
-        $current_email = is_object($current_email) ? $current_email->comment_author_email : $current_email;
-        $email = !empty($comment->comment_author_email) ? $comment->comment_author_email : $current_email;
-        if (get_option('random_avatar')) {
-            $random_avatar_arr = get_option('random_avatar');
-        } else {
-            $random_avatar_arr = array(
-                array(
-                    "avatar" => get_stylesheet_directory_uri() . "/assets/imgs/default_avatar.jpg"
-                )
-            );
+
+add_filter( 'pre_get_avatar_data', function( $args, $id_or_email ) {
+    if ( ! isset( $args['url'] ) ) {
+        $pool = get_option( 'random_avatar' );
+        if ( $pool && is_array( $pool ) ) {
+            $args['default'] = '404';
         }
-        $email_hash = hash('sha256', strtolower(trim($email)));
-        $random_avatar = array_rand($random_avatar_arr, 1);
-        $src = $random_avatar_arr[$random_avatar]["avatar"];
-        $avatar = "<img alt='{$alt}' src='//cdn.sep.cc/avatar/{$email_hash}?d=404' onerror='javascript:this.src=\"{$src}\";this.onerror=null;' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
     }
-    return $avatar;
-}
+    return $args;
+}, 10, 2 );
+
+add_filter( 'get_avatar_url', function( $url, $id_or_email, $args ) {
+    return str_replace( 'secure.gravatar.com', 'cdn.sep.cc', $url );
+}, 10, 3 );
+
+add_filter( 'get_avatar_data', function( $args, $id_or_email ) {
+    if ( empty( $args['url'] ) ) {
+        return $args;
+    }
+
+    $pool = get_option( 'random_avatar' );
+    if ( $pool && is_array( $pool ) ) {
+        $fallback = $pool[ array_rand( $pool ) ]['avatar'];
+        $args['extra_attr'] .= sprintf(
+            ' onerror="this.onerror=null;this.srcset=\'\';this.src=\'%s\'"',
+            esc_js( $fallback )
+        );
+    }
+
+    return $args;
+}, 10, 2 );
+
 function get_the_naved_contentnav($content)
 {
     $matches = array();
