@@ -1,6 +1,6 @@
 ![niRvana](https://cdn.jsdelivr.net/gh/michaelliunsky/cdn@master/screenshot.png)
 
-[简体中文](README.md) | [繁體中文](README_tw.md) | **English** | [Russian](README_ru.md)
+[简体中文](README.md) | [繁體中文](README_tw.md) | **English** | [Русский](README_ru.md)
 
 # niRvana-theme
 
@@ -14,21 +14,19 @@ typecho version : [github.com/michaelliunsky/typecho-theme-niRvana](https://gith
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/commits/master) [![GitHub Release Date](https://img.shields.io/github/release-date/michaelliunsky/niRvana-theme?style=flat-square)](https://github.com/michaelliunsky/niRvana-theme/releases) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/michaelliunsky/niRvana-theme?style=flat-square)
 
-# Theme Features
+# Key Features
 
-- **HTML5, CSS3** - Built with standard technologies; supports IE10 and above
-- **Responsive** - Optimized display on desktop, tablet, and mobile
-- **Reply-to-download** - Can require users to comment on a post before providing the download link
-- **Content visible after reply** - Specify certain content that requires readers to comment before viewing to encourage interaction (can be set to require users to register/login and comment to see certain content)
-- **Sidebar widgets** - Customizable number of sidebars; fully uses WordPress' official widget model and includes additional widgets tailored to this theme
-- **Text-to-speech** - Uses Baidu speech synthesis to read posts aloud
-- **Comment emojis** - Built-in comment emoji support; configurable from the theme options without plugins
-- **Ajax loading (no refresh)** - Global ajax loading for posts
-- **Donations / Tips** - Supports multiple donation methods such as Alipay QR code, WeChat QR code, PayPal link
-- **Likes** - Each post supports likes; can display a list of visitors' favorite posts (like counts can be edited in the backend)
-- **Generate cover QR code** - Each post can generate a QR code for sharing on WeChat and other platforms
-- **Short posts** - A brief "shuoshuo" (short post) feature to jot down thoughts anytime
-- **Multilingual** - Install the [niRvana-translate multilingual plugin](https://github.com/michaelliunsky/niRvana-translate) for fast language switching
+- **Asynchronous Page Loading** – Load articles without a full page refresh; supports a global on/off toggle.
+- **Text-to-Speech** – Integrated text-to-speech functionality that reads articles aloud.
+- **Quick Posts (Shuoshuo)** – A short-form posting feature for capturing your thoughts anytime, anywhere.
+- **Donations** – Accept tips through multiple methods such as Alipay QR codes, WeChat QR codes, and PayPal links.
+- **Likes** – Every article includes a like button. Showcase your most-liked posts (like counts can be adjusted in the dashboard).
+- **Share QR Codes** – Generate a QR code for each article to easily share on WeChat and other social platforms.
+- **Sidebar Widgets** – Fully customizable sidebar areas with extra widgets designed specifically for this theme.
+- **Built-in Comment Emojis** – Native emoji support for comments, configurable right from the dashboard – no plugins required.
+- **Multilingual** – Install the [niRvana-translate](https://github.com/michaelliunsky/niRvana-translate) plugin for near-instant language switching.
+- **Comment to Download** – Require users to leave a comment before revealing a download link.
+- **Reply to Unlock Content** – Hide specific content until a reader comments, encouraging interaction (optionally require registration and login before commenting to reveal the content).
 
 # Installation
 
