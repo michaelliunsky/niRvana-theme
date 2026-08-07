@@ -1,0 +1,91 @@
+/*!
+ * niRvana theme source - highlightjs.css
+ * 反解自 assets/minify/app.min.css (2026-08-06)
+ * 压缩版中的物理区间: [419365,421803)
+ * 仅做格式化, 内容与压缩版一致.
+ */
+
+.hljs{
+display:block;
+overflow-x:auto;
+-webkit-overflow-scrolling:touch;
+padding:.5em 0;
+color:#abb2bf;
+background:local #22323a;
+border-radius:10px;
+background-size:auto 36px;
+background-origin:content-box;
+background-image:-webkit-gradient(linear,left top,left bottom,color-stop(50%,#293840),color-stop(0,#22323a));
+background-image:-webkit-linear-gradient(#293840 50%,#22323a 0);
+background-image:linear-gradient(#293840 50%,#22323a 0);
+font-family:"Lucida Console",Monaco,"Courier New";
+-webkit-box-shadow:0 10px 13px rgba(31,45,62,.38);
+box-shadow:0 10px 13px rgba(31,45,62,.38)}
+.hljs-keyword,.hljs-operator,.hljs-pattern-match{
+color:#f92672}
+.hljs-function,.hljs-pattern-match .hljs-constructor{
+color:#61aeee}
+.hljs-function .hljs-params{
+color:#a6e22e}
+.hljs-function .hljs-params .hljs-typing{
+color:#fd971f}
+.hljs-module-access .hljs-module{
+color:#7e57c2}
+.hljs-constructor{
+color:#e2b93d}
+.hljs-constructor .hljs-string{
+color:#9ccc65}
+.hljs-comment,.hljs-quote{
+color:#b18eb1;
+font-style:italic}
+.hljs-doctag,.hljs-formula{
+color:#c678dd}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{
+color:#e06c75}
+.hljs-literal{
+color:#56b6c2}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{
+color:#98c379}
+.hljs-built_in,.hljs-class .hljs-title{
+color:#e6c07b}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{
+color:#d19a66}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{
+color:#61aeee}
+.hljs-emphasis{
+font-style:italic}
+.hljs-strong{
+font-weight:700}
+.hljs-link{
+text-decoration:underline}
+td.hljs-ln-numbers{
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+text-align:center;
+border-right:1px solid #38464d;
+vertical-align:top;
+color:#647075;
+font-size:10px;
+line-height:18px}
+td.hljs-ln-numbers>div{
+padding:0 .6em}
+td.hljs-ln-code{
+white-space:pre;
+color:#abb2bf;
+font-size:13px;
+line-height:18px}
+td.hljs-ln-code>div{
+padding:0 10px}
+table.hljs-ln{
+width:100%}
+table.hljs-ln tr>td:first-child{
+width:1px}
+table.hljs-ln tr:hover td>div{
+background:-webkit-gradient(linear,left top,left bottom,from(#394750),to(#2d3c44));
+background:-webkit-linear-gradient(#394750,#2d3c44);
+background:linear-gradient(#394750,#2d3c44);
+-webkit-box-shadow:0 1px rgba(255,255,255,.15) inset,0 1px 3px rgba(0,0,0,.15);
+box-shadow:0 1px rgba(255,255,255,.15) inset,0 1px 3px rgba(0,0,0,.15)}

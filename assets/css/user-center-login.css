@@ -1,0 +1,47 @@
+/*!
+ * niRvana theme source - user-center-login.css
+ * 反解自 assets/minify/app.min.css (2026-08-06)
+ * 压缩版中的物理区间: [406311,407472)
+ * 仅做格式化, 内容与压缩版一致.
+ */
+
+.pf_user_center #app{
+margin:15px 0 30px;
+border-radius:8px;
+-webkit-box-shadow:0 15px 15px rgba(31,45,62,.15);
+box-shadow:0 15px 15px rgba(31,45,62,.15);
+overflow:hidden}
+.pf_user_center .user-center-wrapper{
+min-height:calc(100vh - 58px - 85px - 55px)}
+.post-password-form{
+text-align:center;
+padding:30px 0 100px}
+.post-password-form p{
+font-size:14px}
+.post-password-form input[name=post_password]{
+height:30px;
+border:1px solid transparent;
+border-radius:5px;
+background:#f0f2f7;
+padding:0 9px;
+-webkit-transition:.25s;
+transition:.25s}
+.post-password-form input[name=post_password]:focus{
+background:#fff;
+border-color:#20a0ff;
+-webkit-box-shadow:0 0 0 3px rgba(32,160,255,.2)!important;
+box-shadow:0 0 0 3px rgba(32,160,255,.2)!important;
+-webkit-transition:.25s;
+transition:.25s}
+.post-password-form input[name=Submit]{
+border:none;
+height:30px;
+background:-webkit-gradient(linear,left top,right top,from(#20a0ff),to(#20b8ff));
+background:-webkit-linear-gradient(left,#20a0ff,#20b8ff);
+background:linear-gradient(90deg,#20a0ff,#20b8ff);
+color:#fff;
+padding:0 15px;
+border-radius:6px;
+margin-left:6px;
+-webkit-box-shadow:0 3px 5px rgba(32,160,255,.5);
+box-shadow:0 3px 5px rgba(32,160,255,.5)}
