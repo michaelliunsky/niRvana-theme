@@ -1,0 +1,525 @@
+/*!
+ * niRvana theme source - jv-element.css
+ * 反解自 assets/minify/app.min.css (2026-08-06)
+ * 压缩版中的物理区间: [268861,284516)
+ * 仅做格式化, 内容与压缩版一致.
+ */
+
+.jv-switcher{
+display:none!important}
+.jv-switcher+label{
+position:relative;
+height:1em;
+display:inline-block;
+width:36px;
+vertical-align:baseline;
+cursor:pointer}
+.jv-switcher+label:after,.jv-switcher+label:before{
+display:inline-block;
+border-radius:10px;
+position:absolute;
+content:""}
+.jv-switcher+label:before{
+width:36px;
+height:20px;
+background:#dcdfe6;
+left:0;
+top:0;
+-webkit-transition:.5s;
+transition:.5s}
+.jv-switcher+label:after{
+width:16px;
+height:16px;
+background:#fff;
+left:2px;
+top:2px;
+-webkit-transition:.25s;
+transition:.25s}
+.jv-checkbox+label,.jv-checkbox+label+label{
+-webkit-transition:.25s;
+vertical-align:middle;
+cursor:pointer}
+.jv-switcher:checked+label:after{
+left:18px}
+.jv-switcher:checked+label:before{
+-webkit-box-shadow:0 0 0 13px #20a0ff inset;
+box-shadow:0 0 0 13px #20a0ff inset}
+.jv-checkbox{
+display:none!important}
+.jv-checkbox+label{
+position:relative;
+height:16px;
+width:16px;
+display:inline-block;
+border:1px solid #dcdfe6;
+border-radius:4px;
+box-sizing:border-box;
+transition:.25s}
+.jv-checkbox:checked+label{
+border-color:#20a0ff;
+background:#20a0ff}
+.jv-checkbox+label:before{
+-webkit-box-sizing:content-box;
+box-sizing:content-box;
+content:"";
+border:1px solid #fff;
+border-left:0;
+border-top:0;
+height:7px;
+left:3px;
+position:absolute;
+top:2px;
+-webkit-transform:rotate(0) scaleY(.5);
+transform:rotate(0) scaleY(.5);
+width:3px;
+opacity:0;
+-webkit-transition:all .25s,-webkit-transform .2s ease-in 50ms;
+transition:all .25s,-webkit-transform .2s ease-in 50ms;
+transition:all .25s,transform .2s ease-in 50ms;
+transition:all .25s,transform .2s ease-in 50ms,-webkit-transform .2s ease-in 50ms;
+-webkit-transform-origin:center;
+transform-origin:center}
+.jv-checkbox:checked+label:before{
+left:5px;
+opacity:1;
+-webkit-transform:rotate(45deg) scaleY(1);
+transform:rotate(45deg) scaleY(1)}
+.jv-checkbox+label+label{
+margin-left:6px;
+transition:.25s}
+.jv-checkbox:checked+label+label{
+color:#20a0ff}
+.jv-input{
+border:1px solid #ccc;
+border-radius:4px;
+padding:4px 7px;
+color:#333;
+-webkit-transition:.25s;
+transition:.25s}
+.jv-input:hover{
+border-color:#20a0ff;
+-webkit-transition:.25s;
+transition:.25s}
+.jv-input:focus{
+border-color:#20a0ff;
+-webkit-box-shadow:0 0 0 3px rgba(32,160,255,.2);
+box-shadow:0 0 0 3px rgba(32,160,255,.2);
+color:#000;
+-webkit-transition:.25s;
+transition:.25s}
+.inputer{
+margin:10px 0 25px;
+position:relative}
+.inputer:after{
+content:"";
+background:-webkit-gradient(linear,left top,left bottom,from(#f0f2f7),to(#fff));
+background:-webkit-linear-gradient(#f0f2f7,#fff);
+background:linear-gradient(#f0f2f7,#fff);
+border-radius:40px;
+position:absolute;
+top:0;
+right:0;
+bottom:0;
+left:0;
+z-index:-2}
+.inputer input{
+width:100%;
+height:40px;
+border-radius:40px;
+border:1px solid #c0ccda;
+-webkit-box-shadow:0 1px 1px rgba(255,255,255,.8);
+box-shadow:0 1px 1px rgba(255,255,255,.8);
+background:0 0;
+padding:0 20px;
+color:#484848;
+-webkit-appearance:none!important;
+font-size:16px;
+outline:0;
+-webkit-transition:.25s;
+transition:.25s}
+.inputer input.has_value,.inputer input:focus{
+border-color:#20a0ff}
+.inputer span.title{
+content:attr(title);
+position:absolute;
+display:inline-block;
+padding:0 5px;
+top:11px;
+left:15px;
+font-size:16px;
+line-height:16px;
+color:#c0c4cc;
+z-index:-1;
+-webkit-transition:.25s;
+transition:.25s}
+.inputer span.title svg{
+height:13px;
+vertical-align:middle;
+margin-top:-3px;
+margin-right:5px}
+.inputer input.has_value+span.title,.inputer input:focus+span.title{
+font-size:14px;
+z-index:1;
+top:-10px;
+color:#20a0ff;
+background:#f0f2f7}
+.inputer .view_password .pf_tooltip:before,.pandastudio_framework_login__card___new .pf_tooltip:before,.pandastudio_framework_register__card___back .pf_tooltip:before{
+content:"";
+border-right:4px solid transparent;
+border-bottom:4px solid #1f2d3d}
+.inputer .view_password{
+position:absolute;
+right:11px;
+top:11px;
+cursor:pointer}
+.inputer .view_password:before{
+content:"";
+display:block;
+width:17px;
+height:17px;
+background:url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJleWUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDU3NiA1MTIiIGNsYXNzPSJzdmctaW5saW5lLS1mYSBmYS1leWUgZmEtdy0xOCBmYS0yeCI+PHBhdGggZmlsbD0iI0MwQ0NEQSIgZD0iTTU3Mi41MiAyNDEuNEM1MTguMjkgMTM1LjU5IDQxMC45MyA2NCAyODggNjRTNTcuNjggMTM1LjY0IDMuNDggMjQxLjQxYTMyLjM1IDMyLjM1IDAgMCAwIDAgMjkuMTlDNTcuNzEgMzc2LjQxIDE2NS4wNyA0NDggMjg4IDQ0OHMyMzAuMzItNzEuNjQgMjg0LjUyLTE3Ny40MWEzMi4zNSAzMi4zNSAwIDAgMCAwLTI5LjE5ek0yODggNDAwYTE0NCAxNDQgMCAxIDEgMTQ0LTE0NCAxNDMuOTMgMTQzLjkzIDAgMCAxLTE0NCAxNDR6bTAtMjQwYTk1LjMxIDk1LjMxIDAgMCAwLTI1LjMxIDMuNzkgNDcuODUgNDcuODUgMCAwIDEtNjYuOSA2Ni45QTk1Ljc4IDk1Ljc4IDAgMSAwIDI4OCAxNjB6Ii8+PC9zdmc+) center center/contain no-repeat}
+.inputer .view_password+input{
+padding-right:35px}
+.inputer .view_password .pf_tooltip{
+background:#1f2d3d;
+-webkit-box-shadow:0 2px 4px rgba(31,45,62,.7);
+box-shadow:0 2px 4px rgba(31,45,62,.7);
+color:#fff;
+padding:4px 7px;
+font-size:12px;
+border-radius:5px;
+position:absolute;
+bottom:-20px;
+left:-34px;
+white-space:nowrap;
+opacity:0;
+visibility:hidden;
+-webkit-transform:scale(.5);
+transform:scale(.5);
+-webkit-transform-origin:top center;
+transform-origin:top center;
+-webkit-transition:.2s;
+transition:.2s}
+.inputer .view_password .pf_tooltip:before{
+border-left:4px solid transparent;
+position:absolute;
+top:-4px;
+left:calc(50% - 4px)}
+.inputer .view_password .pf_tooltip.show:not(.disabled),.inputer .view_password:hover .pf_tooltip:not(.disabled){
+-webkit-transform:scale(1);
+transform:scale(1);
+bottom:-30px;
+opacity:.8;
+visibility:visible}
+.pandastudio_framework_login{
+position:fixed;
+top:0;
+right:0;
+bottom:0;
+left:0;
+display:-webkit-box;
+display:-ms-flexbox;
+display:flex;
+-webkit-box-pack:center;
+-ms-flex-pack:center;
+justify-content:center;
+-webkit-box-align:center;
+-ms-flex-align:center;
+align-items:center;
+background:-webkit-radial-gradient(at center,rgba(31,45,64,.3),rgba(31,45,64,.8));
+background:radial-gradient(at center,rgba(31,45,64,.3),rgba(31,45,64,.8));
+-webkit-perspective:800px;
+perspective:800px;
+z-index:999;
+-webkit-transition:.5s;
+transition:.5s}
+.pandastudio_framework_login.is_showing{
+opacity:0}
+.pandastudio_framework_login__card{
+width:270px;
+background:#f0f2f7;
+padding:30px 25px;
+border-radius:20px;
+-webkit-box-shadow:0 1px 1px #fff inset,0 15px 20px rgba(31,45,64,.35);
+box-shadow:0 1px 1px #fff inset,0 15px 20px rgba(31,45,64,.35);
+position:relative;
+z-index:1;
+-webkit-transition:.3s ease-out;
+transition:.3s ease-out}
+.pandastudio_framework_login__card.is_showing{
+-webkit-transform:rotateY(-90deg) scaleY(.7);
+transform:rotateY(-90deg) scaleY(.7);
+opacity:0}
+.pandastudio_framework_login__card.is_disappearing{
+-webkit-transform:rotateY(90deg) scaleY(.7);
+transform:rotateY(90deg) scaleY(.7);
+opacity:0;
+-webkit-transition:.3s ease-in;
+transition:.3s ease-in}
+.pandastudio_framework_login__form div.is_showing{
+-webkit-transform:translateX(30px);
+transform:translateX(30px);
+will-change:transform,opacity;
+opacity:0}
+.pandastudio_framework_login__form div{
+will-change:transform,opacity;
+-webkit-transition:.5s;
+transition:.5s}
+.pandastudio_framework_login__form___submit{
+cursor:pointer;
+width:150px;
+background:-webkit-gradient(linear,left top,right top,from(#20a0ff),to(#20d2ff));
+background:-webkit-linear-gradient(left,#20a0ff,#20d2ff);
+background:linear-gradient(90deg,#20a0ff,#20d2ff);
+-webkit-box-shadow:0 8px 15px rgba(32,160,255,.5);
+box-shadow:0 8px 15px rgba(32,160,255,.5);
+margin:auto;
+text-align:center;
+padding:7px 0;
+border-radius:100px;
+color:#fff}
+.pandastudio_framework_login__title{
+color:#20a0ff;
+font-size:24px;
+border-left:3px solid #20a0ff;
+text-shadow:0 1px 1px #fff;
+margin-left:-25px;
+padding-left:20px;
+margin-bottom:25px}
+.pandastudio_framework_login__form___submit.error{
+-webkit-animation:submit_error .55s;
+animation:submit_error .55s}
+.pandastudio_framework_login__card___new{
+position:absolute;
+z-index:1;
+width:50px;
+height:50px;
+background:-webkit-radial-gradient(at 20% 20%,#20d2ff,#20a0ff 65%);
+background:radial-gradient(at 20% 20%,#20d2ff,#20a0ff 65%);
+-webkit-box-shadow:0 8px 15px rgba(32,160,255,.5),0 -4px 4px rgba(77,224,255,.5) inset;
+box-shadow:0 8px 15px rgba(32,160,255,.5),0 -4px 4px rgba(77,224,255,.5) inset;
+top:15px;
+right:-25px;
+border-radius:50%;
+cursor:pointer;
+-webkit-transition:.5s cubic-bezier(0,1.8,.7,1);
+transition:.5s cubic-bezier(0,1.8,.7,1)}
+.pandastudio_framework_login__card___new.is_showing{
+-webkit-transform:scale(0);
+transform:scale(0)}
+.pandastudio_framework_login__card___new.is_disappearing{
+-webkit-transform:scale(0);
+transform:scale(0);
+-webkit-transition:.25s;
+transition:.25s}
+.pandastudio_framework_login__card___new .pf_plus{
+position:relative;
+margin-left:25px;
+margin-top:25px;
+-webkit-transform-origin:left;
+transform-origin:left;
+-webkit-transition:1s;
+transition:1s}
+.pandastudio_framework_login__card___new.is_showing .pf_plus{
+-webkit-transform:rotate(-360deg) scale(0);
+transform:rotate(-360deg) scale(0);
+opacity:0}
+.pandastudio_framework_login__card___new .pf_plus:after,.pandastudio_framework_login__card___new .pf_plus:before{
+content:"";
+position:absolute;
+top:-2px;
+left:-10px;
+width:20px;
+height:4px;
+border-radius:4px;
+background:#fff}
+.pandastudio_framework_login__card___new .pf_plus:after{
+-webkit-transform:rotate(90deg);
+transform:rotate(90deg)}
+.pandastudio_framework_login__card___new .pf_tooltip{
+background:#1f2d3d;
+-webkit-box-shadow:0 2px 4px rgba(31,45,62,.7);
+box-shadow:0 2px 4px rgba(31,45,62,.7);
+color:#fff;
+padding:4px 7px;
+font-size:12px;
+border-radius:5px;
+position:absolute;
+bottom:-20px;
+left:6px;
+opacity:0;
+visibility:hidden;
+-webkit-transform:scale(.5);
+transform:scale(.5);
+-webkit-transform-origin:top center;
+transform-origin:top center;
+-webkit-transition:.2s;
+transition:.2s}
+.pandastudio_framework_login__card___new .pf_tooltip:before{
+border-left:4px solid transparent;
+position:absolute;
+top:-4px;
+left:calc(50% - 4px)}
+.pandastudio_framework_login__card___new.show_pf_tooltip .pf_tooltip,.pandastudio_framework_login__card___new:hover .pf_tooltip{
+-webkit-transform:scale(1);
+transform:scale(1);
+bottom:-30px;
+opacity:.9;
+visibility:visible}
+.pandastudio_framework_login__form___remember{
+font-size:14px;
+margin-bottom:20px}
+.pandastudio_framework_login__form___remember input{
+display:none}
+.pandastudio_framework_login__form___remember input+label{
+position:relative;
+cursor:pointer;
+color:#99a9bf;
+-webkit-transition:.25s;
+transition:.25s}
+.pandastudio_framework_login__form___remember input+label:hover,.pandastudio_framework_login__form___remember input:checked+label{
+color:#20a0ff}
+.pandastudio_framework_login__form___remember input+label:before{
+content:"";
+width:16px;
+height:16px;
+background:#fff;
+-webkit-box-shadow:0 0 0 1px #c0ccda inset,0 0 3px transparent inset,0 1px 1px rgba(255,255,255,.7);
+box-shadow:0 0 0 1px #c0ccda inset,0 0 3px transparent inset,0 1px 1px rgba(255,255,255,.7);
+display:inline-block;
+margin-right:5px;
+border-radius:50%;
+vertical-align:-2px;
+-webkit-transition:-webkit-box-shadow .2s linear;
+transition:-webkit-box-shadow .2s linear;
+transition:box-shadow .2s linear;
+transition:box-shadow .2s linear,-webkit-box-shadow .2s linear}
+.pandastudio_framework_login__form___remember input:checked+label:before{
+-webkit-box-shadow:0 0 0 1px transparent inset,0 0 0 5px #20a0ff inset,0 5px 8px rgba(32,160,255,.5);
+box-shadow:0 0 0 1px transparent inset,0 0 0 5px #20a0ff inset,0 5px 8px rgba(32,160,255,.5)}
+.pandastudio_framework_login__form___remember .forget{
+float:right;
+text-decoration:none;
+color:#99a9bf;
+-webkit-transition:.25s;
+transition:.25s}
+.pandastudio_framework_login__form___remember .forget:hover{
+color:#20a0ff}
+.pandastudio_framework_register__card{
+width:270px;
+background:#f0f2f7;
+padding:30px 25px;
+border-radius:20px;
+-webkit-box-shadow:0 1px 1px #fff inset,0 15px 20px rgba(31,45,64,.35);
+box-shadow:0 1px 1px #fff inset,0 15px 20px rgba(31,45,64,.35);
+position:relative;
+z-index:1;
+-webkit-transition:.3s ease-out;
+transition:.3s ease-out}
+.pandastudio_framework_register__card.is_showing{
+-webkit-transform:rotateY(-90deg) scaleY(.7);
+transform:rotateY(-90deg) scaleY(.7);
+opacity:0}
+.pandastudio_framework_register__card.is_disappearing{
+-webkit-transform:rotateY(90deg) scaleY(.7);
+transform:rotateY(90deg) scaleY(.7);
+opacity:0;
+-webkit-transition:.3s ease-in;
+transition:.3s ease-in}
+.pandastudio_framework_register__form div.is_showing{
+-webkit-transform:translateX(30px);
+transform:translateX(30px);
+will-change:transform,opacity;
+opacity:0}
+.pandastudio_framework_register__form div{
+will-change:transform,opacity;
+-webkit-transition:.5s;
+transition:.5s}
+.pandastudio_framework_register__form___submit{
+cursor:pointer;
+width:150px;
+background:-webkit-gradient(linear,left top,right top,from(#20a0ff),to(#20d2ff));
+background:-webkit-linear-gradient(left,#20a0ff,#20d2ff);
+background:linear-gradient(90deg,#20a0ff,#20d2ff);
+-webkit-box-shadow:0 8px 15px rgba(32,160,255,.5);
+box-shadow:0 8px 15px rgba(32,160,255,.5);
+margin:auto;
+text-align:center;
+padding:7px 0;
+border-radius:100px;
+color:#fff}
+.pandastudio_framework_register__title{
+color:#20a0ff;
+font-size:24px;
+border-left:3px solid #20a0ff;
+text-shadow:0 1px 1px #fff;
+margin-left:-25px;
+padding-left:20px;
+margin-bottom:25px}
+.pandastudio_framework_register__form___submit.error{
+-webkit-animation:submit_error .55s;
+animation:submit_error .55s}
+.pandastudio_framework_register__card___back{
+position:absolute;
+z-index:1;
+width:50px;
+height:50px;
+background:-webkit-radial-gradient(at 20% 20%,#20d2ff,#20a0ff 65%);
+background:radial-gradient(at 20% 20%,#20d2ff,#20a0ff 65%);
+-webkit-box-shadow:0 8px 15px rgba(32,160,255,.5),0 -4px 4px rgba(77,224,255,.5) inset;
+box-shadow:0 8px 15px rgba(32,160,255,.5),0 -4px 4px rgba(77,224,255,.5) inset;
+top:15px;
+right:-25px;
+border-radius:50%;
+cursor:pointer;
+-webkit-transition:.5s cubic-bezier(0,1.8,.7,1);
+transition:.5s cubic-bezier(0,1.8,.7,1)}
+.pandastudio_framework_register__card___back.is_showing{
+-webkit-transform:scale(0);
+transform:scale(0)}
+.pandastudio_framework_register__card___back.is_disappearing{
+-webkit-transform:scale(0);
+transform:scale(0);
+-webkit-transition:.25s;
+transition:.25s}
+.pandastudio_framework_register__card___back .pf_back{
+position:relative;
+margin-left:15px;
+margin-top:15px;
+-webkit-transform-origin:left;
+transform-origin:left;
+width:20px;
+height:20px;
+background:url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJzaWduLWluIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtc2lnbi1pbiBmYS13LTE2IGZhLTJ4Ij48cGF0aCBmaWxsPSIjRkZGIiBkPSJNMTM3LjIgMTEwLjNsMjEuOS0yMS45YzkuMy05LjMgMjQuNS05LjQgMzMuOS0uMUwzNDQuOSAyMzljOS41IDkuNCA5LjUgMjQuNyAwIDM0LjFMMTkzIDQyMy43Yy05LjQgOS4zLTI0LjUgOS4zLTMzLjktLjFsLTIxLjktMjEuOWMtOS43LTkuNy05LjMtMjUuNC44LTM0LjdsNzcuNi03MS4xSDI0Yy0xMy4zIDAtMjQtMTAuNy0yNC0yNHYtMzJjMC0xMy4zIDEwLjctMjQgMjQtMjRoMTkxLjVsLTc3LjYtNzEuMWMtMTAtOS4xLTEwLjQtMjQuOS0uNy0zNC41ek01MTIgMzUyVjE2MGMwLTUzLTQzLTk2LTk2LTk2aC04NGMtNi42IDAtMTIgNS40LTEyIDEydjQwYzAgNi42IDUuNCAxMiAxMiAxMmg4NGMxNy43IDAgMzIgMTQuMyAzMiAzMnYxOTJjMCAxNy43LTE0LjMgMzItMzIgMzJoLTg0Yy02LjYgMC0xMiA1LjQtMTIgMTJ2NDBjMCA2LjYgNS40IDEyIDEyIDEyaDg0YzUzIDAgOTYtNDMgOTYtOTZ6Ii8+PC9zdmc+) center center/contain no-repeat;
+-webkit-transition:1s;
+transition:1s}
+.pandastudio_framework_register__card___back .pf_tooltip{
+background:#1f2d3d;
+-webkit-box-shadow:0 2px 4px rgba(31,45,62,.7);
+box-shadow:0 2px 4px rgba(31,45,62,.7);
+color:#fff;
+padding:4px 7px;
+font-size:12px;
+border-radius:5px;
+position:absolute;
+bottom:-20px;
+left:6px;
+opacity:0;
+visibility:hidden;
+-webkit-transform:scale(.5);
+transform:scale(.5);
+-webkit-transform-origin:top center;
+transform-origin:top center;
+-webkit-transition:.2s;
+transition:.2s}
+.pandastudio_framework_register__card___back .pf_tooltip:before{
+border-left:4px solid transparent;
+position:absolute;
+top:-4px;
+left:calc(50% - 4px)}
+.pandastudio_framework_register__card___back.show_pf_tooltip .pf_tooltip,.pandastudio_framework_register__card___back:hover .pf_tooltip{
+-webkit-transform:scale(1);
+transform:scale(1);
+bottom:-30px;
+opacity:.9;
+visibility:visible}
