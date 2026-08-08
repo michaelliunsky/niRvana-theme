@@ -90,7 +90,7 @@ jQuery(document).on("click", "#publish", function(t) {
           data: JSON.stringify(s)
         }).done(function(e) {
           t && (o.$message.success("Meta保存成功，请稍后..."), window.abc = t, jQuery(document).off("click", "#" + t.attr("id")), window.setTimeout(function() {
-            jQuery(t).click()
+            jQuery(t).trigger("click")
           }, 200))
         }).fail(function() {
           o.$notify.error({
