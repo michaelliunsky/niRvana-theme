@@ -642,7 +642,7 @@ bottom:-20px;
 z-index:1;
 -webkit-transition:.25s;
 transition:.25s}
-#flatflow .page .cover:hover{
+#flatflow .page:hover .cover{
 -webkit-transform:translateY(10px);
 transform:translateY(10px);
 -webkit-box-shadow:0 3px 5px rgba(31,45,61,.2),0 0 0 1px rgba(255,255,255,.3) inset;
@@ -892,11 +892,11 @@ text-decoration:none;
 box-shadow:0 5px 5px rgba(31,45,61,.06),0 0 4px 20px rgba(32,160,255,0) inset,0 -1px 2px rgba(255,255,255,.5) inset;
 -webkit-transition:.25s;
 transition:.25s}
-.long-model .more:hover{
+.long-model:hover .more{
+right:0;
 background:#20a0ff;
 border-color:#20a0ff;
 color:#fff;
-right:0;
 -webkit-box-shadow:0 3px 4px rgba(32,160,255,.6),0 0 4px 20px rgba(32,160,255,1) inset;
 box-shadow:0 3px 4px rgba(32,160,255,.6),0 0 4px 20px rgba(32,160,255,1) inset;
 -webkit-transition:.35s;
@@ -1034,7 +1034,7 @@ top:15px;
 box-shadow:0 0 0 1px #cad1db inset,0 0 0 2px #f0f2f7 inset;
 -webkit-transition:.25s;
 transition:.25s}
-.post_nav>.nav>li a:hover{
+.post_nav>.nav>li:hover a{
 -webkit-transform:translateY(6px);
 transform:translateY(6px);
 -webkit-box-shadow:0 3px 3px rgba(0,0,0,.15);
@@ -1047,7 +1047,7 @@ background:linear-gradient(100deg,#20a0ff,#20b8ff);
 box-shadow:0 13px 15px rgba(32,160,255,.3)}
 .post_nav>.nav>li.active a::before{
 border-right-color:#20a0ff}
-.post_nav>.nav>li.active a:hover{
+.post_nav>.nav>li.active:hover a{
 -webkit-transform:translateY(6px);
 transform:translateY(6px);
 -webkit-box-shadow:0 3px 3px rgba(32,160,255,.3);
@@ -1495,7 +1495,7 @@ margin-bottom:30px;
 transition:-webkit-transform .25s,-webkit-box-shadow .25s;
 transition:transform .25s,box-shadow .25s;
 transition:transform .25s,box-shadow .25s,-webkit-transform .25s,-webkit-box-shadow .25s}
-.postLists.cards .card:hover{
+.postLists.cards .post-card-wrapper:hover .card{
 -webkit-transform:translateY(13px);
 transform:translateY(13px);
 -webkit-box-shadow:0 3px 5px rgba(31,45,61,.2);
@@ -1604,11 +1604,11 @@ color:#67c23a}
 color:#ff4949}
 .postLists .card .summary .fa-comments{
 color:#20a0ff}
-.postLists.cards .card:hover .tags{
+.postLists.cards .post-card-wrapper:hover .card .tags{
 opacity:0;
 -webkit-transform:scale(.5);
 transform:scale(.5)}
-.postLists.cards .card:hover .summary{
+.postLists.cards .post-card-wrapper:hover .card .summary{
 -webkit-transform:scale(1);
 transform:scale(1);
 opacity:1}
@@ -1641,7 +1641,7 @@ transform:translateY(0);
 transition:-webkit-transform .25s,-webkit-box-shadow .25s;
 transition:transform .25s,box-shadow .25s;
 transition:transform .25s,box-shadow .25s,-webkit-transform .25s,-webkit-box-shadow .25s}
-.postLists.lists .card .cover:hover{
+.postLists.lists .card:hover .cover{
 -webkit-transform:translateY(13px);
 transform:translateY(13px);
 -webkit-box-shadow:0 3px 5px rgba(31,45,61,.3);
@@ -1874,8 +1874,6 @@ transition:.25s}
 color:#fff;
 background:#20a0ff}
 .widget_meta>ul>li:hover{
--webkit-transform:translateY(5px);
-transform:translateY(5px);
 -webkit-box-shadow:0 3px 3px rgba(32,160,255,.32);
 box-shadow:0 3px 3px rgba(32,160,255,.32)}
 .widget_meta abbr{
@@ -1913,10 +1911,10 @@ display:block;
 list-style:none}
 .pf_tag_cloud>.tag>li:hover>a{
 color:#fff;
-background:#20a0ff}
-.pf_tag_cloud>.tag>li:hover{
+background:#20a0ff;
 -webkit-transform:translateY(5px);
-transform:translateY(5px);
+transform:translateY(5px)}
+.pf_tag_cloud>.tag>li:hover{
 -webkit-box-shadow:0 3px 3px rgba(32,160,255,.32);
 box-shadow:0 3px 3px rgba(32,160,255,.32)}
 .pf_tag_cloud>.link>li a{
@@ -2000,7 +1998,7 @@ left:-29px;
 top:15px;
 -webkit-box-shadow:0 0 0 1px #cad1db inset,0 0 0 2px #f0f2f7 inset;
 box-shadow:0 0 0 1px #cad1db inset,0 0 0 2px #f0f2f7 inset}
-.pf_tag_cloud>.navigator>li a:hover{
+.pf_tag_cloud>.navigator>li:hover a{
 -webkit-transform:translateY(6px);
 transform:translateY(6px);
 -webkit-box-shadow:0 3px 3px rgba(0,0,0,.15);
@@ -2014,7 +2012,7 @@ background:linear-gradient(100deg,#20a0ff,#20b8ff);
 box-shadow:0 13px 15px rgba(32,160,255,.3)}
 .pf_tag_cloud>.navigator>li:nth-child(even) a:before{
 border-right-color:#20a0ff}
-.pf_tag_cloud>.navigator>li:nth-child(even) a:hover{
+.pf_tag_cloud>.navigator>li:nth-child(even):hover a{
 -webkit-transform:translateY(6px);
 transform:translateY(6px);
 -webkit-box-shadow:0 3px 3px rgba(32,160,255,.35);
@@ -2075,9 +2073,6 @@ margin-left:20px;
 transform:translateY(0);
 -webkit-transition:.25s;
 transition:.25s}
-.pf_microblog>ul>li:hover{
--webkit-transform:translateY(6px);
-transform:translateY(6px)}
 .pf_microblog>ul .date{
 height:16px}
 .pf_microblog>ul .date span{
@@ -2190,7 +2185,7 @@ flex-shrink:0;
 box-shadow:0 10px 13px rgba(31,45,61,.25);
 -webkit-transition:.25s;
 transition:.25s}
-.pf_hotposts .cover:hover{
+.pf_hotposts .single-wrapper:hover .cover{
 -webkit-transform:translateY(6px);
 transform:translateY(6px);
 -webkit-box-shadow:0 2px 4px rgba(31,45,61,.35);
@@ -3604,10 +3599,10 @@ width:100%;
 opacity:1;
 -webkit-transition:.5s;
 transition:.5s}
-.single-post.relate .thumb_img:hover:after{
+.single-post.relate:hover .thumb_img:after{
 height:0%;
 opacity:0}
-.single-post.relate .thumb_img:hover{
+.single-post.relate:hover .thumb_img{
 -webkit-transform:translateY(15px);
 transform:translateY(15px);
 -webkit-box-shadow:0 3px 3px rgba(31,45,61,.3);
@@ -3648,13 +3643,13 @@ opacity:.5;
 transform:translateY(0);
 -webkit-transition:.25s;
 transition:.25s}
-.single-post.relate .thumb_img:hover .meta h3{
+.single-post.relate:hover .thumb_img .meta h3{
 opacity:0;
 -webkit-transform:translateY(15px);
 transform:translateY(15px);
 -webkit-transition:.25s ease;
 transition:.25s ease}
-.single-post.relate .thumb_img:hover .meta .date{
+.single-post.relate:hover .thumb_img .meta .date{
 opacity:0;
 -webkit-transform:translateY(30px);
 transform:translateY(30px);
@@ -4870,9 +4865,9 @@ border:1px solid #28374a;
 text-decoration:none;
 -webkit-box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset;
 box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset}
-body.night .long-model .more:hover{
-background:linear-gradient(#3c4a5d,#263445);
+body.night .long-model:hover .more{
 right:0;
+background:linear-gradient(#3c4a5d,#263445);
 -webkit-box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset;
 box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset;
 -webkit-transition:.35s;
@@ -4950,7 +4945,9 @@ background:#99a9bf;
 box-shadow:0 0 0 1px #334148 inset,0 0 0 2px #324047 inset}
 body.night .pf_tag_cloud>.tag>li:hover>a{
 color:#fff;
-background:#20a0ff}
+background:#20a0ff;
+-webkit-transform:translateY(5px);
+transform:translateY(5px)}
 body.night #footer{
 border-top:1px solid #33415a;
 background:linear-gradient(#637893,#637893 1px,#465568 0,#334154 20px,#243243 0,#334154);
