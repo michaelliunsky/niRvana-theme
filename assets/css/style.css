@@ -892,8 +892,7 @@ text-decoration:none;
 box-shadow:0 5px 5px rgba(31,45,61,.06),0 0 4px 20px rgba(32,160,255,0) inset,0 -1px 2px rgba(255,255,255,.5) inset;
 -webkit-transition:.25s;
 transition:.25s}
-.long-model:hover .more{
-right:0;
+.long-model .more:hover{
 background:#20a0ff;
 border-color:#20a0ff;
 color:#fff;
@@ -4865,8 +4864,7 @@ border:1px solid #28374a;
 text-decoration:none;
 -webkit-box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset;
 box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset}
-body.night .long-model:hover .more{
-right:0;
+body.night .long-model .more:hover{
 background:linear-gradient(#3c4a5d,#263445);
 -webkit-box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset;
 box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset;
