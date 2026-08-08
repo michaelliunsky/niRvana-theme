@@ -6,15 +6,15 @@
 function pf_login() {
   function e(e, t, n) {
     var o, r = $('\n\t\t<div class="inputer">\n\t\t\t<input type="'.concat(t, '">\n\t\t\t<span class="title">').concat(e, "</span>\n\t\t</div>\n\t\t"));
-    return r.find("input").change(function(e) {
+    return r.find("input").on("change", function(e) {
       $(this).val() ? ($(this).addClass("has_value"), r.addClass("has_value")) : ($(this).removeClass("has_value"), r.removeClass("has_value"))
-    }), "password" == t && ("ontouchstart" in document.documentElement ? (o = $('<div class="view_password"><div class="pf_tooltip">点击查看密码</div></div>')).click(function() {
+    }), "password" == t && ("ontouchstart" in document.documentElement ? (o = $('<div class="view_password"><div class="pf_tooltip">点击查看密码</div></div>')).on("click", function() {
       r.find("input").val() && o.find(".pf_tooltip").addClass("disabled"), "text" == r.find("input").attr("type") ? r.find("input").attr("type", "password") : r.find("input").attr("type", "text")
-    }) : (o = $('<div class="view_password"><div class="pf_tooltip">按住查看密码</div></div>')).mousedown(function() {
+    }) : (o = $('<div class="view_password"><div class="pf_tooltip">按住查看密码</div></div>')).on("mousedown", function() {
       r.find("input").val() && o.find(".pf_tooltip").addClass("disabled"), r.find("input").attr("type", "text")
-    }).mouseup(function() {
+    }).on("mouseup", function() {
       r.find("input").attr("type", "password")
-    }), n && r.find("input").focus(function() {
+    }), n && r.find("input").on("focus", function() {
       i(o.find(".pf_tooltip"), "show", 5e3)
     }), r.prepend(o)), r
   }

@@ -70,14 +70,14 @@ window.add_filter = function(e, t, n) {
   }
 }, jQVue.prototype.$beforeMounted.isHuman = function() {
   window.setTimeout(function() {
-    $("body").mousedown(function(e) {
+    $("body").on("mousedown", function(e) {
       jQVue.prototype.$isHuman.temp.time = (new Date).getTime(), jQVue.prototype.$isHuman.temp.pageX = e.pageX, jQVue.prototype.$isHuman.temp.pageY = e.pageY
-    }).mouseup(function(e) {
+    }).on("mouseup", function(e) {
       if (jQVue.prototype.$isHuman.temp.pageX == e.pageX && jQVue.prototype.$isHuman.temp.pageY == e.pageY) {
         var t = (new Date).getTime();
         jQVue.prototype.$isHuman.clickTimer.push(t - jQVue.prototype.$isHuman.temp.time)
       }
-    }), $("body").click(function() {
+    }), $("body").on("click", function() {
       jQVue.prototype.$isHuman.tapTimer.push(100)
     }), $("body").on("mousemove", "#cmt_form .submit-comment,#cmt_form .comment-input", function() {
       jQVue.prototype.$isHuman.mouseMove += 1

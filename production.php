@@ -24,46 +24,54 @@ if ($is_production) {
         if (!is_admin() && !is_login_page()) {
             wp_enqueue_script('niRvana');
             wp_enqueue_style('niRvana');
+            // WP 核心 jQuery 无冲突模式不提供全局 $, 为主题脚本提供别名 (与旧版内嵌 jQuery 行为一致)
+            wp_add_inline_script('jquery', 'window.$ = window.jQuery;');
         }
     });
 } else {
-    add_action('wp_enqueue_scripts', function () {
+    // 开发模式: 逐文件加载. 全部脚本依赖 WP 核心 jQuery 3, 由 wp_enqueue_script 队列保证顺序.
+    $dev_scripts = array(
+        'assets/js/jQuery.forceCache.js',
+        'assets/js/jquery.custom-scrollbars.js',
+        'assets/js/vendor/jquery.qrcode.min.js',
+        'assets/js/pdmessage.js',
+        'assets/js/vendor/bootstrap.min.js',
+        'assets/js/vendor/color-thief.js',
+        'assets/js/vendor/stackblur.min.js',
+        'assets/js/vendor/circleMagic.min.js',
+        'assets/js/vendor/mustache.min.js',
+        'assets/js/pandaSlider.js',
+        'assets/js/pandaTab.js',
+        'assets/js/jquery.vue.js',
+        'assets/js/jv-element.js',
+        'assets/js/user-center-login.js',
+        'assets/js/vendor/masonry.pkgd.min.js',
+        'assets/js/jquery.imgcomplete.js',
+        'assets/js/vendor/highlight.min.js',
+        'assets/js/vendor/highlightjs-line-numbers.js',
+        'assets/js/theme.js'
+    );
+    $dev_styles = array(
+        'assets/css/vendor/bootstrap.min.css',
+        'assets/css/vendor/bootstrap_xxs.css',
+        'assets/css/vendor/bootstrap_24.css',
+        'assets/css/vendor/bootstrap_xl.css',
+        'assets/css/pdmessage-my.css',
+        'assets/css/fontawesome.css',
+        'assets/css/jv-element.css',
+        'assets/css/user-center-login.css',
+        'assets/css/style.css',
+        'assets/css/highlightjs.css'
+    );
+    add_action('wp_enqueue_scripts', function () use ($theme_version, $theme_uri, $dev_scripts, $dev_styles) {
         wp_enqueue_script('jquery');
-    });
-    add_action('wp_head', function () use ($theme_uri) {
-        echo '
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/vendor/bootstrap.min.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/vendor/bootstrap_xxs.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/vendor/bootstrap_24.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/vendor/bootstrap_xl.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/pdmessage-my.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/fontawesome.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/jv-element.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/user-center-login.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/style.css">
-<link rel="stylesheet" href="'.$theme_uri.'/assets/css/highlightjs.css">
-<script src="'.$theme_uri.'/assets/js/vendor/jquery-2.1.0.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/jQuery.forceCache.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/jquery.mobile.custom.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/jquery-ui-custom-drag.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/jquery.custom-scrollbars.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/jquery.qrcode.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/pdmessage.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/bootstrap.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/color-thief.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/stackblur.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/circleMagic.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/mustache.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/pandaSlider.js"></script>
-<script src="'.$theme_uri.'/assets/js/pandaTab.js"></script>
-<script src="'.$theme_uri.'/assets/js/jquery.vue.js"></script>
-<script src="'.$theme_uri.'/assets/js/jv-element.js"></script>
-<script src="'.$theme_uri.'/assets/js/user-center-login.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/masonry.pkgd.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/jquery.imgcomplete.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/highlight.min.js"></script>
-<script src="'.$theme_uri.'/assets/js/vendor/highlightjs-line-numbers.js"></script>
-<script src="'.$theme_uri.'/assets/js/theme.js"></script>
-';
+        // WP 核心 jQuery 无冲突模式不提供全局 $, 为主题脚本提供别名
+        wp_add_inline_script('jquery', 'window.$ = window.jQuery;');
+        foreach ($dev_scripts as $i => $file) {
+            wp_enqueue_script('nirvana-dev-' . $i, $theme_uri . '/' . $file, array('jquery'), $theme_version);
+        }
+        foreach ($dev_styles as $i => $file) {
+            wp_enqueue_style('nirvana-dev-css-' . $i, $theme_uri . '/' . $file, array(), $theme_version);
+        }
     });
 }

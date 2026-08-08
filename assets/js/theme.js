@@ -4,6 +4,10 @@
  * 自定义源码, 从生产压缩包反解. 压缩丢失注释与局部变量名.
  */
 $(function() {
+  // highlight.js 9 官方提供的 EOL 警告关闭开关 (保留 v9, 视觉与行号插件兼容性不变)
+  hljs.configure({
+    hideUpgradeWarningAcceptNoSupportOrSecurityUpdates: !0
+  });
   Mustache.escape = function(e) {
     return e
   }, history.replaceState({
@@ -78,7 +82,7 @@ new jQVue({
     } catch (e) {
       this.$alert(e)
     }
-    this.init_post_nav_smooth_scroll(), this.init_float_tools(), this.loadAssistance(), this.loadArticleDirtyStyle(), this.initLightbox(), $(".chat_input").keyup(function(t) {
+    this.init_post_nav_smooth_scroll(), this.init_float_tools(), this.loadAssistance(), this.loadArticleDirtyStyle(), this.initLightbox(), $(".chat_input").on("keyup", function(t) {
       $(this).prop("comStart") || (t.preventDefault(), 13 == (t.keyCode ? t.keyCode : t.which) && e.send_chat_message())
     }).on("compositionstart", function() {
       $(this).prop("comStart", !0)
@@ -279,7 +283,7 @@ new jQVue({
       if (n = n.replace(/BaiFenHao/g, "%"), $('[manual-template="sidebar"]').html(n), 0 == $("aside").length) return !1;
       if ($(".sidebarMenu[pandaTab]").each(function(e, t) {
           $(t).pandaTab()
-        }), $(".sidebarMenu[pandaTab] li").click(function() {
+        }), $(".sidebarMenu[pandaTab] li").on("click", function() {
           $(this).addClass("active"), $(this).siblings().removeClass("active");
           var t = $(this).parent().parent(),
             n = t.parent().next();
@@ -291,18 +295,18 @@ new jQVue({
             e.parse_sidebar_height()
           }, 250)
         }),
-        $(window).resize(function(t) {
+        $(window).on("resize", function(t) {
           e.parse_sidebar_height()
         }), $(document).on("click", "#wrapper.sidebar-visible #main", function(e) {
           $("#wrapper").removeClass("sidebar-visible")
-        }), 0 < $('.single .sidebarMenu li[data-id="sidebar-0"]').length) $('.single .sidebarMenu li[data-id="sidebar-0"]').click();
+        }), 0 < $('.single .sidebarMenu li[data-id="sidebar-0"]').length) $('.single .sidebarMenu li[data-id="sidebar-0"]').trigger("click");
       else {
         t = ["archive", "single", "home", "page"], n = !0;
         for (var i = 0; i < t.length && n; i++) $("." + t[i] + " .sidebarMenu").each(function(e, o) {
-          $(o).find("li[show-on-" + t[i] + "]").first().click(), n = !1
+          $(o).find("li[show-on-" + t[i] + "]").first().trigger("click"), n = !1
         })
       }
-      0 < $(".sidebar-affix").length && ($(window).resize(function(t) {
+      0 < $(".sidebar-affix").length && ($(window).on("resize", function(t) {
         e.parse_sidebar_width()
       }), e.parse_sidebar_width(), $(".sidebar-affix").affix({
         offset: {
@@ -331,7 +335,7 @@ new jQVue({
         scrollbarWidth: 6,
         scrollbarTrackColor: "transparent",
         scrollbarColor: "rgba(31,45,61,.2)"
-      }), $(".custom-scrollbar-content-wrapper").data("hasScrollingEvent") || ($(".custom-scrollbar-content-wrapper").data("hasScrollingEvent", !0), $(".custom-scrollbar-content-wrapper").scroll(function(e) {
+      }), $(".custom-scrollbar-content-wrapper").data("hasScrollingEvent") || ($(".custom-scrollbar-content-wrapper").data("hasScrollingEvent", !0), $(".custom-scrollbar-content-wrapper").on("scroll", function(e) {
         clearTimeout(i.sidebarScrollingTimeOut), $(this).siblings().find(".scrollBar-background").addClass("scrolling");
         var t = this;
         i.sidebarScrollingTimeOut = setTimeout(function() {
@@ -343,15 +347,15 @@ new jQVue({
       var e = this;
       $(".display-switcher[pandaTab]").each(function(t, n) {
         $(n).pandaTab(), e.make_masonry()
-      }), $(".display-switcher[pandaTab] li.list").click(function(t) {
+      }), $(".display-switcher[pandaTab] li.list").on("click", function(t) {
         $('[height-to="sidebar"].cards').addClass("disappear"), window.setTimeout(function() {
           $('[height-to="sidebar"].cards').removeClass("disappear").removeClass("cards").addClass("lists"), e.make_masonry()
         }, 250)
-      }), $(".display-switcher[pandaTab] li.card").click(function(t) {
+      }), $(".display-switcher[pandaTab] li.card").on("click", function(t) {
         $('[height-to="sidebar"].lists').addClass("disappear"), window.setTimeout(function() {
           $('[height-to="sidebar"].lists').removeClass("disappear").removeClass("lists").addClass("cards"), e.make_masonry()
         }, 250)
-      }), $(".display-switcher[pandaTab] li").click(function() {
+      }), $(".display-switcher[pandaTab] li").on("click", function() {
         $(this).addClass("active"), $(this).siblings().removeClass("active"), $(this).parent().parent().pandaTab("parseActivePosition"), window.setTimeout(function() {
           e.parse_sidebar_height()
         }, 300)
@@ -363,9 +367,9 @@ new jQVue({
         $(".main-nav").removeClass("float").removeClass("flat").addClass(e)
       }
       var t = this;
-      $(".topNav[pandaTab]").pandaTab("init", 250), this.is_Mobile() && $(".topNav[pandaTab]").pandaTab("useNativeScrolling"), e(), $(window).resize(function() {
+      $(".topNav[pandaTab]").pandaTab("init", 250), this.is_Mobile() && $(".topNav[pandaTab]").pandaTab("useNativeScrolling"), e(), $(window).on("resize", function() {
         e()
-      }), $(window).scroll(function() {
+      }), $(window).on("scroll", function() {
         e()
       })
     },
@@ -448,7 +452,7 @@ new jQVue({
       var t = [];
       $("img").each(function() {
         var e = $.Deferred();
-        $(this).load(function() {
+        $(this).on("load", function() {
           e.resolve()
         }), t.push(e)
       }), $.when.apply(null, t).done(function() {
@@ -591,7 +595,7 @@ new jQVue({
       }
     },
     addCommentFace: function(e) {
-      this.comment_text += e, $("textarea#comment").focus()
+      this.comment_text += e, $("textarea#comment").trigger("focus")
     },
     init_comments: function() {
       var e = this;
@@ -613,15 +617,15 @@ new jQVue({
           placement: "top",
           trigger: "focus",
           title: '<i class="fas fa-sign-out-alt"></i> 退出登录？'
-        }), $(".comment-meta.nick-name.guests").click(function(t) {
+        }), $(".comment-meta.nick-name.guests").on("click", function(t) {
           if (!e.optionsLoaded) return e.$info("请稍后"), void e.$info("网页还未加载完成");
-          $(".comment-meta.nick-name.guests").popover("show"), "" != e.comment_author ? "" != e.comment_email ? "" != e.comment_url || $('.popover [v-model="comment_url"]').focus() : $('.popover [v-model="comment_email"]').focus() : $('.popover [v-model="comment_author"]').focus()
-        }), $("body").click(function(t) {
+          $(".comment-meta.nick-name.guests").popover("show"), "" != e.comment_author ? "" != e.comment_email ? "" != e.comment_url || $('.popover [v-model="comment_url"]').trigger("focus") : $('.popover [v-model="comment_email"]').trigger("focus") : $('.popover [v-model="comment_author"]').trigger("focus")
+        }), $("body").on("click", function(t) {
           $(t.target).is(".comment-meta.nick-name.guests") || 0 != $(t.target).parents(".popover").length || $(t.target).is("textarea#comment") && e.comment_require_name_email && ("" == e.comment_author || "" == e.comment_email) || $(".comment-meta.nick-name.guests").popover("hide")
-        }), $("textarea#comment").click(function(t) {
+        }), $("textarea#comment").on("click", function(t) {
           if (e.comment_require_name_email && ("" == e.comment_author || "" == e.comment_email) && !e.is_user_loggedin) {
-            if ($(".comment-meta.nick-name.guests").popover("show"), "" == e.comment_author) return void $('.popover [v-model="comment_author"]').focus();
-            if ("" == e.comment_email) return void $('.popover [v-model="comment_email"]').focus()
+            if ($(".comment-meta.nick-name.guests").popover("show"), "" == e.comment_author) return void $('.popover [v-model="comment_author"]').trigger("focus");
+            if ("" == e.comment_email) return void $('.popover [v-model="comment_email"]').trigger("focus")
           }
         }), localStorage.pandastudio_guest_info) {
         var t = JSON.parse(localStorage.pandastudio_guest_info);
@@ -636,7 +640,7 @@ new jQVue({
     single_toggle_sidebar: function(e) {
       function t() {
         $(".postListsModel > .row > div").eq(0).attr("class", "col-md-9 col-lg-9_5"), window.setTimeout(function() {
-          $(".postListsModel > .row > div").eq(1).attr("class", "col-md-3 col-lg-2_5 hidden-xs hidden-sm"), i.parse_sidebar_width(), $(window).scrollTop($(window).scrollTop() + 1), $(window).scrollTop($(window).scrollTop() - 1), $(".sidebarMenu li.active").click()
+          $(".postListsModel > .row > div").eq(1).attr("class", "col-md-3 col-lg-2_5 hidden-xs hidden-sm"), i.parse_sidebar_width(), $(window).scrollTop($(window).scrollTop() + 1), $(window).scrollTop($(window).scrollTop() - 1), $(".sidebarMenu li.active").trigger("click")
         }, 500)
       }
 
@@ -760,7 +764,7 @@ new jQVue({
       })) : t(), this.renderChat()
     },
     init_float_tools: function() {
-      $("#wrapper").append(this.floatTools), $(window).scroll(function(e) {
+      $("#wrapper").append(this.floatTools), $(window).on("scroll", function(e) {
         300 < $(window).scrollTop() ? $(".floatTools .tool-button.backToTop").removeClass("unavailable") : $(".floatTools .tool-button.backToTop").addClass("unavailable")
       })
     },
@@ -880,7 +884,7 @@ new jQVue({
     },
     insert_code_to_comment_form: function() {
       var e = "<pre>\n请输入代码...\n</pre>";
-      "" == this.comment_text ? this.comment_text += e : "\n" == this.comment_text.substring(this.comment_text.length - 1) ? this.comment_text += e : this.comment_text += "\n<pre>\n请输入代码...\n</pre>", $("textarea#comment").focus()
+      "" == this.comment_text ? this.comment_text += e : "\n" == this.comment_text.substring(this.comment_text.length - 1) ? this.comment_text += e : this.comment_text += "\n<pre>\n请输入代码...\n</pre>", $("textarea#comment").trigger("focus")
     },
     insert_images_to_comment_form: function() {
       var e = this;
@@ -895,7 +899,7 @@ new jQVue({
             i = "";
           n.map(function(e) {
             "" !== e.replace(/ /g, "") && (i += '<img src="'.concat(e, '" />\n'))
-          }), "" == e.comment_text ? e.comment_text += i : "\n" == e.comment_text.substring(e.comment_text.length - 1) ? e.comment_text += i : e.comment_text += "\n" + i, $("textarea#comment").focus()
+          }), "" == e.comment_text ? e.comment_text += i : "\n" == e.comment_text.substring(e.comment_text.length - 1) ? e.comment_text += i : e.comment_text += "\n" + i, $("textarea#comment").trigger("focus")
         }
       })
     }
