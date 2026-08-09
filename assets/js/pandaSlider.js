@@ -46,7 +46,7 @@
         }
         t.prepend(f), t.data("currentIndex", 0), o.fill_pages_with_currentIndex(t);
         var b = e(t).attr("allow-keyboard");
-        void 0 !== b && !1 !== b && e(document).keyup(function(e) {
+        void 0 !== b && !1 !== b && e(document).on("keyup", function(e) {
           switch (e.keyCode || e.which) {
             case 37:
             case 38:
@@ -58,23 +58,11 @@
           }
         });
         var y = e(t).attr("allow-swipe");
-        void 0 !== y && !1 !== y && (t.children(".showBox").on("swiperight", function(n) {
-          o.prev(t);
-          var i = e(t).attr("hover-disable-interval");
-          void 0 !== i && !1 !== i && (o.interval(t, !1), window.setTimeout(function() {
-            o.interval(t, !0)
-          }))
-        }), t.children(".showBox").on("swipeleft", function(n) {
-          o.next(t);
-          var i = e(t).attr("hover-disable-interval");
-          void 0 !== i && !1 !== i && (o.interval(t, !1), window.setTimeout(function() {
-            o.interval(t, !0)
-          }))
-        })), o.interval(t, !0);
+        void 0 !== y && !1 !== y && o.swipe(t), o.interval(t, !0);
         var w = e(t).attr("hover-disable-interval");
-        void 0 !== w && !1 !== w && t.hover(function() {
+        void 0 !== w && !1 !== w && t.on("mouseenter", function() {
           o.interval(t, !1)
-        }, function() {
+        }).on("mouseleave", function() {
           o.interval(t, !0)
         }), t.attr("init", ""), t.data("pandaSlider_init", !0), o.callback_onInit(t)
       },
@@ -181,6 +169,44 @@
           i = e.children(".showBox").find(".page")[n],
           o = e.data("callbacks");
         o && o.onInit && o.onInit(t, i)
+      },
+      // 触摸滑动翻页 (Pointer Events, 替代 jQuery Mobile swipeleft/swiperight)
+      swipe: function(t) {
+        var s = t.children(".showBox");
+        // 仅允许纵向滚动, 横向手势由 pointer 事件接管判定翻页
+        s.css("touch-action", "pan-y");
+        s.on("pointerdown", function(ev) {
+          var n = ev.originalEvent;
+          if (n.pointerType === "mouse") return;
+          s.data("swipe", { x: n.clientX, y: n.clientY })
+        });
+        s.on("pointermove", function(ev) {
+          var r = s.data("swipe");
+          if (!r) return;
+          var n = ev.originalEvent,
+            dx = n.clientX - r.x,
+            dy = n.clientY - r.y;
+          // 横向主导时禁用浏览器默认手势, 避免滚动/缩放抢占
+          if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) && n.cancelable) n.preventDefault()
+        });
+        s.on("pointerup", function(ev) {
+          var r = s.data("swipe");
+          s.removeData("swipe");
+          if (!r) return;
+          var n = ev.originalEvent,
+            dx = n.clientX - r.x,
+            dy = n.clientY - r.y;
+          // 水平滑动 ≥30px 且横向主导才触发, 与 jQuery Mobile swipe 阈值一致
+          if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
+          dx < 0 ? o.next(t) : o.prev(t);
+          var i = e(t).attr("hover-disable-interval");
+          void 0 !== i && !1 !== i && (o.interval(t, !1), window.setTimeout(function() {
+            o.interval(t, !0)
+          }))
+        });
+        s.on("pointercancel", function() {
+          s.removeData("swipe")
+        })
       }
     };
     switch (t) {

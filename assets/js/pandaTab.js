@@ -20,7 +20,7 @@
         var s = e(t).attr("sub-trigger");
         "hover" == s ? i.addHoverEvent(t) : ("click" == s || i.addHoverEvent(t), i.addClickEvent(t)), i.autoScrolling(t, n);
         var a = e(t).attr("native-scrolling");
-        void 0 !== a && !1 !== a && i.useNativeScrolling(t), e(window).resize(function(o) {
+        void 0 !== a && !1 !== a && i.useNativeScrolling(t), e(window).on("resize", function(o) {
           i.hideAllSubMenu(t), e(t).children("ul").children("li").removeClass("hover"), window.setTimeout(function() {
             i.parseActivePosition(e(t).children("ul"))
           }, n || 0), void 0 !== a && !1 !== a && i.useNativeScrolling(t)
@@ -64,9 +64,9 @@
             top: e(t).offset().top + e(t).outerHeight()
           }), window.setTimeout(function() {
             r.addClass("show"), r.attr("father-class", e(t).parent().parent().attr("class")), r.attr("father-id", e(t).parent().parent().attr("id"))
-          }, 1), r.first().data("father", e(t)), r.off("mouseenter").off("mouseleave"), r.hover(function() {
+          }, 1), r.first().data("father", e(t)), r.off("mouseenter").off("mouseleave"), r.on("mouseenter", function() {
             e(t).parent().data("subMenu_isActive", !0)
-          }, function() {
+          }).on("mouseleave", function() {
             if ("click" == e("li").parent().parent().attr("sub-trigger")) return !1;
             i.hideSubMenu(this), i.parseActivePosition(e(t).parent()), e(t).parent().data("subMenu_isActive", !1)
           })
@@ -84,11 +84,11 @@
         })
       },
       addHoverEvent: function(t) {
-        e(t).children("ul").children("li").not(".anchor").hover(function() {
+        e(t).children("ul").children("li").not(".anchor").on("mouseenter", function() {
           e(this).addClass("hover"), i.parseActivePosition(e(this).parent()), i.hideAllSubMenu(t), i.showSubMenu(this), t.attr("li-hovered", "")
-        }, function() {
+        }).on("mouseleave", function() {
           e(this).removeClass("hover"), t.removeAttr("li-hovered", "")
-        }), e(t).mouseleave(function(n) {
+        }), e(t).on("mouseleave", function(n) {
           var o = e(this).children("ul");
           window.setTimeout(function() {
             e(o).data("subMenu_isActive") || (i.hideAllSubMenu(t), i.parseActivePosition(o))
@@ -96,7 +96,7 @@
         })
       },
       addClickEvent: function(t) {
-        e(t).children("ul").children("li").not(".anchor").click(function() {
+        e(t).children("ul").children("li").not(".anchor").on("click", function() {
           i.hideAllSubMenu(t), e(this).hasClass("hover") || i.showSubMenu(this), e(this).siblings().removeClass("hover"), 0 < e(this).find(e(t).attr("sub-class")).length && e(this).toggleClass("hover"), i.parseActivePosition(e(this).parent())
         }), e(t).children("ul").children("li").each(function(n, i) {
           var o = e(t).attr("sub-class");
@@ -115,7 +115,7 @@
         o.append(e(t).attr("next-text")), e(t).append(o), e(t).children("ul").css({
           marginLeft: e(t).children(".prev").width(),
           marginRight: e(t).children(".next").width()
-        }), o.click(function(n) {
+        }), o.on("click", function(n) {
           var o = e(t).children("ul"),
             r = o.get(0).scrollWidth - o.get(0).clientWidth,
             s = 400 < o.width() / 2 ? 400 : .75 * o.width(),
@@ -123,14 +123,14 @@
           a = o.scrollLeft() + s > r ? r : r - o.scrollLeft() - s < o.width() / 4 ? r : o.scrollLeft() + s, o.animate({
             scrollLeft: a
           }, 500), i.hideAllSubMenu(t), e(t).children("ul").children("li").removeClass("hover"), i.parseActivePosition(e(t).children("ul"))
-        }), n.click(function(n) {
+        }), n.on("click", function(n) {
           var o = e(t).children("ul"),
             r = (o.get(0).scrollWidth, o.get(0).clientWidth, 400 < o.width() / 2 ? 400 : .75 * o.width()),
             s = 0;
           s = o.scrollLeft() - r < 0 ? 0 : o.scrollLeft() - r < o.width() / 4 ? 0 : o.scrollLeft() - r, o.animate({
             scrollLeft: s
           }, 500), i.hideAllSubMenu(t), e(t).children("ul").children("li").removeClass("hover"), i.parseActivePosition(e(t).children("ul"))
-        }), e(t).children("ul").scroll(function() {
+        }), e(t).children("ul").on("scroll", function() {
           i.disableScrollingButton(t)
         }), e(t).children("ul").data("scrolling", !0), e(t).attr("has-scrolling-button", "")
       },
@@ -143,7 +143,7 @@
           i.parseActivePosition(n), 0 < n.get(0).scrollWidth - n.get(0).clientWidth && i.makeScrolling(t), n.get(0).scrollWidth < e(t).get(0).scrollWidth && i.hideScrolling(t), i.disableScrollingButton(t)
         }
         if (!e(t).children("ul").data("pandaTab_init")) return !1;
-        e(window).resize(function(r) {
+        e(window).on("resize", function(r) {
           window.setTimeout(function() {
             var n = e(t).attr("auto-scrolling");
             void 0 !== n && !1 !== n && o(), i.parseActivePosition(e(t).children("ul"))
