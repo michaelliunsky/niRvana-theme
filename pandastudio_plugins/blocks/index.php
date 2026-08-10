@@ -22,59 +22,43 @@ if (function_exists('register_block_type')) {
     add_action(
         'init',
         function () {
+            $asset = require __DIR__ . '/build/index.asset.php';
             wp_register_script(
                 'pandastudio-blocks',
                 get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/index.js',
-                array( 'wp-blocks', 'wp-element', 'wp-editor' ),
-                filemtime(__DIR__ . '/build/index.js')
+                $asset['dependencies'],
+                $asset['version']
             );
-            $blockNames = ['tips'];
-            foreach ($blockNames as $key => $name) {
+            $render_callbacks = array(
+                'single'  => 'pandastudio_block_render_single',
+                'gallery' => 'pandastudio_block_render_gallery',
+            );
+            $blockNames = array( 'tips', 'single', 'collapse', 'dropdown', 'download', 'gallery', 'modal', 'needreply', 'title', 'youku' );
+            foreach ($blockNames as $name) {
+                $args = array(
+                    'editor_script' => 'pandastudio-blocks',
+                );
+                if (isset($render_callbacks[$name])) {
+                    $args['render_callback'] = $render_callbacks[$name];
+                }
                 register_block_type(
                     'pandastudio/' . $name,
-                    array(
-                        'editor_script' => 'pandastudio-blocks',
-                    )
+                    $args
                 );
             }
-            register_block_type(
-                'pandastudio/single',
-                array(
-                    'editor_script'   => 'pandastudio-block-single',
-                    'attributes'      => array(
-                        'post_id' => array(
-                            'type' => 'number',
-                        ),
-                        'align'   => array(
-                            'type' => 'string',
-                            'enum' => array( 'center', 'left', 'right', 'wide', 'full', '' ),
-                        ),
-                    ),
-                    'render_callback' => 'pandastudio_block_render_single',
-                )
-            );
-            register_block_type(
-                'pandastudio/gallery',
-                array(
-                    'editor_script'   => 'pandastudio-block-gallery',
-                    'attributes'      => array(
-                        'images' => array(
-                            'type' => 'object',
-                        ),
-                    ),
-                    'render_callback' => 'pandastudio_block_render_gallery',
-                )
-            );
         }
     );
     add_action(
-        'enqueue_block_editor_assets',
+        'enqueue_block_assets',
         function () {
+            if (!is_admin()) {
+                return;
+            }
             wp_enqueue_style(
                 'pandastudio-block-styles',
-                get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style.css',
+                get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style-index.css',
                 false,
-                filemtime(__DIR__ . '/build/style.css'),
+                filemtime(__DIR__ . '/build/style-index.css'),
                 'all'
             );
         }
