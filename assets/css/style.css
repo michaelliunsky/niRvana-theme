@@ -2753,14 +2753,14 @@ overflow:auto}
 .wp-block-code{
 position:relative;
 z-index:1}
-.youku_video_wrap:not(:first-child){
+.bilibili_video_wrap:not(:first-child){
 margin-top:15px}
-.youku_video_wrap{
+.bilibili_video_wrap{
 position:relative;
 overflow:hidden;
 height:0;
 padding-bottom:56.25%}
-.youku_video_wrap embed,.youku_video_wrap iframe{
+.bilibili_video_wrap embed,.bilibili_video_wrap iframe{
 position:absolute;
 top:0;
 left:0;
