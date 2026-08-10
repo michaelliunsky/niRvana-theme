@@ -6,14 +6,14 @@ if (function_exists('register_block_type')) {
         'block_categories_all',
         function ($categories, $post) {
             return array_merge(
-                $categories,
                 array(
                     array(
                         'slug'  => 'pandastudio-block-category',
                         'title' => 'PANDA Studio UI 样式',
                         'icon'  => 'dashicons-admin-appearance',
                     ),
-                )
+                ),
+                $categories
             );
         },
         10,
@@ -33,16 +33,16 @@ if (function_exists('register_block_type')) {
                 'single'  => 'pandastudio_block_render_single',
                 'gallery' => 'pandastudio_block_render_gallery',
             );
-            $blockNames = array( 'tips', 'single', 'collapse', 'dropdown', 'download', 'gallery', 'modal', 'needreply', 'title', 'youku' );
-            foreach ($blockNames as $name) {
+            $metadata_blocks = array( 'tips', 'single', 'collapse', 'dropdown', 'download', 'gallery', 'modal', 'needreply', 'title', 'bilibili' );
+            foreach ($metadata_blocks as $name) {
                 $args = array(
                     'editor_script' => 'pandastudio-blocks',
                 );
                 if (isset($render_callbacks[$name])) {
                     $args['render_callback'] = $render_callbacks[$name];
                 }
-                register_block_type(
-                    'pandastudio/' . $name,
+                register_block_type_from_metadata(
+                    __DIR__ . '/build/blocks/' . $name . '/block.json',
                     $args
                 );
             }
@@ -59,6 +59,13 @@ if (function_exists('register_block_type')) {
                 get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style-index.css',
                 false,
                 filemtime(__DIR__ . '/build/style-index.css'),
+                'all'
+            );
+            wp_enqueue_style(
+                'pandastudio-font-awesome',
+                get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/font-awesome.css',
+                false,
+                filemtime(get_template_directory() . '/pandastudio_framework/assets/css/font-awesome.css'),
                 'all'
             );
         }

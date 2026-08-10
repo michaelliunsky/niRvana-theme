@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pandastudio/modal",
+  "version": "2.0.0",
+  "title": "模态框",
+  "description": "用于浮动展示更多内容",
+  "icon": "welcome-view-site",
+  "category": "pandastudio-block-category",
+  "attributes": {
+    "id": {
+      "type": "string"
+    },
+    "btn_type": {
+      "type": "string"
+    },
+    "btn_label": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "close_label": {
+      "type": "string"
+    },
+    "href_label": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

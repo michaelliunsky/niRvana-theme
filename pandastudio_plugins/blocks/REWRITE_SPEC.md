@@ -59,9 +59,9 @@
 - save: `<div><div class="{titleClass}"><{titleInnerTag}>{content}</{titleInnerTag}></div></div>`（直接 HTML）
 - edit: 样式 ButtonGroup + tag 选择 + RichText
 
-### youku — 优酷视频
-- attributes: `ratio`, `iframe`
-- save: `<div class="youku_video_wrap" ratio="16vs9"><figure dangerouslySetInnerHTML>{iframe}</figure></div>`（直接 HTML）
+### bilibili — 哔哩哔哩视频
+- attributes: `iframe`
+- save: `<div class="bilibili_video_wrap"><figure dangerouslySetInnerHTML>{iframe}</figure></div>`（直接 HTML）
 - edit: iframe 嵌入代码 TextControl
 
 ### mark — 标记（RichText format，非 block）

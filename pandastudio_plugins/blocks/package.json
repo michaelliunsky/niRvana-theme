@@ -11,6 +11,7 @@
 		"check-engines": "wp-scripts check-engines"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.6.0"
+		"@wordpress/scripts": "^30.6.0",
+		"@wordpress/server-side-render": "^6.28.0"
 	}
 }

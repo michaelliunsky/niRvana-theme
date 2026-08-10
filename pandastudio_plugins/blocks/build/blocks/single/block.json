@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pandastudio/single",
+  "version": "2.0.0",
+  "title": "文章展示",
+  "description": "用于展示文章链接，部分类型的文章可能无法显示",
+  "icon": "format-aside",
+  "category": "pandastudio-block-category",
+  "attributes": {
+    "post_id": {
+      "type": "number"
+    },
+    "align": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "align": [
+      "left",
+      "center",
+      "right",
+      "wide",
+      "full"
+    ],
+    "html": false
+  }
+}

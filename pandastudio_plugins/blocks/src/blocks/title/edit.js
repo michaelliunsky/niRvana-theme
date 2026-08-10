@@ -17,6 +17,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ label: '样式二', value: 'title_style_02' },
 						] }
 						onChange={ ( value ) => setAttributes( { titleClass: value } ) }
+						__next40pxDefaultSize
 					/>
 					<SelectControl
 						label={ __( '标签' ) }
@@ -27,6 +28,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ label: 'h3', value: 'h3' },
 						] }
 						onChange={ ( value ) => setAttributes( { titleInnerTag: value } ) }
+						__next40pxDefaultSize
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -35,7 +37,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<RichText
 						tagName={ titleInnerTag }
 						value={ content }
-						onChange={ ( value ) => setAttributes( { content: value } ) }
+						onChange={ ( value ) => setAttributes( { content: value.replace( /<br>/g, '' ) } ) }
 						placeholder={ __( '请输入...' ) }
 					/>
 				</div>

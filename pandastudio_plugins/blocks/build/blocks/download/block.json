@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pandastudio/download",
+  "version": "2.0.0",
+  "title": "下载按钮",
+  "description": "创建一个下载按钮，可通过启用“需评论下载”来增加与读者的互动",
+  "icon": "download",
+  "category": "pandastudio-block-category",
+  "attributes": {
+    "href": {
+      "type": "string"
+    },
+    "need_reply": {
+      "type": "boolean"
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}
