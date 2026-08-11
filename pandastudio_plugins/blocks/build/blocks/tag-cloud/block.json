@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pandastudio/tag-cloud",
+  "version": "2.0.0",
+  "title": "标签与链接",
+  "description": "自定义标签、链接、社交信息展示等",
+  "icon": "tag",
+  "category": "pandastudio-block-category",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "displayType": {
+      "type": "string",
+      "default": "tag"
+    },
+    "tags": {
+      "type": "array",
+      "default": [
+        {
+          "text": "",
+          "url": "",
+          "target": "_blank"
+        }
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "default": ""
+          },
+          "url": {
+            "type": "string",
+            "default": ""
+          },
+          "target": {
+            "type": "string",
+            "default": "_blank"
+          }
+        }
+      }
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

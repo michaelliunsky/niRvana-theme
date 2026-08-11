@@ -10,6 +10,10 @@ import './blocks/gallery';
 import './blocks/bilibili';
 import './blocks/single';
 import './blocks/needreply';
+import './blocks/user-info';
+import './blocks/tag-cloud';
+import './blocks/microblog';
+import './blocks/hotposts';
 
 import './formats/description';
 

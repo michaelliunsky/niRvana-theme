@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "pandastudio/hotposts",
+	"version": "2.0.0",
+	"title": "热门文章",
+	"description": "展示评论最多/点赞最多的文章",
+	"icon": "star-filled",
+	"category": "pandastudio-block-category",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"number": {
+			"type": "number",
+			"default": 5
+		},
+		"filter": {
+			"type": "string",
+			"default": "most_likes"
+		}
+	},
+	"supports": {
+		"html": false
+	}
+}
