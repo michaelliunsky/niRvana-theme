@@ -144,3 +144,23 @@
   原生存在、功能正常。消除需改加载 migrate 的插件或动 bootstrap 源码，不建议。
 - **highlight.js 9 EOL 提示**：9.18.5 功能正常。升级到 11 会导致 token class 变化（如 `console`
   从 `hljs-built_in` 变 `hljs-variable`）造成视觉差异，且行号插件 3.x 无稳定分发，故保留 9。
+
+## 2026-08-11 Blocks 重写（wp-scripts 现代工具链，分支 feature/blocks-rewrite）
+
+`pandastudio_plugins/blocks` 从旧 webpack bundle 完全重写为 `@wordpress/scripts` 工具链：
+
+1. **工具链**：`src/` + `block.json` + `npm run build`（wp-scripts）→ `build/`
+   （`index.js` + `style-index.css` + `blocks/*/block.json`）。注册全部改
+   `register_block_type_from_metadata`（apiVersion 3），`index.php` 统一 metadata 注册，
+   single/gallery 用 render_callback。
+2. **内容**：10 个 block（title/tips/download/collapse/dropdown/modal/gallery/bilibili/
+   single/needreply）+ 2 个 format（mark/description）。**优酷 block 彻底移除（不兼容）**。
+   样式全部迁到 `src/style.scss` → `build/style-index.css`；后台 `index.php` 补加载 font-awesome.css。
+3. **bilibili 前台样式**：`assets/css/style.css` 与 `assets/minify/app.min.css` 的
+   `.youku_video_wrap` → `.bilibili_video_wrap`（16:9 自适应）。
+4. **打包**：根目录 `package.sh` 合并了 blocks 构建（缺 node_modules 自动 npm ci），
+   排除 `node_modules/`、`.claude/`、`REWRITE_SPEC.md`；`package-rewrite.sh` 已删除。
+5. **遗留**：gallery-tag 403 偶发（核心 Post Terms 请求，决定不管）。
+
+> 当前前台 dev 脚本为 **19 个 JS + 10 个 CSS**（上文"23 个 JS"为 08-06 反解快照；
+> 08-07 现代化移除 jQuery 2.1.0 / jQuery Mobile / jQuery UI 后收敛为 19）。
