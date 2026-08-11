@@ -70,6 +70,12 @@
   圆角块样式已嫁接到 `mark[style*="background"]`（见 `assets/css/style.css` 与 blocks `src/style.scss`）
 - 旧文章残留的 `<span class="pandastudio-mark">` 不再有样式（兼容性有意忽略）
 
+### description — 弹出提示（RichText format，当前唯一 format）
+- `registerFormatType`（`pandastudio/description`），`span.pandastudio_format_description`
+- attributes: `text` → `data-description`、`placement` → `data-placement`（top/bottom/left/right）
+- edit: 提示语 TextControl + 放置位置 ButtonGroup
+- 前台气泡样式见 `assets/css/style.css` 的 `.pandastudio_format_description` 规则
+
 ## 构建产物契约
-- `index.php` 加载 `build/index.js`（依赖 wp-blocks/wp-element/wp-editor）+ `build/style.css`
+- `index.php` 加载 `build/index.js`（依赖 wp-blocks/wp-element/wp-editor）+ `build/style-index.css`
 - 重写后用 `@wordpress/scripts` 输出需对齐这两个文件名（或同步改 index.php）

@@ -154,7 +154,8 @@
    `register_block_type_from_metadata`（apiVersion 3），`index.php` 统一 metadata 注册，
    single/gallery 用 render_callback。
 2. **内容**：10 个 block（title/tips/download/collapse/dropdown/modal/gallery/bilibili/
-   single/needreply）+ 2 个 format（mark/description）。**优酷 block 彻底移除（不兼容）**。
+   single/needreply）+ 1 个 format（description）。**优酷 block 彻底移除（不兼容）**；
+   mark format 于同日移除，样式嫁接原生 `mark`（见 REWRITE_SPEC.md）。
    样式全部迁到 `src/style.scss` → `build/style-index.css`；后台 `index.php` 补加载 font-awesome.css。
 3. **bilibili 前台样式**：`assets/css/style.css` 与 `assets/minify/app.min.css` 的
    `.youku_video_wrap` → `.bilibili_video_wrap`（16:9 自适应）。
