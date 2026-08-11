@@ -64,9 +64,11 @@
 - save: `<div class="bilibili_video_wrap"><figure dangerouslySetInnerHTML>{iframe}</figure></div>`（直接 HTML）
 - edit: iframe 嵌入代码 TextControl
 
-### mark — 标记（RichText format，非 block）
-- `registerFormatType`，span 标签，className `pandastudio-mark`
-- 前台是文本格式，重写为 `registerFormatType`
+### ~~mark — 标记（RichText format）~~ 已移除（2026-08-11）
+- 原 `registerFormatType`（`pandastudio/mark`，`span.pandastudio-mark`）已删除，不再注册
+- 替代：官方 `core/text-color`（Highlight，输出 `<mark>`）；原 `.pandastudio-mark[inline-block=true]`
+  圆角块样式已嫁接到 `mark[style*="background"]`（见 `assets/css/style.css` 与 blocks `src/style.scss`）
+- 旧文章残留的 `<span class="pandastudio-mark">` 不再有样式（兼容性有意忽略）
 
 ## 构建产物契约
 - `index.php` 加载 `build/index.js`（依赖 wp-blocks/wp-element/wp-editor）+ `build/style.css`

@@ -2605,7 +2605,7 @@ transform:translateX(100%)}
 .pandastudio_format_description[data-placement=right]:hover:after{
 -webkit-transform:translateX(0);
 transform:translateX(0)}
-.pandastudio-mark[inline-block=true]{
+mark[style*="background"]{
 display:inline-block;
 border-radius:5px;
 padding:5px 7px;

@@ -11,7 +11,6 @@ import './blocks/bilibili';
 import './blocks/single';
 import './blocks/needreply';
 
-import './formats/mark';
 import './formats/description';
 
 import { registerBlockStyle } from '@wordpress/blocks';

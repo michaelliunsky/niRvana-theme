@@ -32,8 +32,7 @@ function Edit( { isActive, value, onChange, activeAttributes } ) {
 
 	const setPopoverAnchor = () => {
 		const selection = window.getSelection();
-		const range = selection.rangeCount > 0 ? selection.getRangeAt( 0 ) : null;
-		anchor.current = getRectangleFromRange( range );
+		anchor.current = selection.rangeCount > 0 ? getRectangleFromRange( selection.getRangeAt( 0 ) ) : undefined;
 	};
 
 	const showModal = () => {
@@ -84,10 +83,10 @@ function Edit( { isActive, value, onChange, activeAttributes } ) {
 			/>
 			{ visible && (
 				<Popover
-					anchorRect={ anchor.current }
-					position="bottom center"
+					anchor={ anchor.current ? { getBoundingClientRect: () => anchor.current } : null }
+					placement="bottom"
 					className="pandastudio_format_description_popover"
-					onClickOutside={ () => setVisible( false ) }
+					onClose={ () => setVisible( false ) }
 				>
 					<div style={ { padding: '10px' } }>
 						<div className="inputerWrapper">
