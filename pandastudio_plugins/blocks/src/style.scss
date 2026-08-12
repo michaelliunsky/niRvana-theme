@@ -15,16 +15,16 @@
 .floatR{float:right}
 .clearfix:after,.clearfix:before{content:"";display:table;clear:both}
 
-.tip{position:relative;color:#fff!important;background:#20a0ff;background:-webkit-gradient(linear,left top,right top,from(#20a0ff),to(#20b8ff));background:linear-gradient(90deg,#20a0ff,#20b8ff);padding:6px 20px;border-radius:10px;margin:3px 0 0 0;-webkit-box-shadow:0 3px 5px rgba(32,160,255,.5);box-shadow:0 3px 5px rgba(32,160,255,.5)}
-.tip p{margin:5px 0!important;color:#fff}
-.tip:before{background:#20a0ff;background:-webkit-gradient(linear,left bottom,left top,from(#0092ff),to(#20b8ff));background:linear-gradient(0deg,#0092ff,#20b8ff);border-radius:50%;color:#fff;content:"\f129";font-family:"Font Awesome 5 Free";font-weight:900;font-size:12px;position:absolute;text-align:center;width:24px;height:24px;line-height:24.5px;left:-12px;top:-12px;-webkit-box-shadow:0 0 0 2.5px #fff;box-shadow:0 0 0 2.5px #fff}
+.tip{position:relative;color:#fff;background:#20a0ff;background:-webkit-gradient(linear,left top,right top,from(#20a0ff),to(#20b8ff));background:-webkit-linear-gradient(left,#20a0ff,#20b8ff);background:linear-gradient(90deg,#20a0ff,#20b8ff);padding:6px 20px;border-radius:10px;-webkit-box-shadow:0 3px 5px rgba(32,160,255,.5);box-shadow:0 3px 5px rgba(32,160,255,.5);margin-bottom:20px}
+.tip p{margin:5px 0!important}
+.tip:before{background:#20a0ff;background:-webkit-gradient(linear,left bottom,left top,from(#0092ff),to(#20b8ff));background:-webkit-linear-gradient(bottom,#0092ff,#20b8ff);background:linear-gradient(0deg,#0092ff,#20b8ff);border-radius:50%;color:#fff;content:"\f129";font-family:"Font Awesome 5 Free";font-weight:900;font-size:12px;position:absolute;text-align:center;width:24px;height:24px;line-height:24.5px;left:-12px;top:-12px;-webkit-box-shadow:0 0 0 2.5px #fff;box-shadow:0 0 0 2.5px #fff}
 .tip ol{margin:0}
-.tip.success{background:#61be33;background:-webkit-gradient(linear,left top,right top,from(#61be33),to(#8fce44));background:linear-gradient(90deg,#61be33,#8fce44);-webkit-box-shadow:0 3px 5px rgba(104,195,59,.5);box-shadow:0 3px 5px rgba(104,195,59,.5)}
-.tip.success:before{background:-webkit-gradient(linear,left bottom,left top,from(#52bb1d),to(#95d34b));background:linear-gradient(0deg,#52bb1d,#95d34b);content:"\f00c"}
-.tip.worning{background:#ff953f;background:-webkit-gradient(linear,left top,right top,from(#ff953f),to(#ffb449));background:linear-gradient(90deg,#ff953f,#ffb449);-webkit-box-shadow:0 3px 5px rgba(255,154,73,.5);box-shadow:0 3px 5px rgba(255,154,73,.5)}
-.tip.worning:before{background:-webkit-gradient(linear,left bottom,left top,from(#ff8f35),to(#ffc149));background:linear-gradient(0deg,#ff8f35,#ffc149);content:"\f12a"}
-.tip.error{background:#ff4949;background:-webkit-gradient(linear,left top,right top,from(#ff4949),to(#ff7849));background:linear-gradient(90deg,#ff4949,#ff7849);-webkit-box-shadow:0 3px 5px rgba(255,73,73,.5);box-shadow:0 3px 5px rgba(255,73,73,.5);border:none;margin:3px 0 0 0;padding:6px 20px}
-.tip.error:before{background:-webkit-gradient(linear,left bottom,left top,from(#ff3838),to(#ff7849));background:linear-gradient(0deg,#ff3838,#ff7849);content:"\f00d"}
+.tip.success{background:#61be33;background:-webkit-gradient(linear,left top,right top,from(#61be33),to(#8fce44));background:-webkit-linear-gradient(left,#61be33,#8fce44);background:linear-gradient(90deg,#61be33,#8fce44);text-shadow:0 -1px #61be33;-webkit-box-shadow:0 3px 5px rgba(104,195,59,.5);box-shadow:0 3px 5px rgba(104,195,59,.5)}
+.tip.success:before{background:-webkit-gradient(linear,left bottom,left top,from(#52bb1d),to(#95d34b));background:-webkit-linear-gradient(bottom,#52bb1d,#95d34b);background:linear-gradient(0deg,#52bb1d,#95d34b);content:"\f00c";text-shadow:0 -1px #61be33}
+.tip.worning{background:#ff953f;background:-webkit-gradient(linear,left top,right top,from(#ff953f),to(#ffb449));background:-webkit-linear-gradient(left,#ff953f,#ffb449);background:linear-gradient(90deg,#ff953f,#ffb449);text-shadow:0 -1px #ff953f;-webkit-box-shadow:0 3px 5px rgba(255,154,73,.5);box-shadow:0 3px 5px rgba(255,154,73,.5)}
+.tip.worning:before{background:-webkit-gradient(linear,left bottom,left top,from(#ff8f35),to(#ffc149));background:-webkit-linear-gradient(bottom,#ff8f35,#ffc149);background:linear-gradient(0deg,#ff8f35,#ffc149);content:"\f12a";text-shadow:0 -1px #ff953f}
+.tip.error{background:#ff4949;background:-webkit-gradient(linear,left top,right top,from(#ff4949),to(#ff7849));background:-webkit-linear-gradient(left,#ff4949,#ff7849);background:linear-gradient(90deg,#ff4949,#ff7849);text-shadow:0 -1px #ff4949;-webkit-box-shadow:0 3px 5px rgba(255,73,73,.5);box-shadow:0 3px 5px rgba(255,73,73,.5)}
+.tip.error:before{background:-webkit-gradient(linear,left bottom,left top,from(#ff3838),to(#ff7849));background:-webkit-linear-gradient(bottom,#ff3838,#ff7849);background:linear-gradient(0deg,#ff3838,#ff7849);content:"\f00d";text-shadow:0 -1px #ff4949}
 .tip.inlineBlock{display:inline-block}
 .tip.error p{padding:0!important}
 
