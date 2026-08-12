@@ -276,23 +276,25 @@
         "name": "常见问题",
         "type": "faq",
         "allow_categorys": false,
-        "supports": ["title"],
+        "supports": ["title", "editor"],
         "menu_icon": "dashicons-format-chat",
         "unset_columns": ["tags"],
         "new_columns": [{ "name": "faq_answer", "display": "问题答案" }],
-        "custom_taxonomies": []
+        "custom_taxonomies": [],
+        "show_in_rest": true
       },
       {
         "name": "友情链接",
         "type": "favlinks",
         "allow_categorys": true,
-        "supports": ["title"],
+        "supports": ["title", "editor"],
         "menu_icon": "dashicons-admin-site",
         "unset_columns": ["tags"],
         "new_columns": [
           { "name": "favlinks_taxonomy", "display": "友情链接分类" }
         ],
-        "custom_taxonomies": []
+        "custom_taxonomies": [],
+        "show_in_rest": true
       },
       {
         "name": "轻博客",
@@ -304,41 +306,37 @@
         "new_columns": [
           { "name": "microblog_content", "display": "轻博客内容" }
         ],
-        "custom_taxonomies": []
+        "custom_taxonomies": [],
+        "show_in_rest": true
       }
     ],
     "columns": [
       {
         "name": "gallery_images",
         "meta": "gallery_images",
-        "display": "eval",
-        "eval": "echo '<div style=\"white-space:nowrap;overflow-x:auto;\">';\nforeach ($meta as $pic) {\necho '<div style=\"width:80px;height:80px;border-radius:4px;background:url('. $pic.') no-repeat center center / cover;display:inline-block;margin-right:5px\"></div>';\n}\necho '</div>';"
+        "display": "pictures"
       },
       {
         "name": "gallery_taxonomy",
         "meta": "",
-        "display": "taxonomy",
-        "eval": ""
+        "display": "taxonomy"
       },
       {
         "name": "faq_answer",
         "meta": "faq_answer",
-        "display": "meta",
-        "eval": ""
+        "display": "meta"
       },
       {
         "name": "favlinks_taxonomy",
         "meta": "",
-        "display": "taxonomy",
-        "eval": ""
+        "display": "taxonomy"
       },
       {
         "name": "microblog_content",
         "meta": "",
-        "display": "eval",
-        "eval": "the_content();"
+        "display": "content"
       },
-      { "name": "gallery_tags", "meta": "", "display": "tag", "eval": "" }
+      { "name": "gallery_tags", "meta": "", "display": "tag" }
     ]
   }
 }

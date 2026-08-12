@@ -428,38 +428,6 @@
         "gear_value": ""
       },
       {
-        "type": "inputNumber",
-        "label": "“最新文章”数量",
-        "value": 0,
-        "min": 1,
-        "max": 99,
-        "step": 1,
-        "name": "newest_num",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
-        "type": "input",
-        "label": "“最新文章”文本",
-        "value": "",
-        "placeholder": "如：最新文章",
-        "name": "newest_text",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
-        "type": "input",
-        "label": "“全部文章”地址",
-        "value": "",
-        "placeholder": "所有分类文章地址",
-        "name": "index_time_url",
-        "decoration": "新建“页面”，选择“全部文章时间排序”。将页面地址填写在此处",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">首页文章</span>",
         "decoration": "首页文章由“最新文章”、“点赞最多”、“评论最多”、“随机推荐”4部分组成，除“最新文章”外，其余混合显示",
         "gear_name": "",
@@ -474,20 +442,6 @@
         "decoration": "对“随机滚动图”及“首页文章”同时有效",
         "gear_name": "",
         "gear_value": ""
-      },
-      {
-        "type": "radio",
-        "label": "“全部文章”形式",
-        "value": "",
-        "radios": [
-          { "label": "列表显示", "value": "list" },
-          { "label": "卡片显示", "value": "card" },
-          { "label": "博客显示", "value": "" }
-        ],
-        "name": "all_posts_display_type",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
       },
       {
         "type": "radio",
@@ -1244,16 +1198,6 @@
         "value": "",
         "name": "design_font",
         "decoration": "使用简约无衬线的<a href=\"https://fonts.google.com/specimen/Play\" target=\"_blank\" style=\"text-decoration:none;\"> Play </a>字体来显示页面上的英文、数字、符号。此字体由 Jonas Hecksher 设计"
-      },
-      {
-        "type": "input",
-        "label": "边栏固定提示",
-        "value": "",
-        "placeholder": "如：边栏固定",
-        "name": "sidebar_fixed_switcher_tip",
-        "decoration": "",
-        "gear_name": "sidebar_fixed_switcher",
-        "gear_value": "checked"
       },
       {
         "type": "switch",
