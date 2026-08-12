@@ -15,7 +15,7 @@
 .floatR{float:right}
 .clearfix:after,.clearfix:before{content:"";display:table;clear:both}
 
-.tip{position:relative;color:#fff;background:#20a0ff;background:-webkit-gradient(linear,left top,right top,from(#20a0ff),to(#20b8ff));background:-webkit-linear-gradient(left,#20a0ff,#20b8ff);background:linear-gradient(90deg,#20a0ff,#20b8ff);padding:6px 20px;border-radius:10px;-webkit-box-shadow:0 3px 5px rgba(32,160,255,.5);box-shadow:0 3px 5px rgba(32,160,255,.5);margin-bottom:20px}
+.tip{position:relative;color:#fff;font-size:14px;line-height:20px;background:#20a0ff;background:-webkit-gradient(linear,left top,right top,from(#20a0ff),to(#20b8ff));background:-webkit-linear-gradient(left,#20a0ff,#20b8ff);background:linear-gradient(90deg,#20a0ff,#20b8ff);padding:6px 20px;border-radius:10px;-webkit-box-shadow:0 3px 5px rgba(32,160,255,.5);box-shadow:0 3px 5px rgba(32,160,255,.5);margin-bottom:20px}
 .tip p{margin:5px 0!important}
 .tip:before{background:#20a0ff;background:-webkit-gradient(linear,left bottom,left top,from(#0092ff),to(#20b8ff));background:-webkit-linear-gradient(bottom,#0092ff,#20b8ff);background:linear-gradient(0deg,#0092ff,#20b8ff);border-radius:50%;color:#fff;content:"\f129";font-family:"Font Awesome 5 Free";font-weight:900;font-size:12px;position:absolute;text-align:center;width:24px;height:24px;line-height:24.5px;left:-12px;top:-12px;-webkit-box-shadow:0 0 0 2.5px #fff;box-shadow:0 0 0 2.5px #fff}
 .tip ol{margin:0}
