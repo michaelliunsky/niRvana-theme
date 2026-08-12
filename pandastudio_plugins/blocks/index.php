@@ -63,6 +63,18 @@ add_action(
             $asset['dependencies'],
             $asset['version']
         );
+        wp_register_style(
+            'pandastudio-block-styles',
+            get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style-index.css',
+            false,
+            filemtime(__DIR__ . '/build/style-index.css')
+        );
+        wp_register_style(
+            'pandastudio-font-awesome',
+            get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/font-awesome.css',
+            false,
+            filemtime(get_template_directory() . '/pandastudio_framework/assets/css/font-awesome.css')
+        );
         $render_callbacks = array(
             'single'    => 'pandastudio_block_render_single',
             'gallery'   => 'pandastudio_block_render_gallery',
@@ -87,23 +99,10 @@ add_action(
 add_action(
     'enqueue_block_assets',
     function () {
-        if (!is_admin()) {
-            return;
+        wp_enqueue_style('pandastudio-block-styles');
+        if (is_admin()) {
+            wp_enqueue_style('pandastudio-font-awesome');
         }
-        wp_enqueue_style(
-            'pandastudio-block-styles',
-            get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style-index.css',
-            false,
-            filemtime(__DIR__ . '/build/style-index.css'),
-            'all'
-        );
-        wp_enqueue_style(
-            'pandastudio-font-awesome',
-            get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/font-awesome.css',
-            false,
-            filemtime(get_template_directory() . '/pandastudio_framework/assets/css/font-awesome.css'),
-            'all'
-        );
     }
 );
 function pandastudio_block_render_single($attributes)

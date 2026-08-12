@@ -23,6 +23,7 @@
 			"default": ""
 		}
 	},
+	"style": "pandastudio-block-styles",
 	"supports": {
 		"html": false
 	}

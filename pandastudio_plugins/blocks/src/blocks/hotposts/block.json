@@ -21,6 +21,10 @@
 			"default": "most_likes"
 		}
 	},
+	"style": [
+		"pandastudio-block-styles",
+		"pandastudio-font-awesome"
+	],
 	"supports": {
 		"html": false
 	}

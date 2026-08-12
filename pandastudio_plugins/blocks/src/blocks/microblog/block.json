@@ -17,6 +17,7 @@
 			"default": 5
 		}
 	},
+	"style": "pandastudio-block-styles",
 	"supports": {
 		"html": false
 	}
