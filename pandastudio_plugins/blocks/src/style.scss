@@ -540,3 +540,7 @@ body.night .pf_hotposts .summary{
 color:#cad1db}
 body.night .pf_user_info .meta .name{
 color:#8492a6}
+
+/* widgettitle hover: block wrapper (migrated from li:hover>h2.widgettitle) */
+.pf_microblog:hover .widgettitle,.pf_tag_cloud:hover .widgettitle,.pf_user_info:hover .widgettitle,.pf_hotposts:hover .widgettitle{color:#20a0ff}
+.pf_microblog:hover .widgettitle::after,.pf_tag_cloud:hover .widgettitle::after,.pf_user_info:hover .widgettitle::after,.pf_hotposts:hover .widgettitle::after{width:45px}

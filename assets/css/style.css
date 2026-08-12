@@ -1838,9 +1838,9 @@ width:30px;
 box-shadow:0 3px 4px rgba(32,160,255,.5);
 -webkit-transition:.25s;
 transition:.25s}
-li:hover>h2.widgettitle{
+li:hover .widgettitle{
 color:#20a0ff}
-li:hover>h2.widgettitle::after{
+li:hover .widgettitle::after{
 width:45px}
 .widget_meta>ul{
 padding:9px 0 0;
