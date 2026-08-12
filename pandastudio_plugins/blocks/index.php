@@ -105,6 +105,24 @@ add_action(
         }
     }
 );
+add_action(
+    'enqueue_block_editor_assets',
+    function () {
+        $meta_asset = require __DIR__ . '/build/meta-panel.asset.php';
+        wp_enqueue_script(
+            'nirvana-meta-panel',
+            get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/meta-panel.js',
+            $meta_asset['dependencies'],
+            $meta_asset['version']
+        );
+        wp_enqueue_style(
+            'nirvana-admin-settings',
+            get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/admin.css',
+            array(),
+            filemtime(get_template_directory() . '/pandastudio_framework/assets/css/admin.css')
+        );
+    }
+);
 function pandastudio_block_render_single($attributes)
 {
     $id = isset($attributes['post_id']) ? $attributes['post_id'] : null;
