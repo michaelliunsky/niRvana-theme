@@ -1842,9 +1842,9 @@ li:hover .widgettitle{
 color:#20a0ff}
 li:hover .widgettitle::after{
 width:45px}
-.sidebar:hover .widgettitle{
+.sidebar[data-id="sidebar-0"]:hover .widgettitle{
 color:#20a0ff}
-.sidebar:hover .widgettitle::after{
+.sidebar[data-id="sidebar-0"]:hover .widgettitle::after{
 width:45px}
 .widget_meta>ul{
 padding:9px 0 0;
