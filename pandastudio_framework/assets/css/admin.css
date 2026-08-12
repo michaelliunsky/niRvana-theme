@@ -1,0 +1,21 @@
+.nirvana-ui .nirvana-settings-tab{max-width:720px}
+.nirvana-ui .nirvana-settings-field{margin-bottom:20px}
+.nirvana-ui .nirvana-field-label{font-weight:600;margin-bottom:6px}
+.nirvana-ui .nirvana-decoration{color:#8492a6;font-size:12px;line-height:1.8;margin-top:6px}
+.nirvana-ui .nirvana-uploader-actions{display:flex;gap:8px;align-items:center;margin-top:4px}
+.nirvana-ui .nirvana-uploader-preview{max-width:200px;display:block;margin-top:8px}
+.nirvana-ui .nirvana-multi-thumbs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.nirvana-ui .nirvana-multi-thumb{width:100px;height:100px;border-radius:4px;background-size:cover;background-position:center;cursor:pointer;border:1px solid #dcdcde}
+.nirvana-ui .nirvana-multi-actions{display:flex;gap:8px;align-items:center}
+.nirvana-ui .nirvana-multitypes-card{border:1px solid #dcdcde;border-radius:4px;padding:12px;margin-bottom:12px;background:#fff}
+.nirvana-ui .nirvana-multitypes-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.nirvana-ui .nirvana-multitypes-card-head span{display:flex;gap:6px}
+.nirvana-ui .nirvana-multitypes-row{margin-bottom:12px}
+.nirvana-ui .nirvana-multitypes-label{color:#909399;margin-bottom:4px;font-size:13px}
+.nirvana-ui .nirvana-multitypes-table td .components-base-control{margin-bottom:0}
+.nirvana-ui .nirvana-settings-save{margin-top:24px;display:flex;align-items:center;gap:12px}
+.nirvana-ui .nirvana-settings-message{color:#46b450}
+.nirvana-meta .nirvana-field{display:flex;flex-wrap:wrap;align-items:flex-start;gap:2px 10px;margin-bottom:14px}
+.nirvana-meta .nirvana-field-label{flex:0 0 90px;margin-bottom:0;padding-top:6px;font-weight:500}
+.nirvana-meta .nirvana-field>div:not(.nirvana-field-label):not(.nirvana-decoration){flex:1 1 220px;min-width:0}
+.nirvana-meta .nirvana-decoration{flex-basis:100%;margin-top:2px}

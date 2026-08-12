@@ -77,7 +77,7 @@ add_action( 'rest_api_init', function() {
 } );
 
 function get_option_json_by_RestAPI() {
-    $option_json_file = file_get_contents( 'option.json', 1 );
+    $option_json_file = file_get_contents( __DIR__ . '/option.json' );
 
     if ( strlen( $option_json_file ) > 10 ) {
         $option_json = json_decode( $option_json_file, true );
@@ -103,7 +103,7 @@ add_action( 'rest_api_init', function() {
 } );
 
 function get_posttype_and_meta_json_by_RestAPI() {
-    $posttype_and_meta_json_file = file_get_contents( 'posttype_and_meta.json', 1 );
+    $posttype_and_meta_json_file = file_get_contents( __DIR__ . '/posttype_and_meta.json' );
 
     if ( strlen( $posttype_and_meta_json_file ) > 10 ) {
         $posttype_and_meta_json = json_decode( $posttype_and_meta_json_file, true );
@@ -116,7 +116,7 @@ function get_posttype_and_meta_json_by_RestAPI() {
     return $posttype_and_meta_json;
 }
 
-$posttype_and_meta_file = file_get_contents( 'posttype_and_meta.json', 1 );
+$posttype_and_meta_file = file_get_contents( __DIR__ . '/posttype_and_meta.json' );
 
 if ( strlen( $posttype_and_meta_file ) > 10 ) {
     $posttype_and_meta = get_posttype_and_meta_json_by_RestAPI();
@@ -130,11 +130,56 @@ if ( strlen( $posttype_and_meta_file ) > 10 ) {
         }
     }
 
+    add_action( 'init', function () use ( $meta_tabs ) {
+        $meta_post_types = array();
+        foreach ( $meta_tabs as $tab ) {
+            foreach ( $tab['screen'] as $post_type ) {
+                $meta_post_types[] = $post_type;
+            }
+        }
+        $meta_post_types = array_unique( $meta_post_types );
+        foreach ( $meta_post_types as $post_type ) {
+            add_post_type_support( $post_type, 'custom-fields' );
+        }
+        foreach ( $meta_tabs as $tab ) {
+            foreach ( $tab['screen'] as $post_type ) {
+                foreach ( $tab['content'] as $field ) {
+                    if ( empty( $field['name'] ) ) {
+                        continue;
+                    }
+                    $type = 'string';
+                    if ( $field['type'] === 'inputNumber' ) {
+                        $type = 'number';
+                    } elseif ( $field['type'] === 'multi_uploader' ) {
+                        $type = 'array';
+                    }
+                    $show_in_rest = true;
+                    if ( $type === 'array' ) {
+                        $show_in_rest = array(
+                            'schema' => array(
+                                'type' => 'array',
+                                'items' => array( 'type' => 'string' ),
+                            ),
+                        );
+                    }
+                    register_post_meta(
+                        $post_type,
+                        $field['name'],
+                        array(
+                            'show_in_rest' => $show_in_rest,
+                            'single' => true,
+                            'type' => $type,
+                        )
+                    );
+                }
+            }
+        }
+    }, 20 );
+
     include_once( 'assets/template/posttype_json.php' );
-    include_once( 'assets/template/meta_rest.php' );
 }
 
-$option_file = file_get_contents( 'option.json', 1 );
+$option_file = file_get_contents( __DIR__ . '/option.json' );
 
 if ( strlen( $option_file ) > 10 ) {
     include_once( 'assets/template/option_rest.php' );
