@@ -19,3 +19,15 @@
 .nirvana-meta .nirvana-field-label{flex:0 0 90px;margin-bottom:0;padding-top:6px;font-weight:500}
 .nirvana-meta .nirvana-field>div:not(.nirvana-field-label):not(.nirvana-decoration){flex:1 1 220px;min-width:0}
 .nirvana-meta .nirvana-decoration{flex-basis:100%;margin-top:2px}
+/* 设置页表单横排（label 左 / 控件右，仿原版 element-ui） */
+.nirvana-ui .nirvana-settings-tab{padding-top:4px}
+.nirvana-ui .nirvana-settings-tab .nirvana-settings-field{margin-bottom:18px}
+.nirvana-ui .nirvana-settings-tab .nirvana-field{display:flex;flex-wrap:wrap;align-items:flex-start;gap:6px 12px;margin-bottom:0}
+.nirvana-ui .nirvana-settings-tab .nirvana-field>.nirvana-field-label{flex:0 0 130px;margin-bottom:0;padding-top:8px;font-weight:500;line-height:1.6}
+.nirvana-ui .nirvana-settings-tab .nirvana-field>div:not(.nirvana-field-label):not(.nirvana-decoration){flex:1 1 300px;min-width:0}
+.nirvana-ui .nirvana-settings-tab .nirvana-field>.nirvana-decoration{flex-basis:100%;margin-left:142px;margin-top:2px}
+.nirvana-ui .nirvana-settings-tab .nirvana-field>.nirvana-uploader{flex:1 1 300px;max-width:520px}
+.nirvana-ui .components-radio-control__group{display:flex;flex-wrap:wrap;gap:4px 18px;padding-top:4px}
+.nirvana-color-trigger{display:inline-flex;align-items:center;gap:8px}
+.nirvana-color-swatch{width:20px;height:20px;border-radius:3px;border:1px solid #dcdcde;display:inline-block}
+.nirvana-color-popover{padding:12px}

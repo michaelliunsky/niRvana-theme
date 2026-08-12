@@ -4,11 +4,13 @@ import {
 	TextareaControl,
 	RangeControl,
 	ToggleControl,
-	ColorPalette,
 	Button,
 	SelectControl,
 	RadioControl,
 	ComboboxControl,
+	FormTokenField,
+	Popover,
+	ColorPicker,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
@@ -55,7 +57,26 @@ function ToggleField( { field, value, onChange } ) {
 }
 
 function ColorField( { field, value, onChange } ) {
-	return <ColorPalette value={ value || undefined } onChange={ onChange } />;
+	const [ open, setOpen ] = useState( false );
+	const handleChange = ( c ) => {
+		const v = typeof c === 'string' ? c : c && ( c.hex || c.color ) ? c.hex || c.color : '';
+		onChange( v );
+	};
+	return (
+		<div className="nirvana-color">
+			<Button className="nirvana-color-trigger" variant="secondary" onClick={ () => setOpen( true ) }>
+				<span className="nirvana-color-swatch" style={ { backgroundColor: value || '#ffffff' } } />
+				<span>{ value || __( '选择颜色' ) }</span>
+			</Button>
+			{ open ? (
+				<Popover onClose={ () => setOpen( false ) } placement="bottom-start">
+					<div className="nirvana-color-popover">
+						<ColorPicker color={ value || undefined } onChange={ handleChange } enableAlpha={ !! field.showAlpha } />
+					</div>
+				</Popover>
+			) : null }
+		</div>
+	);
 }
 
 function UploadField( { field, value, onChange } ) {
@@ -148,17 +169,36 @@ function RadioField( { field, value, onChange } ) {
 }
 
 function SelectField( { field, value, onChange } ) {
-	const options = ( field.selects || [] ).map( ( select ) => ( {
-		label: select.description ? `${ select.label } — ${ select.description }` : select.label,
-		value: select.value,
+	const selects = field.selects || [];
+	if ( field.multiple ) {
+		const options = selects.map( ( s ) => ( { label: s.label, value: s.value } ) );
+		const labelOf = ( v ) => ( options.find( ( o ) => String( o.value ) === String( v ) ) || {} ).label || String( v );
+		const tokens = ( Array.isArray( value ) ? value : [] ).map( labelOf );
+		const handle = ( newTokens ) =>
+			onChange(
+				newTokens.map( ( label ) => {
+					const opt = options.find( ( o ) => o.label === label );
+					return opt ? opt.value : label;
+				} )
+			);
+		return (
+			<FormTokenField
+				value={ tokens }
+				suggestions={ options.map( ( o ) => o.label ) }
+				onChange={ handle }
+				__experimentalExpandOnFocus
+			/>
+		);
+	}
+	const options = selects.map( ( s ) => ( {
+		label: s.description ? `${ s.label } — ${ s.description }` : s.label,
+		value: s.value,
 	} ) );
-	const multiple = !! field.multiple;
 	return (
 		<SelectControl
-			value={ value === undefined || value === null ? ( multiple ? [] : '' ) : value }
+			value={ value === undefined || value === null ? '' : value }
 			options={ options }
 			onChange={ onChange }
-			multiple={ multiple }
 			placeholder={ field.placeholder }
 		/>
 	);
@@ -169,17 +209,31 @@ function categoryOptions( categories ) {
 }
 
 function CategoryField( { field, value, onChange, categories } ) {
-	const multiple = field.type === 'categoriesSelect';
+	const options = categoryOptions( categories );
+	if ( field.type === 'categoriesSelect' ) {
+		const labelOf = ( v ) => ( options.find( ( o ) => Number( o.value ) === Number( v ) ) || {} ).label || String( v );
+		const tokens = ( Array.isArray( value ) ? value : [] ).map( labelOf );
+		const handle = ( newTokens ) =>
+			onChange(
+				newTokens.map( ( label ) => {
+					const opt = options.find( ( o ) => o.label === label );
+					return opt ? Number( opt.value ) : Number( label );
+				} )
+			);
+		return (
+			<FormTokenField
+				value={ tokens }
+				suggestions={ options.map( ( o ) => o.label ) }
+				onChange={ handle }
+				__experimentalExpandOnFocus
+			/>
+		);
+	}
 	return (
 		<SelectControl
-			value={ multiple ? ( Array.isArray( value ) ? value : [] ) : value || '' }
-			options={ categoryOptions( categories ) }
-			onChange={
-				multiple
-					? ( v ) => onChange( v.map( Number ) )
-					: ( v ) => onChange( v === '' ? '' : Number( v ) )
-			}
-			multiple={ multiple }
+			value={ value || '' }
+			options={ options }
+			onChange={ ( v ) => onChange( v === '' ? '' : Number( v ) ) }
 		/>
 	);
 }
