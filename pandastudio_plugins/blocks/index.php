@@ -19,6 +19,41 @@ if (function_exists('register_block_type')) {
         10,
         2
     );
+    add_filter(
+        'allowed_block_types_all',
+        function ($allowed_block_types, $editor_context) {
+            $widget_blocks = array(
+                'pandastudio/user-info',
+                'pandastudio/tag-cloud',
+                'pandastudio/microblog',
+                'pandastudio/hotposts',
+            );
+            $content_blocks = array(
+                'pandastudio/title',
+                'pandastudio/tips',
+                'pandastudio/download',
+                'pandastudio/collapse',
+                'pandastudio/dropdown',
+                'pandastudio/modal',
+                'pandastudio/gallery',
+                'pandastudio/bilibili',
+                'pandastudio/single',
+                'pandastudio/needreply',
+            );
+
+            if (true === $allowed_block_types) {
+                $allowed_block_types = array_keys(WP_Block_Type_Registry::get_instance()->get_all_registered());
+            }
+            if (is_array($allowed_block_types)) {
+                $is_widgets_context = in_array($editor_context->name, array('core/edit-widgets', 'core/customize-widgets'), true);
+                $exclude = $is_widgets_context ? $content_blocks : $widget_blocks;
+                return array_values(array_diff($allowed_block_types, $exclude));
+            }
+            return $allowed_block_types;
+        },
+        10,
+        2
+    );
     add_action(
         'init',
         function () {
