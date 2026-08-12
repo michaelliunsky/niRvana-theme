@@ -1,113 +1,108 @@
 <?php
 
-if (function_exists('register_block_type')) {
-    add_theme_support('align-wide');
-    add_filter(
-        'block_categories_all',
-        function ($categories, $post) {
-            return array_merge(
+add_theme_support('align-wide');
+add_filter(
+    'block_categories_all',
+    function ($categories, $post) {
+        return array_merge(
+            array(
                 array(
-                    array(
-                        'slug'  => 'pandastudio-block-category',
-                        'title' => 'PANDA Studio UI 样式',
-                        'icon'  => 'dashicons-admin-appearance',
-                    ),
+                    'slug'  => 'pandastudio-block-category',
+                    'title' => 'PANDA Studio UI 样式',
+                    'icon'  => 'dashicons-admin-appearance',
                 ),
-                $categories
-            );
-        },
-        10,
-        2
-    );
-    add_filter(
-        'allowed_block_types_all',
-        function ($allowed_block_types, $editor_context) {
-            $widget_blocks = array(
-                'pandastudio/user-info',
-                'pandastudio/tag-cloud',
-                'pandastudio/microblog',
-                'pandastudio/hotposts',
-            );
-            $content_blocks = array(
-                'pandastudio/title',
-                'pandastudio/tips',
-                'pandastudio/download',
-                'pandastudio/collapse',
-                'pandastudio/dropdown',
-                'pandastudio/modal',
-                'pandastudio/gallery',
-                'pandastudio/bilibili',
-                'pandastudio/single',
-                'pandastudio/needreply',
-            );
+            ),
+            $categories
+        );
+    },
+    10,
+    2
+);
+add_filter(
+    'allowed_block_types_all',
+    function ($allowed_block_types, $editor_context) {
+        $widget_blocks = array(
+            'pandastudio/user-info',
+            'pandastudio/tag-cloud',
+            'pandastudio/microblog',
+            'pandastudio/hotposts',
+        );
+        $content_blocks = array(
+            'pandastudio/title',
+            'pandastudio/tips',
+            'pandastudio/download',
+            'pandastudio/collapse',
+            'pandastudio/dropdown',
+            'pandastudio/modal',
+            'pandastudio/gallery',
+            'pandastudio/bilibili',
+            'pandastudio/single',
+            'pandastudio/needreply',
+        );
 
-            if (true === $allowed_block_types) {
-                $allowed_block_types = array_keys(WP_Block_Type_Registry::get_instance()->get_all_registered());
-            }
-            if (is_array($allowed_block_types)) {
-                $is_widgets_context = in_array($editor_context->name, array('core/edit-widgets', 'core/customize-widgets'), true);
-                $exclude = $is_widgets_context ? $content_blocks : $widget_blocks;
-                return array_values(array_diff($allowed_block_types, $exclude));
-            }
-            return $allowed_block_types;
-        },
-        10,
-        2
-    );
-    add_action(
-        'init',
-        function () {
-            $asset = require __DIR__ . '/build/index.asset.php';
-            wp_register_script(
-                'pandastudio-blocks',
-                get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/index.js',
-                $asset['dependencies'],
-                $asset['version']
-            );
-            $render_callbacks = array(
-                'single'    => 'pandastudio_block_render_single',
-                'gallery'   => 'pandastudio_block_render_gallery',
-                'microblog' => 'pandastudio_block_render_microblog',
-                'hotposts'  => 'pandastudio_block_render_hotposts',
-            );
-            $metadata_blocks = array( 'tips', 'single', 'collapse', 'dropdown', 'download', 'gallery', 'modal', 'needreply', 'title', 'bilibili', 'user-info', 'tag-cloud', 'microblog', 'hotposts' );
-            foreach ($metadata_blocks as $name) {
-                $args = array(
-                    'editor_script' => 'pandastudio-blocks',
-                );
-                if (isset($render_callbacks[$name])) {
-                    $args['render_callback'] = $render_callbacks[$name];
-                }
-                register_block_type_from_metadata(
-                    __DIR__ . '/build/blocks/' . $name . '/block.json',
-                    $args
-                );
-            }
+        if (true === $allowed_block_types) {
+            $allowed_block_types = array_keys(WP_Block_Type_Registry::get_instance()->get_all_registered());
         }
-    );
-    add_action(
-        'enqueue_block_assets',
-        function () {
-            if (!is_admin()) {
-                return;
-            }
-            wp_enqueue_style(
-                'pandastudio-block-styles',
-                get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style-index.css',
-                false,
-                filemtime(__DIR__ . '/build/style-index.css'),
-                'all'
+        if (is_array($allowed_block_types)) {
+            $is_widgets_context = in_array($editor_context->name, array('core/edit-widgets', 'core/customize-widgets'), true);
+            $exclude = $is_widgets_context ? $content_blocks : $widget_blocks;
+            return array_values(array_diff($allowed_block_types, $exclude));
+        }
+        return $allowed_block_types;
+    },
+    10,
+    2
+);
+add_action(
+    'init',
+    function () {
+        $asset = require __DIR__ . '/build/index.asset.php';
+        wp_register_script(
+            'pandastudio-blocks',
+            get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/index.js',
+            $asset['dependencies'],
+            $asset['version']
+        );
+        $render_callbacks = array(
+            'single'    => 'pandastudio_block_render_single',
+            'gallery'   => 'pandastudio_block_render_gallery',
+            'microblog' => 'pandastudio_block_render_microblog',
+            'hotposts'  => 'pandastudio_block_render_hotposts',
+        );
+        $metadata_blocks = array( 'tips', 'single', 'collapse', 'dropdown', 'download', 'gallery', 'modal', 'needreply', 'title', 'bilibili', 'user-info', 'tag-cloud', 'microblog', 'hotposts' );
+        foreach ($metadata_blocks as $name) {
+            $args = array(
+                'editor_script' => 'pandastudio-blocks',
             );
-            wp_enqueue_style(
-                'pandastudio-font-awesome',
-                get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/font-awesome.css',
-                false,
-                filemtime(get_template_directory() . '/pandastudio_framework/assets/css/font-awesome.css'),
-                'all'
+            if (isset($render_callbacks[$name])) {
+                $args['render_callback'] = $render_callbacks[$name];
+            }
+            register_block_type_from_metadata(
+                __DIR__ . '/build/blocks/' . $name . '/block.json',
+                $args
             );
         }
-    );
-}
+    }
+);
+add_action(
+    'enqueue_block_editor_assets',
+    function () {
+        wp_enqueue_style(
+            'pandastudio-block-styles',
+            get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style-index.css',
+            false,
+            filemtime(__DIR__ . '/build/style-index.css'),
+            'all'
+        );
+        wp_enqueue_style(
+            'pandastudio-font-awesome',
+            get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/font-awesome.css',
+            false,
+            filemtime(get_template_directory() . '/pandastudio_framework/assets/css/font-awesome.css'),
+            'all'
+        );
+    }
+);
 function pandastudio_block_render_single($attributes)
 {
     $id = isset($attributes['post_id']) ? $attributes['post_id'] : null;
@@ -165,7 +160,7 @@ function pandastudio_block_render_single($attributes)
 }
 function pandastudio_block_render_gallery($attributes)
 {
-    $id         = "bootstrap-carousel-" . rand();
+    $id         = wp_unique_id('bootstrap-carousel-');
     $images     = isset($attributes["images"]) ? $attributes["images"] : [];
     $indicators = "";
     $items      = "";
@@ -279,29 +274,4 @@ function _t8($arg)
     }
     $express = preg_replace('/{{(.+?)}}/', '', $express);
     return $express;
-}
-function _t8n($arg)
-{
-    $arguments = is_array($arg) ? $arg : func_get_args();
-    $single    = $arguments[0];
-    $multiple  = $arguments[1];
-    $number    = $arguments[2];
-    $newArgs   = array();
-    $express   = $number <= 1 ? $single : $multiple;
-    $newArgs[] = $express;
-
-    for ($i = 2; $i < count($arguments); $i++) {
-        $newArgs[] = $arguments[ $i ];
-    }
-    return _t8($newArgs);
-}
-function _et8($arg)
-{
-    $arguments = is_array($arg) ? $arg : func_get_args();
-    echo _t8($arguments);
-}
-function _et8n($arg)
-{
-    $arguments = is_array($arg) ? $arg : func_get_args();
-    echo _t8n($arguments);
 }
