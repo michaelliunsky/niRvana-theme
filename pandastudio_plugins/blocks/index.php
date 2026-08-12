@@ -85,8 +85,11 @@ add_action(
     }
 );
 add_action(
-    'enqueue_block_editor_assets',
+    'enqueue_block_assets',
     function () {
+        if (!is_admin()) {
+            return;
+        }
         wp_enqueue_style(
             'pandastudio-block-styles',
             get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style-index.css',
