@@ -419,6 +419,7 @@ new jQVue({
           url: pandastudio_framework.route + "pandastudio/nirvana/v1/search/",
           type: "POST",
           dataType: "json",
+          contentType: "application/json",
           headers: { "X-WP-Nonce": pandastudio_framework.nonce },
           data: JSON.stringify({
             arg: {
@@ -486,6 +487,7 @@ new jQVue({
           url: pandastudio_framework.route + "pandastudio/nirvana/v1/options/",
           type: "POST",
           dataType: "json",
+          contentType: "application/json",
           headers: { "X-WP-Nonce": pandastudio_framework.nonce },
           data: "{}",
           forceCache: e.forceCache
@@ -665,6 +667,7 @@ new jQVue({
             url: pandastudio_framework.route + "pandastudio/nirvana/v1/ding/",
             type: "POST",
             dataType: "json",
+            contentType: "application/json",
             headers: { "X-WP-Nonce": pandastudio_framework.nonce },
             data: JSON.stringify({
               arg: e
@@ -727,6 +730,7 @@ new jQVue({
           url: pandastudio_framework.route + "pandastudio/nirvana/v1/faq/",
           type: "POST",
           dataType: "json",
+          contentType: "application/json",
           headers: { "X-WP-Nonce": pandastudio_framework.nonce },
           data: JSON.stringify({
             arg: n
