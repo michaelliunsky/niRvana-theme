@@ -311,8 +311,7 @@
       {
         "name": "gallery_images",
         "meta": "gallery_images",
-        "display": "eval",
-        "eval": "echo '<div style=\"white-space:nowrap;overflow-x:auto;\">';\nforeach ($meta as $pic) {\necho '<div style=\"width:80px;height:80px;border-radius:4px;background:url('. $pic.') no-repeat center center / cover;display:inline-block;margin-right:5px\"></div>';\n}\necho '</div>';"
+        "display": "pictures"
       },
       {
         "name": "gallery_taxonomy",
@@ -335,8 +334,7 @@
       {
         "name": "microblog_content",
         "meta": "",
-        "display": "eval",
-        "eval": "the_content();"
+        "display": "content"
       },
       { "name": "gallery_tags", "meta": "", "display": "tag", "eval": "" }
     ]
