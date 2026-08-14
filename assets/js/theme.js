@@ -411,7 +411,7 @@ new jQVue({
           });
           n = $(n), e.is_Mobile() && $(n).find(".card").removeClass("card").addClass("low_cpu_card"), $(".fullscreen_search .postLists").html(n), $(".fullscreen_search .postLists img").imgcomplete(function() {
             e.make_masonry()
-          }), $(".fullscreen_search .postLists").addClass("visible"), $(".fullscreen_search .searchbox").css("margin-top", "10vh"), $(".fullscreen_search .searchbox .button .icon").empty(), $(".fullscreen_search .searchbox .button .icon").append('<i class="fas fa-search"></i>'), $(".fullscreen_search .searchbox input").removeAttr("disabled"), $(".fullscreen_search .searchbox .button").removeAttr("disabled")
+          }), $(".fullscreen_search .postLists").addClass("visible"), $(".fullscreen_search .searchbox").css("margin-top", "10vh"), $(".fullscreen_search .searchbox .button .icon").empty(), $(".fullscreen_search .searchbox .button .icon").append('<i class="fas fa-search"></i>'), $(".fullscreen_search .searchbox input").prop("disabled", false), $(".fullscreen_search .searchbox .button").prop("disabled", false)
         }, 300)
       };
       apply_filters("replace_query_func", function() {
