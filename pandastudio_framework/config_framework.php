@@ -71,7 +71,9 @@ add_action( 'rest_api_init', function() {
         array(
             'methods' => 'get',
             'callback' => 'get_option_json_by_RestAPI',
-            'permission_callback' => '__return_true',
+            'permission_callback' => function () {
+                return current_user_can( 'manage_options' );
+            },
         )
     );
 } );
@@ -97,7 +99,9 @@ add_action( 'rest_api_init', function() {
         array(
             'methods' => 'get',
             'callback' => 'get_posttype_and_meta_json_by_RestAPI',
-            'permission_callback' => '__return_true',
+            'permission_callback' => function () {
+                return current_user_can( 'publish_posts' );
+            },
         )
     );
 } );
