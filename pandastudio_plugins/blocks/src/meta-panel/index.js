@@ -4,7 +4,17 @@ import { useSelect, dispatch } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { SchemaField } from '../admin/controls';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
+import {
+	TextField,
+	TextareaField,
+	NumberField,
+	ToggleField,
+	ColorField,
+	UploadField,
+	MultiUploadField,
+} from '../admin/base-controls';
 
 function SiteViewPreview( { meta } ) {
 	const color = meta.site_color || '#4c7dfe';
@@ -59,6 +69,27 @@ function SiteViewPreview( { meta } ) {
 	);
 }
 
+function MetaField( { field, value, onChange } ) {
+	switch ( field.type ) {
+		case 'input':
+			return <TextField field={ field } value={ value } onChange={ onChange } />;
+		case 'textarea':
+			return <TextareaField field={ field } value={ value } onChange={ onChange } />;
+		case 'inputNumber':
+			return <NumberField field={ field } value={ value } onChange={ onChange } />;
+		case 'switch':
+			return <ToggleField field={ field } value={ value } onChange={ onChange } />;
+		case 'colorPicker':
+			return <ColorField field={ field } value={ value } onChange={ onChange } />;
+		case 'uploader':
+			return <UploadField field={ field } value={ value } onChange={ onChange } />;
+		case 'multi_uploader':
+			return <MultiUploadField field={ field } value={ value } onChange={ onChange } />;
+		default:
+			return null;
+	}
+}
+
 function MetaPanel() {
 	const postType = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostType(), [] );
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
@@ -85,33 +116,36 @@ function MetaPanel() {
 	const setField = ( name ) => ( value ) => setMeta( { ...metaValue, [ name ]: value } );
 
 	return (
-		<div className="nirvana-ui nirvana-meta">
-			{ tabs.map( ( tab, tabIndex ) => (
-				<PluginDocumentSettingPanel key={ tabIndex } name={ `nirvana-meta-${ tabIndex }` } title={ tab.title }>
+		<ConfigProvider locale={ zhCN }>
+			<div className="nirvana-ui nirvana-meta">
+				{ tabs.map( ( tab, tabIndex ) => (
+					<PluginDocumentSettingPanel key={ tabIndex } name={ `nirvana-meta-${ tabIndex }` } title={ tab.title }>
 					{ tab.content.map( ( field, fieldIndex ) => {
 						if ( field.type === 'view' ) {
 							return <SiteViewPreview key={ fieldIndex } meta={ metaValue } />;
 						}
 						if ( field.name === undefined || field.name === null ) {
-							return null;
+							return (
+								<div key={ fieldIndex } className="nirvana-settings-field">
+									{ field.label ? <div className="nirvana-field-label" dangerouslySetInnerHTML={ { __html: field.label } } /> : null }
+									{ field.decoration ? <div className="nirvana-decoration" dangerouslySetInnerHTML={ { __html: field.decoration } } /> : null }
+								</div>
+							);
 						}
 						return (
 							<div key={ fieldIndex } className="nirvana-settings-field">
-								<SchemaField
-									field={ field }
-									value={ metaValue[ field.name ] }
-									onChange={ setField( field.name ) }
-									categories={ [] }
-									onImport={ () => {} }
-									onExport={ () => {} }
-									onClear={ () => {} }
-								/>
+								<div className="nirvana-field">
+									{ field.label ? <div className="nirvana-field-label" dangerouslySetInnerHTML={ { __html: field.label } } /> : null }
+									<MetaField field={ field } value={ metaValue[ field.name ] } onChange={ setField( field.name ) } />
+									{ field.decoration ? <div className="nirvana-decoration" dangerouslySetInnerHTML={ { __html: field.decoration } } /> : null }
+								</div>
 							</div>
 						);
 					} ) }
 				</PluginDocumentSettingPanel>
 			) ) }
 		</div>
+		</ConfigProvider>
 	);
 }
 

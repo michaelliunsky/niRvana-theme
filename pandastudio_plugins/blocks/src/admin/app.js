@@ -1,7 +1,8 @@
 import { useState, useEffect } from '@wordpress/element';
-import { TabPanel, Button, Spinner, Notice } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
+import { ConfigProvider, Tabs, Form, Button, Spin, Alert } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
 import { SchemaField } from './controls';
 
 function collectNames( tabs ) {
@@ -64,7 +65,8 @@ export default function SettingsApp() {
 	const [ values, setValues ] = useState( {} );
 	const [ categories, setCategories ] = useState( [] );
 	const [ status, setStatus ] = useState( 'loading' );
-	const [ message, setMessage ] = useState( '' );
+	const [ error, setError ] = useState( '' );
+	const [ notice, setNotice ] = useState( null );
 
 	useEffect( () => {
 		let cancelled = false;
@@ -84,7 +86,7 @@ export default function SettingsApp() {
 			} catch ( e ) {
 				if ( ! cancelled ) {
 					setStatus( 'error' );
-					setMessage( e && e.message ? e.message : __( '数据加载失败' ) );
+					setError( e && e.message ? e.message : __( '数据加载失败' ) );
 				}
 			}
 		}
@@ -99,17 +101,20 @@ export default function SettingsApp() {
 	};
 
 	const updateOption = async () => {
-		setMessage( '' );
+		setNotice( null );
 		try {
 			const res = await apiFetch( { path: 'pandastudio/framework/update_option', method: 'POST', data: values } );
-			setMessage( res && res.state ? __( '已保存' ) : __( '保存失败' ) );
+			if ( res && res.state ) {
+				setNotice( { type: 'success', text: __( '已保存' ) } );
+			} else {
+				setNotice( { type: 'error', text: __( '保存失败' ) } );
+			}
 		} catch ( e ) {
-			setMessage( __( '保存失败' ) );
+			setNotice( { type: 'error', text: __( '保存失败' ) } );
 		}
 	};
 
 	const exportData = async () => {
-		setMessage( '' );
 		try {
 			const names = {};
 			Object.keys( values ).forEach( ( name ) => ( names[ name ] = '' ) );
@@ -122,7 +127,7 @@ export default function SettingsApp() {
 			a.click();
 			URL.revokeObjectURL( url );
 		} catch ( e ) {
-			setMessage( __( '数据下载失败' ) );
+			setNotice( { type: 'error', text: __( '数据下载失败' ) } );
 		}
 	};
 
@@ -145,13 +150,13 @@ export default function SettingsApp() {
 					} );
 					const res = await apiFetch( { path: 'pandastudio/framework/update_option', method: 'POST', data: payload } );
 					if ( res && res.state ) {
-						setMessage( __( '导入成功，正在刷新...' ) );
+						setNotice( { type: 'success', text: __( '导入成功，正在刷新...' ) } );
 						window.setTimeout( () => window.location.reload(), 500 );
 					} else {
-						setMessage( __( '导入失败' ) );
+						setNotice( { type: 'error', text: __( '导入失败' ) } );
 					}
 				} catch ( e ) {
-					setMessage( __( '数据类型错误' ) );
+					setNotice( { type: 'error', text: __( '数据类型错误' ) } );
 				}
 			};
 			reader.readAsText( file );
@@ -160,63 +165,88 @@ export default function SettingsApp() {
 	};
 
 	const clearData = async () => {
-		setMessage( '' );
 		const payload = {};
 		Object.keys( values ).forEach( ( name ) => ( payload[ name ] = '' ) );
 		try {
 			const res = await apiFetch( { path: 'pandastudio/framework/update_option', method: 'POST', data: payload } );
 			if ( res && res.state ) {
-				setMessage( __( '已清空，正在刷新...' ) );
+				setNotice( { type: 'success', text: __( '已清空，正在刷新...' ) } );
 				window.setTimeout( () => window.location.reload(), 500 );
 			}
 		} catch ( e ) {
-			setMessage( __( '清空数据失败' ) );
+			setNotice( { type: 'error', text: __( '清空数据失败' ) } );
 		}
 	};
 
 	if ( status === 'loading' ) {
-		return <Spinner />;
+		return (
+			<div className="nirvana-ui">
+				<Spin style={ { marginTop: 40 } } />
+			</div>
+		);
 	}
 	if ( status === 'error' ) {
-		return <Notice status="error">{ message }</Notice>;
+		return (
+			<div className="nirvana-ui">
+				<Alert type="error" showIcon message={ error } />
+			</div>
+		);
 	}
 
-	const tabsConfig = tabs.map( ( tab, index ) => ( { name: String( index ), title: tab.title } ) );
-
-	return (
-		<div className="nirvana-ui">
-			<TabPanel className="nirvana-settings" tabs={ tabsConfig }>
-			{ ( tab ) => {
-				const current = tabs[ Number( tab.name ) ];
-				const fields = current.content.filter( ( field ) => gearShow( field, values ) );
-				return (
-					<div className="nirvana-settings-tab">
-						{ fields.map( ( field, index ) => {
-							const hasName = field.name !== null && field.name !== undefined;
+	const tabsConfig = tabs.map( ( tab, index ) => ( {
+		key: String( index ),
+		label: tab.title,
+		children: (
+			<Form layout="horizontal" labelCol={ { style: { width: 130 } } } wrapperCol={ { style: { flex: 1 } } }>
+				{ tab.content
+					.filter( ( field ) => gearShow( field, values ) )
+					.map( ( field, fieldIndex ) => {
+						const hasName = field.name !== null && field.name !== undefined;
+						if ( ! hasName && ! field.type ) {
 							return (
-								<div key={ index } className="nirvana-settings-field">
-									<SchemaField
-										field={ field }
-										value={ hasName ? values[ field.name ] : undefined }
-										onChange={ hasName ? setField( field.name ) : () => {} }
-										categories={ categories }
-										onImport={ importData }
-										onExport={ exportData }
-										onClear={ clearData }
-									/>
+								<div key={ fieldIndex } className="nirvana-settings-section">
+									{ field.label ? <div className="nirvana-field-label" dangerouslySetInnerHTML={ { __html: field.label } } /> : null }
+									{ field.decoration ? <div className="nirvana-decoration" dangerouslySetInnerHTML={ { __html: field.decoration } } /> : null }
 								</div>
 							);
-						} ) }
-						<div className="nirvana-settings-save">
-							<Button variant="primary" onClick={ updateOption }>
-								{ __( '保存全部' ) }
-							</Button>
-							{ message ? <span className="nirvana-settings-message">{ message }</span> : null }
-						</div>
+						}
+						return (
+							<Form.Item
+								key={ fieldIndex }
+								label={ field.label ? <span dangerouslySetInnerHTML={ { __html: field.label } } /> : ' ' }
+							>
+								<SchemaField
+									field={ field }
+									value={ hasName ? values[ field.name ] : undefined }
+									onChange={ hasName ? setField( field.name ) : () => {} }
+									categories={ categories }
+									onImport={ importData }
+									onExport={ exportData }
+									onClear={ clearData }
+								/>
+								{ field.decoration ? (
+									<div className="nirvana-decoration" dangerouslySetInnerHTML={ { __html: field.decoration } } />
+								) : null }
+							</Form.Item>
+						);
+					} ) }
+				<Form.Item label=" ">
+					<div className="nirvana-settings-save">
+						<Button type="primary" onClick={ updateOption }>
+							{ __( '保存全部' ) }
+						</Button>
+						{ notice ? <Alert type={ notice.type } message={ notice.text } showIcon style={ { margin: 0 } } /> : null }
 					</div>
-				);
-			} }
-			</TabPanel>
-		</div>
+				</Form.Item>
+			</Form>
+		),
+	} ) );
+
+	return (
+		<ConfigProvider locale={ zhCN }>
+			<div className="nirvana-ui">
+				<Tabs items={ tabsConfig } />
+			</div>
+		</ConfigProvider>
 	);
 }
