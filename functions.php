@@ -647,9 +647,9 @@ function SimPaled_send_email($parent_id, $comment)
         $message = '<div style="background-color:#eef2fa;border:1px solid #d8e3e8;color:#111;padding:0 15px;-moz-border-radius:5px;-webkit-border-radius:5px;-khtml-border-radius:5px;">
 <p>' . trim(get_comment($parent_id)->comment_author) . ', 您好!</p>
 <p>您曾在《' . get_the_title($comment->comment_post_ID) . '》的留言:<br />'
-        . wpautop(trim(get_comment($parent_id)->comment_content)) . '</p>
+        . do_shortcode(trim(get_comment($parent_id)->comment_content)) . '</p>
 <p>' . trim($comment->comment_author) . ' 给你的回复:<br />'
-        . wpautop(trim($comment->comment_content)) . '<br /></p>
+        . do_shortcode(trim($comment->comment_content)) . '<br /></p>
 <p>您可以点击 <a href="' . htmlspecialchars(get_comment_link($parent_id, array("type" => "all"))) . '">查看回复的完整内容</a></p>
 <p>欢迎再度光临 <a href="' . esc_url(home_url()) . '">' . get_option('blogname') . '</a></p>
 <p>(此邮件由系统自动发出, 请勿回复.)</p></div>';
@@ -665,6 +665,7 @@ function enable_threaded_comments()
     }
 }
 add_action('get_header', 'enable_threaded_comments');
+add_filter('comment_text', 'do_shortcode');
 function panda_seo()
 {
     $postID = get_the_ID();

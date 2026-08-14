@@ -116,13 +116,13 @@ function custom_columns($column, $post_id)
     $meta = get_post_meta($post_id, $fillColumns[$column]['meta'], true);
     switch ($fillColumns[$column]['display']) {
         case 'meta':
-            echo esc_html($meta);
+            echo $meta;
             break;
         case 'picture':
-            echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.esc_url($meta).') no-repeat center center / cover"></div>';
+            echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.$meta.') no-repeat center center / cover"></div>';
             break;
         case 'href':
-            echo '<a href="'.esc_url($meta).'" target="_blank">'.esc_html($meta).'</a>';
+            echo '<a href="'.$meta.'" target="_blank">'.$meta.'</a>';
             break;
         case 'taxonomy':
             $post = get_post($post_id);
@@ -144,7 +144,7 @@ function custom_columns($column, $post_id)
             break;
         case 'pictures':
             foreach ((array) $meta as $pic) {
-                echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.esc_url($pic).') no-repeat center center / cover;display:inline-block;margin-right:5px"></div>';
+                echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.$pic.') no-repeat center center / cover;display:inline-block;margin-right:5px"></div>';
             }
             break;
         case 'content':

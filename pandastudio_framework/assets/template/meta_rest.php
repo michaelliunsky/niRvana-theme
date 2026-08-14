@@ -35,37 +35,6 @@ function get_post_meta_by_RestAPI($data)
     return $return;
 }
 
-function pandastudio_meta_field_types()
-{
-    $config = get_posttype_and_meta_json_by_RestAPI();
-    $types = array();
-    foreach ($config['meta'] as $tab) {
-        foreach ($tab['content'] as $field) {
-            if (!empty($field['name'])) {
-                $types[$field['name']] = isset($field['type']) ? $field['type'] : 'input';
-            }
-        }
-    }
-    return $types;
-}
-function pandastudio_sanitize_meta_value($value, $type)
-{
-    switch ($type) {
-        case 'uploader':
-            return esc_url_raw($value);
-        case 'multi_uploader':
-            return is_array($value) ? array_map('esc_url_raw', $value) : $value;
-        case 'inputNumber':
-        case 'slider':
-            return is_numeric($value) ? $value : 0;
-        case 'colorPicker':
-            return sanitize_hex_color($value);
-        case 'textarea':
-            return sanitize_textarea_field(wp_unslash($value));
-        default:
-            return sanitize_text_field(wp_unslash($value));
-    }
-}
 function update_post_meta_by_RestAPI($data)
 {
     if (!current_user_can('publish_posts')) {
@@ -77,12 +46,7 @@ function update_post_meta_by_RestAPI($data)
     if (!$post_id) {
         return array('state'=>false,'error' => '缺少PostID！');
     }
-    $field_types = pandastudio_meta_field_types();
     foreach ($dataArray as $meta_name => $value) {
-        if (!isset($field_types[$meta_name])) {
-            continue;
-        }
-        $value = pandastudio_sanitize_meta_value($value, $field_types[$meta_name]);
         update_post_meta($post_id, $meta_name, $value);
     }
     return array('state'=>true);
