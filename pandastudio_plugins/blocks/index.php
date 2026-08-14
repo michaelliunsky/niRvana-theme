@@ -89,17 +89,17 @@ function pandastudio_block_render_single($attributes)
     $post_type = get_post_type($id);
     $class     = 'wp-block-pandastudio-single';
     if (isset($attributes['align'])) {
-        $class .= " align{$attributes['align']}";
+        $class .= ' align' . esc_attr($attributes['align']);
     }
     switch ($post_type) {
         case 'post':
             $single_post = get_post($id);
-            $coverImg    = get_the_post_thumbnail_url($id);
-            $href        = get_the_permalink($id);
-            $title       = get_the_title($id);
-            $date        = get_the_time('Y-n-j', $id);
-            $likes       = get_post_meta($single_post->ID, 'bigfa_ding', true) ? get_post_meta($single_post->ID, 'bigfa_ding', true) : "0";
-            $comments    = $single_post->comment_count;
+            $coverImg    = esc_url(get_the_post_thumbnail_url($id));
+            $href        = esc_url(get_the_permalink($id));
+            $title       = esc_html(get_the_title($id));
+            $date        = esc_html(get_the_time('Y-n-j', $id));
+            $likes       = esc_html(get_post_meta($single_post->ID, 'bigfa_ding', true) ? get_post_meta($single_post->ID, 'bigfa_ding', true) : "0");
+            $comments    = esc_html($single_post->comment_count);
             $result      = "
 <div class='" . $class . "' posttype='post'><div class='single-wrapper'><a class='cover' style='background-image:url(" . $coverImg . ")' href='" . $href . "'></a><div class='single-meta'><a class='post-title' href='" . $href . "'><h4>" . $title . "</h4></a><div class='summary'><span class='date'><i class='far fa-clock pandastudio-icons-clock'></i>
 " . $date . "
@@ -113,12 +113,12 @@ function pandastudio_block_render_single($attributes)
         case 'gallery':
             $single_post         = get_post($id);
             $meta_gallery_images = get_post_meta($id, "gallery_images", true);
-            $coverImg            = $meta_gallery_images ? $meta_gallery_images[0] : '';
-            $href                = get_the_permalink($id);
-            $title               = get_the_title($id);
-            $date                = get_the_time('Y-n-j', $id);
-            $likes               = get_post_meta($single_post->ID, 'bigfa_ding', true) ? get_post_meta($single_post->ID, 'bigfa_ding', true) : "0";
-            $comments            = $single_post->comment_count;
+            $coverImg            = $meta_gallery_images ? esc_url($meta_gallery_images[0]) : '';
+            $href                = esc_url(get_the_permalink($id));
+            $title               = esc_html(get_the_title($id));
+            $date                = esc_html(get_the_time('Y-n-j', $id));
+            $likes               = esc_html(get_post_meta($single_post->ID, 'bigfa_ding', true) ? get_post_meta($single_post->ID, 'bigfa_ding', true) : "0");
+            $comments            = esc_html($single_post->comment_count);
             $result              = "
 <div class='" . $class . "' posttype='post'><div class='single-wrapper'><a class='cover' style='background-image:url(" . $coverImg . ")' href='" . $href . "'></a><div class='single-meta'><a class='post-title' href='" . $href . "'><h4>" . $title . "</h4></a><div class='summary'><span class='date'><i class='far fa-clock'></i>
 " . $date . "
@@ -149,9 +149,9 @@ function pandastudio_block_render_gallery($attributes)
             $indicators . '<li data-target="#' . $id . '" data-slide-to="' . $i . '"></li>
 ';
         $items = $i == 0 ?
-            $items . '<div class="item active"><div class="img_wrapper"><img src="' . $images[ $i ] . '"></div></div>'
+            $items . '<div class="item active"><div class="img_wrapper"><img src="' . esc_url($images[ $i ]) . '"></div></div>'
             :
-            $items . '<div class="item"><div class="img_wrapper"><img src="' . $images[ $i ] . '"></div></div>';
+            $items . '<div class="item"><div class="img_wrapper"><img src="' . esc_url($images[ $i ]) . '"></div></div>';
     }
     $result = '
 <div id="' . $id . '" class="gallery carousel slide" data-ride="carousel"><!-- Indicators --><ol class="carousel-indicators">

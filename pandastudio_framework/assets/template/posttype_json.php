@@ -108,7 +108,6 @@ function custom_columns($column, $post_id)
         $fillColumns[$singleColumn['name']] = array(
             'display' => $singleColumn['display'],
             'meta' => $singleColumn['meta'],
-            'eval' => $singleColumn['eval'],
         );
     }
     if (!isset($fillColumns[$column])) {
@@ -117,13 +116,13 @@ function custom_columns($column, $post_id)
     $meta = get_post_meta($post_id, $fillColumns[$column]['meta'], true);
     switch ($fillColumns[$column]['display']) {
         case 'meta':
-            echo $meta;
+            echo esc_html($meta);
             break;
         case 'picture':
-            echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.$meta.') no-repeat center center / cover"></div>';
+            echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.esc_url($meta).') no-repeat center center / cover"></div>';
             break;
         case 'href':
-            echo '<a href="'.$meta.'" target="_blank">'.$meta.'</a>';
+            echo '<a href="'.esc_url($meta).'" target="_blank">'.esc_html($meta).'</a>';
             break;
         case 'taxonomy':
             $post = get_post($post_id);
@@ -143,8 +142,13 @@ function custom_columns($column, $post_id)
                 echo $the_tags;
             }
             break;
-        case 'eval':
-            eval($fillColumns[$column]['eval']);
+        case 'pictures':
+            foreach ((array) $meta as $pic) {
+                echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.esc_url($pic).') no-repeat center center / cover;display:inline-block;margin-right:5px"></div>';
+            }
+            break;
+        case 'content':
+            echo get_post_field('post_content', $post_id);
             break;
         default:
             break;

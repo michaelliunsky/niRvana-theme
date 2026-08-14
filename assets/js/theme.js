@@ -416,11 +416,11 @@ new jQVue({
       };
       apply_filters("replace_query_func", function() {
         $.ajax({
-          url: pandastudio_framework.route + "pandastudio/nirvana/restapi/",
+          url: pandastudio_framework.route + "pandastudio/nirvana/v1/search/",
           type: "POST",
           dataType: "json",
+          headers: { "X-WP-Nonce": pandastudio_framework.nonce },
           data: JSON.stringify({
-            e: "$result = pf_global_search($arg);",
             arg: {
               search_prod_title: e.global_search_prod_title ? e.global_search_query : "",
               s: e.global_search_query,
@@ -483,12 +483,11 @@ new jQVue({
         };
       apply_filters("replace_load_blog_options_func", function() {
         $.ajax({
-          url: pandastudio_framework.route + "pandastudio/nirvana/restapi/",
+          url: pandastudio_framework.route + "pandastudio/nirvana/v1/options/",
           type: "POST",
           dataType: "json",
-          data: JSON.stringify({
-            e: "$result = frontend_opts();"
-          }),
+          headers: { "X-WP-Nonce": pandastudio_framework.nonce },
+          data: "{}",
           forceCache: e.forceCache
         }).done(function(e) {
           t(e)
@@ -663,11 +662,11 @@ new jQVue({
         };
         apply_filters("replace_like_func", function() {
           $.ajax({
-            url: pandastudio_framework.route + "pandastudio/nirvana/restapi/",
+            url: pandastudio_framework.route + "pandastudio/nirvana/v1/ding/",
             type: "POST",
             dataType: "json",
+            headers: { "X-WP-Nonce": pandastudio_framework.nonce },
             data: JSON.stringify({
-              e: "$result = pf_post_ding($arg);",
               arg: e
             })
           }).done(function(e) {
@@ -725,11 +724,11 @@ new jQVue({
       };
       apply_filters("replace_faq_search_func", function() {
         $.ajax({
-          url: pandastudio_framework.route + "pandastudio/nirvana/restapi/",
+          url: pandastudio_framework.route + "pandastudio/nirvana/v1/faq/",
           type: "POST",
           dataType: "json",
+          headers: { "X-WP-Nonce": pandastudio_framework.nonce },
           data: JSON.stringify({
-            e: "$result = pf_faq($arg);",
             arg: n
           }),
           forceCache: !0
