@@ -99,7 +99,7 @@ function nirvanaMetaBoot() {
         },
         mediaUpload: function(t, e, n) {
           var a = this,
-            o = (window.wp ? window : window.parent).wp.media({
+            o = window.parent.wp.media({
               title: "上传",
               button: {
                 text: "插入"
@@ -114,7 +114,7 @@ function nirvanaMetaBoot() {
         },
         multiMediaUpload: function(t) {
           var e = this,
-            n = (window.wp ? window : window.parent).wp.media({
+            n = window.parent.wp.media({
               title: "按住 ctrl 批量选择",
               button: {
                 text: "批量插入"
