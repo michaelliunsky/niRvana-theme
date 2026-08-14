@@ -1047,23 +1047,6 @@ function mytheme_nav_menu_css_class($classes)
 }
 add_filter('nav_menu_css_class', 'mytheme_nav_menu_css_class');
 
-function showFace($atts, $content = null)
-{
-    extract(shortcode_atts(array(
-        "p" => '',
-        "g" => '',
-    ), $atts));
-    if ($p != '') {
-        $name = $p;
-        $format = 'png';
-    } else {
-        $name = $g;
-        $format = 'gif';
-    }
-    return '<img src=' . get_stylesheet_directory_uri() . '/faces/' . $name . '.' . $format . ' class="cmt_faces">';
-}
-add_shortcode("face", "showFace");
-
 add_filter( 'pre_get_avatar_data', function( $args, $id_or_email ) {
     if ( ! isset( $args['url'] ) ) {
         $pool = get_option( 'random_avatar' );
