@@ -108,7 +108,6 @@ function custom_columns($column, $post_id)
         $fillColumns[$singleColumn['name']] = array(
             'display' => $singleColumn['display'],
             'meta' => $singleColumn['meta'],
-            'eval' => $singleColumn['eval'],
         );
     }
     if (!isset($fillColumns[$column])) {
@@ -143,8 +142,13 @@ function custom_columns($column, $post_id)
                 echo $the_tags;
             }
             break;
-        case 'eval':
-            eval($fillColumns[$column]['eval']);
+        case 'pictures':
+            foreach ((array) $meta as $pic) {
+                echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.$pic.') no-repeat center center / cover;display:inline-block;margin-right:5px"></div>';
+            }
+            break;
+        case 'content':
+            echo get_post_field('post_content', $post_id);
             break;
         default:
             break;

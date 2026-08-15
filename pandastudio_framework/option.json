@@ -676,7 +676,7 @@
         "value": "",
         "placeholder": "如：评论后可查看此区域内容",
         "name": "need_reply_tip",
-        "decoration": "使用短代码将需要隐藏的内容包裹起来，如：[need_reply] 此处的内容仅评论可见 [/need_reply]",
+        "decoration": "在文章编辑器中插入「回复可见」区块，被包裹的内容仅评论后可查看",
         "gear_name": "",
         "gear_value": ""
       },

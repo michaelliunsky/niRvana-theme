@@ -1,4 +1,8 @@
-jQuery.get(pandastudio_framework.route + "pandastudio/framework/get_option_json", function(t) {
+jQuery.ajax({
+  url: pandastudio_framework.route + "pandastudio/framework/get_option_json",
+  type: "GET",
+  headers: { "X-WP-Nonce": pandastudio_framework.nonce },
+  success: function(t) {
   "string" == typeof t && (t = JSON.parse(t));
   var e = t;
   window.vue_rest = new Vue({
@@ -342,6 +346,6 @@ jQuery.get(pandastudio_framework.route + "pandastudio/framework/get_option_json"
       }
     }
   })
-}).fail(function() {
+}}).fail(function() {
   alert("Option数据获取失败！请检查：\n1、WordPress版本大于4.7\n2、Rest API是否被插件关闭\n3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？")
 });

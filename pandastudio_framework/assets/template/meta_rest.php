@@ -3,15 +3,44 @@ add_action('rest_api_init', function () {
     register_rest_route('pandastudio/framework', '/get_post_meta/', array(
         'methods' => 'POST',
         'callback' => 'get_post_meta_by_RestAPI',
-        'permission_callback' => '__return_true',
-    ));
-    register_rest_route('pandastudio/framework', '/update_post_meta/', array(
-        'methods' => 'POST',
-        'callback' => 'update_post_meta_by_RestAPI',
         'permission_callback' => function () {
             return current_user_can('publish_posts');
         },
     ));
+});
+
+add_action('save_post', function ($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    $post_type = get_post_type($post_id);
+    global $meta_screens;
+    if (!is_array($meta_screens) || !in_array($post_type, $meta_screens, true)) {
+        return;
+    }
+    $posttype_and_meta = get_posttype_and_meta_json_by_RestAPI();
+    foreach ($posttype_and_meta['meta'] as $tab) {
+        if (!in_array($post_type, $tab['screen'], true)) {
+            continue;
+        }
+        foreach ($tab['content'] as $field) {
+            if (empty($field['name']) || !isset($_POST[$field['name']])) {
+                continue;
+            }
+            $value = wp_unslash($_POST[$field['name']]);
+            $decoded = json_decode($value, true);
+            if (is_array($decoded)) {
+                $value = $decoded;
+            }
+            update_post_meta($post_id, $field['name'], $value);
+        }
+    }
 });
 
 function get_post_meta_by_RestAPI($data)
@@ -33,23 +62,6 @@ function get_post_meta_by_RestAPI($data)
     return $return;
 }
 
-function update_post_meta_by_RestAPI($data)
-{
-    if (!current_user_can('publish_posts')) {
-        return array('state'=>false,'error'=>'授权错误！');
-    }
-    $ajaxData = json_decode($data->get_body(), true);
-    $post_id = $ajaxData['postID'] ?? 0;
-    $dataArray = $ajaxData['postMeta'] ?? array();
-    if (!$post_id) {
-        return array('state'=>false,'error' => '缺少PostID！');
-    }
-    foreach ($dataArray as $meta_name => $value) {
-        update_post_meta($post_id, $meta_name, $value);
-    }
-    return array('state'=>true);
-}
-
 add_action('admin_menu', 'pandastudio_framework_create_json_meta');
 function pandastudio_framework_create_json_meta()
 {
@@ -66,6 +78,9 @@ function pandastudio_framework_create_json_meta()
 
 function pandastudio_framework_create_json_meta_box()
 {
+    $post = get_post();
+    $nirvana_post_id = $post ? $post->ID : 0;
+    $nirvana_post_type = $post ? $post->post_type : '';
     wp_enqueue_media();
     $adminColor = get_user_meta(get_current_user_id(), 'admin_color', true);
     $supportColorArray = array('blue','coffee','ectoplasm','fresh','light','midnight','ocean','sunrise');
@@ -251,6 +266,15 @@ function pandastudio_framework_create_json_meta_box()
         </el-tabs>
     </template>
     </div>
+    <script type="text/javascript">
+    var nirvanaMetaConfig = <?php echo json_encode(array(
+        'postID' => $nirvana_post_id,
+        'postType' => $nirvana_post_type,
+        'route' => esc_url_raw(rest_url()),
+        'nonce' => wp_create_nonce('wp_rest'),
+        'jqueryUrl' => includes_url('js/jquery/jquery.js'),
+    )); ?>;
+    </script>
     <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/pandastudio_framework/assets/template/meta_rest.js?version=<?php echo wp_get_theme()->get('Version'); ?>"></script>
     <?php
 }?><?php
