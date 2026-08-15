@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "pandastudio/user-info",
+	"version": "2.0.0",
+	"title": "博主信息",
+	"description": "展示博主基本信息（头像、昵称、描述）",
+	"icon": "admin-users",
+	"category": "pandastudio-block-category",
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"source": "html",
+			"selector": ".description",
+			"default": ""
+		},
+		"img": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"style": "pandastudio-block-styles",
+	"supports": {
+		"html": false
+	}
+}

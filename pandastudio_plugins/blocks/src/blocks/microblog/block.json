@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "pandastudio/microblog",
+	"version": "2.0.0",
+	"title": "轻博客",
+	"description": "轻博客展示",
+	"icon": "format-status",
+	"category": "pandastudio-block-category",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"number": {
+			"type": "number",
+			"default": 5
+		}
+	},
+	"style": "pandastudio-block-styles",
+	"supports": {
+		"html": false
+	}
+}
