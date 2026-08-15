@@ -891,42 +891,6 @@ function shortCodeTips($atts, $content = null)
     }
 }
 add_shortcode("tip", "shortCodeTips");
-function shortCodeArticleFormat($atts, $content = null)
-{
-    extract(shortcode_atts(array(
-        "img" => '',
-        "col" => '6',
-        "position" => 'r',
-        "cover" => 'false',
-    ), $atts));
-    $textCol = 12 - intval($col);
-    switch ($position) {
-        case 'r':
-            $pushClass = ' col-sm-push-' . $textCol;
-            $pullClass = ' col-sm-pull-' . $col;
-            $imgClass = 'alignright';
-            break;
-
-        default:
-            $pushClass = '';
-            $pullClass = '';
-            $imgClass = 'alignleft';
-            break;
-    }
-    if ($cover == 'true') {
-        $imgClass = 'cover';
-    }
-    $imgPart = '<div class="block image col-sm-' . $col . $pushClass . '"><img class="' . $imgClass . '" src="' . $img . '" /></div>';
-    $textPart = '<div class="block text col-sm-' . $textCol . $pullClass . '"><div class="content">' . do_shortcode(wpautop($content)) . '</div></div>';
-    if ($content) {
-        return '<div class="flexContainer">' . $imgPart . $textPart . '</div>';
-    } elseif ($img != '') {
-        return '<div class="flexContainer"><img src="' . $img . '" style="width:100%;height:100%;"></div>';
-    } else {
-        return '<div class="flexContainer linear" style="border:none; height: 1px; background-color: #f2f4f6;"></div>';
-    }
-}
-add_shortcode("fmt", "shortCodeArticleFormat");
 function shortCodeModal($atts, $content = null)
 {
     extract(shortcode_atts(array(
