@@ -22,21 +22,21 @@ import { __ } from '@wordpress/i18n';
 
 registerBlockStyle( 'core/image', {
 	name: 'border-round',
-	label: __( '仅圆角' ),
+	label: __( '仅圆角', 'niRvana' ),
 	isDefault: false,
 } );
 registerBlockStyle( 'core/image', {
 	name: 'with-shadow',
-	label: __( '仅阴影' ),
+	label: __( '仅阴影', 'niRvana' ),
 	isDefault: false,
 } );
 registerBlockStyle( 'core/image', {
 	name: 'border-round-and-with-shadow',
-	label: __( '圆角与阴影' ),
+	label: __( '圆角与阴影', 'niRvana' ),
 	isDefault: false,
 } );
 registerBlockStyle( 'core/paragraph', {
 	name: 'text-indent-2em',
-	label: __( '中文段落首行空2个字符' ),
+	label: __( '中文段落首行空2个字符', 'niRvana' ),
 	isDefault: false,
 } );

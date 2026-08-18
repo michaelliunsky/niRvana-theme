@@ -3,6 +3,7 @@
 	"apiVersion": 3,
 	"name": "pandastudio/needreply",
 	"version": "2.0.0",
+	"textdomain": "niRvana",
 	"title": "回复可见",
 	"description": "此模块内容需用户评论文章后才可显示，此模块内可嵌套其它模块",
 	"icon": "format-status",

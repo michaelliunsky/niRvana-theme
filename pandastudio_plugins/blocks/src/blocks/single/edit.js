@@ -22,36 +22,36 @@ export default function Edit( { attributes, setAttributes } ) {
 			data: JSON.stringify( { keyword: searchText } ),
 		} )
 			.done( ( result ) => setList( result ) )
-			.fail( () => alert( __( '网络异常' ) ) )
+			.fail( () => alert( __( '网络异常', 'niRvana' ) ) )
 			.always( () => setIsSearching( false ) );
 	};
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '设置文章ID' ) }>
+				<PanelBody title={ __( '设置文章ID', 'niRvana' ) }>
 					<Button variant="primary" onClick={ () => setShowModal( true ) }>
-						{ post_id ? __( '更改文章ID' ) : __( '选择文章ID' ) }
+						{ post_id ? __( '更改文章ID', 'niRvana' ) : __( '选择文章ID', 'niRvana' ) }
 					</Button>
 					{ post_id && (
 						<p style={ { fontStyle: 'italic', marginTop: '5px' } }>
-							{ __( '已选文章ID：' ) + post_id }
+							{ __( '已选文章ID：', 'niRvana' ) + post_id }
 						</p>
 					) }
 					{ showModal && (
-						<Modal title={ __( '选择文章ID' ) } onRequestClose={ () => setShowModal( false ) }>
+						<Modal title={ __( '选择文章ID', 'niRvana' ) } onRequestClose={ () => setShowModal( false ) }>
 							<div className="clearfix">
 								<div className="floatL">
 									<TextControl
 										value={ searchText }
 										onChange={ setSearchText }
-										placeholder={ __( '请输入文章关键字...' ) }
+										placeholder={ __( '请输入文章关键字...', 'niRvana' ) }
 										__next40pxDefaultSize
 									/>
 								</div>
 								<div className="floatR marginT2 marginL5">
 									<Button variant="secondary" onClick={ search }>
-										{ __( '检索文章' ) }
+										{ __( '检索文章', 'niRvana' ) }
 									</Button>
 								</div>
 							</div>
@@ -60,7 +60,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									<Spinner />
 								) : list.length > 0 ? (
 									<div>
-										{ __( '请选择：' ) }
+										{ __( '请选择：', 'niRvana' ) }
 										{ list.map( ( item ) => (
 											<div className="marginB5 marginT5" key={ item.label + item.value }>
 												<Button
@@ -73,7 +73,7 @@ export default function Edit( { attributes, setAttributes } ) {
 										) ) }
 									</div>
 								) : (
-									__( '暂无文章' )
+									__( '暂无文章', 'niRvana' )
 								) }
 							</div>
 						</Modal>

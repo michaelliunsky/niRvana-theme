@@ -8,7 +8,7 @@ add_filter(
             array(
                 array(
                     'slug'  => 'pandastudio-block-category',
-                    'title' => 'PANDA Studio UI 样式',
+                    'title' => esc_html__( 'PANDA Studio UI 样式', 'niRvana' ),
                     'icon'  => 'dashicons-admin-appearance',
                 ),
             ),
@@ -63,6 +63,13 @@ add_action(
             $asset['dependencies'],
             $asset['version']
         );
+        // 编辑器翻译由 languages/niRvana-<locale>-app.json 经 setLocaleData 内联注入 (见 functions.php)
+        // 此处注册保留: 若未来标准 JSON 产物与 handle 匹配, 无需改代码即可生效
+        wp_set_script_translations(
+            'pandastudio-blocks',
+            'niRvana',
+            get_template_directory() . '/languages'
+        );
         wp_register_style(
             'pandastudio-block-styles',
             get_stylesheet_directory_uri() . '/pandastudio_plugins/blocks/build/style-index.css',
@@ -109,7 +116,7 @@ function pandastudio_block_render_single($attributes)
 {
     $id = isset($attributes['post_id']) ? $attributes['post_id'] : null;
     if (! $id) {
-        return '<p><i class="fas fa-exclamation-triangle"></i> ' . _t8("文章展示模块：请设置文章ID") . '</p>';
+        return '<p><i class="fas fa-exclamation-triangle"></i> ' . esc_html__( '文章展示模块：请设置文章ID', 'niRvana' ) . '</p>';
     }
     $post_type = get_post_type($id);
     $class     = 'wp-block-pandastudio-single';
@@ -122,9 +129,9 @@ function pandastudio_block_render_single($attributes)
             $coverImg    = get_the_post_thumbnail_url($id);
             $href        = get_the_permalink($id);
             $title       = get_the_title($id);
-            $date        = get_the_time('Y-n-j', $id);
-            $likes       = get_post_meta($single_post->ID, 'bigfa_ding', true) ? get_post_meta($single_post->ID, 'bigfa_ding', true) : "0";
-            $comments    = $single_post->comment_count;
+            $date        = get_the_date(get_option('date_format'), $id);
+            $likes       = number_format_i18n((int) get_post_meta($single_post->ID, 'bigfa_ding', true));
+            $comments    = number_format_i18n((int) $single_post->comment_count);
             $result      = "
 <div class='" . $class . "' posttype='post'><div class='single-wrapper'><a class='cover' style='background-image:url(" . $coverImg . ")' href='" . $href . "'></a><div class='single-meta'><a class='post-title' href='" . $href . "'><h4>" . $title . "</h4></a><div class='summary'><span class='date'><i class='far fa-clock pandastudio-icons-clock'></i>
 " . $date . "
@@ -141,9 +148,9 @@ function pandastudio_block_render_single($attributes)
             $coverImg            = $meta_gallery_images ? $meta_gallery_images[0] : '';
             $href                = get_the_permalink($id);
             $title               = get_the_title($id);
-            $date                = get_the_time('Y-n-j', $id);
-            $likes               = get_post_meta($single_post->ID, 'bigfa_ding', true) ? get_post_meta($single_post->ID, 'bigfa_ding', true) : "0";
-            $comments            = $single_post->comment_count;
+            $date                = get_the_date(get_option('date_format'), $id);
+            $likes               = number_format_i18n((int) get_post_meta($single_post->ID, 'bigfa_ding', true));
+            $comments            = number_format_i18n((int) $single_post->comment_count);
             $result              = "
 <div class='" . $class . "' posttype='post'><div class='single-wrapper'><a class='cover' style='background-image:url(" . $coverImg . ")' href='" . $href . "'></a><div class='single-meta'><a class='post-title' href='" . $href . "'><h4>" . $title . "</h4></a><div class='summary'><span class='date'><i class='far fa-clock'></i>
 " . $date . "
@@ -155,7 +162,7 @@ function pandastudio_block_render_single($attributes)
 ";
             break;
         default:
-            $result = '<p><i class="fas fa-exclamation-triangle"></i> ' . _t8("{{1}}类型不支持使用模块展示！", $post_type) . '</p>';
+            $result = '<p><i class="fas fa-exclamation-triangle"></i> ' . sprintf(esc_html__( '%s类型不支持使用模块展示！', 'niRvana' ), $post_type) . '</p>';
             break;
     }
     return $result;
@@ -183,7 +190,7 @@ function pandastudio_block_render_gallery($attributes)
 ' . $indicators . '
 </ol><!-- Wrapper for slides --><div class="carousel-inner" role="listbox">
 ' . $items . '
-</div><!-- Controls --><a class="left carousel-control" href="#' . $id . '" role="button" data-slide="prev"><i class="fas fa-angle-left glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#' . $id . '" role="button" data-slide="next"><i class="fas fa-angle-right glyphicon-chevron-right"></i><span class="sr-only">Next</span></a></div>
+</div><!-- Controls --><a class="left carousel-control" href="#' . $id . '" role="button" data-slide="prev"><i class="fas fa-angle-left glyphicon-chevron-left"></i><span class="sr-only">' . esc_html__( 'Previous', 'niRvana' ) . '</span></a><a class="right carousel-control" href="#' . $id . '" role="button" data-slide="next"><i class="fas fa-angle-right glyphicon-chevron-right"></i><span class="sr-only">' . esc_html__( 'Next', 'niRvana' ) . '</span></a></div>
 ';
     return $result;
 }
@@ -206,7 +213,7 @@ function pandastudio_block_render_microblog($attributes)
     while ($query->have_posts()) {
         $query->the_post();
         $html .= '<li>';
-        $html .= '<div class="date silver-color"><span>' . esc_html(get_the_time('Y-n-j H:i')) . '</span></div>';
+        $html .= '<div class="date silver-color"><span>' . esc_html(get_the_date(get_option('date_format')) . ' ' . get_the_time(get_option('time_format'))) . '</span></div>';
         $html .= '<div class="main"><p>' . wp_kses_post(get_the_content()) . '</p></div>';
         $html .= '</li>';
     }
@@ -256,8 +263,8 @@ function pandastudio_block_render_hotposts($attributes)
         $html .= "<a class='cover' href='" . esc_url($permalink) . "'" . $cover_style . "></a>";
         $html .= "<div class='meta'>";
         $html .= "<a class='post-title' href='" . esc_url($permalink) . "'><h4>" . wp_kses_post($title_text) . "</h4></a>";
-        $html .= "<div class='summary'><span class='likes'><i class='fas fa-heart'></i>" . $likes . "</span>";
-        $html .= "<span class='comments'><i class='fas fa-comments'></i>" . $comments . "</span></div>";
+        $html .= "<div class='summary'><span class='likes'><i class='fas fa-heart'></i>" . number_format_i18n($likes) . "</span>";
+        $html .= "<span class='comments'><i class='fas fa-comments'></i>" . number_format_i18n($comments) . "</span></div>";
         $html .= "</div>";
         $html .= "</div>";
         $html .= '</li>';

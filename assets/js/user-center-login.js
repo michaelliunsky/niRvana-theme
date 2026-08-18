@@ -3,14 +3,16 @@
  * 反解自 assets/minify/app.min.js (2026-08-06)
  * 自定义源码, 从生产压缩包反解. 压缩丢失注释与局部变量名.
  */
+// WP 核心脚本 wp-i18n 提供的翻译函数 (依赖声明见 production.php)
+var __ = wp.i18n.__;
 function pf_login() {
   function e(e, t, n) {
     var o, r = $('\n\t\t<div class="inputer">\n\t\t\t<input type="'.concat(t, '">\n\t\t\t<span class="title">').concat(e, "</span>\n\t\t</div>\n\t\t"));
     return r.find("input").on("change", function(e) {
       $(this).val() ? ($(this).addClass("has_value"), r.addClass("has_value")) : ($(this).removeClass("has_value"), r.removeClass("has_value"))
-    }), "password" == t && ("ontouchstart" in document.documentElement ? (o = $('<div class="view_password"><div class="pf_tooltip">点击查看密码</div></div>')).on("click", function() {
+    }), "password" == t && ("ontouchstart" in document.documentElement ? (o = $('<div class="view_password"><div class="pf_tooltip">'.concat(__("点击查看密码", "niRvana"), '</div></div>'))).on("click", function() {
       r.find("input").val() && o.find(".pf_tooltip").addClass("disabled"), "text" == r.find("input").attr("type") ? r.find("input").attr("type", "password") : r.find("input").attr("type", "text")
-    }) : (o = $('<div class="view_password"><div class="pf_tooltip">按住查看密码</div></div>')).on("mousedown", function() {
+    }) : (o = $('<div class="view_password"><div class="pf_tooltip">'.concat(__("按住查看密码", "niRvana"), '</div></div>'))).on("mousedown", function() {
       r.find("input").val() && o.find(".pf_tooltip").addClass("disabled"), r.find("input").attr("type", "text")
     }).on("mouseup", function() {
       r.find("input").attr("type", "password")
@@ -22,7 +24,7 @@ function pf_login() {
   function t(e, t) {
     var n = (new PdMessage).stop({
       title: "",
-      message: "正在注册...",
+      message: __("正在注册...", "niRvana"),
       messageType: "waiting"
     });
     $.ajax({
@@ -36,17 +38,17 @@ function pf_login() {
         duration: 5e3
       }), i(t, "error", 600), !1;
       (new PdMessage).notify({
-        notify: "注册成功",
+        notify: __("注册成功", "niRvana"),
         type: "success",
         duration: 5e3
       }), (new PdMessage).notify({
-        notify: "请使用注册的账号登录",
+        notify: __("请使用注册的账号登录", "niRvana"),
         type: "info",
         duration: 5e3
       }), s(!0)
     }).fail(function() {
       (new PdMessage).notify({
-        notify: "用户注册接口请求失败！",
+        notify: __("用户注册接口请求失败！", "niRvana"),
         type: "error",
         duration: 5e3
       })
@@ -58,7 +60,7 @@ function pf_login() {
   function n(e) {
     var t = (new PdMessage).stop({
       title: "",
-      message: "请稍后...",
+      message: __("请稍后...", "niRvana"),
       messageType: "waiting"
     });
     $.ajax({
@@ -75,17 +77,17 @@ function pf_login() {
         duration: 5e3
       }), !1;
       (new PdMessage).notify({
-        notify: "验证码发送成功",
+        notify: __("验证码发送成功", "niRvana"),
         type: "success",
         duration: 5e3
       }), (new PdMessage).notify({
-        notify: "请填写邮箱接收到的验证码",
+        notify: __("请填写邮箱接收到的验证码", "niRvana"),
         type: "info",
         duration: 5e3
       })
     }).fail(function() {
       (new PdMessage).notify({
-        notify: "发送邮件验证码接口请求失败！",
+        notify: __("发送邮件验证码接口请求失败！", "niRvana"),
         type: "error",
         duration: 5e3
       })
@@ -117,11 +119,11 @@ function pf_login() {
           $(".pandastudio_framework_register__form input").each(function(e, t) {
             "" !== $(t).val().replace(/ /g, "") && (o = !0)
           }), o ? (new PdMessage).confirm({
-            title: "取消注册",
-            message: "注册表单尚有数据，请确认是否取消注册？",
+            title: __("取消注册", "niRvana"),
+            message: __("注册表单尚有数据，请确认是否取消注册？", "niRvana"),
             messageType: "question",
-            cancel: "继续注册",
-            confirm: "取消注册",
+            cancel: __("继续注册", "niRvana"),
+            confirm: __("取消注册", "niRvana"),
             catch: function() {},
             then: function() {
               n()
@@ -159,12 +161,12 @@ function pf_login() {
     h = '<svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="qq" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-qq fa-w-14 fa-2x"><path fill="currentColor" d="M433.754 420.445c-11.526 1.393-44.86-52.741-44.86-52.741 0 31.345-16.136 72.247-51.051 101.786 16.842 5.192 54.843 19.167 45.803 34.421-7.316 12.343-125.51 7.881-159.632 4.037-34.122 3.844-152.316 8.306-159.632-4.037-9.045-15.25 28.918-29.214 45.783-34.415-34.92-29.539-51.059-70.445-51.059-101.792 0 0-33.334 54.134-44.859 52.741-5.37-.65-12.424-29.644 9.347-99.704 10.261-33.024 21.995-60.478 40.144-105.779C60.683 98.063 108.982.006 224 0c113.737.006 163.156 96.133 160.264 214.963 18.118 45.223 29.912 72.85 40.144 105.778 21.768 70.06 14.716 99.053 9.346 99.704z" class=""></path></svg>';
   this.showLogin = function(t, n) {
     var s = o(),
-      a = t ? '\n\t\t<div class="pandastudio_framework_login__card___new">\n\t\t\t<div class="pf_plus"></div>\n\t\t\t<div class="pf_tooltip">注册</div>\n\t\t</div>\n\t\t' : "";
-    if (n) var u = e("".concat(l, "QQ/用户名/邮箱"), "text"),
-      d = e("".concat(c, "网站密码"), "password");
-    else u = e("".concat(l, "用户名/邮箱"), "text"), d = e("".concat(c, "密码"), "password");
-    var h = $('\n\t\t<div class="pandastudio_framework_login__form___remember">\n\t\t\t<input type="checkbox" id="pf_login_remember"><label for="pf_login_remember">记住我</label>\n\t\t\t<a href="'.concat(pandastudio_framework.user_center.find_my_password, '" class="forget" target="_blank">忘记密码</a>\n\t\t</div>\n\t\t')),
-      p = $('\n\t\t<div class="pandastudio_framework_login__form___submit">\n\t\t\t登录\n\t\t</div>\n\t\t');
+      a = t ? '\n\t\t<div class="pandastudio_framework_login__card___new">\n\t\t\t<div class="pf_plus"></div>\n\t\t\t<div class="pf_tooltip">'.concat(__("注册", "niRvana"), '</div>\n\t\t</div>\n\t\t') : "";
+    if (n) var u = e("".concat(l, __("QQ/用户名/邮箱", "niRvana")), "text"),
+      d = e("".concat(c, __("网站密码", "niRvana")), "password");
+    else u = e("".concat(l, __("用户名/邮箱", "niRvana")), "text"), d = e("".concat(c, __("密码", "niRvana")), "password");
+    var h = $('\n\t\t<div class="pandastudio_framework_login__form___remember">\n\t\t\t<input type="checkbox" id="pf_login_remember"><label for="pf_login_remember">'.concat(__("记住我", "niRvana"), '</label>\n\t\t\t<a href="'.concat(pandastudio_framework.user_center.find_my_password, '" class="forget" target="_blank">'.concat(__("忘记密码", "niRvana"), '</a>\n\t\t</div>\n\t\t')))),
+      p = $('\n\t\t<div class="pandastudio_framework_login__form___submit">\n\t\t\t'.concat(__("登录", "niRvana"), '\n\t\t</div>\n\t\t'));
     p.on("click", function() {
       var e, t, n, o = u.find("input").val(),
         r = d.find("input").val(),
@@ -172,10 +174,10 @@ function pf_login() {
         a = !1;
       if ("" == o.replace(/ /g, "") && ((new PdMessage).notify({
           type: "error",
-          notify: "请输入账号"
+          notify: __("请输入账号", "niRvana")
         }), a = !0), "" == r.replace(/ /g, "") && ((new PdMessage).notify({
           type: "error",
-          notify: "请输入密码"
+          notify: __("请输入密码", "niRvana")
         }), a = !0), a) return i(p, "error", 600), !1;
       e = {
         user_login: o,
@@ -183,7 +185,7 @@ function pf_login() {
         remember: s
       }, t = p, n = (new PdMessage).stop({
         title: "",
-        message: "登录中...",
+        message: __("登录中...", "niRvana"),
         messageType: "waiting"
       }), $.ajax({
         url: pandastudio_framework.route + "pandastudio/user-center/user-signon/",
@@ -196,7 +198,7 @@ function pf_login() {
           duration: 5e3
         }), i(t, "error", 600), !1;
         (new PdMessage).notify({
-          notify: "登陆成功！",
+          notify: __("登陆成功！", "niRvana"),
           type: "success",
           duration: 5e3
         }), window.setTimeout(function() {
@@ -204,7 +206,7 @@ function pf_login() {
         }, 1e3)
       }).fail(function() {
         (new PdMessage).notify({
-          notify: "登录接口请求失败！",
+          notify: __("登录接口请求失败！", "niRvana"),
           type: "error",
           duration: 5e3
         })
@@ -222,41 +224,41 @@ function pf_login() {
     i(f, "is_showing", m), i(u, "is_showing", m + 350), i(d, "is_showing", m + 350 + 100), i(h, "is_showing", m + 350 + 100 + 100), i(p, "is_showing", m + 350 + 100 + 100 + 100), i(f.find(".pandastudio_framework_login__card___new"), "is_showing", m + 350 + 100 + 100 + 100 + 100), $("body > .pandastudio_framework_login").append(f)
   }, this.showRegister = function(r) {
     var a = o(),
-      p = $('\n\t\t<div class="pandastudio_framework_register__card___back">\n\t\t\t<div class="pf_back"></div>\n\t\t\t<div class="pf_tooltip">登录</div>\n\t\t</div>');
+      p = $('\n\t\t<div class="pandastudio_framework_register__card___back">\n\t\t\t<div class="pf_back"></div>\n\t\t\t<div class="pf_tooltip">'.concat(__("登录", "niRvana"), '</div>\n\t\t</div>'));
     if (p.on("click", function() {
         s(!0, r)
-      }), r) var f = e("".concat(h, "QQ号注册"), "text"),
-      m = e("".concat(c, "网站密码"), "password", !0);
+      }), r) var f = e("".concat(h, __("QQ号注册", "niRvana")), "text"),
+      m = e("".concat(c, __("网站密码", "niRvana")), "password", !0);
     else {
-      f = e("".concat(l, "用户名"), "text"), m = e("".concat(c, "密码"), "password", !0);
-      var g = e("".concat(u, "邮箱"), "text")
+      f = e("".concat(l, __("用户名", "niRvana")), "text"), m = e("".concat(c, __("密码", "niRvana")), "password", !0);
+      var g = e("".concat(u, __("邮箱", "niRvana")), "text")
     }
-    var v = e("".concat(d, "验证码"), "text"),
+    var v = e("".concat(d, __("验证码", "niRvana")), "text"),
       b = $('<span class="send_email_nonce"></span>');
     b.on("click", function() {
       if (r) {
         var e = f.find("input").val();
         if (parseInt(e).toString() !== e || e.length < 5) return (new PdMessage).notify({
           type: "error",
-          notify: "请输入正确的QQ号码"
+          notify: __("请输入正确的QQ号码", "niRvana")
         }), !1;
         var t = e + "@qq.com";
         return n(t), (new PdMessage).notify({
           type: "info",
-          notify: "验证码发往：\n" + t,
+          notify: __("验证码发往：\n", "niRvana") + t,
           duration: 1e4
         }), !1
       }
       var i = g.find("input").val();
       return "" == i.replace(/ /g, "") ? ((new PdMessage).notify({
         type: "error",
-        notify: "请输入邮箱"
+        notify: __("请输入邮箱", "niRvana")
       }), !1) : i.match(/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/) ? void n(i) : ((new PdMessage).notify({
         type: "error",
-        notify: "邮箱格式错误"
+        notify: __("邮箱格式错误", "niRvana")
       }), !1)
     }), v.prepend(b);
-    var y = $('\n\t\t<div class="pandastudio_framework_register__form___submit">\n\t\t\t注册\n\t\t</div>\n\t\t');
+    var y = $('\n\t\t<div class="pandastudio_framework_register__form___submit">\n\t\t\t'.concat(__("注册", "niRvana"), '\n\t\t</div>\n\t\t'));
     y.on("click", function() {
       if (r) {
         var e = f.find("input").val(),
@@ -265,13 +267,13 @@ function pf_login() {
           s = !1;
         return "" == e.replace(/ /g, "") && ((new PdMessage).notify({
           type: "error",
-          notify: "请输入QQ号"
+          notify: __("请输入QQ号", "niRvana")
         }), s = !0), "" == n.replace(/ /g, "") && ((new PdMessage).notify({
           type: "error",
-          notify: "请输入网站密码"
+          notify: __("请输入网站密码", "niRvana")
         }), s = !0), "" == o.replace(/ /g, "") && ((new PdMessage).notify({
           type: "error",
-          notify: "请输入QQ邮箱接收的验证码"
+          notify: __("请输入QQ邮箱接收的验证码", "niRvana")
         }), s = !0), s ? (i(y, "error", 600), !1) : (t({
           username: e,
           password: n,
@@ -283,19 +285,19 @@ function pf_login() {
       var a = g.find("input").val();
       if (o = v.find("input").val(), s = !1, "" == e.replace(/ /g, "") && ((new PdMessage).notify({
           type: "error",
-          notify: "请输入用户名"
+          notify: __("请输入用户名", "niRvana")
         }), s = !0), "" == n.replace(/ /g, "") && ((new PdMessage).notify({
           type: "error",
-          notify: "请输入密码"
+          notify: __("请输入密码", "niRvana")
         }), s = !0), "" == a.replace(/ /g, "") ? ((new PdMessage).notify({
           type: "error",
-          notify: "请输入邮箱"
+          notify: __("请输入邮箱", "niRvana")
         }), s = !0) : a.match(/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/) || ((new PdMessage).notify({
           type: "error",
-          notify: "邮箱格式错误"
+          notify: __("邮箱格式错误", "niRvana")
         }), s = !0), "" == o.replace(/ /g, "") && ((new PdMessage).notify({
           type: "error",
-          notify: "请输入邮箱接收的验证码"
+          notify: __("请输入邮箱接收的验证码", "niRvana")
         }), s = !0), s) return i(y, "error", 600), !1;
       t({
         username: e,

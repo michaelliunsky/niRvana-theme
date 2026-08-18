@@ -1,26 +1,25 @@
 <?php
 if ( 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
-    die( 'Please do not load this page directly. Thanks.' );
+    die( esc_html__( 'Please do not load this page directly. Thanks.', 'niRvana' ) );
 }
 
 if ( post_password_required() ) {
     echo '<div id="comments">';
-    echo '<div class="nopassword">' . __( 'This post is protected. Enter the password to view any comments.', 'nirvana' ) . '</div>';
+    echo '<div class="nopassword">' . esc_html__( 'This post is protected. Enter the password to view any comments.', 'niRvana' ) . '</div>';
     echo '</div><!-- .comments -->';
     return;
 }
 
 if ( comments_open() || get_comments_number() > 0 ) : ?>
 <div id="comments">
-    <div class="post-model"><i class="far fa-comment-alt"></i><?php echo esc_html( get_comments_number() ); ?> 条回应</div>
+    <div class="post-model"><i class="far fa-comment-alt"></i><?php printf( esc_html( _n( '%s 条回应', '%s 条回应', get_comments_number(), 'niRvana' ) ), number_format_i18n( get_comments_number() ) ); ?></div>
 
     <!-- 评论输入框 -->
     <?php
     if ( comments_open() ) {
         if ( get_option( 'comment_registration' ) && ! is_user_logged_in() ) : ?>
             <div class="tip">
-                <p>必须<a href="<?php echo esc_url( wp_registration_url() ); ?>" style="color:#fff;font-weight: bold;"> 注册 </a>为本站用户，
-                <a href="<?php echo esc_url( wp_login_url() ); ?>" style="color:#fff;font-weight: bold;"> 登录 </a>后才可以发表评论！</p>
+                <p><?php printf( __( '必须<a href="%1$s" style="color:#fff;font-weight:bold;">注册</a>为本站用户，<a href="%2$s" style="color:#fff;font-weight:bold;">登录</a>后才可以发表评论！', 'niRvana' ), esc_url( wp_registration_url() ), esc_url( wp_login_url() ) ); ?></p>
             </div>
         <?php else : ?>
             <div id="respond" class="comment-respond clearfix">
@@ -45,23 +44,23 @@ if ( comments_open() || get_comments_number() > 0 ) : ?>
 
                 <div class="popover_loggedin hidden">
                     <div style="text-align: right; width: 100px;">
-                        <a>取消</a>
-                        <a href="<?php echo esc_url( wp_logout_url( get_permalink() ) ); ?>" class="primary"><i class="fas fa-check"></i> 确定</a>
+                        <a><?php esc_html_e( '取消', 'niRvana' ); ?></a>
+                        <a href="<?php echo esc_url( wp_logout_url( get_permalink() ) ); ?>" class="primary"><i class="fas fa-check"></i> <?php esc_html_e( '确定', 'niRvana' ); ?></a>
                     </div>
                 </div>
 
                 <div class="popover_guests hidden">
                     <p>
                         <label><i class="fas fa-user"></i></label>
-                        <input v-model="comment_author" class="comment-input" placeholder="昵称">
+                        <input v-model="comment_author" class="comment-input" placeholder="<?php echo esc_attr__( '昵称', 'niRvana' ); ?>">
                     </p>
                     <p>
                         <label><i class="fas fa-envelope"></i></label>
-                        <input v-model="comment_email" class="comment-input" placeholder="邮箱">
+                        <input v-model="comment_email" class="comment-input" placeholder="<?php echo esc_attr__( '邮箱', 'niRvana' ); ?>">
                     </p>
                     <p>
                         <label><i class="fas fa-globe-americas"></i></label>
-                        <input v-model="comment_url" class="comment-input" placeholder="网站">
+                        <input v-model="comment_url" class="comment-input" placeholder="<?php echo esc_attr__( '网站', 'niRvana' ); ?>">
                     </p>
                 </div>
 
@@ -72,7 +71,7 @@ if ( comments_open() || get_comments_number() > 0 ) : ?>
                             name="comment"
                             rows="5"
                             aria-required="true"
-                            placeholder="<?php echo esc_attr( _eopt( 'comment_area_placeholder', '请输入...' ) ); ?>"
+                            placeholder="<?php echo esc_attr( _opt( 'comment_area_placeholder', __( '请输入...', 'niRvana' ) ) ); ?>"
                             v-model="comment_text"
                             class="comment-input"
                         ></textarea>
@@ -87,7 +86,7 @@ if ( comments_open() || get_comments_number() > 0 ) : ?>
                         do_action( 'pf_comment_form_before_face' );
 
                         if ( count( $cmt_face_arr ) > 0 ) {
-                            echo '<a id="comment_faces_toggle" tabindex="0"><i class="far fa-smile-wink" data-toggle="tooltip" title="表情"></i></a>';
+                            echo '<a id="comment_faces_toggle" tabindex="0"><i class="far fa-smile-wink" data-toggle="tooltip" title="' . esc_attr__( '表情', 'niRvana' ) . '"></i></a>';
                         }
 
                         do_action( 'pf_comment_form_after_face' );
@@ -96,7 +95,7 @@ if ( comments_open() || get_comments_number() > 0 ) : ?>
                             class="comment-meta nick-name guests"
                             tabindex="0"
                             v-show="!this.is_user_loggedin"
-                            :html="this.comment_author ? this.comment_author.replace(/ /g, '') != '' ? this.comment_author : '昵称' : '昵称'"
+                            :html="this.comment_author ? this.comment_author.replace(/ /g, '') != '' ? this.comment_author : <?php echo esc_attr( wp_json_encode( __( '昵称', 'niRvana' ) ) ); ?> : <?php echo esc_attr( wp_json_encode( __( '昵称', 'niRvana' ) ) ); ?>"
                         ></a>
                         <a class="comment-meta nick-name loggedin" tabindex="0" v-show="this.is_user_loggedin">
                             <?php
@@ -105,14 +104,14 @@ if ( comments_open() || get_comments_number() > 0 ) : ?>
                             echo esc_html( $current_user->user_login );
                             ?>
                         </a>
-                        <span class="big_fa_ding" data-toggle="tooltip" title="同时点赞">
+                        <span class="big_fa_ding" data-toggle="tooltip" title="<?php echo esc_attr__( '同时点赞', 'niRvana' ); ?>">
                             <input name="big_fa_ding" type="checkbox" v-model="comment_ding" class="jv-switcher">
                         </span>
                     </p>
 
                     <p class="form-submit">
-                        <?php echo get_cancel_comment_reply_link( '<i class="fas fa-ban"></i> 取消回复' ); ?>
-                        <button name="submit" class="submit-comment" value="提交评论" @click="this.submit_comments(event);"><i class="fas fa-paper-plane"></i> 提交评论</button>
+                        <?php echo get_cancel_comment_reply_link( '<i class="fas fa-ban"></i> ' . esc_html__( '取消回复', 'niRvana' ) ); ?>
+                        <button name="submit" class="submit-comment" value="<?php echo esc_attr__( '提交评论', 'niRvana' ); ?>" @click="this.submit_comments(event);"><i class="fas fa-paper-plane"></i> <?php esc_html_e( '提交评论', 'niRvana' ); ?></button>
 
                         <?php
                         comment_id_fields();

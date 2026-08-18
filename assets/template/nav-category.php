@@ -12,9 +12,9 @@ global $nav_category_list_type;
 				)
 			);
 		} else {
-			echo '
-<ul class="menu"><li><a>请在后台添加菜单并指派到"文章分类菜单"</a></li></ul>
-';
+			?>
+			<ul class="menu"><li><a><?php printf( esc_html__( '请在后台添加菜单并指派到“%s”', 'niRvana' ), esc_html__( '文章分类菜单', 'niRvana' ) ); ?></a></li></ul>
+			<?php
 		}
 		?>
 	</div>
@@ -22,8 +22,8 @@ global $nav_category_list_type;
 <div class="display-switcher-wrapper">
 	<div pandaTab class="display-switcher" active-class=".active" sub-trigger="click" sub-class=".sub-menu">
 		<ul class="menu">
-			<li class="card <?php echo ( $nav_category_list_type == 'cards' ? 'active' : '' ); ?>"><a data-toggle="tooltip" data-placement="auto top" title="卡片"><i class="fas fa-th"></i></a></li>
-			<li class="list <?php echo ( $nav_category_list_type == 'lists' ? 'active' : '' ); ?>"><a data-toggle="tooltip" data-placement="auto top" title="列表"><i class="fas fa-list"></i></a></li>
+			<li class="card <?php echo ( $nav_category_list_type == 'cards' ? 'active' : '' ); ?>"><a data-toggle="tooltip" data-placement="auto top" title="<?php echo esc_attr__( '卡片', 'niRvana' ); ?>"><i class="fas fa-th"></i></a></li>
+			<li class="list <?php echo ( $nav_category_list_type == 'lists' ? 'active' : '' ); ?>"><a data-toggle="tooltip" data-placement="auto top" title="<?php echo esc_attr__( '列表', 'niRvana' ); ?>"><i class="fas fa-list"></i></a></li>
 		</ul>
 	</div>
 </div>

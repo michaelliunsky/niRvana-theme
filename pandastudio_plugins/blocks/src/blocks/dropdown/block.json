@@ -3,6 +3,7 @@
 	"apiVersion": 3,
 	"name": "pandastudio/dropdown",
 	"version": "2.0.0",
+	"textdomain": "niRvana",
 	"title": "下拉菜单",
 	"icon": "menu",
 	"category": "pandastudio-block-category",

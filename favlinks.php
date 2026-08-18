@@ -23,7 +23,7 @@ get_topSlider( array( $post->ID ), $type );
 		<div class="<?php echo $leftClass; ?>">
 			<div class="col-xs-12">
 				<div class="row postLists">
-					<div class="toggle_sidebar" @click="this.single_toggle_sidebar()" data-toggle="tooltip" data-placement="auto top" title="切换边栏"><i class="fas fa-angle-right"></i></div>
+					<div class="toggle_sidebar" @click="this.single_toggle_sidebar()" data-toggle="tooltip" data-placement="auto top" title="<?php echo esc_attr__( '切换边栏', 'niRvana' ); ?>"><i class="fas fa-angle-right"></i></div>
 					<div class="article_wrapper post clearfix page">
 						<article class="clearfix">
 							<?php

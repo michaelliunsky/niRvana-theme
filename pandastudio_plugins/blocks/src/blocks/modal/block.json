@@ -3,6 +3,7 @@
 	"apiVersion": 3,
 	"name": "pandastudio/modal",
 	"version": "2.0.0",
+	"textdomain": "niRvana",
 	"title": "模态框",
 	"description": "用于浮动展示更多内容",
 	"icon": "welcome-view-site",

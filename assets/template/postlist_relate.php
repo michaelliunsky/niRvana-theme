@@ -4,7 +4,7 @@
 			<div class="thumb_img" style="background-image:url('<?php the_post_thumbnail_url(); ?>');">
 				<div class="meta flex-center">
 					<h3><?php the_title(); ?></h3>
-					<span class="date"><?php the_time( 'n月j日 · Y年' ); ?></span>
+					<span class="date"><?php echo esc_html( get_the_date( get_option( 'date_format' ) ) ); ?></span>
 				</div>
 			</div>
 		</a>

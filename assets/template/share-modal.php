@@ -5,16 +5,16 @@ $like_num = _meta( 'bigfa_ding' ) ? _meta( 'bigfa_ding' ) : '0';
     <?php do_action( 'pf-share-modal-start' ); ?>
     <?php if ( _meta( '打赏' ) ) : ?>
         <a class="dashang" data-target="#dashang" data-toggle="modal">
-            <i class="fas fa-yen-sign" data-toggle="tooltip" data-placement="auto top" title="打赏"></i>
+            <i class="fas fa-yen-sign" data-toggle="tooltip" data-placement="auto top" title="<?php echo esc_attr__( '打赏', 'niRvana' ); ?>"></i>
         </a>
     <?php endif; ?>
     <?php do_action( 'pf-share-modal-before-share' ); ?>
     <?php if ( _opt( 'show_share_posts' ) ) : ?>
         <a class="toWeibo" @click="this.shareToWeibo()">
-            <i class="fab fa-weibo" data-toggle="tooltip" data-placement="auto top" title="分享到微博"></i>
+            <i class="fab fa-weibo" data-toggle="tooltip" data-placement="auto top" title="<?php echo esc_attr__( '分享到微博', 'niRvana' ); ?>"></i>
         </a>
         <a class="toWechat" @click="this.shareToWechat('<?php the_post_thumbnail_url(); ?>','<?php echo get_the_description( $post->ID ); ?>')">
-            <i class="fab fa-weixin" data-toggle="tooltip" data-placement="auto top" title="分享到微信"></i>
+            <i class="fab fa-weixin" data-toggle="tooltip" data-placement="auto top" title="<?php echo esc_attr__( '分享到微信', 'niRvana' ); ?>"></i>
         </a>
     <?php endif; ?>
     <?php do_action( 'pf-share-modal-before-favorite' ); ?>
@@ -22,7 +22,7 @@ $like_num = _meta( 'bigfa_ding' ) ? _meta( 'bigfa_ding' ) : '0';
         @click="this.ding( <?php the_ID(); ?> )"
         class="post-like like favorite <?php echo isset( $_COOKIE[ 'bigfa_ding_' . $post->ID ] ) ? 'done' : ''; ?>">
         <i class="<?php echo isset( $_COOKIE[ 'bigfa_ding_' . $post->ID ] ) ? 'fas' : 'far'; ?> fa-heart"
-           data-toggle="tooltip" data-placement="auto top" title="点赞"></i>
+           data-toggle="tooltip" data-placement="auto top" title="<?php echo esc_attr__( '点赞', 'niRvana' ); ?>"></i>
         <span class="count number"><?php echo $like_num; ?></span>
     </a>
     <?php do_action( 'pf-share-modal-end' ); ?>

@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Text-to-Speech",
+    "icon": "fa-microphone",
+    "labelWidth": "100px",
+    "content": [
+      {
+        "type": "switch",
+        "label": "Enable",
+        "value": "",
+        "name": "baidu_ai_audio_enable",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "slider",
+        "label": " Speech Rate",
+        "value": 0,
+        "min": 0,
+        "max": 15,
+        "step": 1,
+        "name": "baidu_ai_audio_spd",
+        "decoration": "Default: 5 (Medium Speed)",
+        "gear_name": "baidu_ai_audio_enable",
+        "gear_value": "checked"
+      },
+      {
+        "type": "slider",
+        "label": "Pitch",
+        "value": 0,
+        "min": 0,
+        "max": 15,
+        "step": 1,
+        "name": "baidu_ai_audio_pit",
+        "decoration": "Default: 5 (Medium Speed)",
+        "gear_name": "baidu_ai_audio_enable",
+        "gear_value": "checked"
+      },
+      {
+        "type": "select",
+        "label": "Voice Selection",
+        "value": "",
+        "selects": [
+          {
+            "label": "Standard Female Voice",
+            "value": "0",
+            "description": "Default"
+          },
+          {
+            "label": "Standard Male Voice",
+            "value": "1",
+            "description": ""
+          },
+          {
+            "label": "Emotional Synthesis - Duxiaoyao",
+            "value": "3",
+            "description": ""
+          },
+          {
+            "label": "Emotional Synthesis - Duyaya",
+            "value": "4",
+            "description": ""
+          }
+        ],
+        "name": "baidu_ai_audio_per",
+        "decoration": "",
+        "gear_name": "baidu_ai_audio_enable",
+        "gear_value": "checked"
+      }
+    ],
+    "gear_name": "",
+    "gear_value": ""
+  }
+]

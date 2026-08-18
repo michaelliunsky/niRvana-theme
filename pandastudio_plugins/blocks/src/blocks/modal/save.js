@@ -6,9 +6,9 @@ export default function save( { attributes } ) {
 	const type = btn_type || 'btn-primary';
 	const label = btn_label || '';
 	const modalId = id || `uuid-timestamp-${ new Date().getTime() }`;
-	const modalTitle = title || __( '未标题' );
-	const closeLabel = close_label || __( '关闭' );
-	const hrefLabel = href_label || __( '跳转到' );
+	const modalTitle = title || __( '未标题', 'niRvana' );
+	const closeLabel = close_label || __( '关闭', 'niRvana' );
+	const hrefLabel = href_label || __( '跳转到', 'niRvana' );
 	const linkHref = href || '';
 	return (
 		<div { ...useBlockProps.save() }>

@@ -8,19 +8,19 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '区块设置' ) }>
+				<PanelBody title={ __( '区块设置', 'niRvana' ) }>
 					<SelectControl
-						label={ __( '标题样式' ) }
+						label={ __( '标题样式', 'niRvana' ) }
 						value={ titleClass }
 						options={ [
-							{ label: '样式一', value: 'title_style_01' },
-							{ label: '样式二', value: 'title_style_02' },
+							{ label: __( '样式一', 'niRvana' ), value: 'title_style_01' },
+							{ label: __( '样式二', 'niRvana' ), value: 'title_style_02' },
 						] }
 						onChange={ ( value ) => setAttributes( { titleClass: value } ) }
 						__next40pxDefaultSize
 					/>
 					<SelectControl
-						label={ __( '标签' ) }
+						label={ __( '标签', 'niRvana' ) }
 						value={ titleInnerTag }
 						options={ [
 							{ label: 'p', value: 'p' },
@@ -38,7 +38,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						tagName={ titleInnerTag }
 						value={ content }
 						onChange={ ( value ) => setAttributes( { content: value.replace( /<br>/g, '' ) } ) }
-						placeholder={ __( '请输入...' ) }
+						placeholder={ __( '请输入...', 'niRvana' ) }
 					/>
 				</div>
 			</div>

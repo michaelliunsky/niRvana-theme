@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "pandastudio/bilibili",
   "version": "2.0.0",
+  "textdomain": "niRvana",
   "title": "哔哩哔哩视频",
   "description": "插入哔哩哔哩视频",
   "icon": "video-alt3",

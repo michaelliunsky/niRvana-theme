@@ -21,14 +21,14 @@ get_topSlider( array( $post_id ), $type );
 		<div class="<?php echo $left_class; ?>">
 			<div class="col-xs-12">
 				<div class="row postLists">
-					<div class="toggle_sidebar" @click="this.single_toggle_sidebar()" data-toggle="tooltip" data-placement="auto top" title="切换边栏">
+					<div class="toggle_sidebar" @click="this.single_toggle_sidebar()" data-toggle="tooltip" data-placement="auto top" title="<?php echo esc_attr__( '切换边栏', 'niRvana' ); ?>">
 						<i class="fas fa-angle-right"></i>
 					</div>
 					<div class="article_wrapper post clearfix">
 						<div class="meta">
 							<?php do_action( 'pf-post-meta-start' ); ?>
 							<span class="inline-block">
-								<i class="fas fa-user"></i><?php echo esc_html( get_the_author() ); ?> · <?php echo esc_html( get_the_date( 'n月j日 · Y年' ) ); ?>
+								<i class="fas fa-user"></i><?php printf( esc_html__( '%1$s · %2$s', 'niRvana' ), esc_html( get_the_author() ), esc_html( get_the_date( get_option( 'date_format' ) ) ) ); ?>
 							</span>
 							<?php do_action( 'pf-post-meta-before-tag' ); ?>
 							<?php

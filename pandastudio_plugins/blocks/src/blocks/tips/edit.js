@@ -27,8 +27,8 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '区块设置' ) }>
-					<div className="pf_inspectorTitle">{ __( '选择颜色' ) }</div>
+				<PanelBody title={ __( '区块设置', 'niRvana' ) }>
+					<div className="pf_inspectorTitle">{ __( '选择颜色', 'niRvana' ) }</div>
 					<div className="panda tipSelector">
 						{ COLORS.map( ( color ) => (
 							<button
@@ -39,7 +39,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 						) ) }
 					</div>
-					<div className="pf_inspectorTitle">{ __( '全宽样式' ) }</div>
+					<div className="pf_inspectorTitle">{ __( '全宽样式', 'niRvana' ) }</div>
 					<div className="panda tipSelector">
 						<button
 							className="inline"
@@ -53,7 +53,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				<RichText
 					onChange={ ( value ) => setAttributes( { content: value } ) }
 					value={ content }
-					placeholder={ __( '请输入...' ) }
+					placeholder={ __( '请输入...', 'niRvana' ) }
 				/>
 			</div>
 		</>

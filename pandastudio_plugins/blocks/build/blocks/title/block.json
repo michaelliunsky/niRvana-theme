@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "pandastudio/title",
   "version": "2.0.0",
+  "textdomain": "niRvana",
   "title": "小标题",
   "icon": "feedback",
   "category": "pandastudio-block-category",

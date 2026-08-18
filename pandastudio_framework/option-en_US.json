@@ -1,0 +1,1501 @@
+[
+  {
+    "title": "General",
+    "icon": "fa-gear",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "type": "uploader",
+        "label": "Site Logo",
+        "value": "",
+        "showImage": true,
+        "name": "logo",
+        "decoration": ""
+      },
+      {
+        "type": "input",
+        "label": "Title Divider",
+        "value": "",
+        "placeholder": "Default: |",
+        "name": "title_sep",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "label": "favicon",
+        "decoration": "Upload an image at Appearance / Customize / Site Identity / Site Icon; a favicon and Apple device icon will be generated automatically",
+        "value": ""
+      },
+      {
+        "type": "input",
+        "label": "Copyright Text",
+        "value": "",
+        "placeholder": "e.g. ©2026 michaelliunsky All rights reserved",
+        "name": "footer版权文本",
+        "decoration": ""
+      },
+      {
+        "type": "multitypes",
+        "label": "Display Filing Information",
+        "subLabel": "Filing Information",
+        "subLabelWidth": "100px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "uploader",
+            "showImage": true,
+            "name": "image",
+            "label": "Icon"
+          },
+          {
+            "type": "input",
+            "placeholder": "Please enter...",
+            "name": "number",
+            "label": "Filing Number"
+          },
+          {
+            "type": "input",
+            "placeholder": "http://",
+            "name": "href",
+            "label": "Link URL"
+          }
+        ],
+        "value": [],
+        "name": "cn_record",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Display filing information on separate lines",
+        "value": "",
+        "name": "cn_record_breakline",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Basic SEO</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Enable Basic SEO",
+        "value": "",
+        "name": "enable_meta_seo",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "Use the meta keywords and description tags to help search engines index posts.<br>\nThe theme provides only basic SEO features. If SEO matters to you, disable this option and use a third-party plugin instead!"
+      },
+      {
+        "type": "input",
+        "label": "Keywords",
+        "value": "",
+        "placeholder": "Please enter site keywords...",
+        "name": "seo_site_keywords",
+        "decoration": "",
+        "gear_name": "enable_meta_seo",
+        "gear_value": "checked"
+      },
+      {
+        "type": "input",
+        "label": "Description",
+        "value": "",
+        "placeholder": "Describe the site content briefly...",
+        "name": "seo_site_description",
+        "decoration": "",
+        "gear_name": "enable_meta_seo",
+        "gear_value": "checked"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Data</span>",
+        "decoration": "",
+        "value": ""
+      },
+      {
+        "type": "uploadData",
+        "label": "Import",
+        "decoration": "Upload settings data exported by this theme; other data is invalid",
+        "value": ""
+      },
+      {
+        "type": "downloadData",
+        "label": "Export",
+        "decoration": "This only downloads the theme configuration data stored on the server. If your data has not been saved to the server, save it before exporting",
+        "value": ""
+      },
+      {
+        "type": "clearData",
+        "label": "Reset",
+        "decoration": "Clear Theme Options",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "title": "General",
+    "icon": "fa-dashboard",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Slider General Settings</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "inputNumber",
+        "label": "Auto-switch Time",
+        "value": 0,
+        "min": 0,
+        "max": 100000,
+        "step": 1000,
+        "name": "carousels_interval_time",
+        "decoration": "Unit: milliseconds (1 second = 1000 ms). Set to 0 to disable automatic switching",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Stop Switching on Hover",
+        "value": "",
+        "name": "carousels_hover_disable_interval",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "When enabled, do not switch automatically while hovering"
+      },
+      {
+        "type": "switch",
+        "label": "Anchor Position",
+        "value": "",
+        "name": "carousels_show_anchor",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "When enabled, display the current page number"
+      },
+      {
+        "type": "switch",
+        "label": "Allow Keyboard Scrolling",
+        "value": "",
+        "name": "carousels_allow_keyboard",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "When enabled, use the left and right keyboard keys to switch"
+      },
+      {
+        "type": "switch",
+        "label": "Allow Swipe Switching",
+        "value": "",
+        "name": "carousels_allow_swipe",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "When disabled, swipe switching is unavailable on mobile devices"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Sidebar General Settings</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "multitypes",
+        "label": " Sidebar Count",
+        "subLabel": "Sidebar",
+        "subLabelWidth": "100px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "input",
+            "placeholder": "Please enter...",
+            "name": "name",
+            "label": "Title"
+          },
+          {
+            "type": "input",
+            "placeholder": "FontAwesome6",
+            "name": "icon",
+            "label": "Icon"
+          },
+          {
+            "type": "select",
+            "selects": [
+              {
+                "label": "Home",
+                "value": "home",
+                "description": ""
+              },
+              {
+                "label": "Post Content Page",
+                "value": "single",
+                "description": ""
+              },
+              {
+                "label": "Category Page",
+                "value": "archive",
+                "description": ""
+              },
+              {
+                "label": "Page",
+                "value": "page",
+                "description": ""
+              }
+            ],
+            "name": "show_on",
+            "label": "Display In",
+            "multiple": true
+          }
+        ],
+        "value": [],
+        "name": "sidebars",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "1. Select an icon from <a target=\"_blank\" href=\"https://fontawesome.com/icons\">FontAwesome6</a>, then copy the &lt;i&gt; tag, for example: &lt;i class=&quot;fab fa-apple&quot;&gt;&lt;/i&gt;</li><br>\n2. Sorting sidebars only changes sidebar names and icons. Adjust the order and position of widgets under \"Appearance / Widgets\".<br>\n3. After adding a sidebar, refresh the page if the \"Appearance / Widgets\" menu does not appear. Clearing the sidebars here (count 0) removes the \"Appearance / Widgets\" menu.<br>\nNote: This icon library is updated in real time. Very new icons may not be displayed; contact the theme developer to update the icon library bundled with the theme.<br>\n4. To help search engines index the site, sidebar data is hidden from search engines and sidebar content is loaded disguised as a script. If you add custom HTML to a sidebar, do not include another script tag; if necessary, escape angle brackets as %3cscript%3e.<br>\nThe escape code for the left angle bracket is: %3c<br>\nThe escape code for the right angle bracket is: %3e<br>"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Category General Display</span>",
+        "decoration": "Control category display for \"Coverflow Slider\" and \"Top of Post Content\"",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Full Category",
+        "value": "",
+        "name": "show_full_category",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "By default, only the first category of each post is displayed; enable to display all categories"
+      },
+      {
+        "type": "input",
+        "label": "Separator",
+        "value": "",
+        "placeholder": "Please enter...",
+        "name": "show_full_category_separate",
+        "decoration": "Separator for multiple categories; default: slash (/)",
+        "gear_name": "show_full_category",
+        "gear_value": "checked"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Ajax Page Loading</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Load the Entire Site Without Refreshing",
+        "value": "",
+        "name": "enable_pageLoader",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "Third-party plugins that modify HTML with scripts will stop working. Enable with caution!<br>\nFor users who can modify code, an interface is provided to address this: use the JS hook below to invoke your code when the page is re-rendered after Ajax loading completes:<br>\nadd_action(\"ajax_render_complete\",function() {\n    console.log('Loading complete');\n})<br>\nResearch additional JS hooks yourself."
+      },
+      {
+        "type": "switch",
+        "label": "Force Cache",
+        "value": "",
+        "name": "ajax_forceCache",
+        "gear_name": "enable_pageLoader",
+        "gear_value": "checked",
+        "decoration": "When enabled, pages opened on the frontend are cached by the browser, which can speed up subsequent visits to the same page. Like status, comment counts, and other data may be stale because they are cached"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Post List Display</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Masonry",
+        "value": "",
+        "name": "enable_post_list_waterfall",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "When enabled, all \"Card\" layouts in post lists use \"Masonry\". The result depends on featured image dimensions and title length"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Dark Mode</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Dark Mode",
+        "name": "enable_dark_mode",
+        "value": "",
+        "decoration": "When enabled, display a switch so users can toggle dark mode on the page"
+      },
+      {
+        "type": "switch",
+        "label": "Auto-switch Dark Mode",
+        "name": "auto_dark_mode",
+        "value": "",
+        "gear_name": "enable_dark_mode",
+        "gear_value": "checked",
+        "decoration": "When enabled, dark mode switches automatically by time period when the user has not switched it manually"
+      },
+      {
+        "type": "input",
+        "label": "Dark Mode Start Time",
+        "name": "dark_mode_time_start",
+        "value": "19:00",
+        "placeholder": "e.g. 19:00",
+        "decoration": "Enter a 24-hour time, e.g. 19:00",
+        "gear_name": "enable_dark_mode",
+        "gear_value": "checked"
+      },
+      {
+        "type": "input",
+        "label": "Dark Mode End Time",
+        "name": "dark_mode_time_end",
+        "value": "07:00",
+        "placeholder": "e.g. 07:00",
+        "decoration": "Enter a 24-hour time, e.g. 07:00",
+        "gear_name": "enable_dark_mode",
+        "gear_value": "checked"
+      }
+    ],
+    "gear_name": "",
+    "gear_value": ""
+  },
+  {
+    "title": "Home",
+    "icon": "fa-desktop",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Slider</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "select",
+        "label": "Slider Display Style",
+        "value": "",
+        "selects": [
+          {
+            "label": "Apple Coverflow",
+            "value": "coverflow",
+            "description": "Use \"Featured Image\""
+          },
+          {
+            "label": "Apple Coverflow - Full Width",
+            "value": "coverflow-full",
+            "description": "Use \"Featured Image\""
+          },
+          {
+            "label": "Slider Image",
+            "value": "imageflow",
+            "description": "Use \"Slider Image\""
+          },
+          {
+            "label": "Slider Image - Full Width",
+            "value": "imageflow-full",
+            "description": "Use \"Slider Image\""
+          },
+          {
+            "label": "Flat",
+            "value": "coverflow-flat",
+            "description": "Use \"Featured Image\""
+          },
+          {
+            "label": "Flat - Full Width",
+            "value": "coverflow-flat-full",
+            "description": "Use \"Featured Image\""
+          }
+        ],
+        "name": "frontpage_carousels_type",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Random Slider Posts",
+        "value": "",
+        "name": "headLine_random",
+        "decoration": "The homepage displays \"Custom Slider Posts\" by default. When enabled, random posts from the entire site appear at the top of the homepage. To hide them, disable this option first, then clear \"Custom Slider Posts\""
+      },
+      {
+        "type": "multitypes",
+        "label": "Custom Slider Posts",
+        "subLabel": "Featured Posts",
+        "subLabelWidth": "60px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "singleSelect",
+            "name": "post",
+            "label": "Posts"
+          }
+        ],
+        "value": [],
+        "name": "headLine",
+        "decoration": "Takes effect after \"Random Scrolling Posts\" is disabled. To display images in the slider, add a \"Slider Image\" on the corresponding post edit page",
+        "gear_name": "headLine_random",
+        "gear_value": ""
+      },
+      {
+        "type": "inputNumber",
+        "label": "\"Latest Posts\" Count",
+        "value": 0,
+        "min": 1,
+        "max": 99,
+        "step": 1,
+        "name": "newest_num",
+        "decoration": "",
+        "gear_name": "index_newest",
+        "gear_value": "checked"
+      },
+      {
+        "type": "input",
+        "label": "\"Latest Posts\" Text",
+        "value": "",
+        "placeholder": "e.g. Latest Posts",
+        "name": "newest_text",
+        "decoration": "",
+        "gear_name": "index_newest",
+        "gear_value": "checked"
+      },
+      {
+        "type": "input",
+        "label": "\"All Posts\" URL",
+        "value": "",
+        "placeholder": "All Category Posts URL",
+        "name": "index_time_url",
+        "decoration": "Create a new \"Page\", select \"All Posts Sorted by Date\", and enter the page URL here",
+        "gear_name": "index_newest",
+        "gear_value": "checked"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Homepage Posts</span>",
+        "decoration": "Homepage posts consist of four sections: \"Latest Posts\", \"Most Liked\", \"Most Commented\", and \"Random Recommendations\". All except \"Latest Posts\" are mixed together",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "categoriesSelect",
+        "label": "Exclude Categories",
+        "value": "",
+        "name": "index_newes_exclude",
+        "decoration": "Applies to both \"Random Slider\" and \"Homepage Posts\"",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "radio",
+        "label": "\"All Posts\" Format",
+        "value": "",
+        "radios": [
+          {
+            "label": "List Display",
+            "value": "list"
+          },
+          {
+            "label": "Card Display",
+            "value": "card"
+          },
+          {
+            "label": "Blog Display",
+            "value": ""
+          }
+        ],
+        "name": "all_posts_display_type",
+        "decoration": "",
+        "gear_name": "index_newest",
+        "gear_value": "checked"
+      },
+      {
+        "type": "radio",
+        "label": "Default Style",
+        "value": "",
+        "radios": [
+          {
+            "label": "Card",
+            "value": "cards"
+          },
+          {
+            "label": "List",
+            "value": ""
+          }
+        ],
+        "name": "frontpage_postlist_type",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "inputNumber",
+        "label": "Latest Posts Count",
+        "value": 0,
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "name": "frontpage_postlist_newest_num",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "inputNumber",
+        "label": "Most Liked Count",
+        "value": 0,
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "name": "frontpage_postlist_like_num",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "inputNumber",
+        "label": "Most Comments Count",
+        "value": 0,
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "name": "frontpage_postlist_comment_num",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "inputNumber",
+        "label": "Random Recommendations Count",
+        "value": 0,
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "name": "frontpage_postlist_random_num",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "input",
+        "label": "\"Read More\" Text",
+        "value": "",
+        "placeholder": "e.g. Read more; this text will be the same as the \"Read More\" text in \"Group Display\"",
+        "name": "read_more_text",
+        "decoration": ""
+      },
+      {
+        "type": "input",
+        "label": "\"Read More\" Link",
+        "value": "",
+        "placeholder": "Leave blank to hide",
+        "name": "index_time_url",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Hide Sidebar on Homepage",
+        "value": "",
+        "name": "frontpage_hide_sidebar",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Group Display</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "multitypes",
+        "label": "Post Group",
+        "subLabel": "Post Group",
+        "subLabelWidth": "100px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "categoriesSelect",
+            "name": "cats",
+            "label": "Post Categories"
+          },
+          {
+            "type": "input",
+            "placeholder": "Display Name",
+            "name": "name",
+            "label": "Group Name"
+          },
+          {
+            "type": "input",
+            "placeholder": "\"Read More\" Text",
+            "name": "more",
+            "label": "Link Text"
+          },
+          {
+            "type": "input",
+            "placeholder": "http://\"Read More\" link",
+            "name": "href",
+            "label": "Category Link"
+          },
+          {
+            "type": "input",
+            "placeholder": "Number of posts; leave blank for automatic",
+            "name": "num",
+            "label": "Display Count"
+          },
+          {
+            "type": "select",
+            "selects": [
+              {
+                "label": "List Display",
+                "value": "lists",
+                "description": ""
+              },
+              {
+                "label": "Card Display",
+                "value": "cards",
+                "description": ""
+              }
+            ],
+            "name": "type",
+            "label": "Display Type"
+          }
+        ],
+        "value": [],
+        "name": "index_group",
+        "decoration": "Display one or more post categories together. Note: <span style=\"color:red\">displaying multiple categories is not recommended</span>.<br>\nWhen multiple categories are required, separate them with commas in the \"Read More\" link URL, for example:<br>\nPlain permalinks: http://www.yourblog.com/category/cat1,cat2/<br>\nOther permalink structures: http://www.yourblog.com/?cat=1,2"
+      }
+    ]
+  },
+  {
+    "title": "Comment",
+    "icon": "fa-comment",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "type": "multitypes",
+        "label": "Random Avatars",
+        "subLabel": "Avatar",
+        "subLabelWidth": "100px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "uploader",
+            "showImage": true,
+            "name": "avatar",
+            "label": "Avatar URL"
+          }
+        ],
+        "value": [],
+        "name": "random_avatar",
+        "decoration": "If a user does not have a Gravatar avatar, a random pattern from the list above is displayed.<br>\nTo prevent stretching or distortion, make sure avatars are larger than 40×40 pixels and have a 1:1 aspect ratio"
+      },
+      {
+        "type": "input",
+        "label": "Comment Box Prompt",
+        "value": "",
+        "placeholder": "e.g. Leave a comment",
+        "name": "comment_area_placeholder",
+        "decoration": ""
+      },
+      {
+        "type": "input",
+        "label": "\"Reply\" Button Prompt",
+        "value": "",
+        "placeholder": "e.g. Reply",
+        "name": "comment_reply_tooltip",
+        "decoration": ""
+      },
+      {
+        "type": "input",
+        "label": "Comment Visibility Prompt",
+        "value": "",
+        "placeholder": "e.g. Content visible after commenting",
+        "name": "need_reply_tip",
+        "decoration": "Insert the \"Reply to View\" block in the post editor; wrapped content is visible only after commenting",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "label": "Comment Emoticons",
+        "decoration": "Upload emoticons to the faces folder in the WordPress theme directory to enable them automatically: installation path/wp-content/themes/niRvana/faces/<br>\nEmoticons should be images around 30–40 pixels",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "title": "Posts",
+    "icon": "fa-file-lines",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Header Title Style</span>",
+        "decoration": "Posts must have a \"Featured Image\"; the blurred featured image background is used by default",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "select",
+        "label": "Post header image set",
+        "value": "",
+        "selects": [
+          {
+            "label": "Blurred Featured Image Background",
+            "value": "single-coverflow",
+            "description": ""
+          },
+          {
+            "label": "Blurred Featured Image Background - Full Width",
+            "value": "single-coverflow-full",
+            "description": ""
+          },
+          {
+            "label": "Post Header Image",
+            "value": "single-imageflow",
+            "description": ""
+          },
+          {
+            "label": "Post Header Image - Full Width",
+            "value": "single-imageflow-full",
+            "description": ""
+          }
+        ],
+        "name": "single_title_width_headImg_type",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "select",
+        "label": "Post header image not set",
+        "value": "",
+        "selects": [
+          {
+            "label": "Blurred Featured Image Background",
+            "value": "single-coverflow",
+            "description": ""
+          },
+          {
+            "label": "Blurred Featured Image Background - Full Width",
+            "value": "single-coverflow-full",
+            "description": ""
+          }
+        ],
+        "name": "single_title_widthout_headImg_type",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "input",
+        "label": "Table of Contents Prompt",
+        "value": "",
+        "placeholder": "e.g. Table of Contents",
+        "name": "bookmark_tip",
+        "decoration": "Show in the sidebar only when posts have level-two or level-three headings"
+      },
+      {
+        "type": "switch",
+        "label": "Share Buttons",
+        "value": "",
+        "name": "show_share_posts",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": ""
+      },
+      {
+        "type": "switch",
+        "label": "\"Related Posts\" Module",
+        "value": "",
+        "name": "show_relate_posts",
+        "decoration": ""
+      },
+      {
+        "type": "switch",
+        "label": "Hide Sidebar",
+        "value": "",
+        "name": "is_single_post_hide_sidebar",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Donations</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "label": "Enable Donations",
+        "decoration": "Enable \"Donations\" in each post's settings; there is no global switch",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "input",
+        "label": "Donation Title",
+        "value": "",
+        "placeholder": "Please enter...",
+        "name": "dashangTitle",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "textarea",
+        "label": "Text Content",
+        "value": "",
+        "placeholder": "",
+        "name": "dashangText",
+        "decoration": "Display Before QR Code",
+        "gear_name": "",
+        "gear_value": "",
+        "rows": 3
+      },
+      {
+        "type": "multitypes",
+        "label": "QR Code",
+        "subLabel": "QR Code",
+        "subLabelWidth": "100px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "input",
+            "placeholder": "e.g. Alipay",
+            "name": "name",
+            "label": "Name"
+          },
+          {
+            "type": "uploader",
+            "showImage": true,
+            "name": "qrcode",
+            "label": "QR Code"
+          },
+          {
+            "type": "input",
+            "placeholder": "Once filled in, the QR code will no longer be shown; redirect directly",
+            "name": "href",
+            "label": "Link"
+          }
+        ],
+        "value": [],
+        "name": "dashang_Imgs",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Anti-scraping and Copy Protection</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Enable",
+        "value": "",
+        "name": "anti_copy",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "When enabled, hidden text strings (such as copyright information) are inserted at random positions in posts to interfere with sites that copy content.<br>\n* Experimental feature: test thoroughly before use"
+      },
+      {
+        "type": "inputNumber",
+        "label": "Random Addition Count",
+        "value": 0,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "name": "anti_copy_times",
+        "decoration": "Do not set too large a number; opening posts will be very slow",
+        "gear_name": "anti_copy",
+        "gear_value": "checked"
+      },
+      {
+        "type": "multitypes",
+        "label": "Hidden String",
+        "subLabel": "Random Characters",
+        "subLabelWidth": "100px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "input",
+            "placeholder": "Do not enter symbols or other special characters such as: </>",
+            "name": "pattern",
+            "label": "Random String"
+          }
+        ],
+        "value": [],
+        "name": "anti_copy_pattern",
+        "gear_name": "anti_copy",
+        "gear_value": "checked"
+      },
+      {
+        "type": "switch",
+        "label": "Filter Search Engines",
+        "value": "",
+        "name": "anti_copy_pass_seo",
+        "gear_name": "anti_copy",
+        "gear_value": "checked",
+        "decoration": "When enabled, search engines will not retrieve the hidden strings. This will not work against scrapers disguised as search engines"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Post Editor Help</span>",
+        "decoration": "",
+        "value": ""
+      },
+      {
+        "label": "Post Images",
+        "decoration": "For the best display, posts in this theme should include the following three types of images:<br>\n<b>1. Featured Image:</b> The default WordPress post image, used for \"Latest Posts\" on the homepage and \"List/Card\" post display modes. Recommended size: 512×458px. (<span style=\"color:red\">Required</span>)<br>\n<b>2. Post Header Image:</b> Used at the top of post content. Recommended size: 1920×400px (text overlay not recommended) (optional)<br>\n<b>3. Slider Image:</b> Used with the \"Slider Image\" display style. Recommended size: 1920×400px (a small amount of text is recommended) (optional when using Coverflow style)<br>",
+        "value": ""
+      },
+      {
+        "label": "Wiki Table of Contents",
+        "decoration": "Wiki Table of Contents is a navigation created automatically for your posts by this theme, similar to the sidebar navigation on Baidu Baike or Wikipedia. Click an item to scroll to the corresponding position in the post. This mode requires no manual activation: when you use level-two (h2) or level-three (h3) headings in a post, the theme automatically recognizes them as the table of contents and displays it as a floating sidebar navigation",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "title": "Post Categories",
+    "icon": "fa-folder",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Slider</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Disable Slider",
+        "value": "",
+        "name": "disable_cat_carousels",
+        "decoration": "When enabled, the category page will not display slider posts at the top"
+      },
+      {
+        "type": "select",
+        "label": "Slider Display Style",
+        "value": "",
+        "selects": [
+          {
+            "label": "Apple Coverflow",
+            "value": "coverflow",
+            "description": "Use \"Featured Image\""
+          },
+          {
+            "label": "Apple Coverflow - Full Width",
+            "value": "coverflow-full",
+            "description": "Use \"Featured Image\""
+          },
+          {
+            "label": "Slider Image",
+            "value": "imageflow",
+            "description": "Use \"Slider Image\""
+          },
+          {
+            "label": "Slider Image - Full Width",
+            "value": "imageflow-full",
+            "description": "Use \"Slider Image\""
+          }
+        ],
+        "name": "category_carousels_type",
+        "decoration": "",
+        "gear_name": "disable_cat_carousels",
+        "gear_value": ""
+      },
+      {
+        "type": "multitypes",
+        "label": "Fixed Category Posts",
+        "subLabel": "Categories",
+        "subLabelWidth": "100px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "categorySelect",
+            "name": "cat",
+            "label": "Post Categories"
+          },
+          {
+            "type": "singleSelect",
+            "name": "post",
+            "label": "Posts"
+          }
+        ],
+        "value": [],
+        "name": "fixed_cat_carousels",
+        "decoration": "By default, the category page displays random posts from this category at the top. Fill this in to pin a specific post's slider image for the category",
+        "gear_name": "disable_cat_carousels",
+        "gear_value": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Category Page Posts</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "multitypes",
+        "label": "Post Display Format",
+        "subLabel": "Categories",
+        "subLabelWidth": "100px",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "categorySelect",
+            "name": "cat",
+            "label": "Post Categories"
+          },
+          {
+            "type": "select",
+            "selects": [
+              {
+                "label": "List Display",
+                "value": "lists",
+                "description": ""
+              },
+              {
+                "label": "Card Display",
+                "value": "cards",
+                "description": ""
+              }
+            ],
+            "name": "type",
+            "label": "Display Type"
+          }
+        ],
+        "value": [],
+        "name": "categorys_show_mode",
+        "decoration": "Default display is \"Blog\"; add a \"Category Format\" above to change it"
+      },
+      {
+        "type": "switch",
+        "label": "Hide Sidebar on Category Pages",
+        "value": "",
+        "name": "category_hide_sidebar",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Pagination</span>",
+        "decoration": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Hide Pagination on Single Page",
+        "value": "",
+        "name": "hide_pagi_only_1",
+        "decoration": "Hide pagination navigation when there is only one page"
+      }
+    ]
+  },
+  {
+    "title": "Gallery",
+    "icon": "fa-image",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "type": "select",
+        "label": "Gallery Cover",
+        "value": "",
+        "selects": [
+          {
+            "label": "First Image in Gallery",
+            "value": "first",
+            "description": ""
+          },
+          {
+            "label": "Last Image in Gallery",
+            "value": "last",
+            "description": ""
+          },
+          {
+            "label": "Random Gallery Images",
+            "value": "",
+            "description": "Default"
+          }
+        ],
+        "name": "gallery_thumbnail",
+        "decoration": ""
+      },
+      {
+        "type": "select",
+        "label": "Display Style",
+        "value": "",
+        "selects": [
+          {
+            "label": "Background (Default)",
+            "value": "gallery-imageflow",
+            "description": ""
+          },
+          {
+            "label": "Background (Full Width)",
+            "value": "gallery-imageflow-full",
+            "description": ""
+          },
+          {
+            "label": "Image Display",
+            "value": "gallery-imgtag",
+            "description": "Image aspect ratios are not supported; images will be displayed in the best available layout"
+          }
+        ],
+        "name": "single_gallery_type",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Hide Sidebar",
+        "value": "",
+        "name": "is_single_gallery_hide_sidebar",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "colorPicker",
+        "label": "Background Color",
+        "value": "",
+        "name": "gallery_background_color",
+        "showAlpha": true,
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Sidebar Text</span>",
+        "decoration": "",
+        "value": ""
+      },
+      {
+        "type": "input",
+        "label": "Original Aspect Ratio",
+        "value": "",
+        "placeholder": "e.g. Preserve original aspect ratio",
+        "name": "sidebar_gallery_showBox_contain_tooltip",
+        "decoration": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Gallery Categories</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Hide Sidebar",
+        "value": "",
+        "name": "gallery_hide_sidebar",
+        "gear_name": "",
+        "gear_value": ""
+      }
+    ]
+  },
+  {
+    "title": "Download",
+    "icon": "fa-circle-arrow-down",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "type": "textarea",
+        "label": "Reply-to-View Notice",
+        "value": "",
+        "placeholder": "Please leave a meaningful comment before downloading...",
+        "name": "回复可见说明",
+        "decoration": ""
+      },
+      {
+        "type": "textarea",
+        "label": "Copyright Prompt",
+        "value": "",
+        "placeholder": "Please enter...",
+        "name": "版权说明",
+        "decoration": ""
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Help</span>",
+        "decoration": "",
+        "value": ""
+      },
+      {
+        "label": "Download Button Type",
+        "decoration": "Direct Download: clicking the download button shows the copyright notice above; agree to download directly.<br>\nReply to View: if the user has not commented after clicking the download button, a comment-required dialog is shown. If the user has already commented, a direct download button is shown",
+        "value": ""
+      },
+      {
+        "label": "Button Insertion Method",
+        "decoration": "In the post editor, click: Insert UI Style / Download Button<br>\nNote: the \"Reply to View\" method requires forcing users to enter an email address in the system settings",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "title": "Guestbook",
+    "icon": "fa-pen-to-square",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "type": "input",
+        "label": "Guestbook URL",
+        "value": "",
+        "placeholder": "http://",
+        "name": "guestbook_href",
+        "decoration": "Create a new page and enable comments for it"
+      },
+      {
+        "type": "input",
+        "label": "Link / Notice",
+        "value": "",
+        "placeholder": "e.g. Leave me a message",
+        "name": "guestbook_tooltip",
+        "decoration": "Any link or notice pointing to this page"
+      }
+    ]
+  },
+  {
+    "title": "404",
+    "icon": "fa-chain-broken",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "type": "radio",
+        "label": "404 Page Layout",
+        "value": "",
+        "radios": [
+          {
+            "label": "Include Frame",
+            "value": ""
+          },
+          {
+            "label": "Blank",
+            "value": "blank"
+          }
+        ],
+        "name": "404_type",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "uploader",
+        "label": "404 Page Image",
+        "value": "",
+        "showImage": true,
+        "name": "404页面图片",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "colorPicker",
+        "label": "404 Page Background Color",
+        "value": "",
+        "name": "404_background",
+        "showAlpha": false,
+        "decoration": "",
+        "gear_name": "404_type",
+        "gear_value": "blank"
+      }
+    ]
+  },
+  {
+    "title": "Design",
+    "icon": "fa-paint-brush",
+    "labelWidth": "130px",
+    "content": [
+      {
+        "type": "switch",
+        "label": "Play Font",
+        "value": "",
+        "name": "design_font",
+        "decoration": "Use the minimalist sans-serif <a href=\"https://fonts.google.com/specimen/Play\" target=\"_blank\" style=\"text-decoration:none;\"> Play </a> font designed by Jonas Hecksher to display English letters, numbers, and symbols on the page"
+      },
+      {
+        "type": "input",
+        "label": "Sidebar Fixed Notice",
+        "value": "",
+        "placeholder": "e.g. Fixed sidebar",
+        "name": "sidebar_fixed_switcher_tip",
+        "decoration": "",
+        "gear_name": "sidebar_fixed_switcher",
+        "gear_value": "checked"
+      },
+      {
+        "type": "switch",
+        "label": "Code Highlighting",
+        "value": "",
+        "name": "enable_highlightjs",
+        "gear_name": "",
+        "gear_value": "",
+        "decoration": "pre tags inserted in posts are automatically re-rendered with syntax highlighting"
+      },
+      {
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Bottom-right Floating Features</span>",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": "",
+        "value": ""
+      },
+      {
+        "type": "switch",
+        "label": "Back to Top",
+        "value": "",
+        "name": "enable_backToTop",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "switch",
+        "label": "FAQ Bot",
+        "value": "",
+        "name": "enable_assistance",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "inputNumber",
+        "label": "FAQ Search Count",
+        "value": 0,
+        "min": 2,
+        "max": 100,
+        "step": 1,
+        "name": "faq_showposts",
+        "decoration": "",
+        "gear_name": "enable_assistance",
+        "gear_value": "checked"
+      },
+      {
+        "type": "input",
+        "label": "FAQ Default Prompt",
+        "value": "",
+        "placeholder": "e.g. Welcome to the FAQ search service. Enter a keyword to start searching",
+        "name": "faq_dafault_content",
+        "decoration": "",
+        "gear_name": "enable_assistance",
+        "gear_value": "checked"
+      },
+      {
+        "type": "multitypes",
+        "label": "FAQ Default Question",
+        "subLabel": "FAQ Default Question",
+        "subLabelWidth": "",
+        "displayAsTable": true,
+        "types": [
+          {
+            "type": "input",
+            "placeholder": "Make sure this question can be found in the FAQ module",
+            "name": "list",
+            "label": "Question"
+          }
+        ],
+        "value": [],
+        "name": "faq_dafault_list",
+        "gear_name": "enable_assistance",
+        "gear_value": "checked"
+      },
+      {
+        "type": "input",
+        "label": "FAQ Answer Not Found",
+        "value": "",
+        "placeholder": "Placeholder shown when there is no answer, e.g. This question cannot be answered; contact the author via QQ (123456)",
+        "name": "faq_nodata",
+        "decoration": "",
+        "gear_name": "enable_assistance",
+        "gear_value": "checked"
+      },
+      {
+        "type": "input",
+        "label": "FAQ Random List",
+        "value": "",
+        "placeholder": "A random FAQ list will be displayed when the user enters this content",
+        "name": "faq_show_rand_command",
+        "decoration": "",
+        "gear_name": "enable_assistance",
+        "gear_value": "checked"
+      }
+    ]
+  },
+  {
+    "title": "Custom",
+    "icon": "fa-cubes",
+    "labelWidth": "15px",
+    "content": [
+      {
+        "type": "radio",
+        "label": " ",
+        "value": "",
+        "radios": [
+          {
+            "label": "CSS",
+            "value": ""
+          },
+          {
+            "label": "Javascript",
+            "value": "js"
+          },
+          {
+            "label": "function.php",
+            "value": "function"
+          }
+        ],
+        "name": "custom_code",
+        "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "textarea",
+        "label": " ",
+        "value": "",
+        "placeholder": "div:before {content:\"Hello CSS\";}",
+        "name": "custom_css",
+        "decoration": "Write code directly; no < style > tag required",
+        "gear_name": "custom_code",
+        "gear_value": "",
+        "rows": 24
+      },
+      {
+        "type": "textarea",
+        "label": " ",
+        "value": "",
+        "placeholder": "alert(\"Hello JS\");",
+        "name": "custom_javascript",
+        "decoration": "Write code directly; no < script > tag required",
+        "gear_name": "custom_code",
+        "gear_value": "js",
+        "rows": 24
+      },
+      {
+        "label": " ",
+        "decoration": "To write your own function.php code, put it in \"custom_function.php\" in the niRvana theme root. You will not need to update this file when updating the theme.<br>\nNote: Avoid echoing text directly while writing code, as this will cause errors when reading the admin settings page and post meta!",
+        "gear_name": "custom_code",
+        "gear_value": "function",
+        "value": ""
+      }
+    ],
+    "gear_name": "",
+    "gear_value": ""
+  }
+]

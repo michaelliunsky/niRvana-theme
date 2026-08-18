@@ -3,8 +3,8 @@ import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { Button, PanelBody, SelectControl, TextControl } from '@wordpress/components';
 
 const TARGET_OPTIONS = [
-	{ label: __( '当前窗口' ), value: '_self' },
-	{ label: __( '新窗口' ), value: '_blank' },
+	{ label: __( '当前窗口', 'niRvana' ), value: '_self' },
+	{ label: __( '新窗口', 'niRvana' ), value: '_blank' },
 ];
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -31,26 +31,26 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '标签与链接设置' ) }>
+				<PanelBody title={ __( '标签与链接设置', 'niRvana' ) }>
 					<TextControl
-						label={ __( '标题' ) }
+						label={ __( '标题', 'niRvana' ) }
 						value={ title }
 						onChange={ ( value ) => setAttributes( { title: value } ) }
 						__next40pxDefaultSize
 					/>
 					<SelectControl
-						label={ __( '显示形式' ) }
+						label={ __( '显示形式', 'niRvana' ) }
 						value={ displayType }
 						options={ [
-							{ label: __( '标签' ), value: 'tag' },
-							{ label: __( '链接' ), value: 'link' },
-							{ label: __( '垂直导航' ), value: 'navigator' },
+							{ label: __( '标签', 'niRvana' ), value: 'tag' },
+							{ label: __( '链接', 'niRvana' ), value: 'link' },
+							{ label: __( '垂直导航', 'niRvana' ), value: 'navigator' },
 						] }
 						onChange={ ( value ) => setAttributes( { displayType: value } ) }
 						__next40pxDefaultSize
 					/>
 				</PanelBody>
-				<PanelBody title={ __( '列表' ) } initialOpen={ false }>
+				<PanelBody title={ __( '列表', 'niRvana' ) } initialOpen={ false }>
 					{ ( tags || [] ).map( ( tag, i ) => (
 						<div
 							key={ i }
@@ -61,20 +61,20 @@ export default function Edit( { attributes, setAttributes } ) {
 							} }
 						>
 							<TextControl
-								label={ __( '文本' ) }
+								label={ __( '文本', 'niRvana' ) }
 								value={ tag.text }
 								onChange={ ( value ) => updateTag( i, 'text', value ) }
 								__next40pxDefaultSize
 							/>
 							<TextControl
-								label={ __( '地址' ) }
+								label={ __( '地址', 'niRvana' ) }
 								value={ tag.url }
 								onChange={ ( value ) => updateTag( i, 'url', value ) }
 								placeholder="https://example.com/"
 								__next40pxDefaultSize
 							/>
 							<SelectControl
-								label={ __( '打开方式' ) }
+								label={ __( '打开方式', 'niRvana' ) }
 								value={ tag.target }
 								options={ TARGET_OPTIONS }
 								onChange={ ( value ) => updateTag( i, 'target', value ) }
@@ -86,7 +86,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								onClick={ () => removeTag( i ) }
 								__next40pxDefaultSize
 							>
-								{ __( '删除此项' ) }
+								{ __( '删除此项', 'niRvana' ) }
 							</Button>
 						</div>
 					) ) }
@@ -95,7 +95,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						onClick={ addTag }
 						__next40pxDefaultSize
 					>
-						{ __( '添加一项' ) }
+						{ __( '添加一项', 'niRvana' ) }
 					</Button>
 				</PanelBody>
 			</InspectorControls>
@@ -109,7 +109,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								target={ tag.target === '_self' ? '_self' : '_blank' }
 								rel="noopener noreferrer"
 							>
-								{ tag.text || __( '(空)' ) }
+								{ tag.text || __( '(空)', 'niRvana' ) }
 							</a>
 						</li>
 					) ) }

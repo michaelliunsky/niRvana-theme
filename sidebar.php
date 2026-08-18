@@ -8,7 +8,7 @@ $sidebarContent = is_single() || is_page() ? get_the_naved_contentnav( get_the_c
 			<?php
 			if ( $sidebarContent ) {
 				?>
-				<li data-id="sidebar-0" show-on-single show-on-page><a data-toggle="tooltip" data-placement="auto top" title="<?php _eopt( 'bookmark_tip', '文章目录' ); ?>"><i class="fas fa-bookmark"></i></a></li>
+				<li data-id="sidebar-0" show-on-single show-on-page><a data-toggle="tooltip" data-placement="auto top" title="<?php _eopt( 'bookmark_tip', __( '文章目录', 'niRvana' ) ); ?>"><i class="fas fa-bookmark"></i></a></li>
 				<?php
 			}
 			?>
@@ -34,7 +34,7 @@ $sidebarContent = is_single() || is_page() ? get_the_naved_contentnav( get_the_c
 	if ( $sidebarContent ) {
 		?>
 		<aside data-id="sidebar-0" class="sidebar" style="display: none;">
-			<h2 class="widgettitle"><?php _eopt( 'bookmark_tip', '文章目录' ); ?></h2>
+			<h2 class="widgettitle"><?php _eopt( 'bookmark_tip', __( '文章目录', 'niRvana' ) ); ?></h2>
 			<?php echo $sidebarContent; ?>
 		</aside>
 		<?php

@@ -9,10 +9,10 @@ if (have_posts()) {
                 locate_template('assets/template/single-gallery.php', true, true);
                 break;
             case 'faq':
-                wp_die('警告：FAQ类型不支持直接预览，请前往“主题设置”页面添加！');
+                wp_die(esc_html__('警告：FAQ类型不支持直接预览，请前往“主题设置”页面添加！', 'niRvana'));
                 break;
             case 'favlinks':
-                wp_die('警告：友情链接类型不支持直接预览，请新增页面，选择“友情链接”模板！友情链接必须隶属于某个分类才可以显示，请务必设置友链的分类！');
+                wp_die(esc_html__('警告：友情链接类型不支持直接预览，请新增页面，选择“友情链接”模板！友情链接必须隶属于某个分类才可以显示，请务必设置友链的分类！', 'niRvana'));
                 break;
             case 'post':
             case 'microblog':

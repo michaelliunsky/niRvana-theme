@@ -4,21 +4,22 @@ foreach ($myPostTypes['posttypes'] as $postType) {
     add_action(
         'init',
         function () use ($postType) {
+            $post_type_name = __($postType['name'], 'niRvana');
             register_post_type($postType['type'], array(
                 'labels' => array(
-                    'name' => $postType['name'],
-                    'singular_name' => ''.$postType['name'],
-                    'add_new' => '添加'.$postType['name'],
-                    'add_new_item' => '添加'.$postType['name'],
-                    'edit' => '编辑',
-                    'edit_item' => '编辑'.$postType['name'],
-                    'new_item' => '新'.$postType['name'],
-                    'view' => '查看',
-                    'view_item' => '查看'.$postType['name'],
-                    'search_items' => '搜索'.$postType['name'],
-                    'not_found' => '未找到'.$postType['name'],
-                    'not_found_in_trash' => '回收站未找到'.$postType['name'],
-                    'parent' => $postType['name'].'父分类'
+                    'name' => $post_type_name,
+                    'singular_name' => $post_type_name,
+                    'add_new' => sprintf(__('添加%s', 'niRvana'), $post_type_name),
+                    'add_new_item' => sprintf(__('添加%s', 'niRvana'), $post_type_name),
+                    'edit' => __('编辑', 'niRvana'),
+                    'edit_item' => sprintf(__('编辑%s', 'niRvana'), $post_type_name),
+                    'new_item' => sprintf(__('新%s', 'niRvana'), $post_type_name),
+                    'view' => __('查看', 'niRvana'),
+                    'view_item' => sprintf(__('查看%s', 'niRvana'), $post_type_name),
+                    'search_items' => sprintf(__('搜索%s', 'niRvana'), $post_type_name),
+                    'not_found' => sprintf(__('未找到%s', 'niRvana'), $post_type_name),
+                    'not_found_in_trash' => sprintf(__('回收站未找到%s', 'niRvana'), $post_type_name),
+                    'parent' => sprintf(__('%s父分类', 'niRvana'), $post_type_name)
                 ),
                 'public' => true,
                 'menu_position' => 36,
@@ -36,7 +37,7 @@ foreach ($myPostTypes['posttypes'] as $postType) {
         }
         $new_columns = array();
         foreach ($postType['new_columns'] as $singleColumn) {
-            $new_columns[$singleColumn['name']] = $singleColumn['display'];
+            $new_columns[$singleColumn['name']] = __($singleColumn['display'], 'niRvana');
         }
         $columns = array_merge($columns, $new_columns);
 
@@ -56,9 +57,9 @@ foreach ($myPostTypes['posttypes'] as $postType) {
         add_action('init', function () use ($postType) {
             register_taxonomy($postType['type'].'-category', $postType['type'], array(
                 'labels' => array(
-                    'name' => $postType['name'].'分类目录',
-                    'add_new_item' => '添加新分类目录',
-                    'new_item_name' => '分类名称'
+                    'name' => sprintf(__('%s分类目录', 'niRvana'), __($postType['name'], 'niRvana')),
+                    'add_new_item' => __('添加新分类目录', 'niRvana'),
+                    'new_item_name' => __('分类名称', 'niRvana')
                 ),
                 'show_ui' => true,
                 'show_in_rest' => true,
@@ -71,9 +72,9 @@ foreach ($myPostTypes['posttypes'] as $postType) {
         add_action('init', function () use ($postType) {
             register_taxonomy($postType['type'].'-tag', $postType['type'], array(
                 'labels' => array(
-                    'name' => $postType['name'].'标签',
-                    'add_new_item' => '添加新标签',
-                    'new_item_name' => '标签名称'
+                    'name' => sprintf(__('%s标签', 'niRvana'), __($postType['name'], 'niRvana')),
+                    'add_new_item' => __('添加新标签', 'niRvana'),
+                    'new_item_name' => __('标签名称', 'niRvana')
                 ),
                 'show_ui' => true,
                 'show_in_rest' => true,
@@ -87,9 +88,9 @@ foreach ($myPostTypes['posttypes'] as $postType) {
             add_action('init', function () use ($postType, $item) {
                 register_taxonomy($item['taxonomy'], $postType['type'], array(
                     'labels' => array(
-                        'name' => $item['label_name'],
-                        'add_new_item' => $item['label_add_new_item'],
-                        'new_item_name' => $item['label_new_item_name']
+                        'name' => __($item['label_name'], 'niRvana'),
+                        'add_new_item' => __($item['label_add_new_item'], 'niRvana'),
+                        'new_item_name' => __($item['label_new_item_name'], 'niRvana')
                     ),
                     'show_ui' => $item['show_ui'],
                     'show_in_rest' => true,

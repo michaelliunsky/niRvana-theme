@@ -9,15 +9,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '轻博客设置' ) }>
+				<PanelBody title={ __( '轻博客设置', 'niRvana' ) }>
 					<TextControl
-						label={ __( '标题' ) }
+						label={ __( '标题', 'niRvana' ) }
 						value={ title }
 						onChange={ ( value ) => setAttributes( { title: value } ) }
 						__next40pxDefaultSize
 					/>
 					<RangeControl
-						label={ __( '显示数量' ) }
+						label={ __( '显示数量', 'niRvana' ) }
 						value={ number }
 						min={ 1 }
 						max={ 30 }

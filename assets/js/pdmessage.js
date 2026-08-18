@@ -3,6 +3,8 @@
  * 反解自 assets/minify/app.min.js (2026-08-06)
  * 自定义源码, 从生产压缩包反解. 压缩丢失注释与局部变量名.
  */
+// WP 核心脚本 wp-i18n 提供的翻译函数 (依赖声明见 production.php)
+var __ = wp.i18n.__;
 function PdMessage() {
   function e(e, t) {
     1 == e ? (PdMessage.prototype.Modal_background_instance.el.style.zIndex = PdMessage.prototype.index - 1, 0 == PdMessage.prototype.model_zIndexs.length && document.body.appendChild(PdMessage.prototype.Modal_background_instance.el), window.setTimeout(function() {
@@ -15,9 +17,9 @@ function PdMessage() {
   function t(e) {
     this.el = document.createElement("div"), this.el.className = "pdmsg_wrapper is_showing is_changing", this.el.style.zIndex = PdMessage.prototype.index, PdMessage.prototype.index += 2, this.modal = document.createElement("div"), this.modal.className = "pdmsg_modal " + e._type, this.title = document.createElement("div"), this.title.className = "pdmsg_title", this.title.appendChild(document.createTextNode(e.title || "")), this.content = document.createElement("div"), this.content.className = "pdmsg_content" + (e.messageType ? " " + e.messageType : ""), this.contentSpan = document.createElement("span"), this.contentSpan.appendChild(document.createTextNode(e.message || "")), this.content.appendChild(this.contentSpan), "prompt" == e._type && (this.prompt_input_wrapper = document.createElement("div"), this.prompt_input_wrapper.className = "prompt_input_wrapper", this.prompt_input = document.createElement(e.promptType ? e.promptType : "input"), this.prompt_input.className = "input", this.prompt_input.value = e.value ? e.value : "", this.prompt_input.setAttribute("placeholder", e.placeholder ? e.placeholder : ""), this.prompt_input_wrapper.appendChild(this.prompt_input)), this.buttons = document.createElement("div"), this.buttons.className = "pdmsg_buttons";
     var t = [];
-    "confirm" != e._type && "prompt" != e._type || (this.cancel = document.createElement("button"), this.cancel.appendChild(document.createTextNode(e.cancel || "取消")), this.cancel.addEventListener("click", e.reject || function() {
+    "confirm" != e._type && "prompt" != e._type || (this.cancel = document.createElement("button"), this.cancel.appendChild(document.createTextNode(e.cancel || __("取消", "niRvana"))), this.cancel.addEventListener("click", e.reject || function() {
       e.catch && e.catch(), r.closeMessage()
-    }), t.push(this.cancel)), this.confirm = document.createElement("button"), this.confirm.appendChild(document.createTextNode(e.confirm || "确定")), this.confirm.className = e.confirmType;
+    }), t.push(this.cancel)), this.confirm = document.createElement("button"), this.confirm.appendChild(document.createTextNode(e.confirm || __("确定", "niRvana"))), this.confirm.className = e.confirmType;
     var n = this.prompt_input;
     if (e.resolve) var i = function() {
       e.resolve(n ? n.value : void 0)
@@ -35,7 +37,7 @@ function PdMessage() {
   function n(e) {
     this.el = document.createElement("div"), this.el.className = "pdtoast_wrapper is_showing is_changing", this.el.style.zIndex = PdMessage.prototype.index, PdMessage.prototype.index += 2, this.toast = document.createElement("div");
     var t = "toast";
-    e.type && (t = t + " " + e.type), this.toast.className = t, this.toast.appendChild(document.createTextNode(e.toast || "toast内容未定义！")), this.el.appendChild(this.toast)
+    e.type && (t = t + " " + e.type), this.toast.className = t, this.toast.appendChild(document.createTextNode(e.toast || __("toast内容未定义！", "niRvana"))), this.el.appendChild(this.toast)
   }
 
   function i(e) {
@@ -45,15 +47,15 @@ function PdMessage() {
     for (var t = 0; t < e.actions.length; t++) {
       var n = e.actions[t],
         i = document.createElement("button");
-      i.className = n.type || "", i.appendChild(document.createTextNode(n.name || "按钮名称未定义")), i.addEventListener("click", n.command), this.actionswrapper.appendChild(i)
+      i.className = n.type || "", i.appendChild(document.createTextNode(n.name || __("按钮名称未定义", "niRvana"))), i.addEventListener("click", n.command), this.actionswrapper.appendChild(i)
     }
-    this.cancel = document.createElement("button"), this.cancel.className = "pdactionsheet_cancel", this.cancel.appendChild(document.createTextNode(e.cancel || "取消")), this.actionsheet.appendChild(this.actions), this.actionsheet.appendChild(this.cancel), this.el.appendChild(this.actionsheet)
+    this.cancel = document.createElement("button"), this.cancel.className = "pdactionsheet_cancel", this.cancel.appendChild(document.createTextNode(e.cancel || __("取消", "niRvana"))), this.actionsheet.appendChild(this.actions), this.actionsheet.appendChild(this.cancel), this.el.appendChild(this.actionsheet)
   }
 
   function o(e) {
     this.el = document.createElement("div"), this.el.className = "pdnotify_wrapper", this.notify = document.createElement("div");
     var t = "pdnotify";
-    e.type && (t = t + " " + e.type), this.notify.className = t, this.notifySpan = document.createElement("span"), this.notifySpan.appendChild(document.createTextNode(e.notify || "notify内容未定义！")), this.notify.appendChild(this.notifySpan), this.el.appendChild(this.notify)
+    e.type && (t = t + " " + e.type), this.notify.className = t, this.notifySpan = document.createElement("span"), this.notifySpan.appendChild(document.createTextNode(e.notify || __("notify内容未定义！", "niRvana"))), this.notify.appendChild(this.notifySpan), this.el.appendChild(this.notify)
   }
   var r = this;
   PdMessage.prototype.index = PdMessage.prototype.index || 8001, PdMessage.prototype.Modal_background_instance = PdMessage.prototype.Modal_background_instance || new function() {

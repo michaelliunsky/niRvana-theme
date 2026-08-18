@@ -78,8 +78,21 @@ add_action( 'rest_api_init', function() {
     );
 } );
 
+function nirvana_schema_json_path( $base ) {
+    // 翻译快照由 dev-tools/build-i18n-snapshots.js 从 PO 生成, 运行时零翻译开销; 无快照回退中文原文
+    $locale = determine_locale();
+    $dir    = get_template_directory() . '/pandastudio_framework';
+    if ( $locale !== 'zh_CN' ) {
+        $snapshot = $dir . '/' . $base . '-' . $locale . '.json';
+        if ( is_readable( $snapshot ) ) {
+            return $snapshot;
+        }
+    }
+    return $dir . '/' . $base . '.json';
+}
+
 function get_option_json_by_RestAPI() {
-    $option_json_file = file_get_contents( 'option.json', 1 );
+    $option_json_file = file_get_contents( nirvana_schema_json_path( 'option' ) );
 
     if ( strlen( $option_json_file ) > 10 ) {
         $option_json = json_decode( $option_json_file, true );
@@ -107,7 +120,7 @@ add_action( 'rest_api_init', function() {
 } );
 
 function get_posttype_and_meta_json_by_RestAPI() {
-    $posttype_and_meta_json_file = file_get_contents( 'posttype_and_meta.json', 1 );
+    $posttype_and_meta_json_file = file_get_contents( nirvana_schema_json_path( 'posttype_and_meta' ) );
 
     if ( strlen( $posttype_and_meta_json_file ) > 10 ) {
         $posttype_and_meta_json = json_decode( $posttype_and_meta_json_file, true );
@@ -120,7 +133,7 @@ function get_posttype_and_meta_json_by_RestAPI() {
     return $posttype_and_meta_json;
 }
 
-$posttype_and_meta_file = file_get_contents( 'posttype_and_meta.json', 1 );
+$posttype_and_meta_file = file_get_contents( nirvana_schema_json_path( 'posttype_and_meta' ) );
 
 if ( strlen( $posttype_and_meta_file ) > 10 ) {
     $posttype_and_meta = get_posttype_and_meta_json_by_RestAPI();
@@ -138,7 +151,7 @@ if ( strlen( $posttype_and_meta_file ) > 10 ) {
     include_once( 'assets/template/meta_rest.php' );
 }
 
-$option_file = file_get_contents( 'option.json', 1 );
+$option_file = file_get_contents( nirvana_schema_json_path( 'option' ) );
 
 if ( strlen( $option_file ) > 10 ) {
     include_once( 'assets/template/option_rest.php' );

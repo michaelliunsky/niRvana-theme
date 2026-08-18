@@ -2,8 +2,9 @@
 
 function add_baiduAudio_js()
 {
-    echo '<script src="' . get_stylesheet_directory_uri() . '/pandastudio_plugins/baiduAudio/baiduAudio.js"></script>';
-    echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/pandastudio_plugins/baiduAudio/baiduAudio.css"/>';
+    // 改用 enqueue 管理依赖 (wp-i18n/jQuery), 替代 wp_footer 直接 echo script
+    wp_enqueue_script('nirvana-baidu-audio', get_stylesheet_directory_uri() . '/pandastudio_plugins/baiduAudio/baiduAudio.js', array('jquery', 'wp-i18n'), wp_get_theme()->get('Version'));
+    wp_enqueue_style('nirvana-baidu-audio-style', get_stylesheet_directory_uri() . '/pandastudio_plugins/baiduAudio/baiduAudio.css', array(), wp_get_theme()->get('Version'));
 }
 add_action('wp_footer', 'add_baiduAudio_js');
 add_filter('modify_pandastudio_translation_array', 'add_baiduAudio_translation_array');
@@ -29,7 +30,10 @@ function add_baiduAudio_translation_array($translation_array)
 add_filter('modify_pandastudio_options', 'add_baiduAudio_to_options');
 function add_baiduAudio_to_options($options)
 {
-    $new_file = file_get_contents("baiduAudio_option.json", 1);
+    $dir = get_template_directory() . '/pandastudio_plugins/baiduAudio';
+    $locale = determine_locale();
+    $snapshot = $dir . '/baiduAudio_option-' . $locale . '.json';
+    $new_file = file_get_contents($locale !== 'zh_CN' && is_readable($snapshot) ? $snapshot : $dir . '/baiduAudio_option.json');
     $new_arr = json_decode($new_file, true);
     $new_arr = is_array($new_arr) ? $new_arr : array();
     $newOptions = array_merge($options, $new_arr);

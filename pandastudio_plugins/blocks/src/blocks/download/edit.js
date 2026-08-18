@@ -7,16 +7,16 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '区块设置' ) }>
+				<PanelBody title={ __( '区块设置', 'niRvana' ) }>
 					<TextControl
-						label={ __( '下载地址' ) }
+						label={ __( '下载地址', 'niRvana' ) }
 						placeholder="https://"
 						value={ href || '' }
 						onChange={ ( value ) => setAttributes( { href: value } ) }
 						__next40pxDefaultSize
 					/>
 					<ToggleControl
-						label={ __( '需评论下载' ) }
+						label={ __( '需评论下载', 'niRvana' ) }
 						checked={ need_reply || false }
 						onChange={ ( value ) => setAttributes( { need_reply: value } ) }
 					/>

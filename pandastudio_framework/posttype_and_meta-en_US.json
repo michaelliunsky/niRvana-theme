@@ -1,0 +1,402 @@
+{
+  "components": {
+    "site_view": {
+      "template": "<div class=\"favlink-card\" style=\"\nborder-top-width: 3px;\nborder-top-style:solid;\nline-height:1.43;\nbox-shadow: 0 1px 5px rgba(215,221,230,.25),1px 0 0 #e5e9f2 inset,-1px 0 0 #e5e9f2 inset,0 -1px 0 #e5e9f2 inset;\nbackground-color:#fff;\nheight: 130px;\nwidth: 250px;\npadding: 20px 15px;\ntext-align: center;\nposition: relative;\nbox-sizing:border-box;\ncursor: pointer;\n\" :style=\"{'border-top-color':_('site_color')}\">\n\t<a class=\"title\" style=\"font-size: 15px;\n\tcolor: #475669;\">Site Title</a>\n\t<div class=\"description\" style=\"font-size: 13px;\n\tcolor: #99a9bf;\">{{_('site_description')}}</div>\n\t<a v-if=\"_('site_icon')\"\n\tclass=\"icon\"\n\t:style=\"{\n\t\t'background-color': _('site_color'),\n\t\t'box-shadow': '0 3px 8px '+ _('site_color'),\n\t\t'background-image': 'url('+_('site_icon')+')',\n\t\t'background-size': _('site_icon_width')+'px '+ _('site_icon_height')+'px'\n\t}\"\n\tstyle=\"\tposition: absolute;\n\twidth: 65px;\n\theight: 65px;\n\tcolor: #fff;\n\ttext-shadow: 0 3px 5px rgba(0,0,0,.25);\n\tfont-size: 25px;\n\tdisplay: flex;\n\talign-items: center;\n\ttext-align: center;\n\tjustify-content: center;\n\tborder-radius: 33px;\n\tleft: 50%;\n\tmargin-left: -33px;\n\tbottom: -20px;\n\tbackground-size: 65px 65px;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\"></a>\n\t<a v-else\n\tclass=\"icon\"\n\t:style=\"{'background-color': _('site_color'),'box-shadow': '0 3px 8px '+ _('site_color'),'background-image': 'url('+_('site_icon')+')'}\"\n\tstyle=\"\tposition: absolute;\n\twidth: 65px;\n\theight: 65px;\n\tcolor: #fff;\n\ttext-shadow: 0 3px 5px rgba(0,0,0,.25);\n\tfont-size: 25px;\n\tdisplay: flex;\n\talign-items: center;\n\ttext-align: center;\n\tjustify-content: center;\n\tborder-radius: 33px;\n\tleft: 50%;\n\tmargin-left: -33px;\n\tbottom: -20px;\">Site</a>\n</div>",
+      "inject": {},
+      "methods": {}
+    }
+  },
+  "meta": [
+    {
+      "title": "Basic Settings",
+      "icon": "el-icon-document",
+      "labelWidth": "75px",
+      "screen": [
+        "page"
+      ],
+      "content": [
+        {
+          "type": "uploader",
+          "label": "Page Header Image ",
+          "value": "",
+          "showImage": true,
+          "name": "日志头图",
+          "decoration": ""
+        }
+      ]
+    },
+    {
+      "title": "Basic Settings",
+      "icon": "el-icon-edit",
+      "labelWidth": "75px",
+      "screen": [
+        "post"
+      ],
+      "content": [
+        {
+          "type": "uploader",
+          "label": "Post Header Image",
+          "value": "",
+          "showImage": true,
+          "name": "日志头图",
+          "decoration": "Used for the image at the top of post pages and the \"Blog\" post display mode. Recommended size: 1920×400px"
+        },
+        {
+          "type": "uploader",
+          "label": "Slider Image",
+          "value": "",
+          "showImage": true,
+          "name": "分类slider图片地址",
+          "decoration": "Used for \"Custom Slider Posts\" at the top of the homepage and random slider posts at the top of category pages. Recommended size: 1920×400px"
+        },
+        {
+          "type": "inputNumber",
+          "label": "Like Count",
+          "value": 0,
+          "min": 0,
+          "max": 9999,
+          "step": 1,
+          "name": "bigfa_ding",
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": ""
+        },
+        {
+          "type": "switch",
+          "label": "Allow Donations",
+          "value": "",
+          "name": "打赏",
+          "gear_name": "",
+          "gear_value": ""
+        }
+      ]
+    },
+    {
+      "title": "Basic Settings",
+      "icon": "el-icon-share",
+      "labelWidth": "90px",
+      "screen": [
+        "favlinks"
+      ],
+      "content": [
+        {
+          "type": "input",
+          "label": "Site Description",
+          "value": "",
+          "placeholder": "Please enter...",
+          "name": "site_description",
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": ""
+        },
+        {
+          "type": "input",
+          "label": "Site URL",
+          "value": "",
+          "placeholder": "http://",
+          "name": "site_url",
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": ""
+        },
+        {
+          "type": "switch",
+          "label": "Open in New Window",
+          "value": "",
+          "name": "target_blank",
+          "gear_name": "",
+          "gear_value": ""
+        },
+        {
+          "type": "colorPicker",
+          "label": "Primary Color",
+          "value": "",
+          "name": "site_color",
+          "showAlpha": false,
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": ""
+        },
+        {
+          "type": "uploader",
+          "label": "Site Icon",
+          "value": "",
+          "showImage": true,
+          "name": "site_icon",
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": ""
+        },
+        {
+          "type": "inputNumber",
+          "label": "Icon Width",
+          "value": 0,
+          "min": 10,
+          "max": 999,
+          "step": 1,
+          "name": "site_icon_width",
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": ""
+        },
+        {
+          "type": "inputNumber",
+          "label": "Icon Height",
+          "value": 0,
+          "min": 10,
+          "max": 999,
+          "step": 1,
+          "name": "site_icon_height",
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": ""
+        },
+        {
+          "type": "view",
+          "label": "Preview",
+          "template_name": "site_view",
+          "gear_name": "",
+          "gear_value": "",
+          "value": "",
+          "decoration": ""
+        },
+        {
+          "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Help</span>",
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": "",
+          "value": ""
+        },
+        {
+          "label": "Display",
+          "decoration": "Add a page under \"Pages\" and select the \"Friend Links\" template",
+          "gear_name": "",
+          "gear_value": "",
+          "value": ""
+        },
+        {
+          "label": "Sort",
+          "decoration": "Categories are sorted by \"slug\"; edit the slug to customize the order. Links are sorted by \"publication date\"",
+          "gear_name": "",
+          "gear_value": "",
+          "value": ""
+        },
+        {
+          "label": "Note",
+          "decoration": "Items are displayed by category, so every link must belong to a category. Multi-level categories are not recommended (parent categories will create duplicates)",
+          "gear_name": "",
+          "gear_value": "",
+          "value": ""
+        }
+      ],
+      "gear_name": "",
+      "gear_value": ""
+    },
+    {
+      "title": "Basic Settings",
+      "icon": "",
+      "labelWidth": "75px",
+      "screen": [
+        "faq"
+      ],
+      "content": [
+        {
+          "type": "textarea",
+          "label": "Answer",
+          "value": "",
+          "placeholder": "Please enter...",
+          "name": "faq_answer",
+          "decoration": "",
+          "gear_name": "",
+          "gear_value": "",
+          "rows": 5
+        }
+      ],
+      "gear_name": "",
+      "gear_value": ""
+    },
+    {
+      "title": "Basic Settings",
+      "icon": "el-icon-picture",
+      "labelWidth": "75px",
+      "screen": [
+        "gallery"
+      ],
+      "content": [
+        {
+          "type": "multi_uploader",
+          "label": "Image Set",
+          "value": [],
+          "name": "gallery_images",
+          "decoration": ""
+        },
+        {
+          "type": "switch",
+          "label": "Original Aspect Ratio",
+          "value": "",
+          "name": "showBox_contain",
+          "decoration": "Disabled: automatically enlarge images for a larger display (for landscape images)<br>\nEnabled: preserve the original aspect ratio (prevents portrait images from being cropped)"
+        }
+      ]
+    },
+    {
+      "title": "SEO Optimization",
+      "icon": "el-icon-search",
+      "labelWidth": "75px",
+      "screen": [
+        "gallery",
+        "page",
+        "post"
+      ],
+      "content": [
+        {
+          "type": "input",
+          "label": "Keywords",
+          "value": "",
+          "placeholder": "Please enter keywords",
+          "name": "seo关键词",
+          "decoration": ""
+        },
+        {
+          "type": "input",
+          "label": "Excerpt",
+          "value": "",
+          "placeholder": "Describe the content in natural language",
+          "name": "seo描述",
+          "decoration": ""
+        }
+      ]
+    }
+  ],
+  "myPostTypes": {
+    "posttypes": [
+      {
+        "name": "Gallery",
+        "type": "gallery",
+        "allow_categorys": true,
+        "supports": [
+          "title",
+          "comments",
+          "editor",
+          "thumbnail",
+          "excerpt"
+        ],
+        "menu_icon": "dashicons-format-gallery",
+        "unset_columns": [
+          "tags"
+        ],
+        "new_columns": [
+          {
+            "name": "gallery_taxonomy",
+            "display": "Gallery Categories"
+          },
+          {
+            "name": "gallery_images",
+            "display": "Image Set"
+          },
+          {
+            "name": "gallery_tags",
+            "display": "Gallery Tags"
+          }
+        ],
+        "allow_tags": true,
+        "custom_taxonomies": [],
+        "show_in_rest": true
+      },
+      {
+        "name": "FAQ",
+        "type": "faq",
+        "allow_categorys": false,
+        "supports": [
+          "title"
+        ],
+        "menu_icon": "dashicons-format-chat",
+        "unset_columns": [
+          "tags"
+        ],
+        "new_columns": [
+          {
+            "name": "faq_answer",
+            "display": "Answer"
+          }
+        ],
+        "custom_taxonomies": []
+      },
+      {
+        "name": "Friend Links",
+        "type": "favlinks",
+        "allow_categorys": true,
+        "supports": [
+          "title"
+        ],
+        "menu_icon": "dashicons-admin-site",
+        "unset_columns": [
+          "tags"
+        ],
+        "new_columns": [
+          {
+            "name": "favlinks_taxonomy",
+            "display": "Friend Links Category"
+          }
+        ],
+        "custom_taxonomies": []
+      },
+      {
+        "name": "Microblog",
+        "type": "microblog",
+        "allow_categorys": false,
+        "supports": [
+          "editor"
+        ],
+        "menu_icon": "dashicons-editor-quote",
+        "unset_columns": [
+          "tags",
+          "title"
+        ],
+        "new_columns": [
+          {
+            "name": "microblog_content",
+            "display": "Microblog Content"
+          }
+        ],
+        "custom_taxonomies": []
+      }
+    ],
+    "columns": [
+      {
+        "name": "gallery_images",
+        "meta": "gallery_images",
+        "display": "pictures"
+      },
+      {
+        "name": "gallery_taxonomy",
+        "meta": "",
+        "display": "taxonomy",
+        "eval": ""
+      },
+      {
+        "name": "faq_answer",
+        "meta": "faq_answer",
+        "display": "meta",
+        "eval": ""
+      },
+      {
+        "name": "favlinks_taxonomy",
+        "meta": "",
+        "display": "taxonomy",
+        "eval": ""
+      },
+      {
+        "name": "microblog_content",
+        "meta": "",
+        "display": "content"
+      },
+      {
+        "name": "gallery_tags",
+        "meta": "",
+        "display": "tag",
+        "eval": ""
+      }
+    ]
+  }
+}

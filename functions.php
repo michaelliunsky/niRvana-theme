@@ -7,6 +7,32 @@ function theme_component_setup()
     add_theme_support('automatic-feed-links');
 }
 add_action('after_setup_theme', 'theme_component_setup');
+function nirvana_load_textdomain()
+{
+    $path = get_template_directory() . '/languages';
+    load_theme_textdomain('niRvana', $path);
+
+    $locale = determine_locale();
+    $mofile = $path . '/niRvana-' . $locale . '.mo';
+    if (!is_textdomain_loaded('niRvana') && is_readable($mofile)) {
+        load_textdomain('niRvana', $mofile, $locale);
+    }
+}
+add_action('after_setup_theme', 'nirvana_load_textdomain', 1);
+function nirvana_inline_js_i18n()
+{
+    // 前台 bundle 与后台 echo 脚本不走 make-json (合并/echo 无独立 handle),
+    // 统一用 setLocaleData 内联注入, JSON 由构建脚本从 PO 生成 (languages/niRvana-<locale>-app.json)
+    if (is_admin()) {
+        wp_enqueue_script('wp-i18n');
+    }
+    $json = get_template_directory() . '/languages/niRvana-' . determine_locale() . '-app.json';
+    if (is_readable($json)) {
+        wp_add_inline_script('wp-i18n', 'wp.i18n.setLocaleData(' . file_get_contents($json) . ', "niRvana");');
+    }
+}
+add_action('wp_enqueue_scripts', 'nirvana_inline_js_i18n');
+add_action('admin_enqueue_scripts', 'nirvana_inline_js_i18n');
 //自动更新
 require_once(get_template_directory() . '/theme-update-checker/plugin-update-checker.php');
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
@@ -55,14 +81,19 @@ function count_words_read_time()
     global $post;
     $text_num = mb_strlen(preg_replace('/\s/', '', html_entity_decode(strip_tags($post->post_content))), 'UTF-8');
     $read_time = ceil($text_num / 300); // 修改数字300调整时间
-    $output = '本文共' . $text_num . '个字 · 预计阅读' . $read_time  . '分钟';
+    $output = sprintf(
+        __('本文共%1$s个字 · 预计阅读%2$s分钟', 'niRvana'),
+        number_format_i18n($text_num),
+        number_format_i18n($read_time)
+    );
     return $output;
 }
 //显示已读次数
 add_action('pf-post-meta-end', 'add_post_view_times_to_post_meta');
 function add_post_view_times_to_post_meta()
 {
-    echo "<span class='inline-block'><i class='fas fa-book-reader'></i>"._meta('views', _meta('bigfa_ding', 0))."次已读</span>";
+    $views = number_format_i18n((int) _meta('views', _meta('bigfa_ding', 0)));
+    echo "<span class='inline-block'><i class='fas fa-book-reader'></i>" . sprintf(esc_html__('%s次已读', 'niRvana'), $views) . "</span>";
 }
 add_action('pf-post-card-meta-start', 'add_post_view_times_to_postcard_meta');
 function add_post_view_times_to_postcard_meta()
@@ -98,8 +129,11 @@ add_action('wp', 'add_view_times_to_cookie');
 //归档页面
 function niRvana_archives_list()
 {
-    if (!$output = get_option('niRvana_db_cache_archives_list')) {
-        $output = '<div id="archives"><p>[<a id="al_expand_collapse" href="#">全部展开/收缩</a>] <em>(注: 点击月份可以展开)</em></p>';
+    $locale = determine_locale();
+    $cached = get_option('niRvana_db_cache_archives_list');
+    $output = is_array($cached) && isset($cached[$locale]) ? $cached[$locale] : false;
+    if (!$output) {
+        $output = '<div id="archives"><p>[<a id="al_expand_collapse" href="#">' . esc_html__('全部展开/收缩', 'niRvana') . '</a>] <em>(' . esc_html__('注: 点击月份可以展开', 'niRvana') . ')</em></p>';
         $args = array(
             'post_type' => 'post',
             'posts_per_page' => -1, //全部 posts
@@ -118,11 +152,11 @@ function niRvana_archives_list()
             if ($mon != $post_mon) {
                 $mon = $post_mon;
             }
-            $posts_rebuild[ $year ][ $mon ][] = '<li>' . get_the_time('d日: ') . '<a href="' . get_permalink() . '">' . get_the_title() . '</a> <em>(' . get_comments_number('0', '1', '%') . ')</em></li>';
+            $posts_rebuild[$year][$mon][] = '<li>' . sprintf(esc_html__('%s日: ', 'niRvana'), number_format_i18n((int) get_the_time('d'))) . '<a href="' . esc_url(get_permalink()) . '">' . esc_html(get_the_title()) . '</a> <em>(' . number_format_i18n((int) get_comments_number()) . ')</em></li>';
         endwhile;
         wp_reset_postdata();
         foreach ($posts_rebuild as $key_y => $y) {
-            $output .= '<h3 class="al_year">' . $key_y . ' 年</h3><ul >'; //输出年份
+            $output .= '<h3 class="al_year">' . sprintf(esc_html__('%s 年', 'niRvana'), $key_y) . '</h3><ul >'; //输出年份
             foreach ($y as $key_m => $m) {
                 $posts = '';
                 $i = 0;
@@ -130,14 +164,18 @@ function niRvana_archives_list()
                     ++$i;
                     $posts .= $p;
                 }
-                $output .= '<li id="limon"><span class="al_mon">' . $key_m . ' 月</span><ul class="al_post_list">'; //输出月份
+                $output .= '<li id="limon"><span class="al_mon">' . sprintf(esc_html__('%s 月', 'niRvana'), $key_m) . '</span><ul class="al_post_list">'; //输出月份
                 $output .= $posts; //输出 posts
                 $output .= '</ul></li>';
             }
             $output .= '</ul>';
         }
         $output .= '</div>';
-        update_option('niRvana_db_cache_archives_list', $output);
+        if (!is_array($cached)) {
+            $cached = array();
+        }
+        $cached[$locale] = $output;
+        update_option('niRvana_db_cache_archives_list', $cached);
     }
     echo $output;
 }
@@ -154,19 +192,19 @@ add_action('init', 'my_custom_shuoshuo_init');
 function my_custom_shuoshuo_init()
 {
     $labels = array(
-        'name' => '说说',
-        'singular_name' => '说说',
-        'all_items' => '所有说说',
-        'add_new' => '发表说说',
-        'add_new_item' => '撰写新说说',
-        'edit_item' => '编辑说说',
-        'new_item' => '新说说',
-        'view_item' => '查看说说',
-        'search_items' => '搜索说说',
-        'not_found' => '暂无说说',
-        'not_found_in_trash' => '回收站中没有说说',
+        'name' => __('说说', 'niRvana'),
+        'singular_name' => __('说说', 'niRvana'),
+        'all_items' => __('所有说说', 'niRvana'),
+        'add_new' => __('发表说说', 'niRvana'),
+        'add_new_item' => __('撰写新说说', 'niRvana'),
+        'edit_item' => __('编辑说说', 'niRvana'),
+        'new_item' => __('新说说', 'niRvana'),
+        'view_item' => __('查看说说', 'niRvana'),
+        'search_items' => __('搜索说说', 'niRvana'),
+        'not_found' => __('暂无说说', 'niRvana'),
+        'not_found_in_trash' => __('回收站中没有说说', 'niRvana'),
         'parent_item_colon' => '',
-        'menu_name' => '说说'
+        'menu_name' => __('说说', 'niRvana')
     );
     $args = array(
         'labels' => $labels,
@@ -189,13 +227,13 @@ function my_custom_shuoshuo_init()
 add_action('pf_comment_form_after_face', 'pf_add_comment_form_insert_code');
 function pf_add_comment_form_insert_code()
 {
-    echo '<a @click="this.insert_code_to_comment_form()"><span data-toggle="tooltip" title="插入代码"><i class="far fa-file-code"></i></span></a>';
+    echo '<a @click="this.insert_code_to_comment_form()"><span data-toggle="tooltip" title="' . esc_attr__('插入代码', 'niRvana') . '"><i class="far fa-file-code"></i></span></a>';
 }
 //评论插入图片
 add_action('pf_comment_form_after_face', 'pf_add_comment_form_insert_images');
 function pf_add_comment_form_insert_images()
 {
-    echo '<a @click="this.insert_images_to_comment_form()"><span data-toggle="tooltip" title="插入图片"><i class="far fa-images"></i></span></a>';
+    echo '<a @click="this.insert_images_to_comment_form()"><span data-toggle="tooltip" title="' . esc_attr__('插入图片', 'niRvana') . '"><i class="far fa-images"></i></span></a>';
 }
 //评论标签支持
 add_filter('preprocess_comment', function ($commentdata) {
@@ -272,6 +310,7 @@ function _emeta($metaName, $default = false)
     $result = get_post_meta(get_the_ID(), $metaName, true);
     echo $result ? $result : $default;
 }
+
 function frontend_opts()
 {
     $enable_pageLoader = _opt('enable_pageLoader');
@@ -281,9 +320,9 @@ function frontend_opts()
         'ajax_forceCache' => $ajax_forceCache,
         'is_user_loggedin' => is_user_logged_in() ,
         'cmt_req_name_email' => _opt('require_name_email') ,
-        'cmt_req_name_email_title' => _opt('cmt_req_name_email_title', '* 昵称与邮箱为必填项') ,
+        'cmt_req_name_email_title' => _opt('cmt_req_name_email_title', __('* 昵称与邮箱为必填项', 'niRvana')) ,
         'cmt_action_url' => esc_url(home_url('/')) . 'wp-comments-post.php',
-        'chat_nodata' => _opt('faq_nodata') ,
+        'chat_nodata' => _opt('faq_nodata', __('找不到相关信息', 'niRvana')) ,
         'enable_highlightjs' => _opt('enable_highlightjs') ,
     );
     return $frontend_opts;
@@ -343,7 +382,7 @@ function pf_rest_ding($data)
 {
     $post_id = (int) $data->get_param('arg');
     if ($post_id < 1 || !get_post($post_id)) {
-        return new WP_Error('rest_invalid_post', 'Invalid post ID', array('status' => 400));
+        return new WP_Error('rest_invalid_post', __('Invalid post ID', 'niRvana'), array('status' => 400));
     }
     return pf_post_ding($post_id);
 }
@@ -396,7 +435,7 @@ function pf_global_search($query_arg)
                     $color_tags[] = array('color' => $colorInt, 'tag' => $name);
                 }
             } else {
-                $color_tags = array(array('color' => 0, 'tag' => '无标签'));
+                $color_tags = array(array('color' => 0, 'tag' => __('无标签', 'niRvana')));
             }
             $posttype = get_post_type();
             switch ($posttype) {
@@ -433,10 +472,10 @@ function pf_global_search($query_arg)
                 'thumbnail' => $thumbnail,
                 'title'     => get_the_title(),
                 'href'      => get_the_permalink(),
-                'date'      => get_the_time('n月j日 · Y年'),
+                'date'      => get_the_date(get_option('date_format'), $post_id),
                 'tags'      => $color_tags,
-                'like'      => $like_count,
-                'comment'   => get_comments_number($post_id),
+                'like'      => number_format_i18n($like_count),
+                'comment'   => number_format_i18n((int) get_comments_number($post_id)),
             );
         }
     }
@@ -519,10 +558,12 @@ function pf_switch_theme()
         update_option($name, $val);
     }
 }
-register_nav_menus(array(
-    'topNav' => '主菜单',
-    'categoryNav' => '分类菜单',
-));
+add_action('after_setup_theme', function () {
+    register_nav_menus(array(
+        'topNav' => __('主菜单', 'niRvana'),
+        'categoryNav' => __('分类菜单', 'niRvana'),
+    ));
+});
 function set_cache($name, $data, $expire)
 {
     $allCache = get_option('pd_cache');
@@ -575,15 +616,15 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
     }
     echo "<div class='pagenav'><div class='$container'><ul class='$style'>";
     if ($paged > 1 && $showPrevNext == true) {
-        p_link($paged - 1, 'previous', '<i class="fa fa-angle-left" aria-hidden="true"></i>', 'pagenav prev');
+        p_link($paged - 1, __('上一页', 'niRvana'), '<i class="fa fa-angle-left" aria-hidden="true"></i>', 'pagenav prev');
     } elseif ($showPrevNext == true) {
-        p_link(1, 'previous', '<i class="fa fa-angle-left" aria-hidden="true"></i>', 'pagenav prev disabled');
+        p_link(1, __('上一页', 'niRvana'), '<i class="fa fa-angle-left" aria-hidden="true"></i>', 'pagenav prev disabled');
     }
     if ($showSummary == true) {
         echo '<li class="pagesummary disabled"><a href="#"><span class="page-numbers">' . $paged . ' / ' . $max_page . ' </span></a></li>';
     }
     if ($paged > $p + 1) {
-        p_link(1, 'First page', '<div data-toggle="tooltip" data-placement="auto top" title="第一页"><i class="fas fa-angle-double-left"></i></div>', 'pagenumber dot');
+        p_link(1, __('第一页', 'niRvana'), '<div data-toggle="tooltip" data-placement="auto top" title="' . esc_attr__('第一页', 'niRvana') . '"><i class="fas fa-angle-double-left"></i></div>', 'pagenumber dot');
     }
     for ($i = $paged - $p; $i <= $paged + $p; $i++) {
         if ($i > 0 && $i <= $max_page) {
@@ -591,19 +632,19 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
         }
     }
     if ($paged < $max_page - $p) {
-        p_link($max_page, 'Last page', '<div data-toggle="tooltip" data-placement="auto top" title="最后一页"><i class="fas fa-angle-double-right"></i></div>', 'pagenumber dot');
+        p_link($max_page, __('最后一页', 'niRvana'), '<div data-toggle="tooltip" data-placement="auto top" title="' . esc_attr__('最后一页', 'niRvana') . '"><i class="fas fa-angle-double-right"></i></div>', 'pagenumber dot');
     }
     if ($paged < $max_page && $showPrevNext == true) {
-        p_link($paged + 1, 'next', '<i class="fa fa-angle-right" aria-hidden="true"></i>', 'pagenav next');
+        p_link($paged + 1, __('下一页', 'niRvana'), '<i class="fa fa-angle-right" aria-hidden="true"></i>', 'pagenav next');
     } elseif ($showPrevNext == true) {
-        p_link($max_page, 'next', '<i class="fa fa-angle-right" aria-hidden="true"></i>', 'pagenav next disabled');
+        p_link($max_page, __('下一页', 'niRvana'), '<i class="fa fa-angle-right" aria-hidden="true"></i>', 'pagenav next disabled');
     }
     echo '</ul></div></div>';
 }
 function p_link($i, $title = "", $linktype = "", $disabled = "")
 {
     if ($title == '') {
-        $title = "The {$i} page";
+        $title = sprintf(__('第 %s 页', 'niRvana'), $i);
     }
     if ($linktype == '') {
         $linktext = $i;
@@ -611,9 +652,9 @@ function p_link($i, $title = "", $linktype = "", $disabled = "")
         $linktext = $linktype;
     }
     if ($disabled == 'pagenav next disabled' | $disabled == 'pagenav prev disabled') {
-        echo "<li class='$disabled'><a class='page-numbers'>{$linktext}</a></li>";
+        echo "<li class='" . esc_attr($disabled) . "'><a class='page-numbers' title='" . esc_attr($title) . "'>" . $linktext . "</a></li>";
     } else {
-        echo "<li class='$disabled'><a class='page-numbers' href='", esc_html(get_pagenum_link($i)) , "'>{$linktext}</a></li>";
+        echo "<li class='" . esc_attr($disabled) . "'><a class='page-numbers' title='" . esc_attr($title) . "' href='" . esc_url(get_pagenum_link($i)) . "'>" . $linktext . "</a></li>";
     }
 }
 function comment_mail_notify($comment_id)
@@ -642,16 +683,16 @@ function SimPaled_send_email($parent_id, $comment)
     $spam_confirmed = $comment->comment_approved;
     if ($spam_confirmed != 'spam' && $to != $admin_email && $to != $author_email) {
         $wp_email = 'no-reply@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
-        $subject = '您在 [' . get_option("blogname") . '] 的留言有了回复';
+        $subject = sprintf(__('您在 [%s] 的留言有了回复', 'niRvana'), get_option('blogname'));
         $message = '<div style="background-color:#eef2fa;border:1px solid #d8e3e8;color:#111;padding:0 15px;-moz-border-radius:5px;-webkit-border-radius:5px;-khtml-border-radius:5px;">
-<p>' . trim(get_comment($parent_id)->comment_author) . ', 您好!</p>
-<p>您曾在《' . get_the_title($comment->comment_post_ID) . '》的留言:<br />'
+<p>' . sprintf(__('%s，您好！', 'niRvana'), trim(get_comment($parent_id)->comment_author)) . '</p>
+<p>' . sprintf(__('您曾在《%s》的留言：', 'niRvana'), get_the_title($comment->comment_post_ID)) . '<br />'
         . wpautop(trim(get_comment($parent_id)->comment_content)) . '</p>
-<p>' . trim($comment->comment_author) . ' 给你的回复:<br />'
+<p>' . sprintf(__('%s 给你的回复：', 'niRvana'), trim($comment->comment_author)) . '<br />'
         . wpautop(trim($comment->comment_content)) . '<br /></p>
-<p>您可以点击 <a href="' . htmlspecialchars(get_comment_link($parent_id, array("type" => "all"))) . '">查看回复的完整内容</a></p>
-<p>欢迎再度光临 <a href="' . esc_url(home_url()) . '">' . get_option('blogname') . '</a></p>
-<p>(此邮件由系统自动发出, 请勿回复.)</p></div>';
+<p>' . sprintf(__('您可以点击 <a href="%s">查看回复的完整内容</a>', 'niRvana'), esc_url(get_comment_link($parent_id, array('type' => 'all')))) . '</p>
+<p>' . sprintf(__('欢迎再度光临 <a href="%s">%s</a>', 'niRvana'), esc_url(home_url()), get_option('blogname')) . '</p>
+<p>' . esc_html__('（此邮件由系统自动发出，请勿回复。）', 'niRvana') . '</p></div>';
         $from = "From: \"" . get_option('blogname') . "\" <$wp_email>";
         $headers = "$from\nContent-Type: text/html; charset=" . get_option('blog_charset') . "\n";
         wp_mail($to, $subject, $message, $headers);
@@ -729,20 +770,20 @@ function reply_to_down($atts, $content = null)
     if (get_option('回复可见说明')) {
         $licence = wpautop(str_ireplace('img', 'div', get_option('回复可见说明')));
     } else {
-        $licence = '<p>请您认真评论后再下载！</p>';
+        $licence = '<p>' . esc_html__('请您认真评论后再下载！', 'niRvana') . '</p>';
     }
     extract(shortcode_atts(array("notice" => '
-<div type="button" class="getit" data-toggle="modal" data-target="#reply2down_'.$reply2down_times.'"><a style="cursor:pointer;"><span>Get it!</span><span>Download</span></a></div>
+<div type="button" class="getit" data-toggle="modal" data-target="#reply2down_'.$reply2down_times.'"><a style="cursor:pointer;"><span>' . esc_html__('Get it!', 'niRvana') . '</span><span>' . esc_html__('Download', 'niRvana') . '</span></a></div>
 <div class="modal fade" id="reply2down_'.$reply2down_times.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<h4 class="modal-title" id="myModalLabel">下载提示</h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="' . esc_attr__('关闭', 'niRvana') . '"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">' . esc_html__('下载提示', 'niRvana') . '</h4>
 </div>
 <div class="modal-body">'.$licence.'</div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">知道了</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">' . esc_html__('知道了', 'niRvana') . '</button>
 </div>
 </div>
 </div>
@@ -792,21 +833,21 @@ function download_with_licence($atts, $content = null)
     if (get_option('版权说明')) {
         $licence = wpautop(str_ireplace('img', 'div', get_option('版权说明')));
     } else {
-        $licence = '<p>本站提供的下载内容版权归本站所有。转载 <span style="color:#ff7800">必须</span> 注明出处！</p><p style="font-size:80%; color:#888;">* 标有 “转载” 字样的文章，内容版权归原作者所有。</p>';
+        $licence = '<p>' . esc_html__('本站提供的下载内容版权归本站所有。转载', 'niRvana') . ' <span style="color:#ff7800">' . esc_html__('必须', 'niRvana') . '</span> ' . esc_html__('注明出处！', 'niRvana') . '</p><p style="font-size:80%; color:#888;">* ' . esc_html__('标有“转载”字样的文章，内容版权归原作者所有。', 'niRvana') . '</p>';
     }
     return do_shortcode('
-<div type="button" class="getit" data-toggle="modal" data-target="#directDownload_'.$directDownload_times.'"><a style="cursor:pointer;"><span>Get it!</span><span>Download</span></a></div>
+<div type="button" class="getit" data-toggle="modal" data-target="#directDownload_'.$directDownload_times.'"><a style="cursor:pointer;"><span>' . esc_html__('Get it!', 'niRvana') . '</span><span>' . esc_html__('Download', 'niRvana') . '</span></a></div>
 <div class="modal fade" id="directDownload_'.$directDownload_times.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<h4 class="modal-title" id="myModalLabel">版权说明</h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="' . esc_attr__('关闭', 'niRvana') . '"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">' . esc_html__('版权说明', 'niRvana') . '</h4>
 </div>
 <div class="modal-body">'.$licence.'</div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">不同意</button>
-<button type="button" class="btn btn-primary" data-dismiss="modal" onclick=window.open("'.$content.'")>同意并下载</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">' . esc_html__('不同意', 'niRvana') . '</button>
+<button type="button" class="btn btn-primary" data-dismiss="modal" onclick=window.open("'.$content.'")>' . esc_html__('同意并下载', 'niRvana') . '</button>
 </div>
 </div>
 </div>
@@ -852,12 +893,12 @@ function mytheme_comment($comment, $args, $depth)
 		} ?>
 		<div class="comment-author vcard">
 			<div class="meta">
-				<?php printf(__('<span class="name">%s</span>'), get_comment_author_link()); ?>
-				<?php printf(__('<span class="date">%1$s · %2$s</span>'), get_comment_date('Y-n-j'), get_comment_time('G:i')); ?>
+				<?php printf(__('<span class="name">%s</span>', 'niRvana'), get_comment_author_link()); ?>
+				<?php printf(__('<span class="date">%1$s · %2$s</span>', 'niRvana'), get_comment_date(get_option('date_format')), get_comment_time(get_option('time_format'))); ?>
 			</div>
 			<?php if ($comment->comment_approved == '0') : ?>
 			<em
-				class="comment-awaiting-moderation"><?php _e('评论正在等待管理员审核...'); ?></em>
+				class="comment-awaiting-moderation"><?php esc_html_e('评论正在等待管理员审核...', 'niRvana'); ?></em>
 			<br />
 			<?php endif; ?>
 			<div class="comment-text"><?php comment_text(); ?></div>
@@ -895,12 +936,21 @@ function shortCodeModal($atts, $content = null)
     extract(shortcode_atts(array(
         "id" => '',
         "btn_type" => '',
-        "btn_label" => 'button',
-        "title" => '标题',
-        "close_label" => '关闭',
-        "href_label" => '跳转到',
+        "btn_label" => __('button', 'niRvana'),
+        "title" => __('标题', 'niRvana'),
+        "close_label" => __('关闭', 'niRvana'),
+        "href_label" => __('跳转到', 'niRvana'),
         "href" => ''
     ), $atts));
+    if ('未标题' === $title) {
+        $title = __('未标题', 'niRvana');
+    }
+    if ('关闭' === $close_label) {
+        $close_label = __('关闭', 'niRvana');
+    }
+    if ('跳转到' === $href_label) {
+        $href_label = __('跳转到', 'niRvana');
+    }
     if ($href) {
         $href_btn = '<button type="button" class="btn btn-primary" data-dismiss="modal" onclick=window.open("' . $href . '")>' . $href_label . '</button>';
     } else {
@@ -912,7 +962,7 @@ function shortCodeModal($atts, $content = null)
 <div class="modal-dialog" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<button type="button" class="close" data-dismiss="modal" aria-label="'.esc_attr__('关闭', 'niRvana').'"><span aria-hidden="true">&times;</span></button>
 <h4 class="modal-title" id="myModalLabel">'.$title.'</h4>
 </div>
 <div class="modal-body">'.do_shortcode($content).'</div>
@@ -931,7 +981,7 @@ function shortCodeDropdown($atts, $content = null)
     extract(shortcode_atts(array(
         "id" => '',
         "btn_type" => 'btn-default',
-        "btn_label" => 'Dropdown',
+        "btn_label" => __('Dropdown', 'niRvana'),
     ), $atts));
     if ($id) {
         return '<div class="dropdown">
@@ -964,7 +1014,7 @@ function shortCodeCollapse($atts, $content = null)
     extract(shortcode_atts(array(
         "id" => '',
         "btn_type" => 'btn-default',
-        "btn_label" => 'collapse',
+        "btn_label" => __('collapse', 'niRvana'),
     ), $atts));
     if ($id) {
         return '<button class="btn '.$btn_type.'" type="button" data-toggle="collapse" data-target="#'.$id.'" aria-expanded="false" aria-controls="'.$id.'">
@@ -1113,7 +1163,7 @@ function pre_validate_comment_span(array $commentdata): array
         $nonce = isset($_POST['wp_nonce']) ? sanitize_text_field(wp_unslash($_POST['wp_nonce'])) : '';
         if (! wp_verify_nonce($nonce, 'wp_rest')) {
             wp_die(
-                '<p>WP NONCE验证失败，判定为机器人恶意发送的垃圾评论！如果启用了“缓存”，则无法正常获取NONCE，因此也可能会判定为垃圾评论。若此操作是正常操作，请停用任何网站缓存功能。</p><p><a href="javascript:history.back()">« 返回</a></p>'
+                '<p>' . esc_html__('WP NONCE验证失败，判定为机器人恶意发送的垃圾评论！如果启用了“缓存”，则无法正常获取NONCE，因此也可能会判定为垃圾评论。若此操作是正常操作，请停用任何网站缓存功能。', 'niRvana') . '</p><p><a href="javascript:history.back()">« ' . esc_html__('返回', 'niRvana') . '</a></p>'
             );
         }
     }
@@ -1630,7 +1680,7 @@ function get_topSlider($postIds = array(), $type = false)
             );
         }
     } else {
-        echo "滚动图片传入的数据错误！";
+        echo esc_html__('滚动图片传入的数据错误！', 'niRvana');
         return false;
     }
     if (count($carousels_contents) == 0) {
@@ -1663,7 +1713,7 @@ function get_gallery_slider($postId = 0, $type = false)
             }
         }
     } else {
-        echo "galleryID错误！";
+        echo esc_html__('galleryID错误！', 'niRvana');
         return false;
     }
     if (count($carousels_contents) == 0) {
@@ -1687,7 +1737,7 @@ function get_tagSlider($content = array(), $type = false)
         $carousels_contents = array();
         $carousels_contents[] = $content;
     } else {
-        echo "滚动图片传入的数据错误！";
+        echo esc_html__('滚动图片传入的数据错误！', 'niRvana');
         return false;
     }
     $carousels_attrs = "interval-time='" . _opt('carousels_interval_time', '0') . "'";
@@ -1710,7 +1760,7 @@ function get_category_text($pid, $showFull = false, $separate = ' / ')
         $categories = get_the_category($pid);
         $categoryText = (!empty($categories)) 
             ? $categories[0]->cat_name 
-            : '未分类';
+            : __('未分类', 'niRvana');
     }
     return $categoryText;
 }
@@ -1756,8 +1806,8 @@ function pf_sidebar_init()
     for ($i = 0; $i < count($sidebars); $i++) {
         register_sidebar(array(
         'id' => 'sidebar-'.($i + 1),
-        'name' => $sidebars[$i]['name'] ? $sidebars[$i]['name'] : '边栏'.($i + 1).'（无标题）',
-        'description' => '边栏数量、名称、图标均可在“主题设置”中添加',
+        'name' => $sidebars[$i]['name'] ? $sidebars[$i]['name'] : sprintf(__('边栏%s（无标题）', 'niRvana'), $i + 1),
+        'description' => __('边栏数量、名称、图标均可在“主题设置”中添加', 'niRvana'),
         'before_widget' => '<li id="%1$s" class="widget %2$s">',
         'after_widget'  => '</li>',
         'before_title'  => '<h2 class="widgettitle">',
@@ -1767,5 +1817,6 @@ function pf_sidebar_init()
 }
 include('custom_function.php');
 include('pandastudio_plugins/config_plugins.php');
+include_once('pandastudio_framework/framework_i18n.php');
 include('pandastudio_framework/config_framework.php');
 ?>

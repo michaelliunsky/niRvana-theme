@@ -66,7 +66,7 @@ get_topSlider( array( $post->ID ), $type );
                          @click="this.single_toggle_sidebar()"
                          data-toggle="tooltip"
                          data-placement="auto top"
-                         title="切换边栏">
+                         title="<?php echo esc_attr__( '切换边栏', 'niRvana' ); ?>">
                         <i class="fas fa-angle-right"></i>
                     </div>
                     <div class="article_wrapper post clearfix page">

@@ -14,9 +14,9 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '博主信息设置' ) }>
+				<PanelBody title={ __( '博主信息设置', 'niRvana' ) }>
 					<TextControl
-						label={ __( '昵称' ) }
+						label={ __( '昵称', 'niRvana' ) }
 						value={ name }
 						onChange={ ( value ) => setAttributes( { name: value } ) }
 						__next40pxDefaultSize
@@ -32,7 +32,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									variant="secondary"
 									__next40pxDefaultSize
 								>
-									{ img ? __( '更换头像' ) : __( '选择头像' ) }
+									{ img ? __( '更换头像', 'niRvana' ) : __( '选择头像', 'niRvana' ) }
 								</Button>
 							) }
 						/>
@@ -53,7 +53,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						className="description"
 						value={ description }
 						onChange={ ( value ) => setAttributes( { description: value } ) }
-						placeholder={ __( '描述...' ) }
+						placeholder={ __( '描述...', 'niRvana' ) }
 					/>
 				</div>
 			</div>

@@ -3,6 +3,7 @@
 	"apiVersion": 3,
 	"name": "pandastudio/user-info",
 	"version": "2.0.0",
+	"textdomain": "niRvana",
 	"title": "博主信息",
 	"description": "展示博主基本信息（头像、昵称、描述）",
 	"icon": "admin-users",

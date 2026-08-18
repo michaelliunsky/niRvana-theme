@@ -12,7 +12,7 @@ if ($is_production) {
         wp_register_script(
             'niRvana',
             $theme_uri . '/assets/minify/app.min.js',
-            array('jquery'),
+            array('jquery', 'wp-i18n'),
             $theme_version
         );
         wp_register_style(
@@ -68,7 +68,7 @@ if ($is_production) {
         // WP 核心 jQuery 无冲突模式不提供全局 $, 为主题脚本提供别名
         wp_add_inline_script('jquery', 'window.$ = window.jQuery;');
         foreach ($dev_scripts as $i => $file) {
-            wp_enqueue_script('nirvana-dev-' . $i, $theme_uri . '/' . $file, array('jquery'), $theme_version);
+            wp_enqueue_script('nirvana-dev-' . $i, $theme_uri . '/' . $file, array('jquery', 'wp-i18n'), $theme_version);
         }
         foreach ($dev_styles as $i => $file) {
             wp_enqueue_style('nirvana-dev-css-' . $i, $theme_uri . '/' . $file, array(), $theme_version);

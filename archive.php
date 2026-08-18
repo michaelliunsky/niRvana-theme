@@ -4,7 +4,7 @@ global $wp_query;
 if (
     empty($wp_query->tax_query->queries)
 ) {
-    wp_die('该页面不支持直接访问。', '403', ['response' => 403]);
+    wp_die(esc_html__('该页面不支持直接访问。', 'niRvana'), '403', ['response' => 403]);
 }
 $taxonomy = $wp_query->tax_query->queries[0]["taxonomy"] ?? '';
 switch ($taxonomy) {
@@ -15,10 +15,10 @@ switch ($taxonomy) {
         include('assets/template/tag-gallery.php');
         break;
     case 'faq-category':
-        wp_die('警告：FAQ类型不支持直接预览，请前往“主题设置”页面添加！');
+        wp_die(esc_html__('警告：FAQ类型不支持直接预览，请前往“主题设置”页面添加！', 'niRvana'));
         break;
     case 'favlinks-category':
-        wp_die('警告：友情链接类型不支持直接预览，请新增页面，选择“友情链接”模板！友情链接必须隶属于某个分类才可以显示，请务必设置友链的分类！');
+        wp_die(esc_html__('警告：友情链接类型不支持直接预览，请新增页面，选择“友情链接”模板！友情链接必须隶属于某个分类才可以显示，请务必设置友链的分类！', 'niRvana'));
         break;
     default:
         do_action('modify_custom_taxonomy', $taxonomy);

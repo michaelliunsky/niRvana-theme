@@ -1,5 +1,5 @@
 <div class="relate-posts clearfix">
-    <div class="post-model"><i class="far fa-star"></i>相关文章</div>
+    <div class="post-model"><i class="far fa-star"></i><?php esc_html_e( '相关文章', 'niRvana' ); ?></div>
     <div class="posts clearfix">
         <?php
         $post_num = 4;
@@ -53,7 +53,7 @@
             }
         }
         if ( $i == 0 ) {
-            echo '<div style="margin-left: 40px;color: #ccc;">暂无相关文章！</div>';
+            echo '<div style="margin-left: 40px;color: #ccc;">' . esc_html__( '暂无相关文章！', 'niRvana' ) . '</div>';
         }
         ?>
     </div>

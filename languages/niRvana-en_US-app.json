@@ -1,0 +1,608 @@
+{
+  "translation-revision-date": "2026-08-18 00:00+00:00",
+  "generator": "niRvana dev-tools/build-i18n-app-json.py",
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "en_US",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "列表": [
+        "List"
+      ],
+      "取消": [
+        "Cancel"
+      ],
+      "确定": [
+        "OK"
+      ],
+      "昵称": [
+        "Nickname"
+      ],
+      "邮箱": [
+        "Email"
+      ],
+      "请输入...": [
+        "Please enter..."
+      ],
+      "关闭": [
+        "Close"
+      ],
+      "插入图片": [
+        "Insert Image"
+      ],
+      "找不到相关信息": [
+        "No relevant information found"
+      ],
+      "标题": [
+        "Title"
+      ],
+      "跳转到": [
+        "Redirect to"
+      ],
+      "未标题": [
+        "Untitled"
+      ],
+      "移除": [
+        "Remove"
+      ],
+      "链接": [
+        "Link"
+      ],
+      "显示数量": [
+        "Display Count"
+      ],
+      "显示形式": [
+        "Display Type"
+      ],
+      "toast内容未定义！": [
+        "toast content is undefined!"
+      ],
+      "按钮名称未定义": [
+        "Button name is undefined"
+      ],
+      "notify内容未定义！": [
+        "notify content is undefined!"
+      ],
+      "请登录": [
+        "Please log in"
+      ],
+      "请输入搜索关键词！": [
+        "Please enter search keywords!"
+      ],
+      "至少选择一种类型再搜索！": [
+        "Select at least one type before searching!"
+      ],
+      "网络错误\n请刷新后再试！": [
+        "Network error\nPlease refresh and try again!"
+      ],
+      "REST API请求错误！": [
+        "REST API request error!"
+      ],
+      "服务器地址重写错误，请检查：\n1、后台/设置/固定链接设置为朴素\n2、.htaccess文件是否配置有误": [
+        "Server URL rewrite error. Please check:\n1. Settings / Permalinks is set to Plain\n2. The .htaccess file is configured correctly"
+      ],
+      "昵称未填写": [
+        "Nickname is empty"
+      ],
+      "邮箱未填写": [
+        "Email is empty"
+      ],
+      "邮箱格式错误": [
+        "Invalid email format"
+      ],
+      "评论内容未填写": [
+        "Comment content is empty"
+      ],
+      "严重错误：非人为操作\n操作过快，判定为机器人操作，请刷新重试": [
+        "Critical error: automated operation detected\nOperation too fast; classified as bot activity. Refresh and try again"
+      ],
+      "严重错误：评论地址无效": [
+        "Critical error: invalid comment URL"
+      ],
+      "<i class=\"fas fa-sign-out-alt\"></i> 退出登录？": [
+        "<i class=\"fas fa-sign-out-alt\"></i> Log out?"
+      ],
+      "请稍后": [
+        "Please wait"
+      ],
+      "网页还未加载完成": [
+        "Page has not finished loading"
+      ],
+      "点赞处理中...": [
+        "Processing like..."
+      ],
+      "您已经点过赞了！": [
+        "You have already liked this!"
+      ],
+      "已赞，感谢您的支持！": [
+        "Liked; thank you for your support!"
+      ],
+      "找到以下内容，点击查看详情<ol>": [
+        "Found the following content. Click to view details<ol>"
+      ],
+      "数据加载失败": [
+        "Failed to load data"
+      ],
+      "封面已生成！保存图片可分享至社交网站": [
+        "Cover generated! Save the image to share it on social media"
+      ],
+      "<pre>\n请输入代码...\n</pre>": [
+        "<pre>\nPlease enter code...\n</pre>"
+      ],
+      "请粘贴图片地址，每个图片一行": [
+        "Please paste image URLs, one per line"
+      ],
+      "点击查看密码": [
+        "Click to view password"
+      ],
+      "按住查看密码": [
+        "Hold to view password"
+      ],
+      "正在注册...": [
+        "Registering..."
+      ],
+      "注册成功": [
+        "Registration successful"
+      ],
+      "请使用注册的账号登录": [
+        "Please log in with your registered account"
+      ],
+      "用户注册接口请求失败！": [
+        "User registration request failed!"
+      ],
+      "请稍后...": [
+        "Please wait..."
+      ],
+      "验证码发送成功": [
+        "Verification code sent successfully"
+      ],
+      "请填写邮箱接收到的验证码": [
+        "Please enter the verification code sent to your email"
+      ],
+      "发送邮件验证码接口请求失败！": [
+        "Email verification code request failed!"
+      ],
+      "取消注册": [
+        "Cancel Registration"
+      ],
+      "注册表单尚有数据，请确认是否取消注册？": [
+        "Registration form contains data. Are you sure you want to cancel registration?"
+      ],
+      "继续注册": [
+        "Continue Registration"
+      ],
+      "注册": [
+        "Register"
+      ],
+      "QQ/用户名/邮箱": [
+        "QQ/Username/Email"
+      ],
+      "网站密码": [
+        "Site Password"
+      ],
+      "用户名/邮箱": [
+        "Username/Email"
+      ],
+      "密码": [
+        "Password"
+      ],
+      "记住我": [
+        "Remember Me"
+      ],
+      "忘记密码": [
+        "Forgot Password"
+      ],
+      "登录": [
+        "Log In"
+      ],
+      "请输入账号": [
+        "Please enter account"
+      ],
+      "请输入密码": [
+        "Please enter password"
+      ],
+      "登录中...": [
+        "Logging in..."
+      ],
+      "登陆成功！": [
+        "Login successful!"
+      ],
+      "登录接口请求失败！": [
+        "Login request failed!"
+      ],
+      "QQ号注册": [
+        "Register with QQ"
+      ],
+      "用户名": [
+        "Username"
+      ],
+      "验证码": [
+        "Verification Code"
+      ],
+      "请输入正确的QQ号码": [
+        "Please enter a valid QQ number"
+      ],
+      "验证码发往：\n": [
+        "Verification code sent to:\n"
+      ],
+      "请输入邮箱": [
+        "Please enter email"
+      ],
+      "请输入QQ号": [
+        "Please enter QQ number"
+      ],
+      "请输入网站密码": [
+        "Please enter site password"
+      ],
+      "请输入QQ邮箱接收的验证码": [
+        "Please enter the verification code sent to your QQ email"
+      ],
+      "请输入用户名": [
+        "Please enter username"
+      ],
+      "请输入邮箱接收的验证码": [
+        "Please enter the verification code sent to your email"
+      ],
+      "连接服务器失败或后台读取出错！": [
+        "Could not connect to the server or load the settings in the admin!"
+      ],
+      "设置项读取失败": [
+        "Failed to load settings"
+      ],
+      "上传": [
+        "Upload"
+      ],
+      "插入": [
+        "Insert"
+      ],
+      "按住 ctrl 批量选择": [
+        "Hold Ctrl to select multiple items"
+      ],
+      "批量插入": [
+        "Bulk Insert"
+      ],
+      "请输入图片地址": [
+        "Please enter image URL"
+      ],
+      "外链图片": [
+        "External Images"
+      ],
+      "MetaBox数据获取失败！请检查：\n1、WordPress版本大于4.7\n2、Rest API是否被插件关闭\n3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？": [
+        "Failed to retrieve MetaBox data! Please check:\n1. WordPress version is above 4.7\n2. Whether the REST API has been disabled by a plugin\n3. Whether the server is misconfigured, causing a \"Pretty Permalinks\" issue. Set \"Settings - Permalinks\" to \"Plain\" and save\n4. Check \"Settings - General\": does the WordPress Address match the address in the current browser's address bar?"
+      ],
+      "数据读取失败": [
+        "Failed to read data"
+      ],
+      "保存成功！": [
+        "Saved successfully!"
+      ],
+      "保存失败": [
+        "Save failed"
+      ],
+      "授权错误！": [
+        "Authorization error!"
+      ],
+      "连接服务器失败或后台保存出错！": [
+        "Could not connect to the server or save the settings in the admin!"
+      ],
+      "此操作将使用您上传的设置项覆盖到服务器上": [
+        "This will overwrite the server settings with the settings you uploaded"
+      ],
+      "从您上传的数据中匹配到 %s 个设置项，共需要 %s 个设置项。未匹配到的 %s 个选项将被置空": [
+        "Matched %s settings in your upload; %s settings are required in total. The %s unmatched options will be cleared"
+      ],
+      "确认这样做": [
+        "Confirm"
+      ],
+      "成功导入，页面正在刷新...": [
+        "Import successful; refreshing page..."
+      ],
+      "请选择由本主题导出的 JSON 格式文件": [
+        "Please select a JSON file exported by this theme"
+      ],
+      "数据类型错误": [
+        "Invalid data type"
+      ],
+      "数据下载失败": [
+        "Failed to download data"
+      ],
+      "此操作将清空本主题的所有设置选项": [
+        "This will clear all settings for this theme"
+      ],
+      "请确认": [
+        "Confirm"
+      ],
+      "已清空主题设置项，页面正在刷新...": [
+        "Theme settings cleared; refreshing page..."
+      ],
+      "数据表上传失败": [
+        "Failed to upload configuration data"
+      ],
+      "清空数据失败": [
+        "Failed to clear data"
+      ],
+      "Option数据获取失败！请检查：\n1、WordPress版本大于4.7\n2、Rest API是否被插件关闭\n3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？": [
+        "Failed to retrieve Option data! Please check:\n1. WordPress version is above 4.7\n2. Whether the REST API has been disabled by a plugin\n3. Whether the server is misconfigured, causing a \"Pretty Permalinks\" issue. Set \"Settings - Permalinks\" to \"Plain\" and save\n4. Check \"Settings - General\": does the WordPress Address match the address in the current browser's address bar?"
+      ],
+      "朗读本文": [
+        "Read This Post Aloud"
+      ],
+      "语音合成中，请稍后...": [
+        "Text-to-speech in progress, please wait..."
+      ],
+      "区块设置": [
+        "Block Settings"
+      ],
+      "请粘贴嵌入代码": [
+        "Please paste the embed code"
+      ],
+      "点击视频下方的分享->复制“嵌入代码”": [
+        "Click Share below the video -> Copy \"Embed Code\""
+      ],
+      "注意：这里粘贴的任何html都将当做代码来执行，请不要填写不安全的代码！": [
+        "Warning: any HTML pasted here will be executed as code. Do not enter unsafe code!"
+      ],
+      "按钮颜色": [
+        "Button Color"
+      ],
+      "按钮未定义": [
+        "Button is undefined"
+      ],
+      "按钮名称": [
+        "Button Name"
+      ],
+      "下载地址": [
+        "Download URL"
+      ],
+      "需评论下载": [
+        "Require Comment to Download"
+      ],
+      "下拉列表": [
+        "Dropdown List"
+      ],
+      "项目%s：": [
+        "Item %s:"
+      ],
+      "请输入名称": [
+        "Please enter name"
+      ],
+      "增加列表项": [
+        "Add List Item"
+      ],
+      "媒体库": [
+        "Media Library"
+      ],
+      "https://图片地址": [
+        "https://image URL"
+      ],
+      "热门文章设置": [
+        "Popular Posts Settings"
+      ],
+      "文章筛选": [
+        "Post Filter"
+      ],
+      "点赞最多": [
+        "Most Liked"
+      ],
+      "评论最多": [
+        "Most Comments"
+      ],
+      "轻博客设置": [
+        "Microblog Settings"
+      ],
+      "模态框标题": [
+        "Modal Title"
+      ],
+      "关闭按钮文本": [
+        "Close Button Text"
+      ],
+      "默认：关闭": [
+        "Default: Close"
+      ],
+      "链接按钮文本": [
+        "Link Button Text"
+      ],
+      "默认：跳转到": [
+        "Default: Redirect to"
+      ],
+      "链接按钮地址": [
+        "Link Button URL"
+      ],
+      "请输入模态框标题...": [
+        "Please enter modal title..."
+      ],
+      "此模块内容回复可见": [
+        "Content in this module is visible after replying"
+      ],
+      "网络异常": [
+        "Network Error"
+      ],
+      "设置文章ID": [
+        "Set Post ID"
+      ],
+      "更改文章ID": [
+        "Change Post ID"
+      ],
+      "选择文章ID": [
+        "Select Post ID"
+      ],
+      "已选文章ID：": [
+        "Selected Post ID:"
+      ],
+      "请输入文章关键字...": [
+        "Please enter post keywords..."
+      ],
+      "检索文章": [
+        "Search Posts"
+      ],
+      "请选择：": [
+        "Please select:"
+      ],
+      "暂无文章": [
+        "No Posts Yet"
+      ],
+      "当前窗口": [
+        "Current Window"
+      ],
+      "新窗口": [
+        "New Window"
+      ],
+      "标签与链接设置": [
+        "Tags and Links Settings"
+      ],
+      "标签": [
+        "Tags"
+      ],
+      "垂直导航": [
+        "Vertical Navigation"
+      ],
+      "文本": [
+        "Text"
+      ],
+      "地址": [
+        "Address"
+      ],
+      "打开方式": [
+        "Open in"
+      ],
+      "删除此项": [
+        "Remove this item"
+      ],
+      "添加一项": [
+        "Add an Item"
+      ],
+      "(空)": [
+        "(Empty)"
+      ],
+      "选择颜色": [
+        "Select Color"
+      ],
+      "全宽样式": [
+        "Full Width Style"
+      ],
+      "标题样式": [
+        "Title Style"
+      ],
+      "样式一": [
+        "Style One"
+      ],
+      "样式二": [
+        "Style Two"
+      ],
+      "博主信息设置": [
+        "Author Info Settings"
+      ],
+      "更换头像": [
+        "Change Avatar"
+      ],
+      "选择头像": [
+        "Select Avatar"
+      ],
+      "描述...": [
+        "Description..."
+      ],
+      "弹出提示": [
+        "Toast Notification"
+      ],
+      "请输入提示语...": [
+        "Please enter a prompt..."
+      ],
+      "顶部": [
+        "Top"
+      ],
+      "底部": [
+        "Bottom"
+      ],
+      "左侧": [
+        "Left"
+      ],
+      "右侧": [
+        "Right"
+      ],
+      "仅圆角": [
+        "Rounded Corners Only"
+      ],
+      "仅阴影": [
+        "Shadow Only"
+      ],
+      "圆角与阴影": [
+        "Rounded Corners and Shadow"
+      ],
+      "中文段落首行空2个字符": [
+        "Indent the first line of Chinese paragraphs by two characters"
+      ],
+      "block title\u0004哔哩哔哩视频": [
+        "Bilibili Video"
+      ],
+      "block description\u0004插入哔哩哔哩视频": [
+        "Embed a Bilibili video"
+      ],
+      "block title\u0004折叠内容": [
+        "Collapse"
+      ],
+      "block title\u0004下载按钮": [
+        "Download Button"
+      ],
+      "block description\u0004创建一个下载按钮，可通过启用“需评论下载”来增加与读者的互动": [
+        "Create a download button. Enabling \"comment to download\" encourages reader interaction"
+      ],
+      "block title\u0004下拉菜单": [
+        "Dropdown Menu"
+      ],
+      "block title\u0004轮播图": [
+        "Carousel"
+      ],
+      "block title\u0004热门文章": [
+        "Popular Posts"
+      ],
+      "block description\u0004展示评论最多/点赞最多的文章": [
+        "Show posts with the most comments or likes"
+      ],
+      "block title\u0004轻博客": [
+        "Microblog"
+      ],
+      "block description\u0004轻博客展示": [
+        "Microblog display"
+      ],
+      "block title\u0004模态框": [
+        "Modal"
+      ],
+      "block description\u0004用于浮动展示更多内容": [
+        "Floating display for additional content"
+      ],
+      "block title\u0004回复可见": [
+        "Reply to View"
+      ],
+      "block description\u0004此模块内容需用户评论文章后才可显示，此模块内可嵌套其它模块": [
+        "Content requires a comment before it is visible. This module can nest other modules"
+      ],
+      "block title\u0004文章展示": [
+        "Single Post"
+      ],
+      "block description\u0004用于展示文章链接，部分类型的文章可能无法显示": [
+        "Display a post link. Some post types may not render"
+      ],
+      "block title\u0004标签与链接": [
+        "Tags & Links"
+      ],
+      "block description\u0004自定义标签、链接、社交信息展示等": [
+        "Custom tags, links, social info display, etc."
+      ],
+      "block title\u0004提示框": [
+        "Tips"
+      ],
+      "block title\u0004小标题": [
+        "Subtitle"
+      ],
+      "block title\u0004博主信息": [
+        "Author Info"
+      ],
+      "block description\u0004展示博主基本信息（头像、昵称、描述）": [
+        "Show author basic info (avatar, nickname, description)"
+      ]
+    }
+  }
+}

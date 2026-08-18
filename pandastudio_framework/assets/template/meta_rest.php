@@ -49,10 +49,10 @@ function get_post_meta_by_RestAPI($data)
     $post_id = $ajaxData['postID'] ?? 0;
     $dataArray = $ajaxData['postMeta'] ?? array();
     if (!$post_id) {
-        return array('error' => '缺少PostID！');
+        return array('error' => __('缺少PostID！', 'niRvana'));
     }
     if (count($dataArray) < 1) {
-        return array('error' => '数据格式不正确或为空！');
+        return array('error' => __('数据格式不正确或为空！', 'niRvana'));
     }
     $return = array();
     foreach ($dataArray as $meta_name => $value) {
@@ -71,7 +71,7 @@ function pandastudio_framework_create_json_meta()
         if (isset($meta_screens) && in_array($post_type, $meta_screens)) {
             $post_type_obj = get_post_type_object($post_type);
             $post_type_name = $post_type_obj->labels->name;
-            add_meta_box('pandastudio_framework_meta', $post_type_name.'设置', 'pandastudio_framework_create_json_meta_box', $post_type, 'advanced', 'high', '');
+            add_meta_box('pandastudio_framework_meta', $post_type_name . __('设置', 'niRvana'), 'pandastudio_framework_create_json_meta_box', $post_type, 'advanced', 'high', '');
         }
     }
 }
@@ -85,16 +85,19 @@ function pandastudio_framework_create_json_meta_box()
     $adminColor = get_user_meta(get_current_user_id(), 'admin_color', true);
     $supportColorArray = array('blue','coffee','ectoplasm','fresh','light','midnight','ocean','sunrise');
     $color = in_array($adminColor, $supportColorArray) ? $adminColor : 'fresh';
+    $locale = get_locale() === 'zh_CN' ? 'zh-CN' : 'en';
 
     echo '<script type="text/javascript" src="' . get_stylesheet_directory_uri() . '/pandastudio_framework/assets/js/vue.js"></script>';
     echo '<script type="text/javascript" src="' . get_stylesheet_directory_uri() . '/pandastudio_framework/assets/js/element-ui.js"></script>';
+    echo '<script type="text/javascript" src="' . get_stylesheet_directory_uri() . '/pandastudio_framework/assets/js/element-locale/' . $locale . '.js"></script>';
+    echo '<script type="text/javascript">if (window.ELEMENT && window.ELEMENT.lang) { window.ELEMENT.i18n(window.ELEMENT.lang[\'' . $locale . '\']); }</script>';
     echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/' . $color . '.css">';
     echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/rewrite_post_screen.css">';
     echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/pandastudio_framework/assets/css/font-awesome.css">';
     echo '<div id="vue_rest">';
     ?>
     <template>
-        <span v-if="false" style="color: red;">您的浏览器不支持ECMAScript 5，请更换至IE9及以上版本</span>
+        <span v-if="false" style="color: red;"><?php echo esc_html__('您的浏览器不支持 ECMAScript 5，请更换至 IE9 及以上版本', 'niRvana'); ?></span>
     </template>
     <template>
         <el-tabs v-model="tabIndex" v-loading="loading" v-show="show" class="panda_framework_metabox_tab" type="card">
@@ -123,7 +126,7 @@ function pandastudio_framework_create_json_meta_box()
                         </div>
                         <div v-if="component.type == 'uploader'">
                             <el-popover placement="bottom" trigger="hover" :disabled="component.value && !component.showImage">
-                                <el-input size="small" v-model="component.value" :placeholder="component.placeholder ? component.placeholder : '点击按钮上传或在此处粘贴外链地址'" slot="reference">
+                                <el-input size="small" v-model="component.value" :placeholder="component.placeholder ? component.placeholder : '<?php echo esc_attr__('点击按钮上传或在此处粘贴外链地址', 'niRvana'); ?>'" slot="reference">
                                     <el-button @click="mediaUpload(component.name,'','')" icon="el-icon-upload2" slot="prepend"></el-button>
                                     <el-button @click="component.value = ''" icon="el-icon-close" slot="append" v-if="component.value"></el-button>
                                 </el-input>
@@ -134,18 +137,18 @@ function pandastudio_framework_create_json_meta_box()
                             <div class="multi_Uploader_show_image" v-for="(imgSrc, index) in component.value" :style="{ 'background-image': 'url(' + imgSrc + ')' }" @click="removeMultiUpload(component.name,index)"></div>
                             <div class="el-upload el-upload--picture-card">
                                 <div class="hover">
-                                    <el-tooltip class="item" effect="dark" content="输入外链" placement="top">
+                                    <el-tooltip class="item" effect="dark" content="<?php echo esc_attr__('输入外链', 'niRvana'); ?>" placement="top">
                                         <i class="el-icon-edit" @click="multiMediaUpload_input(component.name)"></i>
                                     </el-tooltip>
                                     <span style="width:15px;display: inline-block;"></span>
-                                    <el-tooltip class="item" effect="dark" content="批量上传" placement="top">
+                                    <el-tooltip class="item" effect="dark" content="<?php echo esc_attr__('批量上传', 'niRvana'); ?>" placement="top">
                                         <i class="el-icon-upload2" @click="multiMediaUpload(component.name)"></i>
                                     </el-tooltip>
                                 </div>
                                 <div class="normal"><i class="el-icon-plus"></i></div>
                             </div>
                             <div v-if="component.value.length > 1">
-                                <el-button @click="removeAllMultiUpload(component.name)" type="danger" :plain="true" size="mini" icon="el-icon-delete" class="subcontentRemove">全部移除</el-button>
+                                <el-button @click="removeAllMultiUpload(component.name)" type="danger" :plain="true" size="mini" icon="el-icon-delete" class="subcontentRemove"><?php echo esc_html__('全部移除', 'niRvana'); ?></el-button>
                             </div>
                         </div>
                         <div v-if="component.type == 'radio'">
@@ -156,7 +159,7 @@ function pandastudio_framework_create_json_meta_box()
                             </el-radio-group>
                         </div>
                         <div v-if="component.type == 'select'">
-                            <el-select size="small" v-model="component.value" :placeholder="component.placeholder ? component.placeholder : '请选择'" clearable>
+                            <el-select size="small" v-model="component.value" :placeholder="component.placeholder ? component.placeholder : '<?php echo esc_attr__('请选择', 'niRvana'); ?>'" clearable>
                                 <el-option v-for="select in component.selects" :key="select.value" :label="select.label" :value="select.value">
                                     <span style="float: left">{{ select.label }}</span>
                                     <span style="float: right; color: #C0CCDA; font-size: 13px">{{ select.description }}</span>
@@ -175,7 +178,7 @@ function pandastudio_framework_create_json_meta_box()
                                         </div>
                                         <div v-if="subcomponent.type == 'uploader'" class="subcomponent">
                                             <el-popover placement="bottom" trigger="hover" :disabled="subValue[subcomponent.name] && !subcomponent.showImage">
-                                                <el-input size="small" v-model="subValue[subcomponent.name]" :placeholder="subcomponent.placeholder ? subcomponent.placeholder : '点击按钮上传或在此处粘贴外链地址'" slot="reference">
+                                                <el-input size="small" v-model="subValue[subcomponent.name]" :placeholder="subcomponent.placeholder ? subcomponent.placeholder : '<?php echo esc_attr__('点击按钮上传或在此处粘贴外链地址', 'niRvana'); ?>'" slot="reference">
                                                     <el-button @click="mediaUpload(component.name,index,subcomponent.name)" icon="el-icon-upload2" slot="prepend"></el-button>
                                                     <el-button @click="subValue[subcomponent.name] = ''" icon="el-icon-close" slot="append" v-if="subValue[subcomponent.name]"></el-button>
                                                 </el-input>
@@ -188,7 +191,7 @@ function pandastudio_framework_create_json_meta_box()
                                             </el-radio-group>
                                         </div>
                                         <div v-if="subcomponent.type == 'select'" class="subcomponent">
-                                            <el-select size="small" v-model="subValue[subcomponent.name]" :placeholder="subcomponent.placeholder ? subcomponent.placeholder : '请选择'" clearable>
+                                            <el-select size="small" v-model="subValue[subcomponent.name]" :placeholder="subcomponent.placeholder ? subcomponent.placeholder : '<?php echo esc_attr__('请选择', 'niRvana'); ?>'" clearable>
                                                 <el-option v-for="select in subcomponent.selects" :key="select.value" :label="select.label" :value="select.value">
                                                     <span style="float: left">{{ select.label }}</span>
                                                     <span style="float: right; color: #C0CCDA; font-size: 13px">{{ select.description }}</span>
@@ -199,9 +202,9 @@ function pandastudio_framework_create_json_meta_box()
                                             <el-switch size="small" v-model="subValue[subcomponent.name]" active-value="checked" inactive-value=""></el-switch>
                                         </div>
                                     </div>
-                                    <el-button :plain="true" size="small" icon="el-icon-arrow-up" @click="multitypeMoveUp(component.value,index)" :disabled="index == 0">上移</el-button>
-                                    <el-button :plain="true" size="small" icon="el-icon-arrow-down" @click="multitypeMoveDown(component.value,index)" :disabled="index == component.value.length - 1">下移</el-button>
-                                    <el-button @click="removeMultiTypes(component.name,index)" type="danger" :plain="true" size="small" icon="el-icon-delete" class="subcontentRemove">移除</el-button>
+                                    <el-button :plain="true" size="small" icon="el-icon-arrow-up" @click="multitypeMoveUp(component.value,index)" :disabled="index == 0"><?php echo esc_html__('上移', 'niRvana'); ?></el-button>
+                                    <el-button :plain="true" size="small" icon="el-icon-arrow-down" @click="multitypeMoveDown(component.value,index)" :disabled="index == component.value.length - 1"><?php echo esc_html__('下移', 'niRvana'); ?></el-button>
+                                    <el-button @click="removeMultiTypes(component.name,index)" type="danger" :plain="true" size="small" icon="el-icon-delete" class="subcontentRemove"><?php echo esc_html__('移除', 'niRvana'); ?></el-button>
                                 </el-form-item>
                                 <el-form-item :label-width="component.value.length > 0 ? (component.subLabelWidth ? component.subLabelWidth : tabs[tabIndex].labelWidth) : '0px'">
                                     <el-button @click="addMultiTypes(component.name)" type="primary" size="mini" :plain="true" icon="el-icon-plus">{{component.subLabel}}</el-button>
@@ -220,7 +223,7 @@ function pandastudio_framework_create_json_meta_box()
                                             </div>
                                             <div v-if="subcomponent.type == 'uploader'" class="subcomponent">
                                                 <el-popover placement="bottom" trigger="hover" :disabled="scope.row[subcomponent.name] && !subcomponent.showImage">
-                                                    <el-input v-model="scope.row[subcomponent.name]" :placeholder="subcomponent.placeholder ? subcomponent.placeholder : '点击按钮上传或在此处粘贴外链地址'" size="small" slot="reference">
+                                                    <el-input v-model="scope.row[subcomponent.name]" :placeholder="subcomponent.placeholder ? subcomponent.placeholder : '<?php echo esc_attr__('点击按钮上传或在此处粘贴外链地址', 'niRvana'); ?>'" size="small" slot="reference">
                                                         <el-button @click="mediaUpload(component.name,scope.$index,subcomponent.name)" icon="el-icon-upload2" slot="prepend"></el-button>
                                                         <el-button @click="scope.row[subcomponent.name] = ''" icon="el-icon-close" slot="append" v-if="scope.row[subcomponent.name]"></el-button>
                                                     </el-input>
@@ -233,7 +236,7 @@ function pandastudio_framework_create_json_meta_box()
                                                 </el-radio-group>
                                             </div>
                                             <div v-if="subcomponent.type == 'select'" class="subcomponent">
-                                                <el-select v-model="scope.row[subcomponent.name]" :placeholder="subcomponent.placeholder ? subcomponent.placeholder : '请选择'" size="small" clearable>
+                                                <el-select v-model="scope.row[subcomponent.name]" :placeholder="subcomponent.placeholder ? subcomponent.placeholder : '<?php echo esc_attr__('请选择', 'niRvana'); ?>'" size="small" clearable>
                                                     <el-option v-for="select in subcomponent.selects" :key="select.value" :label="select.label" :value="select.value">
                                                         <span style="float: left">{{ select.label }}</span>
                                                         <span style="float: right; color: #C0CCDA; font-size: 13px">{{ select.description }}</span>
@@ -245,7 +248,7 @@ function pandastudio_framework_create_json_meta_box()
                                             </div>
                                         </template>
                                     </el-table-column>
-                                    <el-table-column label="操作" width="175" fixed="right">
+                                    <el-table-column label="<?php echo esc_attr__('操作', 'niRvana'); ?>" width="175" fixed="right">
                                         <template scope="scope">
                                             <el-button :plain="true" size="mini" icon="el-icon-arrow-up" @click="multitypeMoveUp(component.value,scope.$index)" :disabled="scope.$index == 0"></el-button>
                                             <el-button :plain="true" size="mini" icon="el-icon-arrow-down" @click="multitypeMoveDown(component.value,scope.$index)" :disabled="scope.$index == component.value.length - 1"></el-button>

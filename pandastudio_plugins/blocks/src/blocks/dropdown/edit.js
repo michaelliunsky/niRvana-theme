@@ -47,8 +47,8 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '区块设置' ) }>
-					<div className="pf_inspectorTitle">{ __( '按钮颜色' ) }</div>
+				<PanelBody title={ __( '区块设置', 'niRvana' ) }>
+					<div className="pf_inspectorTitle">{ __( '按钮颜色', 'niRvana' ) }</div>
 					<div className="panda tipSelector">
 						{ TYPES.map( ( type ) => (
 							<button
@@ -60,13 +60,13 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 							/>
 						) ) }
 					</div>
-					<div className="pf_inspectorTitle">{ __( '下拉列表' ) }</div>
+					<div className="pf_inspectorTitle">{ __( '下拉列表', 'niRvana' ) }</div>
 					{ items.map( ( item, index ) => (
 						<div key={ index }>
 							<TextControl
-								label={ sprintf( __( '项目%s：' ), index + 1 ) }
+								label={ sprintf( __( '项目%s：', 'niRvana' ), index + 1 ) }
 								value={ item.label || '' }
-								placeholder={ __( '请输入名称' ) }
+								placeholder={ __( '请输入名称', 'niRvana' ) }
 								onChange={ ( value ) => updateList( index, 'label', value ) }
 								__next40pxDefaultSize
 							/>
@@ -78,24 +78,24 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 							/>
 							<div style={ { textAlign: 'right' } }>
 								<Button variant="secondary" isSmall onClick={ () => removeItem( index ) }>
-									{ __( '移除' ) }
+									{ __( '移除', 'niRvana' ) }
 								</Button>
 							</div>
 						</div>
 					) ) }
 					<Button variant="primary" isSmall onClick={ addItem }>
-						{ __( '增加列表项' ) }
+						{ __( '增加列表项', 'niRvana' ) }
 					</Button>
 				</PanelBody>
 			</InspectorControls>
 			<div { ...useBlockProps() }>
 				<div className="collapse_wrap">
-					<span className={ `btn ${ current }` }>{ btn_label || __( '按钮未定义' ) }</span>
+					<span className={ `btn ${ current }` }>{ btn_label || __( '按钮未定义', 'niRvana' ) }</span>
 					{ isSelected && (
 						<TextControl
-							label={ __( '按钮名称' ) }
+							label={ __( '按钮名称', 'niRvana' ) }
 							value={ btn_label || '' }
-							placeholder={ __( '请输入...' ) }
+							placeholder={ __( '请输入...', 'niRvana' ) }
 							onChange={ ( value ) => setAttributes( { btn_label: value } ) }
 							__next40pxDefaultSize
 						/>

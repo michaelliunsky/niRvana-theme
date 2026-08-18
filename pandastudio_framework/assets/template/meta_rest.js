@@ -1,3 +1,5 @@
+// WP 核心脚本 wp-i18n 提供的翻译函数 (admin_enqueue_scripts 先加载 wp-i18n)
+var __ = wp.i18n.__;
 var metaCfg = window.nirvanaMetaConfig || {},
   restRoute = metaCfg.route || "",
   restNonce = metaCfg.nonce || "";
@@ -76,8 +78,8 @@ function nirvanaMetaBoot() {
               }
           a.syncHiddenInputs(), a.loading = !1
         }).fail(function() {
-          a.loading = !1, a.show = !1, a.$alert("连接服务器失败或后台读取出错！", "设置项读取失败", {
-            confirmButtonText: "确定"
+          a.loading = !1, a.show = !1, a.$alert(__("连接服务器失败或后台读取出错！", "niRvana"), __("设置项读取失败", "niRvana"), {
+            confirmButtonText: __("确定", "niRvana")
           })
         })
       },
@@ -104,9 +106,9 @@ function nirvanaMetaBoot() {
         mediaUpload: function(t, e, n) {
           var a = this,
             o = window.parent.wp.media({
-              title: "上传",
+              title: __("上传", "niRvana"),
               button: {
-                text: "插入"
+                text: __("插入", "niRvana")
               },
               multiple: !1
             });
@@ -119,9 +121,9 @@ function nirvanaMetaBoot() {
         multiMediaUpload: function(t) {
           var e = this,
             n = window.parent.wp.media({
-              title: "按住 ctrl 批量选择",
+              title: __("按住 ctrl 批量选择", "niRvana"),
               button: {
-                text: "批量插入"
+                text: __("批量插入", "niRvana")
               },
               multiple: !0
             });
@@ -133,9 +135,9 @@ function nirvanaMetaBoot() {
         },
         multiMediaUpload_input: function(t) {
           var e = this;
-          this.$prompt("请输入图片地址", "外链图片", {
-            confirmButtonText: "确定",
-            cancelButtonText: "取消"
+          this.$prompt(__("请输入图片地址", "niRvana"), __("外链图片", "niRvana"), {
+            confirmButtonText: __("确定", "niRvana"),
+            cancelButtonText: __("取消", "niRvana")
           }).then(function(n) {
             for (var a = n.value, o = 0; o < e.tabs.length; o++)
               for (var s = 0; s < e.tabs[o].content.length; s++) e.tabs[o].content[s].name == t && ("string" == typeof e.tabs[o].content[s].value ? (e.tabs[o].content[s].value = [a], e.waitToUpdate()) : (e.tabs[o].content[s].value = e.tabs[o].content[s].value.concat(a), e.waitToUpdate()))
@@ -188,7 +190,7 @@ function nirvanaMetaBoot() {
       }
     })
   }}).fail(function() {
-    alert("MetaBox数据获取失败！请检查：\n1、WordPress版本大于4.7\n2、Rest API是否被插件关闭\n3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？")
+    alert(__("MetaBox数据获取失败！请检查：\n1、WordPress版本大于4.7\n2、Rest API是否被插件关闭\n3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？", "niRvana"))
   });
 }
 

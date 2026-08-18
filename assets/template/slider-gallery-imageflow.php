@@ -4,7 +4,7 @@ $showBox_contain = _meta( 'showBox_contain' ) ? 'contain' : 'cover';
 ?>
 <div class="container coverflow-wrapper dark-slider gallery">
 	<div pandaSlider id="coverflow" prev-text='<i class="fas fa-arrow-left"></i>' next-text='<i class="fas fa-arrow-right"></i>' view="1" class="unfull gallery" type="image" allow-anchor-click <?php echo $carousels_attrs; ?> background-size="<?php echo $showBox_contain; ?>" style="background-color: <?php _eopt( 'gallery_background_color', 'transparent' ); ?>">
-		<div class="gallery-bgsize-toggle" data-toggle="tooltip" data-placement="auto left" title="" @click="this.gallery_bgsize_toggle()" data-original-title="图片填充/自适应"><i class="fas fa-expand"></i></div>
+		<div class="gallery-bgsize-toggle" data-toggle="tooltip" data-placement="auto left" title="" @click="this.gallery_bgsize_toggle()" data-original-title="<?php echo esc_attr__( '图片填充/自适应', 'niRvana' ); ?>"><i class="fas fa-expand"></i></div>
 		<?php
 		foreach ( $carousels_contents as $item ) {
 			?>

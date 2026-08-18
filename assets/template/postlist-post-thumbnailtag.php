@@ -40,7 +40,7 @@ $thumbnail_bottom_tag = _meta( 'img_bottom_tag' ) ? '<span class="thumbnail_bott
     </a>
     <div class="meta">
         <div class="date">
-            <?php the_time( 'n月j日 · Y年' ); ?>
+            <?php echo esc_html( get_the_date( get_option( 'date_format' ) ) ); ?>
         </div>
         <h2>
             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -55,7 +55,7 @@ $thumbnail_bottom_tag = _meta( 'img_bottom_tag' ) ? '<span class="thumbnail_bott
                     ;
                 }
             } else {
-                echo '<a class="color-0">无标签</a>';
+                echo '<a class="color-0">' . esc_html__( '无标签', 'niRvana' ) . '</a>';
             }
             ?>
         </div>
@@ -64,12 +64,12 @@ $thumbnail_bottom_tag = _meta( 'img_bottom_tag' ) ? '<span class="thumbnail_bott
                 <i class="fas fa-heart"></i>
                 <?php
                 $like = get_post_meta( $post->ID, 'bigfa_ding', true ) ? get_post_meta( $post->ID, 'bigfa_ding', true ) : '0';
-                echo $like;
+                echo number_format_i18n( (int) $like );
                 ?>
             </span>
             <span class="comments">
                 <i class="fas fa-comments"></i>
-                <?php echo $post->comment_count; ?>
+                <?php echo number_format_i18n( (int) $post->comment_count ); ?>
             </span>
         </div>
         <article class="description">

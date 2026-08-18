@@ -75,7 +75,7 @@ function Edit( { isActive, value, onChange, activeAttributes } ) {
 		<>
 			<RichTextToolbarButton
 				icon="admin-comments"
-				title={ __( '弹出提示' ) }
+				title={ __( '弹出提示', 'niRvana' ) }
 				onClick={ showModal }
 				isActive={ isActive }
 				shortcutType="primary"
@@ -93,7 +93,7 @@ function Edit( { isActive, value, onChange, activeAttributes } ) {
 							<div className="inputer">
 								<TextControl
 									value={ text }
-									placeholder={ __( '请输入提示语...' ) }
+									placeholder={ __( '请输入提示语...', 'niRvana' ) }
 									onKeyDown={ keyDown }
 									onChange={ setText }
 									__next40pxDefaultSize
@@ -115,25 +115,25 @@ function Edit( { isActive, value, onChange, activeAttributes } ) {
 									onClick={ () => setPlacementValue( 'top' ) }
 									variant={ placement === 'top' ? 'primary' : 'secondary' }
 								>
-									{ __( '顶部' ) }
+									{ __( '顶部', 'niRvana' ) }
 								</Button>
 								<Button
 									onClick={ () => setPlacementValue( 'bottom' ) }
 									variant={ placement === 'bottom' ? 'primary' : 'secondary' }
 								>
-									{ __( '底部' ) }
+									{ __( '底部', 'niRvana' ) }
 								</Button>
 								<Button
 									onClick={ () => setPlacementValue( 'left' ) }
 									variant={ placement === 'left' ? 'primary' : 'secondary' }
 								>
-									{ __( '左侧' ) }
+									{ __( '左侧', 'niRvana' ) }
 								</Button>
 								<Button
 									onClick={ () => setPlacementValue( 'right' ) }
 									variant={ placement === 'right' ? 'primary' : 'secondary' }
 								>
-									{ __( '右侧' ) }
+									{ __( '右侧', 'niRvana' ) }
 								</Button>
 							</ButtonGroup>
 						) }
@@ -145,7 +145,7 @@ function Edit( { isActive, value, onChange, activeAttributes } ) {
 }
 
 registerFormatType( DESCRIPTION_FORMAT, {
-	title: __( '弹出提示' ),
+	title: __( '弹出提示', 'niRvana' ),
 	tagName: 'span',
 	className: 'pandastudio_format_description',
 	attributes: {

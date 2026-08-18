@@ -1,3 +1,5 @@
+// WP 核心脚本 wp-i18n 提供的翻译函数 (admin_enqueue_scripts 先加载 wp-i18n)
+var __ = wp.i18n.__;
 jQuery.ajax({
   url: pandastudio_framework.route + "pandastudio/framework/get_option_json",
   type: "GET",
@@ -71,8 +73,8 @@ jQuery.ajax({
         for (e = 0; e < o.length; e++) a.queryExistValue(!0, o[e], !0);
         a.loading = !1
       }).fail(function(t) {
-        alert(t), a.loading = !1, a.show = !1, a.$alert("连接服务器失败或后台读取出错！", "数据读取失败", {
-          confirmButtonText: "确定"
+        alert(t), a.loading = !1, a.show = !1, a.$alert(__("连接服务器失败或后台读取出错！", "niRvana"), __("数据读取失败", "niRvana"), {
+          confirmButtonText: __("确定", "niRvana")
         })
       })
     },
@@ -89,23 +91,23 @@ jQuery.ajax({
           },
           data: JSON.stringify(t)
         }).done(function(t) {
-          t.state ? a.$message.success("保存成功！") : a.$notify.error({
-            title: "保存失败",
-            message: "授权错误！"
+          t.state ? a.$message.success(__("保存成功！", "niRvana")) : a.$notify.error({
+            title: __("保存失败", "niRvana"),
+            message: __("授权错误！", "niRvana")
           })
         }).fail(function() {
           a.$notify.error({
-            title: "保存失败",
-            message: "连接服务器失败或后台保存出错！"
+            title: __("保存失败", "niRvana"),
+            message: __("连接服务器失败或后台保存出错！", "niRvana")
           })
         })
       },
       mediaUpload: function(t, e, n) {
         var a = this,
           o = wp.media({
-            title: "上传",
+            title: __("上传", "niRvana"),
             button: {
-              text: "插入"
+              text: __("插入", "niRvana")
             },
             multiple: !1
           });
@@ -118,9 +120,9 @@ jQuery.ajax({
       multiMediaUpload: function(t) {
         var e = this,
           n = wp.media({
-            title: "按住 ctrl 批量选择",
+            title: __("按住 ctrl 批量选择", "niRvana"),
             button: {
-              text: "批量插入"
+              text: __("批量插入", "niRvana")
             },
             multiple: !0
           });
@@ -132,9 +134,9 @@ jQuery.ajax({
       },
       multiMediaUpload_input: function(t) {
         var e = this;
-        this.$prompt("请输入图片地址", "外链图片", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消"
+        this.$prompt(__("请输入图片地址", "niRvana"), __("外链图片", "niRvana"), {
+          confirmButtonText: __("确定", "niRvana"),
+          cancelButtonText: __("取消", "niRvana")
         }).then(function(n) {
           for (var a = n.value, o = 0; o < e.tabs.length; o++)
             for (var s = 0; s < e.tabs[o].content.length; s++) e.tabs[o].content[s].name == t && ("string" == typeof e.tabs[o].content[s].value ? e.tabs[o].content[s].value = [a] : e.tabs[o].content[s].value = e.tabs[o].content[s].value.concat(a))
@@ -244,9 +246,9 @@ jQuery.ajax({
                       e[r] = t[l], s++;
                       break
                     } var u = i - s;
-                confirmStr = s == i ? "此操作将使用您上传的设置项覆盖到服务器上" : "从您上传的数据中匹配到 " + s + " 个设置项，共需要 " + i + "个设置项。未匹配到的 " + u + " 个选项将被置空", n.$confirm(confirmStr, "确认这样做", {
-                  confirmButtonText: "确定",
-                  cancelButtonText: "取消",
+                confirmStr = s == i ? __("此操作将使用您上传的设置项覆盖到服务器上", "niRvana") : wp.i18n.sprintf(__("从您上传的数据中匹配到 %s 个设置项，共需要 %s 个设置项。未匹配到的 %s 个选项将被置空", "niRvana"), s, i, u), n.$confirm(confirmStr, __("确认这样做", "niRvana"), {
+                  confirmButtonText: __("确定", "niRvana"),
+                  cancelButtonText: __("取消", "niRvana"),
                   type: "info"
                 }).then(function() {
                   jQuery.ajax({
@@ -257,23 +259,23 @@ jQuery.ajax({
                     },
                     data: JSON.stringify(e)
                   }).done(function(t) {
-                    t.state ? (n.$message.success("成功导入，页面正在刷新..."), window.setTimeout(function() {
+                    t.state ? (n.$message.success(__("成功导入，页面正在刷新...", "niRvana")), window.setTimeout(function() {
                       window.location.reload()
                     }, 500)) : n.$notify.error({
-                      title: "保存失败",
-                      message: "授权错误！"
+                      title: __("保存失败", "niRvana"),
+                      message: __("授权错误！", "niRvana")
                     })
                   }).fail(function() {
                     n.$notify.error({
-                      title: "保存失败",
-                      message: "连接服务器失败或后台保存出错！"
+                      title: __("保存失败", "niRvana"),
+                      message: __("连接服务器失败或后台保存出错！", "niRvana")
                     })
                   })
                 }).catch(function() {})
               }
             } catch (t) {
-              n.$alert("请选择由本主题导出的 JSON 格式文件", "数据类型错误", {
-                confirmButtonText: "确定",
+              n.$alert(__("请选择由本主题导出的 JSON 格式文件", "niRvana"), __("数据类型错误", "niRvana"), {
+                confirmButtonText: __("确定", "niRvana"),
                 type: "error"
               })
             }
@@ -301,16 +303,16 @@ jQuery.ajax({
           s.download = pandastudio_framework.blog_name + "_" + n + ".json", s.href = URL.createObjectURL(o);
           s.click(), URL.revokeObjectURL(s.href), a.loading = !1
         }).fail(function() {
-          a.loading = !1, a.$alert("连接服务器失败或后台读取出错！", "数据下载失败", {
-            confirmButtonText: "确定"
+          a.loading = !1, a.$alert(__("连接服务器失败或后台读取出错！", "niRvana"), __("数据下载失败", "niRvana"), {
+            confirmButtonText: __("确定", "niRvana")
           })
         })
       },
       clearData: function() {
         var t = this;
-        this.$confirm("此操作将清空本主题的所有设置选项", "请确认", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
+        this.$confirm(__("此操作将清空本主题的所有设置选项", "niRvana"), __("请确认", "niRvana"), {
+          confirmButtonText: __("确定", "niRvana"),
+          cancelButtonText: __("取消", "niRvana"),
           type: "warning"
         }).then(function() {
           for (var e = {}, n = 0; n < t.tabs.length; n++)
@@ -323,16 +325,16 @@ jQuery.ajax({
             },
             data: JSON.stringify(e)
           }).done(function(e) {
-            e.state ? (t.$message.success("已清空主题设置项，页面正在刷新..."), window.setTimeout(function() {
+            e.state ? (t.$message.success(__("已清空主题设置项，页面正在刷新...", "niRvana")), window.setTimeout(function() {
               window.location.reload()
             }, 500)) : t.$notify.error({
-              title: "数据表上传失败",
-              message: "授权错误！"
+              title: __("数据表上传失败", "niRvana"),
+              message: __("授权错误！", "niRvana")
             })
           }).fail(function() {
             t.$notify.error({
-              title: "清空数据失败",
-              message: "连接服务器失败或后台保存出错！"
+              title: __("清空数据失败", "niRvana"),
+              message: __("连接服务器失败或后台保存出错！", "niRvana")
             })
           })
         }).catch(function() {})
@@ -347,5 +349,5 @@ jQuery.ajax({
     }
   })
 }}).fail(function() {
-  alert("Option数据获取失败！请检查：\n1、WordPress版本大于4.7\n2、Rest API是否被插件关闭\n3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？")
+  alert(__("Option数据获取失败！请检查：\n1、WordPress版本大于4.7\n2、Rest API是否被插件关闭\n3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？", "niRvana"))
 });

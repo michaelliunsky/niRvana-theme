@@ -53,9 +53,9 @@
 		<div class="container">
 			<div class="close_btn" @click="this.hide_global_search()"><i class="fas fa-times"></i></div>
 			<div class="global_search_form">
-				<div class="searchbox clearfix"><input type="search" v-model="global_search_query" placeholder="请输入..."><span class="button" @click="this.global_search()"><span class="icon"><i class="fas fa-search"></i></span></span></div>
-				<p class="advanced"><span @click="this.global_search_toggle_advanced()">高级选项 <i class="fas fa-angle-down"></i></span></p>
-				<p class="checkbox-group" style="display: none;"><input type="checkbox" v-model="global_search_post" class="jv-checkbox" label="文章"><input type="checkbox" v-model="global_search_gallery" class="jv-checkbox" label="相册"><input type="checkbox" v-model="global_search_prod_title" class="jv-checkbox" label="仅检索标题"></p>
+				<div class="searchbox clearfix"><input type="search" v-model="global_search_query" placeholder="<?php echo esc_attr__( '请输入...', 'niRvana' ); ?>"><span class="button" @click="this.global_search()"><span class="icon"><i class="fas fa-search"></i></span></span></div>
+				<p class="advanced"><span @click="this.global_search_toggle_advanced()"><?php esc_html_e( '高级选项', 'niRvana' ); ?> <i class="fas fa-angle-down"></i></span></p>
+				<p class="checkbox-group" style="display: none;"><input type="checkbox" v-model="global_search_post" class="jv-checkbox" label="<?php echo esc_attr__( '文章', 'niRvana' ); ?>"><input type="checkbox" v-model="global_search_gallery" class="jv-checkbox" label="<?php echo esc_attr__( '相册', 'niRvana' ); ?>"><input type="checkbox" v-model="global_search_prod_title" class="jv-checkbox" label="<?php echo esc_attr__( '仅检索标题', 'niRvana' ); ?>"></p>
 			</div>
 		</div>
 		<div class="container" style="max-width: 1170px !important;">
@@ -86,16 +86,16 @@
 				</div>
 			</div>
 		</div>
-		{{/data}}{{^data}}<p class="nodata">未找到相关内容！</p>
+		{{/data}}{{^data}}<p class="nodata"><?php esc_html_e( '未找到相关内容！', 'niRvana' ); ?></p>
 		{{/data}}
 	</script>
 	<script type="text/html" jQVue-template="dashang">
 		<div class="modal fade" id="dashang" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="<?php echo esc_attr__( '关闭', 'niRvana' ); ?>"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title">
-							<?php _eopt( 'dashangTitle', '打赏' ); ?>
+							<?php _eopt( 'dashangTitle', __( '打赏', 'niRvana' ) ); ?>
 						</h4>
 					</div>
 					<div class="modal-body">
@@ -127,7 +127,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button></div>
+					<div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal"><?php esc_html_e( '关闭', 'niRvana' ); ?></button></div>
 				</div>
 			</div>
 		</div>
@@ -137,7 +137,7 @@
 			<div class="headimg"></div>
 			<div class="chat_pop">
 				<?php
-				_eopt( 'faq_dafault_content', '欢迎使用FAQ检索服务，请输入关键词开始检索' );
+				_eopt( 'faq_dafault_content', __( '欢迎使用FAQ检索服务，请输入关键词开始检索', 'niRvana' ) );
 				$faq_dafault_list = _opt( 'faq_dafault_list' );
 				if ( $faq_dafault_list ) {
 					if ( count( $faq_dafault_list ) > 0 ) {
@@ -177,7 +177,7 @@
 			}
 			if ( _opt( 'enable_dark_mode' ) ) {
 				?>
-				<div id="colorSwitch" onclick="switchNightMode()" data-description="色彩模式" data-placement="left" class="tool-button pandastudio_format_description">
+				<div id="colorSwitch" onclick="switchNightMode()" data-description="<?php echo esc_attr__( '色彩模式', 'niRvana' ); ?>" data-placement="left" class="tool-button pandastudio_format_description">
 					<i class="colorSwitch fas fa-moon"></i>
 				</div>
 				<?php
@@ -187,7 +187,7 @@
 	</script>
 	<script type="text/html" jQVue-template="assistance_wrapper">
 		<div id="chatTemplate"></div>
-		<div class="clearfix chat_form"><input type="text" class="chat_input" v-model="chat_input" placeholder="请输入检索关键词..."><button @click="this.send_chat_message()">搜索</button></div>
+		<div class="clearfix chat_form"><input type="text" class="chat_input" v-model="chat_input" placeholder="<?php echo esc_attr__( '请输入检索关键词...', 'niRvana' ); ?>"><button @click="this.send_chat_message()"><?php esc_html_e( '搜索', 'niRvana' ); ?></button></div>
 	</script>
 	<script type="text/html" jQVue-template="wechatCoverWrapper">
 		<div class="container">
@@ -201,10 +201,10 @@
 				<div class="meta">
 					<div class="description">{{description}}</div>
 					<div class="qrcode"></div>
-					<div class="muted">扫描二维码阅读更多内容</div>
+					<div class="muted"><?php esc_html_e( '扫描二维码阅读更多内容', 'niRvana' ); ?></div>
 				</div>
 			</div>
-			<div class="wait"><span>封面生成中...</span></div>
+			<div class="wait"><span><?php esc_html_e( '封面生成中...', 'niRvana' ); ?></span></div>
 		</div>
 	</script>
 	<?php wp_footer(); ?>

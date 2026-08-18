@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "pandastudio/gallery",
   "version": "2.0.0",
+  "textdomain": "niRvana",
   "title": "轮播图",
   "icon": "images-alt2",
   "category": "pandastudio-block-category",

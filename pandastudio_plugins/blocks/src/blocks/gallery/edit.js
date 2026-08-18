@@ -46,7 +46,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 						multiple
 						render={ ( { open } ) => (
 							<Button variant="secondary" onClick={ open }>
-								{ __( '媒体库' ) }
+								{ __( '媒体库', 'niRvana' ) }
 							</Button>
 						) }
 					/>
@@ -55,12 +55,12 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 						<TextControl
 							value={ userInput }
 							onChange={ setUserInput }
-							placeholder="https://图片地址"
+							placeholder={ __( 'https://图片地址', 'niRvana' ) }
 							__next40pxDefaultSize
 						/>
 					</div>
 					<Button label="外链" icon="edit" variant="secondary" onClick={ insertExternal }>
-						{ __( '插入' ) }
+						{ __( '插入', 'niRvana' ) }
 					</Button>
 				</div>
 			) }

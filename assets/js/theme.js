@@ -3,6 +3,8 @@
  * 反解自 assets/minify/app.min.js (2026-08-06)
  * 自定义源码, 从生产压缩包反解. 压缩丢失注释与局部变量名.
  */
+// WP 核心脚本 wp-i18n 提供的翻译函数 (依赖声明见 production.php)
+var __ = wp.i18n.__;
 $(function() {
   // highlight.js 9 官方提供的 EOL 警告关闭开关 (保留 v9, 视觉与行号插件兼容性不变)
   hljs.configure({
@@ -56,7 +58,7 @@ new jQVue({
     global_search_prod_title: !1,
     chat_msg: [],
     chat_input: "",
-    chat_nodata: "找不到相关信息"
+    chat_nodata: __("找不到相关信息", "niRvana")
   },
   mounted: function() {
     var e = this;
@@ -381,10 +383,10 @@ new jQVue({
       return 0 < $(".container #coverflow").length && $(window).scrollTop() < 20 && 992 <= $(window).width() && (t = "flat"), t
     },
     toggle_mobile_menu: function() {
-      $("#wrapper").hasClass("sidebar-visible") ? this.$message(d("请登录")) : $("#wrapper").toggleClass("menu-wrap-visible")
+      $("#wrapper").hasClass("sidebar-visible") ? this.$message(__("请登录", "niRvana")) : $("#wrapper").toggleClass("menu-wrap-visible")
     },
     toggle_mobile_sidebar: function() {
-      $("#wrapper").hasClass("menu-wrap-visible") ? this.$message(d("请登录")) : $("#wrapper").toggleClass("sidebar-visible")
+      $("#wrapper").hasClass("menu-wrap-visible") ? this.$message(__("请登录", "niRvana")) : $("#wrapper").toggleClass("sidebar-visible")
     },
     show_global_search: function() {
       var e = Mustache.render(this.fullscreen_search, {});
@@ -400,9 +402,9 @@ new jQVue({
     },
     global_search: function() {
       var e = this;
-      if ("" == this.global_search_query) return this.$alert("请输入搜索关键词！"), !1;
+      if ("" == this.global_search_query) return this.$alert(__("请输入搜索关键词！", "niRvana")), !1;
       var t = [];
-      if (this.global_search_post && t.push("post"), this.global_search_gallery && t.push("gallery"), 0 == t.length) return $(".fullscreen_search .advanced").hasClass("open") || this.global_search_toggle_advanced(), this.$alert("至少选择一种类型再搜索！"), !1;
+      if (this.global_search_post && t.push("post"), this.global_search_gallery && t.push("gallery"), 0 == t.length) return $(".fullscreen_search .advanced").hasClass("open") || this.global_search_toggle_advanced(), this.$alert(__("至少选择一种类型再搜索！", "niRvana")), !1;
       $(".fullscreen_search .searchbox .button .icon").empty(), $(".fullscreen_search .searchbox .button .icon").append('<i class="fas fa-circle-notch fa-spin"></i>'), $(".fullscreen_search .advanced").hasClass("open") && this.global_search_toggle_advanced(), $(".fullscreen_search .searchbox input").attr("disabled", "disabled"), $(".fullscreen_search .searchbox .button").attr("disabled", "disabled"), $(".fullscreen_search .postLists").removeClass("visible");
       var n = function(t) {
         t = apply_filters("get_query_data", t), window.setTimeout(function() {
@@ -434,7 +436,7 @@ new jQVue({
         }).done(function(e) {
           n(e)
         }).fail(function() {
-          e.$alert("网络错误\n请刷新后再试！")
+          e.$alert(__("网络错误\n请刷新后再试！", "niRvana"))
         })
       })(n, {
         s: e.global_search_query,
@@ -497,7 +499,7 @@ new jQVue({
           t(e)
         }).fail(function() {
           window.setTimeout(function() {
-            e.$alert("REST API请求错误！", 1e3), e.$alert("服务器地址重写错误，请检查：\n1、后台/设置/固定链接设置为朴素\n2、.htaccess文件是否配置有误", 1e3)
+            e.$alert(__("REST API请求错误！", "niRvana"), 1e3), e.$alert(__("服务器地址重写错误，请检查：\n1、后台/设置/固定链接设置为朴素\n2、.htaccess文件是否配置有误", "niRvana"), 1e3)
           }, 2e3)
         })
       })(t)
@@ -579,12 +581,12 @@ new jQVue({
       else {
         e.preventDefault();
         var t = [];
-        if (this.is_user_loggedin || ("" == this.comment_author.replace(/ /g, "") & this.comment_require_name_email && t.push("昵称未填写"), "" == this.comment_email.replace(/ /g, "") & this.comment_require_name_email && t.push("邮箱未填写"), "" != this.comment_email.replace(/ /g, "") & !this.is_Email(this.comment_email) && t.push("邮箱格式错误")), 0 < t.length && this.optionsLoaded && window.setTimeout(function() {
+        if (this.is_user_loggedin || ("" == this.comment_author.replace(/ /g, "") & this.comment_require_name_email && t.push(__("昵称未填写", "niRvana")), "" == this.comment_email.replace(/ /g, "") & this.comment_require_name_email && t.push(__("邮箱未填写", "niRvana")), "" != this.comment_email.replace(/ /g, "") & !this.is_Email(this.comment_email) && t.push(__("邮箱格式错误", "niRvana"))), 0 < t.length && this.optionsLoaded && window.setTimeout(function() {
             $(".comment-meta.nick-name.guests").popover("show")
-          }, 200), "" == this.comment_text.replace(/ /g, "") && (t.push("评论内容未填写"), 0 == t.length && $("#comment").trigger("focus")), 0 < t.length)
+          }, 200), "" == this.comment_text.replace(/ /g, "") && (t.push(__("评论内容未填写", "niRvana")), 0 == t.length && $("#comment").trigger("focus")), 0 < t.length)
           for (var n = 0; n < t.length; n++) this.$alert(t[n]);
         var i = apply_filters("isHuman", !0);
-        if (!i && 0 == t.length) return this.enable_pageLoader("严重错误：非人为操作\n操作过快，判定为机器人操作，请刷新重试"), !1;
+        if (!i && 0 == t.length) return this.enable_pageLoader(__("严重错误：非人为操作\n操作过快，判定为机器人操作，请刷新重试", "niRvana")), !1;
         if (0 == t.length && i) {
           localStorage.pandastudio_guest_info = JSON.stringify({
             comment_author: this.comment_author,
@@ -592,7 +594,7 @@ new jQVue({
             comment_url: this.comment_url
           });
           var o = $('<input name="wp_nonce" class="hidden">');
-          if (o.val(pandastudio_framework.nonce), $("#cmt_form").append(o), !this.comment_action_url) return this.enable_pageLoader("严重错误：评论地址无效"), !1;
+          if (o.val(pandastudio_framework.nonce), $("#cmt_form").append(o), !this.comment_action_url) return this.enable_pageLoader(__("严重错误：评论地址无效", "niRvana")), !1;
           $("#cmt_form").attr("action", this.comment_action_url), $(e.target).attr("type", "submit"), $(e.target).trigger("click")
         }
       }
@@ -619,9 +621,9 @@ new jQVue({
           html: !0,
           placement: "top",
           trigger: "focus",
-          title: '<i class="fas fa-sign-out-alt"></i> 退出登录？'
+          title: __('<i class="fas fa-sign-out-alt"></i> 退出登录？', "niRvana")
         }), $(".comment-meta.nick-name.guests").on("click", function(t) {
-          if (!e.optionsLoaded) return e.$info("请稍后"), void e.$info("网页还未加载完成");
+          if (!e.optionsLoaded) return e.$info(__("请稍后", "niRvana")), void e.$info(__("网页还未加载完成", "niRvana"));
           $(".comment-meta.nick-name.guests").popover("show"), "" != e.comment_author ? "" != e.comment_email ? "" != e.comment_url || $('.popover [v-model="comment_url"]').trigger("focus") : $('.popover [v-model="comment_email"]').trigger("focus") : $('.popover [v-model="comment_author"]').trigger("focus")
         }), $("body").on("click", function(t) {
           $(t.target).is(".comment-meta.nick-name.guests") || 0 != $(t.target).parents(".popover").length || $(t.target).is("textarea#comment") && e.comment_require_name_email && ("" == e.comment_author || "" == e.comment_email) || $(".comment-meta.nick-name.guests").popover("hide")
@@ -655,13 +657,13 @@ new jQVue({
     },
     ding: function(e) {
       var t = this;
-      if ("true" == $(".post-like.like.favorite").attr("is_ajaxing")) return this.$info("点赞处理中...", 1), !1;
-      if ($(".post-like.like.favorite").hasClass("done")) this.$alert("您已经点过赞了！");
+      if ("true" == $(".post-like.like.favorite").attr("is_ajaxing")) return this.$info(__("点赞处理中...", "niRvana"), 1), !1;
+      if ($(".post-like.like.favorite").hasClass("done")) this.$alert(__("您已经点过赞了！", "niRvana"));
       else {
-        $(".post-like.like.favorite").attr("is_ajaxing", "true"), $(".post-like.like.favorite > .count.number").html('<i class="fas fa-circle-notch fa-spin"></i>'), this.$info("点赞处理中...", 1);
+        $(".post-like.like.favorite").attr("is_ajaxing", "true"), $(".post-like.like.favorite > .count.number").html('<i class="fas fa-circle-notch fa-spin"></i>'), this.$info(__("点赞处理中...", "niRvana"), 1);
         var n = function(e) {
           $(".post-like.like.favorite > .count.number").html(e), $(".post-like.like.favorite i").removeClass("far").addClass("fas"), window.setTimeout(function() {
-            t.$message("已赞，感谢您的支持！")
+            t.$message(__("已赞，感谢您的支持！", "niRvana"))
           }, 1e3), window._ajaxForceCache = {}, $(".post-like.like.favorite").addClass("done").removeAttr("is_ajaxing")
         };
         apply_filters("replace_like_func", function() {
@@ -677,7 +679,7 @@ new jQVue({
           }).done(function(e) {
             n(e)
           }).fail(function() {
-            t.$alert("网络错误\n请刷新后再试！"), $(".post-like.like.favorite").removeAttr("is_ajaxing")
+            t.$alert(__("网络错误\n请刷新后再试！", "niRvana")), $(".post-like.like.favorite").removeAttr("is_ajaxing")
           })
         })(n, e)
       }
@@ -718,7 +720,7 @@ new jQVue({
         var n = "";
         if (e.is_content) n = "<span style='font-weight:bold;margin-bottom:10px;display:inline-block'>" + e.title + "</span><br>" + e.content;
         else if (0 < e.list.length) {
-          n = "找到以下内容，点击查看详情<ol>";
+          n = __("找到以下内容，点击查看详情<ol>", "niRvana");
           for (var i = 0; i < e.list.length; i++) n += "<li><span @click='this.send_chat_message(\"" + e.list[i] + "\")'>" + e.list[i] + "</span></li>";
           n += "</ol>"
         } else n = t.chat_nodata;
@@ -743,7 +745,7 @@ new jQVue({
         }).fail(function() {
           t.chat_msg.push({
             user: "server",
-            content: "数据加载失败"
+            content: __("数据加载失败", "niRvana")
           }), window.clearTimeout(t.send_chat_message_loading), t.chat_loading(!1)
         })
       })(i, n)
@@ -820,7 +822,7 @@ new jQVue({
           useCORS: !0
         }).then(function(e) {
           var t = e.getContext("2d");
-          t.mozImageSmoothingEnabled = !1, t.webkitImageSmoothingEnabled = !1, t.msImageSmoothingEnabled = !1, t.imageSmoothingEnabled = !1, $(".wechat-cover-wrapper .renderCoverImg").empty(), $(".wechat-cover-wrapper .renderCoverImg").append('<img src="' + e.toDataURL() + '">'), $(".wechat-cover .wait span").html("封面已生成！保存图片可分享至社交网站"), $(".wechat-cover .wait span").addClass("success")
+          t.mozImageSmoothingEnabled = !1, t.webkitImageSmoothingEnabled = !1, t.msImageSmoothingEnabled = !1, t.imageSmoothingEnabled = !1, $(".wechat-cover-wrapper .renderCoverImg").empty(), $(".wechat-cover-wrapper .renderCoverImg").append('<img src="' + e.toDataURL() + '">'), $(".wechat-cover .wait span").html(__("封面已生成！保存图片可分享至社交网站", "niRvana")), $(".wechat-cover .wait span").addClass("success")
         })
       }, 750)
     },
@@ -888,14 +890,14 @@ new jQVue({
       }
     },
     insert_code_to_comment_form: function() {
-      var e = "<pre>\n请输入代码...\n</pre>";
-      "" == this.comment_text ? this.comment_text += e : "\n" == this.comment_text.substring(this.comment_text.length - 1) ? this.comment_text += e : this.comment_text += "\n<pre>\n请输入代码...\n</pre>", $("textarea#comment").trigger("focus")
+      var e = __("<pre>\n请输入代码...\n</pre>", "niRvana");
+      "" == this.comment_text ? this.comment_text += e : "\n" == this.comment_text.substring(this.comment_text.length - 1) ? this.comment_text += e : this.comment_text += "\n" + e, $("textarea#comment").trigger("focus")
     },
     insert_images_to_comment_form: function() {
       var e = this;
       (new PdMessage).prompt({
-        title: "插入图片",
-        message: "请粘贴图片地址，每个图片一行",
+        title: __("插入图片", "niRvana"),
+        message: __("请粘贴图片地址，每个图片一行", "niRvana"),
         value: "",
         placeholder: "https://...",
         promptType: "textarea",

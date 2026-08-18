@@ -28,8 +28,8 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '区块设置' ) }>
-					<div className="pf_inspectorTitle">{ __( '按钮颜色' ) }</div>
+				<PanelBody title={ __( '区块设置', 'niRvana' ) }>
+					<div className="pf_inspectorTitle">{ __( '按钮颜色', 'niRvana' ) }</div>
 					<div className="panda tipSelector">
 						{ TYPES.map( ( type ) => (
 							<button
@@ -42,28 +42,28 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 						) ) }
 					</div>
 					<TextControl
-						label={ __( '模态框标题' ) }
+						label={ __( '模态框标题', 'niRvana' ) }
 						value={ title || '' }
-						placeholder={ __( '请输入...' ) }
+						placeholder={ __( '请输入...', 'niRvana' ) }
 						onChange={ ( value ) => setAttributes( { title: value } ) }
 						__next40pxDefaultSize
 					/>
 					<TextControl
-						label={ __( '关闭按钮文本' ) }
+						label={ __( '关闭按钮文本', 'niRvana' ) }
 						value={ close_label || '' }
-						placeholder={ __( '默认：关闭' ) }
+						placeholder={ __( '默认：关闭', 'niRvana' ) }
 						onChange={ ( value ) => setAttributes( { close_label: value } ) }
 						__next40pxDefaultSize
 					/>
 					<TextControl
-						label={ __( '链接按钮文本' ) }
+						label={ __( '链接按钮文本', 'niRvana' ) }
 						value={ href_label || '' }
-						placeholder={ __( '默认：跳转到' ) }
+						placeholder={ __( '默认：跳转到', 'niRvana' ) }
 						onChange={ ( value ) => setAttributes( { href_label: value } ) }
 						__next40pxDefaultSize
 					/>
 					<TextControl
-						label={ __( '链接按钮地址' ) }
+						label={ __( '链接按钮地址', 'niRvana' ) }
 						value={ href || '' }
 						placeholder="https://"
 						onChange={ ( value ) => setAttributes( { href: value } ) }
@@ -73,12 +73,12 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 			</InspectorControls>
 			<div { ...useBlockProps() }>
 				<div className="collapse_wrap">
-					<span className={ `btn ${ current }` }>{ btn_label || __( '按钮未定义' ) }</span>
+					<span className={ `btn ${ current }` }>{ btn_label || __( '按钮未定义', 'niRvana' ) }</span>
 					{ isSelected && (
 						<TextControl
-							label={ __( '按钮名称' ) }
+							label={ __( '按钮名称', 'niRvana' ) }
 							value={ btn_label || '' }
-							placeholder={ __( '请输入...' ) }
+							placeholder={ __( '请输入...', 'niRvana' ) }
 							onChange={ ( value ) => setAttributes( { btn_label: value } ) }
 							__next40pxDefaultSize
 						/>
@@ -87,7 +87,7 @@ export default function Edit( { attributes, setAttributes, isSelected } ) {
 						<div className="title">
 							<TextControl
 								value={ title || '' }
-								placeholder={ __( '请输入模态框标题...' ) }
+								placeholder={ __( '请输入模态框标题...', 'niRvana' ) }
 								onChange={ ( value ) => setAttributes( { title: value } ) }
 								className="signle-line-input"
 								__next40pxDefaultSize

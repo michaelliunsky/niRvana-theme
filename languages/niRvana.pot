@@ -1,0 +1,2899 @@
+# Copyright (C) 2026 michaelliunsky: <a href="https://blog.mkliu.top/">https://blog.mkliu.top/</a>
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: niRvana 5.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/niRvana\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-18T15:21:18+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "niRvana"
+msgstr ""
+
+#. Theme URI of the theme
+#. Author URI of the theme
+#: style.css
+msgid "https://blog.mkliu.top/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "作品展示模板，适用于设计稿、摄影、图片新闻等以图片为中心的展示。"
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "michaelliunsky: <a href=\"https://blog.mkliu.top/\">https://blog.mkliu.top/</a>"
+msgstr ""
+
+#: archive.php:7
+msgid "该页面不支持直接访问。"
+msgstr ""
+
+#: archive.php:18
+#: single.php:12
+msgid "警告：FAQ类型不支持直接预览，请前往“主题设置”页面添加！"
+msgstr ""
+
+#: archive.php:21
+#: single.php:15
+msgid "警告：友情链接类型不支持直接预览，请新增页面，选择“友情链接”模板！友情链接必须隶属于某个分类才可以显示，请务必设置友链的分类！"
+msgstr ""
+
+#. Template Name of the theme
+msgid "归档页面"
+msgstr ""
+
+#: archivepage.php:69
+#: assets/template/single-gallery.php:23
+#: assets/template/single-post.php:24
+#: favlinks.php:26
+#: page.php:26
+#: pandastudio_framework/framework_i18n.php:312
+msgid "切换边栏"
+msgstr ""
+
+#. Template Name of the theme
+msgid "全部文章时间排序"
+msgstr ""
+
+#: assets/template/nav-category.php:16
+#: assets/template/nav-main.php:19
+#, php-format
+msgid "请在后台添加菜单并指派到“%s”"
+msgstr ""
+
+#: assets/template/nav-category.php:16
+msgid "文章分类菜单"
+msgstr ""
+
+#: assets/template/nav-category.php:25
+#: pandastudio_framework/framework_i18n.php:107
+msgid "卡片"
+msgstr ""
+
+#: assets/template/nav-category.php:26
+#: pandastudio_framework/framework_i18n.php:115
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:53
+msgid "列表"
+msgstr ""
+
+#: assets/template/nav-main.php:19
+#: functions.php:563
+msgid "主菜单"
+msgstr ""
+
+#: assets/template/postlist-post-thumbnailtag.php:58
+#: assets/template/postlist-post.php:52
+#: functions.php:438
+msgid "无标签"
+msgstr ""
+
+#: assets/template/relate_posts.php:2
+msgid "相关文章"
+msgstr ""
+
+#: assets/template/relate_posts.php:56
+msgid "暂无相关文章！"
+msgstr ""
+
+#: assets/template/share-modal.php:8
+#: footer.php:98
+msgid "打赏"
+msgstr ""
+
+#: assets/template/share-modal.php:14
+#: pandastudio_framework/framework_i18n.php:313
+msgid "分享到微博"
+msgstr ""
+
+#: assets/template/share-modal.php:17
+#: pandastudio_framework/framework_i18n.php:314
+msgid "分享到微信"
+msgstr ""
+
+#: assets/template/share-modal.php:25
+#: pandastudio_framework/framework_i18n.php:315
+msgid "点赞"
+msgstr ""
+
+#: assets/template/single-gallery.php:30
+#: assets/template/single-post.php:31
+#, php-format
+msgid "%1$s · %2$s"
+msgstr ""
+
+#: assets/template/slider-auto.php:17
+#: assets/template/slider-coverflow-flat-full.php:17
+#: assets/template/slider-coverflow-flat.php:17
+#: assets/template/slider-coverflow-full.php:17
+#: assets/template/slider-coverflow.php:17
+msgid "阅读全文"
+msgstr ""
+
+#: assets/template/slider-gallery-imageflow-full.php:7
+#: assets/template/slider-gallery-imageflow.php:7
+#: pandastudio_framework/framework_i18n.php:316
+msgid "图片填充/自适应"
+msgstr ""
+
+#: comments.php:3
+msgid "Please do not load this page directly. Thanks."
+msgstr ""
+
+#: comments.php:8
+msgid "This post is protected. Enter the password to view any comments."
+msgstr ""
+
+#: comments.php:15
+#, php-format
+msgid "%s 条回应"
+msgid_plural "%s 条回应"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:22
+#, php-format
+msgid "必须<a href=\"%1$s\" style=\"color:#fff;font-weight:bold;\">注册</a>为本站用户，<a href=\"%2$s\" style=\"color:#fff;font-weight:bold;\">登录</a>后才可以发表评论！"
+msgstr ""
+
+#: comments.php:47
+#: assets/js/pdmessage.js:20
+#: assets/js/pdmessage.js:52
+#: pandastudio_framework/assets/template/meta_rest.js:140
+#: pandastudio_framework/assets/template/option_rest.js:139
+#: pandastudio_framework/assets/template/option_rest.js:251
+#: pandastudio_framework/assets/template/option_rest.js:315
+msgid "取消"
+msgstr ""
+
+#: comments.php:48
+#: assets/js/pdmessage.js:22
+#: pandastudio_framework/assets/template/meta_rest.js:82
+#: pandastudio_framework/assets/template/meta_rest.js:139
+#: pandastudio_framework/assets/template/option_rest.js:77
+#: pandastudio_framework/assets/template/option_rest.js:138
+#: pandastudio_framework/assets/template/option_rest.js:250
+#: pandastudio_framework/assets/template/option_rest.js:278
+#: pandastudio_framework/assets/template/option_rest.js:307
+#: pandastudio_framework/assets/template/option_rest.js:314
+msgid "确定"
+msgstr ""
+
+#: comments.php:55
+#: comments.php:98
+#: pandastudio_plugins/blocks/src/blocks/user-info/edit.js:19
+msgid "昵称"
+msgstr ""
+
+#: comments.php:59
+#: assets/js/user-center-login.js:234
+msgid "邮箱"
+msgstr ""
+
+#: comments.php:63
+#: pandastudio_framework/framework_i18n.php:317
+msgid "网站"
+msgstr ""
+
+#: comments.php:74
+#: footer.php:56
+#: pandastudio_framework/framework_i18n.php:156
+#: pandastudio_plugins/blocks/src/blocks/collapse/edit.js:53
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:98
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:47
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:81
+#: pandastudio_plugins/blocks/src/blocks/tips/edit.js:56
+#: pandastudio_plugins/blocks/src/blocks/title/edit.js:41
+msgid "请输入..."
+msgstr ""
+
+#: comments.php:89
+msgid "表情"
+msgstr ""
+
+#: comments.php:107
+#: pandastudio_framework/framework_i18n.php:318
+msgid "同时点赞"
+msgstr ""
+
+#: comments.php:113
+msgid "取消回复"
+msgstr ""
+
+#: comments.php:114
+msgid "提交评论"
+msgstr ""
+
+#. Template Name of the theme
+#: pandastudio_framework/framework_i18n.php:263
+msgid "友情链接"
+msgstr ""
+
+#: footer.php:57
+msgid "高级选项"
+msgstr ""
+
+#: footer.php:58
+#: pandastudio_framework/framework_i18n.php:219
+msgid "文章"
+msgstr ""
+
+#: footer.php:58
+#: pandastudio_framework/framework_i18n.php:246
+msgid "相册"
+msgstr ""
+
+#: footer.php:58
+#: pandastudio_framework/framework_i18n.php:322
+msgid "仅检索标题"
+msgstr ""
+
+#: footer.php:89
+msgid "未找到相关内容！"
+msgstr ""
+
+#: footer.php:96
+#: footer.php:130
+#: functions.php:781
+#: functions.php:844
+#: functions.php:941
+#: functions.php:949
+#: functions.php:965
+#: pandastudio_plugins/blocks/src/blocks/modal/save.js:10
+msgid "关闭"
+msgstr ""
+
+#: footer.php:140
+msgid "欢迎使用FAQ检索服务，请输入关键词开始检索"
+msgstr ""
+
+#: footer.php:180
+#: pandastudio_framework/framework_i18n.php:319
+msgid "色彩模式"
+msgstr ""
+
+#: footer.php:190
+#: pandastudio_framework/framework_i18n.php:320
+msgid "请输入检索关键词..."
+msgstr ""
+
+#: footer.php:190
+msgid "搜索"
+msgstr ""
+
+#: footer.php:204
+msgid "扫描二维码阅读更多内容"
+msgstr ""
+
+#: footer.php:207
+msgid "封面生成中..."
+msgstr ""
+
+#: functions.php:85
+#, php-format
+msgid "本文共%1$s个字 · 预计阅读%2$s分钟"
+msgstr ""
+
+#: functions.php:96
+#, php-format
+msgid "%s次已读"
+msgstr ""
+
+#: functions.php:136
+msgid "全部展开/收缩"
+msgstr ""
+
+#: functions.php:136
+msgid "注: 点击月份可以展开"
+msgstr ""
+
+#: functions.php:155
+#, php-format
+msgid "%s日: "
+msgstr ""
+
+#: functions.php:159
+#, php-format
+msgid "%s 年"
+msgstr ""
+
+#: functions.php:167
+#, php-format
+msgid "%s 月"
+msgstr ""
+
+#: functions.php:195
+#: functions.php:196
+#: functions.php:207
+msgid "说说"
+msgstr ""
+
+#: functions.php:197
+msgid "所有说说"
+msgstr ""
+
+#: functions.php:198
+msgid "发表说说"
+msgstr ""
+
+#: functions.php:199
+msgid "撰写新说说"
+msgstr ""
+
+#: functions.php:200
+msgid "编辑说说"
+msgstr ""
+
+#: functions.php:201
+msgid "新说说"
+msgstr ""
+
+#: functions.php:202
+msgid "查看说说"
+msgstr ""
+
+#: functions.php:203
+msgid "搜索说说"
+msgstr ""
+
+#: functions.php:204
+msgid "暂无说说"
+msgstr ""
+
+#: functions.php:205
+msgid "回收站中没有说说"
+msgstr ""
+
+#: functions.php:230
+msgid "插入代码"
+msgstr ""
+
+#: functions.php:236
+#: assets/js/theme.js:899
+msgid "插入图片"
+msgstr ""
+
+#: functions.php:249
+msgid "警告：你可能修改了 niRvana 主题页脚的版权声明，niRvana 主题要求你必须保留 niRvana 主题的名称及作者链接。"
+msgstr ""
+
+#: functions.php:323
+msgid "* 昵称与邮箱为必填项"
+msgstr ""
+
+#: functions.php:325
+#: assets/js/theme.js:61
+msgid "找不到相关信息"
+msgstr ""
+
+#: functions.php:385
+msgid "Invalid post ID"
+msgstr ""
+
+#: functions.php:564
+msgid "分类菜单"
+msgstr ""
+
+#: functions.php:619
+#: functions.php:621
+msgid "上一页"
+msgstr ""
+
+#: functions.php:627
+msgid "第一页"
+msgstr ""
+
+#: functions.php:635
+msgid "最后一页"
+msgstr ""
+
+#: functions.php:638
+#: functions.php:640
+msgid "下一页"
+msgstr ""
+
+#: functions.php:647
+#, php-format
+msgid "第 %s 页"
+msgstr ""
+
+#: functions.php:686
+#, php-format
+msgid "您在 [%s] 的留言有了回复"
+msgstr ""
+
+#: functions.php:688
+#, php-format
+msgid "%s，您好！"
+msgstr ""
+
+#: functions.php:689
+#, php-format
+msgid "您曾在《%s》的留言："
+msgstr ""
+
+#: functions.php:691
+#, php-format
+msgid "%s 给你的回复："
+msgstr ""
+
+#: functions.php:693
+#, php-format
+msgid "您可以点击 <a href=\"%s\">查看回复的完整内容</a>"
+msgstr ""
+
+#: functions.php:694
+#, php-format
+msgid "欢迎再度光临 <a href=\"%s\">%s</a>"
+msgstr ""
+
+#: functions.php:695
+msgid "（此邮件由系统自动发出，请勿回复。）"
+msgstr ""
+
+#: functions.php:773
+msgid "请您认真评论后再下载！"
+msgstr ""
+
+#: functions.php:776
+#: functions.php:839
+msgid "Get it!"
+msgstr ""
+
+#: functions.php:776
+#: functions.php:839
+msgid "Download"
+msgstr ""
+
+#: functions.php:782
+msgid "下载提示"
+msgstr ""
+
+#: functions.php:786
+msgid "知道了"
+msgstr ""
+
+#: functions.php:836
+msgid "本站提供的下载内容版权归本站所有。转载"
+msgstr ""
+
+#: functions.php:836
+msgid "必须"
+msgstr ""
+
+#: functions.php:836
+msgid "注明出处！"
+msgstr ""
+
+#: functions.php:836
+msgid "标有“转载”字样的文章，内容版权归原作者所有。"
+msgstr ""
+
+#: functions.php:845
+msgid "版权说明"
+msgstr ""
+
+#: functions.php:849
+msgid "不同意"
+msgstr ""
+
+#: functions.php:850
+msgid "同意并下载"
+msgstr ""
+
+#: functions.php:896
+#, php-format
+msgid "<span class=\"name\">%s</span>"
+msgstr ""
+
+#: functions.php:897
+#, php-format
+msgid "<span class=\"date\">%1$s · %2$s</span>"
+msgstr ""
+
+#: functions.php:901
+msgid "评论正在等待管理员审核..."
+msgstr ""
+
+#: functions.php:939
+msgid "button"
+msgstr ""
+
+#: functions.php:940
+#: pandastudio_framework/framework_i18n.php:59
+#: pandastudio_plugins/blocks/src/blocks/hotposts/edit.js:14
+#: pandastudio_plugins/blocks/src/blocks/microblog/edit.js:14
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:36
+msgid "标题"
+msgstr ""
+
+#: functions.php:942
+#: functions.php:952
+#: pandastudio_plugins/blocks/src/blocks/modal/save.js:11
+msgid "跳转到"
+msgstr ""
+
+#: functions.php:946
+#: pandastudio_plugins/blocks/src/blocks/modal/save.js:9
+msgid "未标题"
+msgstr ""
+
+#: functions.php:984
+msgid "Dropdown"
+msgstr ""
+
+#: functions.php:1017
+msgid "collapse"
+msgstr ""
+
+#: functions.php:1166
+msgid "WP NONCE验证失败，判定为机器人恶意发送的垃圾评论！如果启用了“缓存”，则无法正常获取NONCE，因此也可能会判定为垃圾评论。若此操作是正常操作，请停用任何网站缓存功能。"
+msgstr ""
+
+#: functions.php:1166
+msgid "返回"
+msgstr ""
+
+#: functions.php:1683
+#: functions.php:1740
+msgid "滚动图片传入的数据错误！"
+msgstr ""
+
+#: functions.php:1716
+msgid "galleryID错误！"
+msgstr ""
+
+#: functions.php:1763
+msgid "未分类"
+msgstr ""
+
+#: functions.php:1809
+#, php-format
+msgid "边栏%s（无标题）"
+msgstr ""
+
+#: functions.php:1810
+msgid "边栏数量、名称、图标均可在“主题设置”中添加"
+msgstr ""
+
+#. Template Name of the theme
+msgid "默认首页"
+msgstr ""
+
+#: index.php:175
+#: index.php:220
+msgid "阅读更多"
+msgstr ""
+
+#. Template Name of the theme
+msgid "空白页面"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:52
+msgid "缺少PostID！"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:55
+#: pandastudio_framework/assets/template/option_rest.php:28
+msgid "数据格式不正确或为空！"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:74
+msgid "设置"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:100
+#: pandastudio_framework/assets/template/option_rest.php:96
+msgid "您的浏览器不支持 ECMAScript 5，请更换至 IE9 及以上版本"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:129
+#: pandastudio_framework/assets/template/meta_rest.php:181
+#: pandastudio_framework/assets/template/meta_rest.php:226
+#: pandastudio_framework/assets/template/option_rest.php:103
+#: pandastudio_framework/assets/template/option_rest.php:123
+#: pandastudio_framework/assets/template/option_rest.php:135
+#: pandastudio_framework/framework_i18n.php:321
+msgid "点击按钮上传或在此处粘贴外链地址"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:140
+#: pandastudio_framework/assets/template/option_rest.php:107
+msgid "输入外链"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:144
+#: pandastudio_framework/assets/template/option_rest.php:107
+msgid "批量上传"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:151
+#: pandastudio_framework/assets/template/option_rest.php:110
+msgid "全部移除"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:162
+#: pandastudio_framework/assets/template/meta_rest.php:194
+#: pandastudio_framework/assets/template/meta_rest.php:239
+#: pandastudio_framework/assets/template/option_rest.php:113
+#: pandastudio_framework/assets/template/option_rest.php:125
+#: pandastudio_framework/assets/template/option_rest.php:137
+msgid "请选择"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:205
+#: pandastudio_framework/assets/template/option_rest.php:130
+msgid "上移"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:206
+#: pandastudio_framework/assets/template/option_rest.php:130
+msgid "下移"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:207
+#: pandastudio_framework/assets/template/option_rest.php:130
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:81
+msgid "移除"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.php:251
+#: pandastudio_framework/assets/template/option_rest.php:142
+msgid "操作"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:46
+msgid "PANDA Studio framework 无法执行此操作，原因：您没有进行此操作的权限"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:71
+msgid "无权限"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:80
+msgid "主题设置"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:114
+#: pandastudio_framework/assets/template/option_rest.php:126
+#: pandastudio_framework/assets/template/option_rest.php:138
+msgid "请选择文章分类"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:115
+#: pandastudio_framework/assets/template/option_rest.php:127
+#: pandastudio_framework/assets/template/option_rest.php:139
+msgid "请选择至少一个文章分类"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:116
+#: pandastudio_framework/assets/template/option_rest.php:128
+#: pandastudio_framework/assets/template/option_rest.php:140
+msgid "输入关键字来筛选文章"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:144
+msgid "上传配置"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:145
+msgid "下载配置"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.php:148
+msgid "保存全部"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:12
+#: pandastudio_framework/assets/template/posttype_json.php:13
+#, php-format
+msgid "添加%s"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:14
+msgid "编辑"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:15
+#, php-format
+msgid "编辑%s"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:16
+#, php-format
+msgid "新%s"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:17
+msgid "查看"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:18
+#, php-format
+msgid "查看%s"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:19
+#, php-format
+msgid "搜索%s"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:20
+#, php-format
+msgid "未找到%s"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:21
+#, php-format
+msgid "回收站未找到%s"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:22
+#, php-format
+msgid "%s父分类"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:60
+#, php-format
+msgid "%s分类目录"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:61
+msgid "添加新分类目录"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:62
+msgid "分类名称"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:75
+#, php-format
+msgid "%s标签"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:76
+msgid "添加新标签"
+msgstr ""
+
+#: pandastudio_framework/assets/template/posttype_json.php:77
+msgid "标签名称"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:9
+msgid " 边栏数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:10
+msgid "“回复”按钮提示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:11
+msgid "“全部文章”地址"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:12
+msgid "“全部文章”形式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:13
+msgid "“相关文章”模块"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:14
+msgid "“阅读更多”链接"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:15
+msgid "“阅读更多”文本"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:16
+msgid "“最新文章”数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:17
+msgid "“最新文章”文本"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:18
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">帮助</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:19
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">边栏通用设置</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:20
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">边栏文本</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:21
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">打赏</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:22
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">顶部标题样式</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:23
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">反采集与复制</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:24
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">分类通用显示</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:25
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">分类页文章</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:26
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">分组展示</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:27
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">滚动图</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:28
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">滚动图通用设置</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:29
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">简单SEO</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:30
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">深色模式</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:31
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">首页文章</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:32
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">数据</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:33
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">文章编辑帮助</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:34
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">文章列表显示</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:35
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">相册分类</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:36
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">页码</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:37
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">右下角浮动功能</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:38
+msgid "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">Ajax页面加载</span>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:39
+#, php-format
+msgid ""
+"1、图标请从<a target=\"_blank\" href=\"https://fontawesome.com/icons\">FontAwesome6</a>图标中选择，复制&lt;i&gt;标签即可，如：&lt;i class=&quot;fab fa-apple&quot;&gt;&lt;/i&gt;</li><br>\n"
+"2、对边栏的排序仅改变边栏名称与图标。内部的小工具顺序及位置请前往“外观/小工具”进行调整<br>\n"
+"3、新增边栏后，若页面未显示“外观/小工具”菜单，请刷新页面后再试。在此处清空边栏（数量为0）将不再显示“外观/小工具”菜单<br>\n"
+"注：由于此图标库实时更新，若选择的图标太新，则可能不显示。此时请联系主题开发者更新主题内的图标库<br>\n"
+"4、为了更好地让搜索引擎索引，因此边栏的任何数据都不会被搜索引擎。边栏内容被伪装成脚本进行加载。故，边栏中若自定义HTML，请不要再次出现script标签，若需要，则务必将尖括号转义，可写为%3cscript%3e<br>\n"
+"左侧尖括号的转移符为：%3c<br>\n"
+"右侧尖括号的转移符为：%3e<br>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:40
+msgid "404"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:41
+msgid "404页面背景色"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:42
+msgid "404页面框架"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:43
+msgid "404页面图片"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:44
+msgid "按钮插入方法"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:45
+msgid "版权提示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:46
+msgid "版权文本"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:47
+msgid "包含框架"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:48
+msgid "备案分行显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:49
+msgid "备案号"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:50
+msgid "备案显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:51
+msgid "备案信息"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:52
+msgid "背景（默认）"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:53
+msgid "背景（全宽）"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:54
+msgid "背景色"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:55
+msgid "边栏"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:56
+msgid "边栏固定提示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:57
+msgid "扁平"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:58
+msgid "扁平-全宽"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:60
+msgid "标题分割线"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:61
+msgid "博客显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:62
+msgid "不显示边栏"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:63
+msgid "不要设置太大的数字，文章打开会非常卡"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:64
+msgid "不支持图片比例，自动以最佳形式展现"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:65
+msgid "常规"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:66
+msgid "常见问题"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:67
+msgid "此操作仅下载服务器上的主题配置数据。若您的数据未保存至服务器，请保存后再导出"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:68
+msgid "打赏标题"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:69
+msgid "代码高亮"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:70
+msgid "单位：毫秒（1秒=1000毫秒），设置为0则不自动切换"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:71
+msgid "单页隐藏分页"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:72
+msgid "当用户输入此的内容时，将随机显示FAQ列表"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:73
+msgid "当只有1页时，隐藏分页导航功能"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:74
+msgid "导出"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:75
+msgid "导入"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:76
+msgid "点赞数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:77
+msgid "点赞最多数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:78
+msgid "对“随机滚动图”及“首页文章”同时有效"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:79
+msgid ""
+"对于第三方插件使用脚本修改Html的插件将失效，请斟酌后开启！<br>\n"
+"给有代码修改能力的用户，提供了一个接口来解决上述问题：可使用JS钩子在Ajax加载完成后页面重新渲染时同时调用代码：<br>\n"
+"add_action(\"ajax_render_complete\",function() {\n"
+"    console.log('加载完成');\n"
+"})<br>\n"
+"更多JS钩子请自行研究。"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:80
+msgid "多个分类的分隔符，默认是斜杠：/"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:81
+msgid "二维码"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:82
+msgid "返回顶部"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:83
+msgid "分隔符"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:84
+msgid "分类"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:85
+msgid "分类的顺序依照“别名”排序，修改别名可自定义顺序。链接的顺序依照“发布时间”排序。"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:86
+msgid "分类链接"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:87
+msgid "分类页"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:88
+msgid "分类页不显示边栏"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:89
+msgid "分类页顶部默认显示本分类的随机文章，填写后，可固定指定分类的滚动图片为指定文章"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:90
+msgid "分享按钮"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:91
+msgid "分组名称"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:92
+msgid "固定分类文章"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:93
+msgid ""
+"关闭：自动放大图片以更大尺寸显示（适用于风景图片）<br>\n"
+"启用：保持原图比例（保证人物图片不被裁剪）"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:94
+msgid "关闭“随机滚动文章”后生效。要使滚动文章显示图片，必须在对应的“文章编辑页”中添加“滚动图片”"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:95
+msgid "关键词"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:96
+msgid "滚动图片"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:97
+msgid "滚动图片-全宽"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:98
+msgid "滚动图显示风格"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:99
+msgid "过滤搜索引擎"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:100
+msgid "回复可见提示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:101
+msgid "基本设置"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:102
+msgid ""
+"将表情上传至WordPress主题文件夹的faces文件夹下即可自动启用：安装目录/wp-content/themes/niRvana/faces/<br/>\n"
+"表情建议使用30~40像素左右的图片"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:103
+msgid ""
+"将一个（或多个）文章分类组合起来展示。注：<span style=\"color:red\">不推荐</span>同时展示多个分类<br>\n"
+"不得不选择多个分类时，在“阅读更多”的链接地址处应该以逗号来分开多个分类，如：<br>\n"
+"固定链接朴素：http://www.yourblog.com/category/cat1,cat2/<br>\n"
+"其它固定链接：http://www.yourblog.com/?cat=1,2"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:104
+msgid "仅文章有二级、三级标题时才在边栏中显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:105
+msgid "禁用滚动图"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:106
+msgid "禁用后，手机上将无法滑动切换"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:108
+msgid "卡片显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:109
+msgid "空白"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:110
+msgid "控制“Coverflow滚动图”、“文章内容顶部”的分类显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:111
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:46
+msgid "链接"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:112
+msgid "链接 / 提示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:113
+msgid "链接地址"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:114
+msgid "链接文本"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:116
+msgid "列表显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:117
+msgid "留言板"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:118
+msgid "留言板地址"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:119
+msgid "留言框提示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:120
+msgid "描述"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:121
+msgid "名称"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:122
+msgid "默认"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:123
+msgid "默认：|"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:124
+msgid "默认为“博客”展示，可在上面添加“分类形式”来修改"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:125
+msgid "默认样式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:126
+msgid "默认只显示文章第一个分类，启用后显示全部分类"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:127
+msgid "排除分类"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:128
+msgid "排序"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:129
+msgid "评论"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:130
+msgid "评论表情"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:131
+msgid "评论可见提示语"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:132
+msgid "评论最多数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:133
+msgid "苹果Coverflow"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:134
+msgid "苹果Coverflow-全宽"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:135
+msgid "瀑布流"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:136
+msgid "启用"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:137
+msgid "启用此选项后分类页顶部不显示滚动文章"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:138
+msgid "启用打赏"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:139
+msgid "启用后，当用户没有手动切换深色模式时，自动根据时间段切换深色模式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:140
+msgid ""
+"启用后，将在文章的随机位置添加【隐藏的】脏字符串（如版权信息）。对复制者网站产生干扰<br>\n"
+"* 试验性功能：请充分测试后使用"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:141
+msgid "启用后，可使用键盘左右键切换"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:142
+msgid "启用后，可显示当前第几页"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:143
+msgid "启用后，任何文章列表的“卡片”都将使用“瀑布流”样式。取决于特色图片尺寸、文章标题长度"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:144
+msgid "启用后，鼠标悬停时，不自动切换"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:145
+msgid "启用后，搜索引擎不会获取到脏字符串。但对于伪装成搜索引擎的采集工具，也就无效了"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:146
+msgid "启用后，显示开关，用户可在页面上切换深色模式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:147
+msgid "启用后，用户在前台打开过的页面将进入浏览器缓存，再次打开同一页面时可提高页面加载速度。但显示的点赞状态、评论数量等都将使用缓存，数据与服务器可能存在不同步现象"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:148
+msgid "启用简单SEO"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:149
+msgid "强制缓存"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:150
+msgid "轻博客"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:151
+msgid "轻博客内容"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:152
+msgid "清除主题选项"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:153
+msgid "请不要输入符号等特殊字符如：</>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:154
+msgid "请确保此问题在FAQ模块中能够被检索到"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:155
+msgid "请认真评论后再下载..."
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:157
+msgid "请输入24小时制时间，例如 07:00"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:158
+msgid "请输入24小时制时间，例如 19:00"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:159
+msgid "请输入站点关键词..."
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:160
+msgid "请填写关键词"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:161
+msgid "请用简略语言描述站点内容……"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:162
+msgid "请用自然语言描述内容"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:163
+msgid "请在：“外观/自定义/站点身份/站点图标”上传图片，将自动生成favicon和苹果设备的显示图标"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:164
+msgid "请在每篇文章的设置中启用本文章的“打赏”，不提供全局开关"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:165
+msgid "全站不刷新加载"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:166
+msgid "任何指向此页面的链接或提示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:167
+msgid "如：©2026 michaelliunsky 版权所有"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:168
+msgid "如：07:00"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:169
+msgid "如：19:00"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:170
+msgid "如：保持原图比例"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:171
+msgid "如：边栏固定"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:172
+msgid "如：给我留言"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:173
+msgid "如：欢迎使用FAQ检索服务，请输入关键词开始检索"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:174
+msgid "如：回复"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:175
+msgid "如：评论后可查看此区域内容"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:176
+msgid "如：请留言"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:177
+msgid "如：文章目录"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:178
+msgid "如：阅读更多，此文本将与“分组显示”的“阅读更多”文本相同"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:179
+msgid "如：支付宝"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:180
+msgid "如：最新文章"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:181
+msgid "若不填写，则不显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:182
+msgid "上传本主题导出的设置数据，其他数据无效"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:183
+msgid "设计"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:184
+msgid "深色模式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:185
+msgid "深色模式结束时间"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:186
+msgid "深色模式开始时间"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:187
+msgid "使用“滚动图片”"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:188
+msgid "使用“特色图片”"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:189
+msgid "使用简约无衬线的<a href=\"https://fonts.google.com/specimen/Play\" target=\"_blank\" style=\"text-decoration:none;\"> Play </a>字体来显示页面上的英文、数字、符号。此字体由 Jonas Hecksher 设计"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:190
+msgid ""
+"使用meta标签的keywords和description来帮助搜索引擎收录文章<br>\n"
+"主题仅提供非常简单的SEO功能，若在意SEO，请关闭此选项后使用第三方插件实现！"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:191
+msgid "首页"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:192
+msgid "首页不显示边栏"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:193
+msgid "首页默认显示“自定义滚动文章”，启用后首页顶部显示全站随机文章。若需首页不显示，请先禁用，然后清空“自定义滚动文章”"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:194
+msgid "首页文章由“最新文章”、“点赞最多”、“评论最多”、“随机推荐”4部分组成，除“最新文章”外，其余混合显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:195
+msgid "随机滚动文章"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:196
+msgid "随机添加次数"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:197
+msgid "随机头像"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:198
+msgid "随机推荐数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:199
+msgid "随机相册图片"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:200
+msgid "随机字符"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:201
+msgid "随机字符串"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:202
+msgid "所有分类文章地址"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:203
+msgid "特色图片背景模糊"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:204
+msgid "特色图片背景模糊-全宽"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:205
+msgid "填写此处后，将不再展示二维码，直接跳转"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:206
+msgid "通用"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:207
+msgid "头条文章"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:208
+msgid "头像"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:209
+msgid "头像地址"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:210
+msgid "图标"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:211
+msgid "图标高"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:212
+msgid "图标宽"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:213
+msgid "图片集"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:214
+msgid "图片显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:215
+msgid "完整分类"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:216
+msgid ""
+"为保证最好的显示效果，本主题的文章应包含以下3种文章图像：<br>\n"
+"<b>1、特色图片：</b>WordPress默认文章图像。用于首页“最新文章”以及“列表/卡片”文章展示模式，建议尺寸：512×458px。（<span style=\"color:red\">注：必须设置</span>）<br>\n"
+"<b>2、文章头图：</b>用于文章内容顶部图像，建议尺寸：1920×400px（不建议添加文案）（注：可不设置）<br>\n"
+"<b>3、滚动图片：</b>用于滚动图片的“滚动图片风格”，建议尺寸：1920×400px（建议添加少量文案）（注：若使用Coverflow风格可不设置）<br>"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:217
+msgid "未设置文章头图"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:218
+msgid "文本内容"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:220
+msgid "文章必须设置“特色图片”，默认使用特色图片背景模糊"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:221
+msgid "文章分类"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:222
+msgid "文章分组"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:223
+msgid "文章目录提示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:224
+msgid "文章内插入的pre标签自动重新渲染并高亮代码"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:225
+msgid "文章内容页"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:226
+msgid "文章数量，留空则自动"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:227
+msgid "文章头图"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:228
+msgid "文章头图-全宽"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:229
+msgid "文章图像"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:230
+msgid "文章展示形式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:231
+msgid "文章组"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:232
+msgid "问题"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:233
+msgid "问题答案"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:234
+msgid "无答案时，预留的显示内容，如：这类问题无法解答，请联系博主QQ（123456）"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:235
+msgid "下载"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:236
+msgid "下载按钮形式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:237
+msgid "显示"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:238
+msgid "显示风格"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:239
+msgid "显示锚点位置"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:240
+msgid "显示名称"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:241
+msgid "显示时候是按照分类显示的，因此每个链接必须隶属于一个分类才可以显示。不建议使用多级分类（父分类会出现重复项）"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:242
+#: pandastudio_plugins/blocks/src/blocks/hotposts/edit.js:30
+#: pandastudio_plugins/blocks/src/blocks/microblog/edit.js:20
+msgid "显示数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:243
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:42
+msgid "显示形式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:244
+msgid "显示在"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:245
+msgid "显示在二维码前面"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:247
+msgid "相册标签"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:248
+msgid "相册第一张"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:249
+msgid "相册分类"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:250
+msgid "相册封面"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:251
+msgid "相册最后一张"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:252
+msgid "新窗口打开"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:253
+msgid "新建“页面”，选择“全部文章时间排序”。将页面地址填写在此处"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:254
+msgid "新建页面，启用页面的评论功能"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:255
+msgid "悬停停止切换"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:256
+msgid ""
+"要手动编写function.php请将您的代码编写在niRvana主题根目录下的“custom_function.php”，更新主题时，您可以不必更新此文件<br>\n"
+"注意：编写时，请避免直接在页面上echo文本，这样会造成后台设置页、文章Meta读取出错！"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:257
+msgid "页面"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:258
+msgid "页面头图 "
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:259
+msgid "已设置文章头图"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:260
+msgid ""
+"用户未在Gravatar网站拥有头像时，随机显示上述列表图案<br>\n"
+"为保证显示时不被拉伸失真，请保证头像大于40×40像素，长宽比1:1"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:261
+msgid "用于“首页顶部自定义滚动文章”及“分类页顶部随机滚动文章”，建议尺寸：1920×400px"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:262
+msgid "用于文章页面顶部图像以及“博客”文章展示模式，建议尺寸：1920×400px"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:264
+msgid "友情链接分类"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:265
+msgid "预览"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:266
+msgid "原图比例"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:267
+msgid "允许打赏"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:268
+msgid "允许滑动切换"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:269
+msgid "允许键盘滚动"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:270
+msgid "在“页面”处新增页面，选择“友情链接”模板"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:271
+msgid "在文章编辑器中插入「回复可见」区块，被包裹的内容仅评论后可查看"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:272
+msgid ""
+"在文章编辑页面中点击：插入UI样式/下载按钮<br>\n"
+"注：“回复可见”的方式需在系统设置中强制评论填写电子邮件地址"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:273
+msgid "脏字符串"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:274
+msgid "摘要"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:275
+msgid "展示形式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:276
+msgid "站"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:277
+msgid "站点标题"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:278
+msgid "站点地址"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:279
+msgid "站点描述"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:280
+msgid "站点图标"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:281
+msgid "站点LOGO"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:282
+msgid "直接编写代码，无需 < script > 标签"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:283
+msgid "直接编写代码，无需 < style > 标签"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:284
+msgid ""
+"直接下载：点击下载按钮显示上面的版权提示信息，同意后直接下载<br>\n"
+"回复可见：点击下载按钮后若用户未评论，则提示需评论的对话框。若用户已评论过，则显示为直接下载按钮"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:285
+msgid "重置"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:286
+msgid "主要颜色"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:287
+msgid "注意"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:288
+msgid "自定义"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:289
+msgid "自定义滚动文章"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:290
+msgid "自动切换深色模式"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:291
+msgid "自动切换时间"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:292
+msgid "最新文章数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:293
+msgid "alert(\"Hello JS\");"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:294
+msgid "CSS"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:295
+msgid "div:before {content:\"Hello CSS\";}"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:296
+msgid "FAQ机器人"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:297
+msgid "FAQ检索数量"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:298
+msgid "FAQ默认提示语"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:299
+msgid "FAQ默认问题"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:300
+msgid "FAQ随机列表"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:301
+msgid "FAQ找不到答案"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:302
+msgid "favicon"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:303
+msgid "FontAwesome6"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:304
+msgid "function.php"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:305
+msgid "http://"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:306
+msgid "http://“阅读更多”链接"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:307
+msgid "Javascript"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:308
+msgid "Play 字体"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:309
+msgid "SEO优化"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:310
+msgid "Wiki目录"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:311
+msgid "Wiki目录是本主题自动给您的文章创建的导航，就像百度百科(或维基百科)边栏的导航条一样。点击目录可以滚动到文章的指定位置。此模式无需手动启用，当您在文章中使用二级标题（h2）或三级标题（h3）时，这些标题将由主题自动识别为文章目录并浮动显示在边栏的导航部分。"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:323
+msgid "语音合成"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:324
+msgid " 语速"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:325
+msgid "默认：5中语速"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:326
+msgid "音调"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:327
+msgid "人声选择"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:328
+msgid "普通女声"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:329
+msgid "普通男声"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:330
+msgid "情感合成-度逍遥"
+msgstr ""
+
+#: pandastudio_framework/framework_i18n.php:331
+msgid "情感合成-度丫丫"
+msgstr ""
+
+#: pandastudio_plugins/blocks/index.php:11
+msgid "PANDA Studio UI 样式"
+msgstr ""
+
+#: pandastudio_plugins/blocks/index.php:117
+msgid "文章展示模块：请设置文章ID"
+msgstr ""
+
+#: pandastudio_plugins/blocks/index.php:163
+#, php-format
+msgid "%s类型不支持使用模块展示！"
+msgstr ""
+
+#: pandastudio_plugins/blocks/index.php:191
+msgid "Previous"
+msgstr ""
+
+#: pandastudio_plugins/blocks/index.php:191
+msgid "Next"
+msgstr ""
+
+#: sidebar.php:11
+#: sidebar.php:37
+msgid "文章目录"
+msgstr ""
+
+#. Template Name of the theme
+msgid "说说页面"
+msgstr ""
+
+#: assets/js/pdmessage.js:40
+msgid "toast内容未定义！"
+msgstr ""
+
+#: assets/js/pdmessage.js:50
+msgid "按钮名称未定义"
+msgstr ""
+
+#: assets/js/pdmessage.js:58
+msgid "notify内容未定义！"
+msgstr ""
+
+#: assets/js/theme.js:386
+#: assets/js/theme.js:389
+msgid "请登录"
+msgstr ""
+
+#: assets/js/theme.js:405
+msgid "请输入搜索关键词！"
+msgstr ""
+
+#: assets/js/theme.js:407
+msgid "至少选择一种类型再搜索！"
+msgstr ""
+
+#: assets/js/theme.js:439
+#: assets/js/theme.js:682
+msgid ""
+"网络错误\n"
+"请刷新后再试！"
+msgstr ""
+
+#: assets/js/theme.js:502
+msgid "REST API请求错误！"
+msgstr ""
+
+#: assets/js/theme.js:502
+msgid ""
+"服务器地址重写错误，请检查：\n"
+"1、后台/设置/固定链接设置为朴素\n"
+"2、.htaccess文件是否配置有误"
+msgstr ""
+
+#: assets/js/theme.js:584
+msgid "昵称未填写"
+msgstr ""
+
+#: assets/js/theme.js:584
+msgid "邮箱未填写"
+msgstr ""
+
+#: assets/js/theme.js:584
+#: assets/js/user-center-login.js:258
+#: assets/js/user-center-login.js:297
+msgid "邮箱格式错误"
+msgstr ""
+
+#: assets/js/theme.js:586
+msgid "评论内容未填写"
+msgstr ""
+
+#: assets/js/theme.js:589
+msgid ""
+"严重错误：非人为操作\n"
+"操作过快，判定为机器人操作，请刷新重试"
+msgstr ""
+
+#: assets/js/theme.js:597
+msgid "严重错误：评论地址无效"
+msgstr ""
+
+#: assets/js/theme.js:624
+msgid "<i class=\"fas fa-sign-out-alt\"></i> 退出登录？"
+msgstr ""
+
+#: assets/js/theme.js:626
+msgid "请稍后"
+msgstr ""
+
+#: assets/js/theme.js:626
+msgid "网页还未加载完成"
+msgstr ""
+
+#: assets/js/theme.js:660
+#: assets/js/theme.js:663
+msgid "点赞处理中..."
+msgstr ""
+
+#: assets/js/theme.js:661
+msgid "您已经点过赞了！"
+msgstr ""
+
+#: assets/js/theme.js:666
+msgid "已赞，感谢您的支持！"
+msgstr ""
+
+#: assets/js/theme.js:723
+msgid "找到以下内容，点击查看详情<ol>"
+msgstr ""
+
+#: assets/js/theme.js:748
+msgid "数据加载失败"
+msgstr ""
+
+#: assets/js/theme.js:825
+msgid "封面已生成！保存图片可分享至社交网站"
+msgstr ""
+
+#: assets/js/theme.js:893
+msgid ""
+"<pre>\n"
+"请输入代码...\n"
+"</pre>"
+msgstr ""
+
+#: assets/js/theme.js:900
+msgid "请粘贴图片地址，每个图片一行"
+msgstr ""
+
+#: assets/js/user-center-login.js:13
+msgid "点击查看密码"
+msgstr ""
+
+#: assets/js/user-center-login.js:15
+msgid "按住查看密码"
+msgstr ""
+
+#: assets/js/user-center-login.js:27
+msgid "正在注册..."
+msgstr ""
+
+#: assets/js/user-center-login.js:41
+msgid "注册成功"
+msgstr ""
+
+#: assets/js/user-center-login.js:45
+msgid "请使用注册的账号登录"
+msgstr ""
+
+#: assets/js/user-center-login.js:51
+msgid "用户注册接口请求失败！"
+msgstr ""
+
+#: assets/js/user-center-login.js:63
+msgid "请稍后..."
+msgstr ""
+
+#: assets/js/user-center-login.js:80
+msgid "验证码发送成功"
+msgstr ""
+
+#: assets/js/user-center-login.js:84
+msgid "请填写邮箱接收到的验证码"
+msgstr ""
+
+#: assets/js/user-center-login.js:90
+msgid "发送邮件验证码接口请求失败！"
+msgstr ""
+
+#: assets/js/user-center-login.js:122
+#: assets/js/user-center-login.js:126
+msgid "取消注册"
+msgstr ""
+
+#: assets/js/user-center-login.js:123
+msgid "注册表单尚有数据，请确认是否取消注册？"
+msgstr ""
+
+#: assets/js/user-center-login.js:125
+msgid "继续注册"
+msgstr ""
+
+#: assets/js/user-center-login.js:164
+#: assets/js/user-center-login.js:261
+msgid "注册"
+msgstr ""
+
+#: assets/js/user-center-login.js:165
+msgid "QQ/用户名/邮箱"
+msgstr ""
+
+#: assets/js/user-center-login.js:166
+#: assets/js/user-center-login.js:231
+msgid "网站密码"
+msgstr ""
+
+#: assets/js/user-center-login.js:167
+msgid "用户名/邮箱"
+msgstr ""
+
+#: assets/js/user-center-login.js:167
+#: assets/js/user-center-login.js:233
+msgid "密码"
+msgstr ""
+
+#: assets/js/user-center-login.js:168
+msgid "记住我"
+msgstr ""
+
+#: assets/js/user-center-login.js:168
+msgid "忘记密码"
+msgstr ""
+
+#: assets/js/user-center-login.js:169
+#: assets/js/user-center-login.js:227
+msgid "登录"
+msgstr ""
+
+#: assets/js/user-center-login.js:177
+msgid "请输入账号"
+msgstr ""
+
+#: assets/js/user-center-login.js:180
+#: assets/js/user-center-login.js:291
+msgid "请输入密码"
+msgstr ""
+
+#: assets/js/user-center-login.js:188
+msgid "登录中..."
+msgstr ""
+
+#: assets/js/user-center-login.js:201
+msgid "登陆成功！"
+msgstr ""
+
+#: assets/js/user-center-login.js:209
+msgid "登录接口请求失败！"
+msgstr ""
+
+#: assets/js/user-center-login.js:230
+msgid "QQ号注册"
+msgstr ""
+
+#: assets/js/user-center-login.js:233
+msgid "用户名"
+msgstr ""
+
+#: assets/js/user-center-login.js:236
+msgid "验证码"
+msgstr ""
+
+#: assets/js/user-center-login.js:243
+msgid "请输入正确的QQ号码"
+msgstr ""
+
+#: assets/js/user-center-login.js:248
+msgid ""
+"验证码发往：\n"
+""
+msgstr ""
+
+#: assets/js/user-center-login.js:255
+#: assets/js/user-center-login.js:294
+msgid "请输入邮箱"
+msgstr ""
+
+#: assets/js/user-center-login.js:270
+msgid "请输入QQ号"
+msgstr ""
+
+#: assets/js/user-center-login.js:273
+msgid "请输入网站密码"
+msgstr ""
+
+#: assets/js/user-center-login.js:276
+msgid "请输入QQ邮箱接收的验证码"
+msgstr ""
+
+#: assets/js/user-center-login.js:288
+msgid "请输入用户名"
+msgstr ""
+
+#: assets/js/user-center-login.js:300
+msgid "请输入邮箱接收的验证码"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:81
+#: pandastudio_framework/assets/template/option_rest.js:76
+#: pandastudio_framework/assets/template/option_rest.js:306
+msgid "连接服务器失败或后台读取出错！"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:81
+msgid "设置项读取失败"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:109
+#: pandastudio_framework/assets/template/option_rest.js:108
+msgid "上传"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:111
+#: pandastudio_framework/assets/template/option_rest.js:110
+#: pandastudio_plugins/blocks/src/blocks/gallery/edit.js:63
+msgid "插入"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:124
+#: pandastudio_framework/assets/template/option_rest.js:123
+msgid "按住 ctrl 批量选择"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:126
+#: pandastudio_framework/assets/template/option_rest.js:125
+msgid "批量插入"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:138
+#: pandastudio_framework/assets/template/option_rest.js:137
+msgid "请输入图片地址"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:138
+#: pandastudio_framework/assets/template/option_rest.js:137
+msgid "外链图片"
+msgstr ""
+
+#: pandastudio_framework/assets/template/meta_rest.js:193
+msgid ""
+"MetaBox数据获取失败！请检查：\n"
+"1、WordPress版本大于4.7\n"
+"2、Rest API是否被插件关闭\n"
+"3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n"
+"4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:76
+msgid "数据读取失败"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:94
+msgid "保存成功！"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:95
+#: pandastudio_framework/assets/template/option_rest.js:100
+#: pandastudio_framework/assets/template/option_rest.js:265
+#: pandastudio_framework/assets/template/option_rest.js:270
+msgid "保存失败"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:96
+#: pandastudio_framework/assets/template/option_rest.js:266
+#: pandastudio_framework/assets/template/option_rest.js:332
+msgid "授权错误！"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:101
+#: pandastudio_framework/assets/template/option_rest.js:271
+#: pandastudio_framework/assets/template/option_rest.js:337
+msgid "连接服务器失败或后台保存出错！"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:249
+msgid "此操作将使用您上传的设置项覆盖到服务器上"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:249
+#, js-format
+msgid "从您上传的数据中匹配到 %s 个设置项，共需要 %s 个设置项。未匹配到的 %s 个选项将被置空"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:249
+msgid "确认这样做"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:262
+msgid "成功导入，页面正在刷新..."
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:277
+msgid "请选择由本主题导出的 JSON 格式文件"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:277
+msgid "数据类型错误"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:306
+msgid "数据下载失败"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:313
+msgid "此操作将清空本主题的所有设置选项"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:313
+msgid "请确认"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:328
+msgid "已清空主题设置项，页面正在刷新..."
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:331
+msgid "数据表上传失败"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:336
+msgid "清空数据失败"
+msgstr ""
+
+#: pandastudio_framework/assets/template/option_rest.js:352
+msgid ""
+"Option数据获取失败！请检查：\n"
+"1、WordPress版本大于4.7\n"
+"2、Rest API是否被插件关闭\n"
+"3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n"
+"4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？"
+msgstr ""
+
+#: pandastudio_plugins/baiduAudio/baiduAudio.js:2
+msgid "朗读本文"
+msgstr ""
+
+#: pandastudio_plugins/baiduAudio/baiduAudio.js:2
+msgid "语音合成中，请稍后..."
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/bilibili/edit.js:10
+#: pandastudio_plugins/blocks/src/blocks/collapse/edit.js:31
+#: pandastudio_plugins/blocks/src/blocks/download/edit.js:10
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:50
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:31
+#: pandastudio_plugins/blocks/src/blocks/tips/edit.js:30
+#: pandastudio_plugins/blocks/src/blocks/title/edit.js:11
+msgid "区块设置"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/bilibili/edit.js:11
+msgid "请粘贴嵌入代码"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/bilibili/edit.js:15
+msgid "点击视频下方的分享->复制“嵌入代码”"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/bilibili/edit.js:16
+msgid "注意：这里粘贴的任何html都将当做代码来执行，请不要填写不安全的代码！"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/collapse/edit.js:32
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:51
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:32
+msgid "按钮颜色"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/collapse/edit.js:48
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:93
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:76
+msgid "按钮未定义"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/collapse/edit.js:51
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:96
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:79
+msgid "按钮名称"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/download/edit.js:12
+msgid "下载地址"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/download/edit.js:19
+msgid "需评论下载"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:63
+msgid "下拉列表"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:67
+#, js-format
+msgid "项目%s："
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:69
+msgid "请输入名称"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/dropdown/edit.js:87
+msgid "增加列表项"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/gallery/edit.js:49
+msgid "媒体库"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/gallery/edit.js:58
+msgid "https://图片地址"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/hotposts/edit.js:12
+msgid "热门文章设置"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/hotposts/edit.js:20
+msgid "文章筛选"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/hotposts/edit.js:23
+msgid "点赞最多"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/hotposts/edit.js:24
+msgid "评论最多"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/microblog/edit.js:12
+msgid "轻博客设置"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:45
+msgid "模态框标题"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:52
+msgid "关闭按钮文本"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:54
+msgid "默认：关闭"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:59
+msgid "链接按钮文本"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:61
+msgid "默认：跳转到"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:66
+msgid "链接按钮地址"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/edit.js:90
+msgid "请输入模态框标题..."
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/needreply/edit.js:8
+msgid "此模块内容回复可见"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:25
+msgid "网络异常"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:32
+msgid "设置文章ID"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:34
+msgid "更改文章ID"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:34
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:42
+msgid "选择文章ID"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:38
+msgid "已选文章ID："
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:48
+msgid "请输入文章关键字..."
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:54
+msgid "检索文章"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:63
+msgid "请选择："
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/edit.js:76
+msgid "暂无文章"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:6
+msgid "当前窗口"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:7
+msgid "新窗口"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:34
+msgid "标签与链接设置"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:45
+#: pandastudio_plugins/blocks/src/blocks/title/edit.js:23
+msgid "标签"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:47
+msgid "垂直导航"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:64
+msgid "文本"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:70
+msgid "地址"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:77
+msgid "打开方式"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:89
+msgid "删除此项"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:98
+msgid "添加一项"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/edit.js:112
+msgid "(空)"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tips/edit.js:31
+msgid "选择颜色"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tips/edit.js:42
+msgid "全宽样式"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/title/edit.js:13
+msgid "标题样式"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/title/edit.js:16
+msgid "样式一"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/title/edit.js:17
+msgid "样式二"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/user-info/edit.js:17
+msgid "博主信息设置"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/user-info/edit.js:35
+msgid "更换头像"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/user-info/edit.js:35
+msgid "选择头像"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/user-info/edit.js:56
+msgid "描述..."
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/formats/description/index.js:78
+#: pandastudio_plugins/blocks/src/formats/description/index.js:148
+msgid "弹出提示"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/formats/description/index.js:96
+msgid "请输入提示语..."
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/formats/description/index.js:118
+msgid "顶部"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/formats/description/index.js:124
+msgid "底部"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/formats/description/index.js:130
+msgid "左侧"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/formats/description/index.js:136
+msgid "右侧"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/index.js:25
+msgid "仅圆角"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/index.js:30
+msgid "仅阴影"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/index.js:35
+msgid "圆角与阴影"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/index.js:40
+msgid "中文段落首行空2个字符"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/bilibili/block.json
+msgctxt "block title"
+msgid "哔哩哔哩视频"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/bilibili/block.json
+msgctxt "block description"
+msgid "插入哔哩哔哩视频"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/collapse/block.json
+msgctxt "block title"
+msgid "折叠内容"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/download/block.json
+msgctxt "block title"
+msgid "下载按钮"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/download/block.json
+msgctxt "block description"
+msgid "创建一个下载按钮，可通过启用“需评论下载”来增加与读者的互动"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/dropdown/block.json
+msgctxt "block title"
+msgid "下拉菜单"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/gallery/block.json
+msgctxt "block title"
+msgid "轮播图"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/hotposts/block.json
+msgctxt "block title"
+msgid "热门文章"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/hotposts/block.json
+msgctxt "block description"
+msgid "展示评论最多/点赞最多的文章"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/microblog/block.json
+msgctxt "block title"
+msgid "轻博客"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/microblog/block.json
+msgctxt "block description"
+msgid "轻博客展示"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/block.json
+msgctxt "block title"
+msgid "模态框"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/modal/block.json
+msgctxt "block description"
+msgid "用于浮动展示更多内容"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/needreply/block.json
+msgctxt "block title"
+msgid "回复可见"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/needreply/block.json
+msgctxt "block description"
+msgid "此模块内容需用户评论文章后才可显示，此模块内可嵌套其它模块"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/block.json
+msgctxt "block title"
+msgid "文章展示"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/single/block.json
+msgctxt "block description"
+msgid "用于展示文章链接，部分类型的文章可能无法显示"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/block.json
+msgctxt "block title"
+msgid "标签与链接"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tag-cloud/block.json
+msgctxt "block description"
+msgid "自定义标签、链接、社交信息展示等"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/tips/block.json
+msgctxt "block title"
+msgid "提示框"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/title/block.json
+msgctxt "block title"
+msgid "小标题"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/user-info/block.json
+msgctxt "block title"
+msgid "博主信息"
+msgstr ""
+
+#: pandastudio_plugins/blocks/src/blocks/user-info/block.json
+msgctxt "block description"
+msgid "展示博主基本信息（头像、昵称、描述）"
+msgstr ""

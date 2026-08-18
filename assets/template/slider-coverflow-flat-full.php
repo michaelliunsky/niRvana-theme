@@ -14,7 +14,7 @@ global $carousels_attrs;
 						</div>
 						<h2><?php echo $item['title']; ?>
 						</h2>
-						<div class="read-more"><a href="<?php echo $item['href']; ?>"><i class="fa fa-arrow-right" aria-hidden="true"></i> 阅读全文</a></div>
+						<div class="read-more"><a href="<?php echo $item['href']; ?>"><i class="fa fa-arrow-right" aria-hidden="true"></i> <?php esc_html_e( '阅读全文', 'niRvana' ); ?></a></div>
 					</div>
 					<div class="image flex-center"><a class="card" href="<?php echo $item['href']; ?>" style="background-image: url(<?php echo $item['cover_img']; ?>);"></a>
 					</div>

@@ -14,11 +14,11 @@
 										'container'      => false,
 									)
 								);
-							} else {
-								echo '
-<ul class="menu"><li><a>请在后台添加菜单并指派到"主菜单"</a></li></ul>
-';
-							}
+			} else {
+				?>
+				<ul class="menu"><li><a><?php printf( esc_html__( '请在后台添加菜单并指派到“%s”', 'niRvana' ), esc_html__( '主菜单', 'niRvana' ) ); ?></a></li></ul>
+				<?php
+			}
 							?>
 						</div>
 					</div>

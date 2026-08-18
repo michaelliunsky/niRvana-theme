@@ -3,6 +3,7 @@
   "apiVersion": 3,
   "name": "pandastudio/collapse",
   "version": "2.0.0",
+  "textdomain": "niRvana",
   "title": "折叠内容",
   "icon": "archive",
   "category": "pandastudio-block-category",

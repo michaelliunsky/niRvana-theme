@@ -172,7 +172,7 @@ get_topSlider( array( $post->ID ), $type );
 									the_post();
 									?>
 									<li>
-										<time class="cbp_tmtime"><i class="fa fa-clock-o"></i> <?php the_time( 'Y年n月j日G:i' ); ?></time>
+										<time class="cbp_tmtime"><i class="fa fa-clock-o"></i> <?php the_time( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) ); ?></time>
 										<div class="cbp_tmlabel">
 											<span style="font-size:18px;"><?php the_content(); ?></span>
 											<h2><span>——— <?php the_title(); ?></span></h2>

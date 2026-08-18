@@ -172,7 +172,7 @@ get_topSlider( $cpids, _opt( 'frontpage_carousels_type' ) );
 					<?php
 					if ( _opt( 'index_time_url' ) ) {
 						echo '<div class="col-xs-12 readMore"><a href="' . _opt( 'index_time_url' ) . '">
-' . _opt( 'read_more_text', '阅读更多' ) . '
+' . _opt( 'read_more_text', __( '阅读更多', 'niRvana' ) ) . '
 <i class="fas fa-chevron-down"></i></a></div>';
 					}
 					?>
@@ -217,7 +217,7 @@ get_topSlider( $cpids, _opt( 'frontpage_carousels_type' ) );
 				<?php
 				if ( $group['href'] ) {
 					?>
-					<a class="more" href="<?php echo $group['href']; ?>"><?php echo ( $group['more'] ? $group['more'] : '阅读更多' ); ?><i class="fas fa-angle-right"></i></a>
+					<a class="more" href="<?php echo $group['href']; ?>"><?php echo ( $group['more'] ? $group['more'] : esc_html__( '阅读更多', 'niRvana' ) ); ?><i class="fas fa-angle-right"></i></a>
 					<?php
 				}
 				?>

@@ -7,13 +7,13 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( '区块设置' ) }>
-					<div className="pf_inspectorTitle">{ __( '请粘贴嵌入代码' ) }</div>
+				<PanelBody title={ __( '区块设置', 'niRvana' ) }>
+					<div className="pf_inspectorTitle">{ __( '请粘贴嵌入代码', 'niRvana' ) }</div>
 					<TextControl
 						value={ iframe || '' }
 						onChange={ ( value ) => setAttributes( { iframe: value } ) }
-						placeholder={ __( '点击视频下方的分享->复制“嵌入代码”' ) }
-						help={ __( '注意：这里粘贴的任何html都将当做代码来执行，请不要填写不安全的代码！' ) }
+						placeholder={ __( '点击视频下方的分享->复制“嵌入代码”', 'niRvana' ) }
+						help={ __( '注意：这里粘贴的任何html都将当做代码来执行，请不要填写不安全的代码！', 'niRvana' ) }
 						__next40pxDefaultSize
 					/>
 				</PanelBody>
