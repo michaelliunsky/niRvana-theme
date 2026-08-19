@@ -257,6 +257,15 @@
         "decoration": "1、图标请从<a target=\"_blank\" href=\"https://fontawesome.com/icons\">FontAwesome6</a>图标中选择，复制&lt;i&gt;标签即可，如：&lt;i class=&quot;fab fa-apple&quot;&gt;&lt;/i&gt;</li><br>\n2、对边栏的排序仅改变边栏名称与图标。内部的小工具顺序及位置请前往“外观/小工具”进行调整<br>\n3、新增边栏后，若页面未显示“外观/小工具”菜单，请刷新页面后再试。在此处清空边栏（数量为0）将不再显示“外观/小工具”菜单<br>\n注：由于此图标库实时更新，若选择的图标太新，则可能不显示。此时请联系主题开发者更新主题内的图标库<br>\n4、为了更好地让搜索引擎索引，因此边栏的任何数据都不会被搜索引擎。边栏内容被伪装成脚本进行加载。故，边栏中若自定义HTML，请不要再次出现script标签，若需要，则务必将尖括号转义，可写为%3cscript%3e<br>\n左侧尖括号的转移符为：%3c<br>\n右侧尖括号的转移符为：%3e<br>"
       },
       {
+        "type": "switch",
+        "label": "固定侧边栏",
+        "value": "checked",
+        "name": "sidebar_fixed_switcher",
+        "decoration": "开启后，文章/页面/归档/友链页的侧边栏在滚动时固定显示；关闭则随页面滚动",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">分类通用显示</span>",
         "decoration": "控制“Coverflow滚动图”、“文章内容顶部”的分类显示",
         "gear_name": "",
@@ -460,28 +469,6 @@
         "gear_value": ""
       },
       {
-        "type": "inputNumber",
-        "label": "“最新文章”数量",
-        "value": 0,
-        "min": 1,
-        "max": 99,
-        "step": 1,
-        "name": "newest_num",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
-        "type": "input",
-        "label": "“最新文章”文本",
-        "value": "",
-        "placeholder": "如：最新文章",
-        "name": "newest_text",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">首页文章</span>",
         "decoration": "首页文章由“最新文章”、“点赞最多”、“评论最多”、“随机推荐”4部分组成，除“最新文章”外，其余混合显示",
         "gear_name": "",
@@ -496,29 +483,6 @@
         "decoration": "对“随机滚动图”及“首页文章”同时有效",
         "gear_name": "",
         "gear_value": ""
-      },
-      {
-        "type": "radio",
-        "label": "“全部文章”形式",
-        "value": "",
-        "radios": [
-          {
-            "label": "列表显示",
-            "value": "list"
-          },
-          {
-            "label": "卡片显示",
-            "value": "card"
-          },
-          {
-            "label": "博客显示",
-            "value": ""
-          }
-        ],
-        "name": "all_posts_display_type",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
       },
       {
         "type": "radio",
@@ -1203,14 +1167,6 @@
         "value": ""
       },
       {
-        "type": "input",
-        "label": "原图比例",
-        "value": "",
-        "placeholder": "如：保持原图比例",
-        "name": "sidebar_gallery_showBox_contain_tooltip",
-        "decoration": ""
-      },
-      {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">相册分类</span>",
         "decoration": "",
         "gear_name": "",
@@ -1269,24 +1225,7 @@
     "title": "留言板",
     "icon": "fa-pen-to-square",
     "labelWidth": "130px",
-    "content": [
-      {
-        "type": "input",
-        "label": "留言板地址",
-        "value": "",
-        "placeholder": "http://",
-        "name": "guestbook_href",
-        "decoration": "新建页面，启用页面的评论功能"
-      },
-      {
-        "type": "input",
-        "label": "链接 / 提示",
-        "value": "",
-        "placeholder": "如：给我留言",
-        "name": "guestbook_tooltip",
-        "decoration": "任何指向此页面的链接或提示"
-      }
-    ]
+    "content": []
   },
   {
     "title": "404",
@@ -1345,16 +1284,6 @@
         "value": "",
         "name": "design_font",
         "decoration": "使用简约无衬线的<a href=\"https://fonts.google.com/specimen/Play\" target=\"_blank\" style=\"text-decoration:none;\"> Play </a>字体来显示页面上的英文、数字、符号。此字体由 Jonas Hecksher 设计"
-      },
-      {
-        "type": "input",
-        "label": "边栏固定提示",
-        "value": "",
-        "placeholder": "如：边栏固定",
-        "name": "sidebar_fixed_switcher_tip",
-        "decoration": "",
-        "gear_name": "sidebar_fixed_switcher",
-        "gear_value": "checked"
       },
       {
         "type": "switch",

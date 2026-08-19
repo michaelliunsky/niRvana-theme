@@ -82,7 +82,7 @@ get_topSlider( array( $post->ID ), $type );
         </div>
         <div class="<?php echo $rightClass; ?>">
             <div class="row">
-                <div class="sidebar sidebar-affix">
+                <div class="sidebar<?php echo _opt('sidebar_fixed_switcher') == 'checked' ? ' sidebar-affix' : ''; ?>">
                     <div manual-template="sidebarMenu"></div>
                     <div manual-template="sidebar"></div>
                 </div>
