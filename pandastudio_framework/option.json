@@ -224,10 +224,26 @@
           {
             "type": "select",
             "selects": [
-              { "label": "首页", "value": "home", "description": "" },
-              { "label": "文章内容页", "value": "single", "description": "" },
-              { "label": "分类页", "value": "archive", "description": "" },
-              { "label": "页面", "value": "page", "description": "" }
+              {
+                "label": "首页",
+                "value": "home",
+                "description": ""
+              },
+              {
+                "label": "文章内容页",
+                "value": "single",
+                "description": ""
+              },
+              {
+                "label": "分类页",
+                "value": "archive",
+                "description": ""
+              },
+              {
+                "label": "页面",
+                "value": "page",
+                "description": ""
+              }
             ],
             "name": "show_on",
             "label": "显示在",
@@ -400,6 +416,16 @@
             "label": "扁平-全宽",
             "value": "coverflow-flat-full",
             "description": "使用“特色图片”"
+          },
+          {
+            "label": "扁平卡片流",
+            "value": "flatflow",
+            "description": "使用“特色图片”"
+          },
+          {
+            "label": "封面流-头图背景",
+            "value": "auto",
+            "description": "使用“特色图片”"
           }
         ],
         "name": "frontpage_carousels_type",
@@ -420,7 +446,13 @@
         "subLabel": "头条文章",
         "subLabelWidth": "60px",
         "displayAsTable": true,
-        "types": [{ "type": "singleSelect", "name": "post", "label": "文章" }],
+        "types": [
+          {
+            "type": "singleSelect",
+            "name": "post",
+            "label": "文章"
+          }
+        ],
         "value": [],
         "name": "headLine",
         "decoration": "关闭“随机滚动文章”后生效。要使滚动文章显示图片，必须在对应的“文章编辑页”中添加“滚动图片”",
@@ -450,16 +482,6 @@
         "gear_value": "checked"
       },
       {
-        "type": "input",
-        "label": "“全部文章”地址",
-        "value": "",
-        "placeholder": "所有分类文章地址",
-        "name": "index_time_url",
-        "decoration": "新建“页面”，选择“全部文章时间排序”。将页面地址填写在此处",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">首页文章</span>",
         "decoration": "首页文章由“最新文章”、“点赞最多”、“评论最多”、“随机推荐”4部分组成，除“最新文章”外，其余混合显示",
         "gear_name": "",
@@ -480,9 +502,18 @@
         "label": "“全部文章”形式",
         "value": "",
         "radios": [
-          { "label": "列表显示", "value": "list" },
-          { "label": "卡片显示", "value": "card" },
-          { "label": "博客显示", "value": "" }
+          {
+            "label": "列表显示",
+            "value": "list"
+          },
+          {
+            "label": "卡片显示",
+            "value": "card"
+          },
+          {
+            "label": "博客显示",
+            "value": ""
+          }
         ],
         "name": "all_posts_display_type",
         "decoration": "",
@@ -494,8 +525,18 @@
         "label": "默认样式",
         "value": "",
         "radios": [
-          { "label": "卡片", "value": "cards" },
-          { "label": "列表", "value": "" }
+          {
+            "label": "卡片",
+            "value": "cards"
+          },
+          {
+            "label": "列表",
+            "value": ""
+          },
+          {
+            "label": "卡片-角标",
+            "value": "cards-tag"
+          }
         ],
         "name": "frontpage_postlist_type",
         "decoration": "",
@@ -590,7 +631,11 @@
         "subLabelWidth": "100px",
         "displayAsTable": true,
         "types": [
-          { "type": "categoriesSelect", "name": "cats", "label": "文章分类" },
+          {
+            "type": "categoriesSelect",
+            "name": "cats",
+            "label": "文章分类"
+          },
           {
             "type": "input",
             "placeholder": "显示名称",
@@ -618,8 +663,16 @@
           {
             "type": "select",
             "selects": [
-              { "label": "列表显示", "value": "lists", "description": "" },
-              { "label": "卡片显示", "value": "cards", "description": "" }
+              {
+                "label": "列表显示",
+                "value": "lists",
+                "description": ""
+              },
+              {
+                "label": "卡片显示",
+                "value": "cards",
+                "description": ""
+              }
             ],
             "name": "type",
             "label": "显示形式"
@@ -750,6 +803,16 @@
         ],
         "name": "single_title_widthout_headImg_type",
         "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "colorPicker",
+        "label": "缩略图角标背景色",
+        "value": "",
+        "showAlpha": false,
+        "name": "img_top_tag_color",
+        "decoration": "需先在「首页 → 默认样式」启用“卡片-角标”，此处颜色用于缩略图左上角标签",
         "gear_name": "",
         "gear_value": ""
       },
@@ -981,8 +1044,16 @@
         "subLabelWidth": "100px",
         "displayAsTable": true,
         "types": [
-          { "type": "categorySelect", "name": "cat", "label": "文章分类" },
-          { "type": "singleSelect", "name": "post", "label": "文章" }
+          {
+            "type": "categorySelect",
+            "name": "cat",
+            "label": "文章分类"
+          },
+          {
+            "type": "singleSelect",
+            "name": "post",
+            "label": "文章"
+          }
         ],
         "value": [],
         "name": "fixed_cat_carousels",
@@ -1004,12 +1075,24 @@
         "subLabelWidth": "100px",
         "displayAsTable": true,
         "types": [
-          { "type": "categorySelect", "name": "cat", "label": "文章分类" },
+          {
+            "type": "categorySelect",
+            "name": "cat",
+            "label": "文章分类"
+          },
           {
             "type": "select",
             "selects": [
-              { "label": "列表显示", "value": "lists", "description": "" },
-              { "label": "卡片显示", "value": "cards", "description": "" }
+              {
+                "label": "列表显示",
+                "value": "lists",
+                "description": ""
+              },
+              {
+                "label": "卡片显示",
+                "value": "cards",
+                "description": ""
+              }
             ],
             "name": "type",
             "label": "展示形式"
@@ -1051,9 +1134,21 @@
         "label": "相册封面",
         "value": "",
         "selects": [
-          { "label": "相册第一张", "value": "first", "description": "" },
-          { "label": "相册最后一张", "value": "last", "description": "" },
-          { "label": "随机相册图片", "value": "", "description": "默认" }
+          {
+            "label": "相册第一张",
+            "value": "first",
+            "description": ""
+          },
+          {
+            "label": "相册最后一张",
+            "value": "last",
+            "description": ""
+          },
+          {
+            "label": "随机相册图片",
+            "value": "",
+            "description": "默认"
+          }
         ],
         "name": "gallery_thumbnail",
         "decoration": ""
@@ -1203,8 +1298,14 @@
         "label": "404页面框架",
         "value": "",
         "radios": [
-          { "label": "包含框架", "value": "" },
-          { "label": "空白", "value": "blank" }
+          {
+            "label": "包含框架",
+            "value": ""
+          },
+          {
+            "label": "空白",
+            "value": "blank"
+          }
         ],
         "name": "404_type",
         "decoration": "",
@@ -1360,9 +1461,18 @@
         "label": " ",
         "value": "",
         "radios": [
-          { "label": "CSS", "value": "" },
-          { "label": "Javascript", "value": "js" },
-          { "label": "function.php", "value": "function" }
+          {
+            "label": "CSS",
+            "value": ""
+          },
+          {
+            "label": "Javascript",
+            "value": "js"
+          },
+          {
+            "label": "function.php",
+            "value": "function"
+          }
         ],
         "name": "custom_code",
         "decoration": "",

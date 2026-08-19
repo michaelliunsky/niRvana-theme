@@ -130,7 +130,7 @@ new jQVue({
       });
       var t = $("#flatflow .page"),
         n = $("#flatflow").data("allPages");
-      $.merge(t, n).each(function(t, n) {
+      $.merge(t, n || []).each(function(t, n) {
         if (void 0 !== $(n).attr("blured"));
         else {
           var i = $(n).children(".cover").css("background-image");

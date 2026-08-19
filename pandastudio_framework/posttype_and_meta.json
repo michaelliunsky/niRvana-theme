@@ -11,7 +11,9 @@
       "title": "基本设置",
       "icon": "el-icon-document",
       "labelWidth": "75px",
-      "screen": ["page"],
+      "screen": [
+        "page"
+      ],
       "content": [
         {
           "type": "uploader",
@@ -27,7 +29,9 @@
       "title": "基本设置",
       "icon": "el-icon-edit",
       "labelWidth": "75px",
-      "screen": ["post"],
+      "screen": [
+        "post"
+      ],
       "content": [
         {
           "type": "uploader",
@@ -64,6 +68,16 @@
           "name": "打赏",
           "gear_name": "",
           "gear_value": ""
+        },
+        {
+          "type": "input",
+          "label": "缩略图顶角标",
+          "value": "",
+          "placeholder": "如：置顶",
+          "name": "img_top_tag",
+          "decoration": "需在「主题设置 → 首页 → 默认样式」中选择“卡片-角标”才会显示，此文字出现在缩略图左上角",
+          "gear_name": "",
+          "gear_value": ""
         }
       ]
     },
@@ -71,7 +85,9 @@
       "title": "基本设置",
       "icon": "el-icon-share",
       "labelWidth": "90px",
-      "screen": ["favlinks"],
+      "screen": [
+        "favlinks"
+      ],
       "content": [
         {
           "type": "input",
@@ -190,7 +206,9 @@
       "title": "基本设置",
       "icon": "",
       "labelWidth": "75px",
-      "screen": ["faq"],
+      "screen": [
+        "faq"
+      ],
       "content": [
         {
           "type": "textarea",
@@ -211,7 +229,9 @@
       "title": "基本设置",
       "icon": "el-icon-picture",
       "labelWidth": "75px",
-      "screen": ["gallery"],
+      "screen": [
+        "gallery"
+      ],
       "content": [
         {
           "type": "multi_uploader",
@@ -233,7 +253,11 @@
       "title": "SEO优化",
       "icon": "el-icon-search",
       "labelWidth": "75px",
-      "screen": ["gallery", "page", "post"],
+      "screen": [
+        "gallery",
+        "page",
+        "post"
+      ],
       "content": [
         {
           "type": "input",
@@ -260,13 +284,30 @@
         "name": "相册",
         "type": "gallery",
         "allow_categorys": true,
-        "supports": ["title", "comments", "editor", "thumbnail", "excerpt"],
+        "supports": [
+          "title",
+          "comments",
+          "editor",
+          "thumbnail",
+          "excerpt"
+        ],
         "menu_icon": "dashicons-format-gallery",
-        "unset_columns": ["tags"],
+        "unset_columns": [
+          "tags"
+        ],
         "new_columns": [
-          { "name": "gallery_taxonomy", "display": "相册分类" },
-          { "name": "gallery_images", "display": "图片集" },
-          { "name": "gallery_tags", "display": "相册标签" }
+          {
+            "name": "gallery_taxonomy",
+            "display": "相册分类"
+          },
+          {
+            "name": "gallery_images",
+            "display": "图片集"
+          },
+          {
+            "name": "gallery_tags",
+            "display": "相册标签"
+          }
         ],
         "allow_tags": true,
         "custom_taxonomies": [],
@@ -276,21 +317,37 @@
         "name": "常见问题",
         "type": "faq",
         "allow_categorys": false,
-        "supports": ["title"],
+        "supports": [
+          "title"
+        ],
         "menu_icon": "dashicons-format-chat",
-        "unset_columns": ["tags"],
-        "new_columns": [{ "name": "faq_answer", "display": "问题答案" }],
+        "unset_columns": [
+          "tags"
+        ],
+        "new_columns": [
+          {
+            "name": "faq_answer",
+            "display": "问题答案"
+          }
+        ],
         "custom_taxonomies": []
       },
       {
         "name": "友情链接",
         "type": "favlinks",
         "allow_categorys": true,
-        "supports": ["title"],
+        "supports": [
+          "title"
+        ],
         "menu_icon": "dashicons-admin-site",
-        "unset_columns": ["tags"],
+        "unset_columns": [
+          "tags"
+        ],
         "new_columns": [
-          { "name": "favlinks_taxonomy", "display": "友情链接分类" }
+          {
+            "name": "favlinks_taxonomy",
+            "display": "友情链接分类"
+          }
         ],
         "custom_taxonomies": []
       },
@@ -298,11 +355,19 @@
         "name": "轻博客",
         "type": "microblog",
         "allow_categorys": false,
-        "supports": ["editor"],
+        "supports": [
+          "editor"
+        ],
         "menu_icon": "dashicons-editor-quote",
-        "unset_columns": ["tags", "title"],
+        "unset_columns": [
+          "tags",
+          "title"
+        ],
         "new_columns": [
-          { "name": "microblog_content", "display": "轻博客内容" }
+          {
+            "name": "microblog_content",
+            "display": "轻博客内容"
+          }
         ],
         "custom_taxonomies": []
       }
@@ -336,7 +401,12 @@
         "meta": "",
         "display": "content"
       },
-      { "name": "gallery_tags", "meta": "", "display": "tag", "eval": "" }
+      {
+        "name": "gallery_tags",
+        "meta": "",
+        "display": "tag",
+        "eval": ""
+      }
     ]
   }
 }

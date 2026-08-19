@@ -1486,6 +1486,7 @@ opacity:0;
 -webkit-transform:translateY(15px);
 transform:translateY(15px)}
 .postLists.cards .card{
+position:relative;
 -webkit-box-shadow:0 13px 15px rgba(31,45,61,.15);
 box-shadow:0 13px 15px rgba(31,45,61,.15);
 border-radius:13px;
@@ -1500,6 +1501,7 @@ transform:translateY(13px);
 -webkit-box-shadow:0 3px 5px rgba(31,45,61,.2);
 box-shadow:0 3px 5px rgba(31,45,61,.2)}
 .postLists.cards .card .cover{
+position:relative;
 display:block;
 border-radius:13px 13px 0 0;
 padding-top:89.45%;
@@ -5205,3 +5207,22 @@ body.night .modal-body{
 color:#99a9bf}
 body.night h4.modal-title{
 color:#99a9bf}
+.thumbnail_top_tag{
+position:absolute;
+top:8px;
+left:8px;
+color:#fff;
+font-size:12px;
+line-height:1;
+padding:4px 7px;
+z-index:2;
+border-radius:3px}
+/* 瀑布流角标: left 补偿栅格 padding(-7px), 进出 15px 滑动与卡片动画同步 */
+.waterfall.postLists.cards .thumbnail_top_tag{
+left:-7px;
+-webkit-transition:left .25s;
+transition:left .25s}
+.waterfall.postLists.cards .post-card-wrapper:hover .thumbnail_top_tag{
+left:8px;
+-webkit-transition:left .25s;
+transition:left .25s}
