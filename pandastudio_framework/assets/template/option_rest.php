@@ -3,7 +3,9 @@ add_action('rest_api_init', function () {
     register_rest_route('pandastudio/framework', '/get_option/', array(
         'methods' => 'POST',
         'callback' => 'get_option_by_RestAPI',
-        'permission_callback' => '__return_true',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
     ));
     register_rest_route('pandastudio/framework', '/update_option/', array(
         'methods' => 'POST',
@@ -92,7 +94,7 @@ function pandastudio_framework_create_json_option_page()
     $adminColor = get_user_meta(get_current_user_id(), 'admin_color', true);
     $supportColorArray = array('blue', 'coffee', 'ectoplasm', 'fresh', 'light', 'midnight', 'ocean', 'sunrise');
     $color = in_array($adminColor, $supportColorArray) ? $adminColor : 'fresh';
-    echo '<script type="text/javascript" src="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/js/vue.js"></script><script type="text/javascript" src="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/js/element-ui.js"></script><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/'.$color.'.css"><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/rewrite.css"><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/font-awesome.css"><div id="vue_rest" class="wrap">';?><template><span v-if="false" style="color: red;">您的浏览器不支持ECMAScript 5，请更换至IE9及以上版本</span></template><template><el-tabs v-model="tabIndex" v-loading="loading" v-show="show"><el-tab-pane v-for="tab in tabs" v-if="gear_show(tab.gear_name,tab.gear_value)"><span slot="label"><i :class="tab.icon" class="fa"></i> {{tab.title}}</span><el-form ref="form" :label-width="tab.labelWidth" style="padding-right: 15px;" onsubmit="return false;"><el-form-item v-for="component in tab.content" v-if="gear_show(component.gear_name,component.gear_value)"><span slot="label" v-html="component.label"></span>
+    echo '<script type="text/javascript" src="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/js/vue.js"></script><script type="text/javascript" src="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/js/element-ui.js"></script><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/'.$color.'.css"><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/rewrite.css"><link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/pandastudio_framework/assets/css/font-awesome.css"><div id="vue_rest" class="wrap">';?><template><el-tabs v-model="tabIndex" v-loading="loading" v-show="show"><el-tab-pane v-for="tab in tabs" v-if="gear_show(tab.gear_name,tab.gear_value)"><span slot="label"><i :class="tab.icon" class="fa"></i> {{tab.title}}</span><el-form ref="form" :label-width="tab.labelWidth" style="padding-right: 15px;" onsubmit="return false;"><el-form-item v-for="component in tab.content" v-if="gear_show(component.gear_name,component.gear_value)"><span slot="label" v-html="component.label"></span>
                     <div v-if=" component.type == 'input' "><el-input size="small" v-model="component.value" :placeholder="component.placeholder"></el-input></div>
                     <div v-if=" component.type == 'textarea' "><el-input size="small" type="textarea" :rows="component.rows" v-model="component.value" :placeholder="component.placeholder"></el-input></div>
                     <div v-if=" component.type == 'inputNumber' "><el-input-number size="small" v-model="component.value" :min="component.min" :max="component.max" :step="component.step"></el-input-number></div>

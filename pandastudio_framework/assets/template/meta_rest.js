@@ -32,6 +32,7 @@ function nirvanaMetaBoot() {
         return {
           tabIndex: "0",
           loading: !0,
+          loaded: !1,
           show: !0,
           tabs: n
         }
@@ -74,7 +75,7 @@ function nirvanaMetaBoot() {
                 default:
                   a.tabs[e].content[n].value = t[a.tabs[e].content[n].name]
               }
-          a.syncHiddenInputs(), a.loading = !1
+          a.loaded = !0, a.syncHiddenInputs(), a.loading = !1
         }).fail(function() {
           a.loading = !1, a.show = !1, a.$alert("连接服务器失败或后台读取出错！", "设置项读取失败", {
             confirmButtonText: "确定"
@@ -83,6 +84,7 @@ function nirvanaMetaBoot() {
       },
       methods: {
         syncHiddenInputs: function() {
+          if (!this.loaded) return;
           var box = this.$el;
           for (var e = 0; e < this.tabs.length; e++)
             for (var n = 0; n < this.tabs[e].content.length; n++) {
