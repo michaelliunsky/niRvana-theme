@@ -15,6 +15,7 @@
 			}
 			?>
 		</script>
+		<?php if ( count( $pf_dirty_selector ) > 0 ) : ?>
 		<style>
 			<?php
 			echo implode( ',', $pf_dirty_selector );
@@ -38,6 +39,7 @@
 				display: none !important;
 			}
 		</style>
+		<?php endif; ?>
 	</div>
 </footer>
 </div>

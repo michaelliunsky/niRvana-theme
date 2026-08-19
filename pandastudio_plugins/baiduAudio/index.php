@@ -29,7 +29,7 @@ function add_baiduAudio_translation_array($translation_array)
 add_filter('modify_pandastudio_options', 'add_baiduAudio_to_options');
 function add_baiduAudio_to_options($options)
 {
-    $new_file = file_get_contents("baiduAudio_option.json", 1);
+    $new_file = file_get_contents(__DIR__ . "/baiduAudio_option.json", false);
     $new_arr = json_decode($new_file, true);
     $new_arr = is_array($new_arr) ? $new_arr : array();
     $newOptions = array_merge($options, $new_arr);

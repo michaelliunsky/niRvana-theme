@@ -33,7 +33,7 @@ if ( _opt( 'disable_cat_carousels' ) != 'checked' ) {
 				$cpids[] = $post->ID;
 			}
 		}
-		wp_reset_query();
+		wp_reset_postdata();
 	}
 }
 get_topSlider( $cpids, _opt( 'category_carousels_type' ) );

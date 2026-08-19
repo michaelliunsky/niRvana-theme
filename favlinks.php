@@ -54,7 +54,7 @@ get_topSlider( array( $post->ID ), $type );
 									$query_posts->the_post();
 									require 'assets/template/postlist-favlinks.php';
 								}
-								wp_reset_query();
+								wp_reset_postdata();
 								echo '</div>';
 							}
 							?>
