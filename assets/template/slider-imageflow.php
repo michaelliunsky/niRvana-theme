@@ -6,6 +6,9 @@ for ( $i = 0; $i < count( $carousels_contents ); $i++ ) {
 		$safe_carousels[] = $carousels_contents[ $i ];
 	}
 }
+if ( count( $safe_carousels ) < 1 ) {
+	return;
+}
 ?>
 <div class="container coverflow-wrapper dark-slider">
 	<div pandaSlider id="coverflow" prev-text='<i class="fas fa-arrow-left"></i>'

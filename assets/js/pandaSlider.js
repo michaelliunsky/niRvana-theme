@@ -8,6 +8,7 @@
     var o = {
       init: function(t) {
         if (t.data("pandaSlider_init")) return !1;
+        if (t.children(".page").length < 1) return !1;
         t.data("callbacks", i);
         var n = e(t).attr("prev-text"),
           r = e(t).attr("next-text"),
