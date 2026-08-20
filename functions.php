@@ -1417,8 +1417,7 @@ function get_topSlider($postIds = array(), $type = false)
             $carousels_contents[] = array(
                 "id" => $pid,
                 "href" => get_the_permalink($pid) ,
-                "slider_img" => get_post_meta($pid, "分类slider图片地址", true) ,
-                "head_img" => get_post_meta($pid, "日志头图", true) ,
+                "head_img" => get_post_meta($pid, "文章横幅图", true) ,
                 "cover_img" => get_the_post_thumbnail_url($pid) ,
                 "title" => get_the_title($pid) ,
                 "description" => get_the_description($pid) ,

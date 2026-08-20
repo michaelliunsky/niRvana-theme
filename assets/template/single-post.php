@@ -3,7 +3,7 @@
 single: post
 */
 $post_id = get_the_ID();
-$head_img = get_post_meta( $post_id, '日志头图', true );
+$head_img = get_post_meta( $post_id, '文章横幅图', true );
 $type     = $head_img ? _opt( 'single_title_width_headImg_type', 'single-coverflow' ) : _opt( 'single_title_widthout_headImg_type', 'single-coverflow' );
 get_topSlider( array( $post_id ), $type );
 ?>

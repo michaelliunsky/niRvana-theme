@@ -17,11 +17,11 @@
       "content": [
         {
           "type": "uploader",
-          "label": "页面头图 ",
+          "label": "页面横幅图",
           "value": "",
           "showImage": true,
-          "name": "日志头图",
-          "decoration": ""
+          "name": "文章横幅图",
+          "decoration": "用于文章页面顶部大图、首页\"滚动图片\"轮播及\"封面流-头图背景\"轮播，建议尺寸：1920×400px"
         }
       ]
     },
@@ -35,19 +35,11 @@
       "content": [
         {
           "type": "uploader",
-          "label": "文章头图",
+          "label": "文章横幅图",
           "value": "",
           "showImage": true,
-          "name": "日志头图",
-          "decoration": "用于文章页面顶部图像以及“博客”文章展示模式，建议尺寸：1920×400px"
-        },
-        {
-          "type": "uploader",
-          "label": "滚动图片",
-          "value": "",
-          "showImage": true,
-          "name": "分类slider图片地址",
-          "decoration": "用于“首页顶部自定义滚动文章”及“分类页顶部随机滚动文章”，建议尺寸：1920×400px"
+          "name": "文章横幅图",
+          "decoration": "用于文章页面顶部大图、首页\"滚动图片\"轮播及\"封面流-头图背景\"轮播，建议尺寸：1920×400px"
         },
         {
           "type": "inputNumber",
