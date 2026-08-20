@@ -2422,6 +2422,17 @@ overflow:auto}
 .wp-block-code{
 position:relative;
 z-index:1}
+article pre.wp-block-code{
+padding:0;
+margin:0;
+background:transparent;
+border:0;
+border-radius:0;
+color:inherit;
+-webkit-box-shadow:none;
+box-shadow:none;
+word-break:normal;
+word-wrap:normal}
 .bilibili_video_wrap:not(:first-child){
 margin-top:15px}
 .bilibili_video_wrap{

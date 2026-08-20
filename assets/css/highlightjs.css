@@ -76,13 +76,15 @@ td.hljs-ln-code{
 white-space:pre;
 color:#abb2bf;
 font-size:13px;
-line-height:18px}
+line-height:18px;
+padding:0 10px}
 td.hljs-ln-code>div{
 padding:0 10px}
 table.hljs-ln{
 width:100%}
 table.hljs-ln tr>td:first-child{
 width:1px}
+table.hljs-ln tr:hover td,
 table.hljs-ln tr:hover td>div{
 background:-webkit-gradient(linear,left top,left bottom,from(#394750),to(#2d3c44));
 background:-webkit-linear-gradient(#394750,#2d3c44);
