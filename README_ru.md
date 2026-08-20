@@ -64,7 +64,7 @@ niRvana распространяется на условиях открытой 
 
 # Журнал изменений
 
-См. [readme.md](https://github.com/michaelliunsky/niRvana-theme#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+См. [CHANGELOG.md](CHANGELOG.md)
 
 # Пожертвовать
 

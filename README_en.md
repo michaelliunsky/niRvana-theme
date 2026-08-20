@@ -64,7 +64,7 @@ Ask questions, discuss, and communicate freely about the niRvana theme
 
 # Changelog
 
-See [readme.md](https://github.com/michaelliunsky/niRvana-theme#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+See [CHANGELOG.md](CHANGELOG.md)
 
 # Donate
 

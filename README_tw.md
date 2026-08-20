@@ -64,7 +64,7 @@ niRvana 使用 [GPL V3.0](https://github.com/michaelliunsky/niRvana-theme/blob/m
 
 # 更新日誌
 
-見 [readme.md](https://github.com/michaelliunsky/niRvana-theme#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+見 [CHANGELOG.md](CHANGELOG.md)
 
 # 捐贈
 
