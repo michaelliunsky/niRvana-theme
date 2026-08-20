@@ -988,12 +988,32 @@
           {
             "label": "滚动图片",
             "value": "imageflow",
-            "description": "使用“滚动图片”"
+            "description": "使用“文章横幅图”"
           },
           {
             "label": "滚动图片-全宽",
             "value": "imageflow-full",
-            "description": "使用“滚动图片”"
+            "description": "使用“文章横幅图”"
+          },
+          {
+            "label": "扁平",
+            "value": "coverflow-flat",
+            "description": "使用“特色图片”"
+          },
+          {
+            "label": "扁平-全宽",
+            "value": "coverflow-flat-full",
+            "description": "使用“特色图片”"
+          },
+          {
+            "label": "扁平卡片流",
+            "value": "flatflow",
+            "description": "使用“特色图片”"
+          },
+          {
+            "label": "封面流-头图背景",
+            "value": "auto",
+            "description": "使用“特色图片”及“文章横幅图”"
           }
         ],
         "name": "category_carousels_type",
