@@ -1242,12 +1242,6 @@
     ]
   },
   {
-    "title": "留言板",
-    "icon": "fa-pen-to-square",
-    "labelWidth": "130px",
-    "content": []
-  },
-  {
     "title": "404",
     "icon": "fa-chain-broken",
     "labelWidth": "130px",
