@@ -813,7 +813,7 @@
         "gear_value": ""
       },
       {
-        "label": "启用打赏",
+        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">打赏</span>",
         "decoration": "请在每篇文章的设置中启用本文章的“打赏”，不提供全局开关",
         "gear_name": "",
         "gear_value": "",
