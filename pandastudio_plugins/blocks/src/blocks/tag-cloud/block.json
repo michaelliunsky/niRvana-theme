@@ -22,7 +22,8 @@
 				{
 					"text": "",
 					"url": "",
-					"target": "_blank"
+					"target": "_blank",
+					"icon": ""
 				}
 			],
 			"items": {
@@ -39,6 +40,10 @@
 					"target": {
 						"type": "string",
 						"default": "_blank"
+					},
+					"icon": {
+						"type": "string",
+						"default": ""
 					}
 				}
 			}

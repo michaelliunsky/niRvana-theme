@@ -14,6 +14,7 @@ export default function save( { attributes } ) {
 							target={ tag.target === '_self' ? '_self' : '_blank' }
 							rel="noopener noreferrer"
 						>
+							{ tag.icon && <i className={ tag.icon } aria-hidden="true"></i> }
 							{ tag.text }
 						</a>
 					</li>

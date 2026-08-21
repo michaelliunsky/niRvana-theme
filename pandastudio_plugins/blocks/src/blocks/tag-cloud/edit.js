@@ -24,7 +24,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const addTag = () => {
 		setAttributes( {
-			tags: [ ...( tags || [] ), { text: '', url: '', target: '_blank' } ],
+			tags: [ ...( tags || [] ), { text: '', url: '', target: '_blank', icon: '' } ],
 		} );
 	};
 
@@ -73,6 +73,13 @@ export default function Edit( { attributes, setAttributes } ) {
 								placeholder="https://example.com/"
 								__next40pxDefaultSize
 							/>
+							<TextControl
+								label={ __( '图标（Font Awesome 类名，可留空）' ) }
+								value={ tag.icon }
+								onChange={ ( value ) => updateTag( i, 'icon', value ) }
+								placeholder="fas fa-home"
+								__next40pxDefaultSize
+							/>
 							<SelectControl
 								label={ __( '打开方式' ) }
 								value={ tag.target }
@@ -109,6 +116,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								target={ tag.target === '_self' ? '_self' : '_blank' }
 								rel="noopener noreferrer"
 							>
+								{ tag.icon && <i className={ tag.icon } aria-hidden="true"></i> }
 								{ tag.text || __( '(空)' ) }
 							</a>
 						</li>
