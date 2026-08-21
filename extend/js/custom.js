@@ -30,12 +30,18 @@ function themeIcon(pref) {
   return "fa-moon";
 }
 
+const THEME_LABELS = { system: "跟随系统", light: "浅色", dark: "深色" };
+
 function applyTheme(pref) {
   const dark = resolvedDark(pref);
   document.documentElement.classList.toggle("night", dark);
   document.documentElement.style.colorScheme = dark ? "dark" : "light";
   const icon = document.querySelector(".colorSwitch");
-  if (icon) icon.className = `colorSwitch fas ${themeIcon(pref)}`;
+  if (icon) {
+    icon.className = `colorSwitch fas ${themeIcon(pref)}`;
+    const tip = icon.closest("[data-description]");
+    if (tip) tip.dataset.description = THEME_LABELS[pref];
+  }
 }
 
 function onSystemThemeChange() {
