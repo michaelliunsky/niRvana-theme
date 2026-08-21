@@ -179,8 +179,8 @@
 			}
 			if ( _opt( 'enable_dark_mode' ) ) {
 				?>
-				<div id="colorSwitch" onclick="switchNightMode()" data-description="色彩模式" data-placement="left" class="tool-button pandastudio_format_description">
-					<i class="colorSwitch fas fa-moon"></i>
+				<div id="colorSwitch" onclick="switchTheme()" data-description="浅色 / 深色 / 跟随系统" data-placement="left" class="tool-button pandastudio_format_description">
+					<i class="colorSwitch fas fa-adjust"></i>
 				</div>
 				<?php
 			}

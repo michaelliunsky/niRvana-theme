@@ -21,9 +21,6 @@ function pf_framework_enqueue_scripts() {
 
     $pf_api_translation_array['dark_mode'] = array(
         'enable' => get_option( 'enable_dark_mode' ),
-        'auto' => get_option( 'auto_dark_mode' ),
-        'time_start' => get_option( 'dark_mode_time_start' ),
-        'time_end' => get_option( 'dark_mode_time_end' ),
     );
 
     if ( is_admin() ) {
