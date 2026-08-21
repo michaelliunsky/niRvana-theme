@@ -26,8 +26,8 @@ function resolvedDark(pref) {
 
 function themeIcon(pref) {
   if (pref === "system") return "fa-adjust";
-  if (pref === "dark") return "fa-sun";
-  return "fa-moon";
+  if (pref === "dark") return "fa-moon";
+  return "fa-sun";
 }
 
 const THEME_LABELS = { system: "跟随系统", light: "浅色", dark: "深色" };
@@ -149,12 +149,16 @@ function initCodeBlocks() {
   document.querySelectorAll(".wp-block-code").forEach(addCopyButtonToCodeBlock);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+// floatTools 按钮由 theme.js 的 jQVue 模板动态 append，晚于 DOMContentLoaded；
+// load 时再刷一次保证图标/tooltip 对应当前档
+function initAll() {
+  initTheme();
   initCodeBlocks();
+}
+
+document.addEventListener("DOMContentLoaded", initAll);
+window.addEventListener("load", () => {
   initTheme();
 });
 
-add_action("ajax_render_complete", () => {
-  initTheme();
-  initCodeBlocks();
-});
+add_action("ajax_render_complete", initAll);
