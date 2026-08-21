@@ -16,17 +16,39 @@ typecho version : [github.com/michaelliunsky/typecho-theme-niRvana](https://gith
 
 # Key Features
 
+**Look & Browse**
+
+- **Dark Mode** – Light / dark / follow-system, three-way toggle that defaults to your OS preference.
+- **Hero Sliders** – 8 built-in slider styles (3D cover flow, flat, flat card stream, image flow, banner background, and more), configurable independently for the homepage and category pages.
 - **Asynchronous Page Loading** – Load articles without a full page refresh; supports a global on/off toggle.
-- **Text-to-Speech** – Integrated text-to-speech functionality that reads articles aloud.
-- **Quick Posts (Shuoshuo)** – A short-form posting feature for capturing your thoughts anytime, anywhere.
-- **Donations** – Accept tips through multiple methods such as Alipay QR codes, WeChat QR codes, and PayPal links.
-- **Likes** – Every article includes a like button. Showcase your most-liked posts (like counts can be adjusted in the dashboard).
-- **Share QR Codes** – Generate a QR code for each article to easily share on WeChat and other social platforms.
+- **Table of Contents** – Automatically detects h2/h3 headings and floats a clickable TOC next to the sidebar.
+- **Sticky Sidebar** – Optionally pin the sidebar on posts and pages so it stays visible while scrolling.
 - **Sidebar Widgets** – Fully customizable sidebar areas with extra widgets designed specifically for this theme.
+
+**Writing & Content**
+
+- **UI Style Blocks** – 10 content blocks and 4 widget blocks (tips, collapse, dropdown menus, modals, download buttons, carousels, post showcases, reply-to-view, Bilibili embeds, and more), inserted right from the editor.
+- **Quick Posts (Shuoshuo)** – A short-form posting feature for capturing your thoughts anytime, anywhere.
+- **Syntax Highlighting** – Automatic code highlighting with one-click copy.
+- **Thumbnail Badges** – Add configurable badge text and colors to post thumbnails.
+
+**Reader Engagement**
+
 - **Built-in Comment Emojis** – Native emoji support for comments, configurable right from the dashboard – no plugins required.
-- **Multilingual** – Install the [niRvana-translate](https://github.com/michaelliunsky/niRvana-translate) plugin for near-instant language switching.
-- **Comment to Download** – Require users to leave a comment before revealing a download link.
+- **Likes** – Every article includes a like button. Showcase your most-liked posts (like counts can be adjusted in the dashboard).
 - **Reply to Unlock Content** – Hide specific content until a reader comments, encouraging interaction (optionally require registration and login before commenting to reveal the content).
+- **Comment to Download** – Require users to leave a comment before revealing a download link.
+- **Text-to-Speech** – Integrated text-to-speech functionality that reads articles aloud.
+
+**Sharing & Support**
+
+- **Share QR Codes** – Generate a QR code for each article to easily share on WeChat and other social platforms.
+- **Donations** – Accept tips through multiple methods such as Alipay QR codes, WeChat QR codes, and PayPal links.
+
+**Site Management**
+
+- **Automatic Updates** – Built-in update checks; install new releases straight from the dashboard.
+- **Multilingual** – Install the [niRvana-translate](https://github.com/michaelliunsky/niRvana-translate) plugin for near-instant language switching.
 
 # Installation
 
