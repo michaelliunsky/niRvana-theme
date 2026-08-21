@@ -1,0 +1,27 @@
+* text=auto eol=lf
+
+*.png binary
+*.gif binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.otf binary
+*.mo binary
+
+*.png eol=unset
+*.gif eol=unset
+*.jpg eol=unset
+*.jpeg eol=unset
+*.webp eol=unset
+*.ico eol=unset
+*.woff eol=unset
+*.woff2 eol=unset
+*.ttf eol=unset
+*.eot eol=unset
+*.otf eol=unset
+*.mo eol=unset
