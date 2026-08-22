@@ -1,11 +1,20 @@
 import { __ } from '@wordpress/i18n';
-import { applyFormat, removeFormat, registerFormatType } from '@wordpress/rich-text';
+import {
+	applyFormat,
+	removeFormat,
+	registerFormatType,
+	useAnchor,
+} from '@wordpress/rich-text';
 import { RichTextToolbarButton } from '@wordpress/block-editor';
 import { Button, ButtonGroup, Popover, TextControl } from '@wordpress/components';
-import { getRectangleFromRange } from '@wordpress/dom';
-import { useRef, useState } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 
 const DESCRIPTION_FORMAT = 'pandastudio/description';
+
+const FORMAT_SETTINGS = {
+	tagName: 'span',
+	className: 'pandastudio_format_description',
+};
 
 const confirmIcon = (
 	<svg
@@ -22,24 +31,24 @@ const confirmIcon = (
 	</svg>
 );
 
-function Edit( { isActive, value, onChange, activeAttributes } ) {
+function Edit( { isActive, value, onChange, activeAttributes, contentRef } ) {
 	const [ visible, setVisible ] = useState( false );
 	const [ text, setText ] = useState( '' );
 	const [ placement, setPlacement ] = useState( 'top' );
-	const anchor = useRef( null );
 
 	const wordsSelected = () => value.start !== value.end;
 
-	const setPopoverAnchor = () => {
-		const selection = window.getSelection();
-		anchor.current = selection.rangeCount > 0 ? getRectangleFromRange( selection.getRangeAt( 0 ) ) : undefined;
-	};
+	// useAnchor 返回选区或格式元素的真实 anchor（含 contextElement），
+	// floating-ui 能拿到正确的 ownerDocument，在 iframe 化画布下定位不偏移
+	const anchor = useAnchor( {
+		editableContentElement: contentRef?.current ?? null,
+		settings: FORMAT_SETTINGS,
+	} );
 
 	const showModal = () => {
 		setText( activeAttributes.text || '' );
 		setPlacement( activeAttributes.placement || 'top' );
 		setVisible( true );
-		setPopoverAnchor();
 	};
 
 	const apply = ( textValue, placementValue ) => {
@@ -83,8 +92,9 @@ function Edit( { isActive, value, onChange, activeAttributes } ) {
 			/>
 			{ visible && (
 				<Popover
-					anchor={ anchor.current ? { getBoundingClientRect: () => anchor.current } : null }
+					anchor={ anchor }
 					placement="bottom"
+					shift
 					className="pandastudio_format_description_popover"
 					onClose={ () => setVisible( false ) }
 				>
