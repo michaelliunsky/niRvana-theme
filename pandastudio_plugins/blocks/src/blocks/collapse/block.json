@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "pandastudio/collapse",
+	"version": "2.0.0",
+	"title": "折叠内容",
+	"icon": "archive",
+	"category": "pandastudio-block-category",
+	"attributes": {
+		"id": {
+			"type": "string"
+		},
+		"btn_type": {
+			"type": "string"
+		},
+		"btn_label": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"html": false
+	}
+}

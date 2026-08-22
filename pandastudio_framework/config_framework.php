@@ -21,9 +21,6 @@ function pf_framework_enqueue_scripts() {
 
     $pf_api_translation_array['dark_mode'] = array(
         'enable' => get_option( 'enable_dark_mode' ),
-        'auto' => get_option( 'auto_dark_mode' ),
-        'time_start' => get_option( 'dark_mode_time_start' ),
-        'time_end' => get_option( 'dark_mode_time_end' ),
     );
 
     if ( is_admin() ) {
@@ -71,13 +68,15 @@ add_action( 'rest_api_init', function() {
         array(
             'methods' => 'get',
             'callback' => 'get_option_json_by_RestAPI',
-            'permission_callback' => '__return_true',
+            'permission_callback' => function () {
+                return current_user_can( 'manage_options' );
+            },
         )
     );
 } );
 
 function get_option_json_by_RestAPI() {
-    $option_json_file = file_get_contents( 'option.json', 1 );
+    $option_json_file = file_get_contents( __DIR__ . '/option.json', false );
 
     if ( strlen( $option_json_file ) > 10 ) {
         $option_json = json_decode( $option_json_file, true );
@@ -97,13 +96,15 @@ add_action( 'rest_api_init', function() {
         array(
             'methods' => 'get',
             'callback' => 'get_posttype_and_meta_json_by_RestAPI',
-            'permission_callback' => '__return_true',
+            'permission_callback' => function () {
+                return current_user_can( 'publish_posts' );
+            },
         )
     );
 } );
 
 function get_posttype_and_meta_json_by_RestAPI() {
-    $posttype_and_meta_json_file = file_get_contents( 'posttype_and_meta.json', 1 );
+    $posttype_and_meta_json_file = file_get_contents( __DIR__ . '/posttype_and_meta.json', false );
 
     if ( strlen( $posttype_and_meta_json_file ) > 10 ) {
         $posttype_and_meta_json = json_decode( $posttype_and_meta_json_file, true );
@@ -116,7 +117,7 @@ function get_posttype_and_meta_json_by_RestAPI() {
     return $posttype_and_meta_json;
 }
 
-$posttype_and_meta_file = file_get_contents( 'posttype_and_meta.json', 1 );
+$posttype_and_meta_file = file_get_contents( __DIR__ . '/posttype_and_meta.json', false );
 
 if ( strlen( $posttype_and_meta_file ) > 10 ) {
     $posttype_and_meta = get_posttype_and_meta_json_by_RestAPI();
@@ -134,7 +135,7 @@ if ( strlen( $posttype_and_meta_file ) > 10 ) {
     include_once( 'assets/template/meta_rest.php' );
 }
 
-$option_file = file_get_contents( 'option.json', 1 );
+$option_file = file_get_contents( __DIR__ . '/option.json', false );
 
 if ( strlen( $option_file ) > 10 ) {
     include_once( 'assets/template/option_rest.php' );

@@ -1,0 +1,324 @@
+/*
+*   CSS file with Bootstrap grid classes for screens bigger than 1600px. Just add this file after the Bootstrap CSS file and you will be able to juse col-xl, col-xl-push, hidden-xl, etc.
+*
+*   Author: Marc van Nieuwenhuijzen
+*   Company: WebVakman
+*   Site: WebVakman.nl
+*
+*/
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .hidden-lg {
+        display: none !important;
+    }
+}
+
+
+.visible-xl-block,
+.visible-xl-inline,
+.visible-xl-inline-block,
+.visible-xl{
+    display: none !important;
+}
+
+
+
+@media (min-width: 1600px) {
+    .container {
+        width: 1570px;
+    }
+
+    .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {
+        float: left;
+    }
+
+    .col-xl-12 {
+        width: 100%;
+    }
+
+    .col-xl-11 {
+        width: 91.66666667%;
+    }
+
+    .col-xl-10 {
+        width: 83.33333333%;
+    }
+
+    .col-xl-9 {
+        width: 75%;
+    }
+
+    .col-xl-8 {
+        width: 66.66666667%;
+    }
+
+    .col-xl-7 {
+        width: 58.33333333%;
+    }
+
+    .col-xl-6 {
+        width: 50%;
+    }
+
+    .col-xl-5 {
+        width: 41.66666667%;
+    }
+
+    .col-xl-4 {
+        width: 33.33333333%;
+    }
+
+    .col-xl-3 {
+        width: 25%;
+    }
+
+    .col-xl-2 {
+        width: 16.66666667%;
+    }
+
+    .col-xl-1 {
+        width: 8.33333333%;
+    }
+
+    .col-xl-pull-12 {
+        right: 100%;
+    }
+
+    .col-xl-pull-11 {
+        right: 91.66666667%;
+    }
+
+    .col-xl-pull-10 {
+        right: 83.33333333%;
+    }
+
+    .col-xl-pull-9 {
+        right: 75%;
+    }
+
+    .col-xl-pull-8 {
+        right: 66.66666667%;
+    }
+
+    .col-xl-pull-7 {
+        right: 58.33333333%;
+    }
+
+    .col-xl-pull-6 {
+        right: 50%;
+    }
+
+    .col-xl-pull-5 {
+        right: 41.66666667%;
+    }
+
+    .col-xl-pull-4 {
+        right: 33.33333333%;
+    }
+
+    .col-xl-pull-3 {
+        right: 25%;
+    }
+
+    .col-xl-pull-2 {
+        right: 16.66666667%;
+    }
+
+    .col-xl-pull-1 {
+        right: 8.33333333%;
+    }
+
+    .col-xl-pull-0 {
+        right: auto;
+    }
+
+    .col-xl-push-12 {
+        left: 100%;
+    }
+
+    .col-xl-push-11 {
+        left: 91.66666667%;
+    }
+
+    .col-xl-push-10 {
+        left: 83.33333333%;
+    }
+
+    .col-xl-push-9 {
+        left: 75%;
+    }
+
+    .col-xl-push-8 {
+        left: 66.66666667%;
+    }
+
+    .col-xl-push-7 {
+        left: 58.33333333%;
+    }
+
+    .col-xl-push-6 {
+        left: 50%;
+    }
+
+    .col-xl-push-5 {
+        left: 41.66666667%;
+    }
+
+    .col-xl-push-4 {
+        left: 33.33333333%;
+    }
+
+    .col-xl-push-3 {
+        left: 25%;
+    }
+
+    .col-xl-push-2 {
+        left: 16.66666667%;
+    }
+
+    .col-xl-push-1 {
+        left: 8.33333333%;
+    }
+
+    .col-xl-push-0 {
+        left: auto;
+    }
+
+    .col-xl-offset-12 {
+        margin-left: 100%;
+    }
+
+    .col-xl-offset-11 {
+        margin-left: 91.66666667%;
+    }
+
+    .col-xl-offset-10 {
+        margin-left: 83.33333333%;
+    }
+
+    .col-xl-offset-9 {
+        margin-left: 75%;
+    }
+
+    .col-xl-offset-8 {
+        margin-left: 66.66666667%;
+    }
+
+    .col-xl-offset-7 {
+        margin-left: 58.33333333%;
+    }
+
+    .col-xl-offset-6 {
+        margin-left: 50%;
+    }
+
+    .col-xl-offset-5 {
+        margin-left: 41.66666667%;
+    }
+
+    .col-xl-offset-4 {
+        margin-left: 33.33333333%;
+    }
+
+    .col-xl-offset-3 {
+        margin-left: 25%;
+    }
+
+    .col-xl-offset-2 {
+        margin-left: 16.66666667%;
+    }
+
+    .col-xl-offset-1 {
+        margin-left: 8.33333333%;
+    }
+
+    .col-xl-offset-0 {
+        margin-left: 0;
+    }
+
+    .visible-xl {
+        display: block !important;
+    }
+
+    table.visible-xl {
+        display: table;
+    }
+
+    tr.visible-xl {
+        display: table-row !important;
+    }
+
+    th.visible-xl, td.visible-xl {
+        display: table-cell !important;
+    }
+
+    .visible-xl-block {
+        display: block !important;
+    }
+
+    .visible-xl-inline {
+        display: inline !important;
+    }
+
+    .visible-xl-inline-block {
+        display: inline-block !important;
+    }
+
+    .hidden-xl {
+        display: none !important;
+    }
+}
+
+/* Theme extension: col-xl-*_5 (0.5 column grid for xl breakpoint) */
+.col-xl-0_5,.col-xl-1_5,.col-xl-2_5,.col-xl-3_5,.col-xl-4_5,.col-xl-5_5,.col-xl-6_5,.col-xl-7_5,.col-xl-8_5,.col-xl-9_5,.col-xl-10_5,.col-xl-11_5{position:relative;min-height:1px;padding-right:15px;padding-left:15px}
+@media (min-width:1600px){
+  .col-xl-0_5,.col-xl-10_5,.col-xl-11_5,.col-xl-1_5,.col-xl-2_5,.col-xl-3_5,.col-xl-4_5,.col-xl-5_5,.col-xl-6_5,.col-xl-7_5,.col-xl-8_5,.col-xl-9_5{float:left}
+  .col-xl-11_5{width:95.83333333%}
+  .col-xl-10_5{width:87.5%}
+  .col-xl-9_5{width:79.16666667%}
+  .col-xl-8_5{width:70.83333333%}
+  .col-xl-7_5{width:62.5%}
+  .col-xl-6_5{width:54.16666667%}
+  .col-xl-5_5{width:45.83333333%}
+  .col-xl-4_5{width:37.5%}
+  .col-xl-3_5{width:29.16666667%}
+  .col-xl-2_5{width:20.83333333%}
+  .col-xl-1_5{width:12.5%}
+  .col-xl-0_5{width:4.16666667%}
+  .col-xl-pull-11_5{right:95.83333333%}
+  .col-xl-pull-10_5{right:87.5%}
+  .col-xl-pull-9_5{right:79.16666667%}
+  .col-xl-pull-8_5{right:70.83333333%}
+  .col-xl-pull-7_5{right:62.5%}
+  .col-xl-pull-6_5{right:54.16666667%}
+  .col-xl-pull-5_5{right:45.83333333%}
+  .col-xl-pull-4_5{right:37.5%}
+  .col-xl-pull-3_5{right:29.16666667%}
+  .col-xl-pull-2_5{right:20.83333333%}
+  .col-xl-pull-1_5{right:12.5%}
+  .col-xl-pull-0_5{right:4.16666667%}
+  .col-xl-push-11_5{left:95.83333333%}
+  .col-xl-push-10_5{left:87.5%}
+  .col-xl-push-9_5{left:79.16666667%}
+  .col-xl-push-8_5{left:70.83333333%}
+  .col-xl-push-7_5{left:62.5%}
+  .col-xl-push-6_5{left:54.16666667%}
+  .col-xl-push-5_5{left:45.83333333%}
+  .col-xl-push-4_5{left:37.5%}
+  .col-xl-push-3_5{left:29.16666667%}
+  .col-xl-push-2_5{left:20.83333333%}
+  .col-xl-push-1_5{left:12.5%}
+  .col-xl-push-0_5{left:4.16666667%}
+  .col-xl-offset-11_5{margin-left:95.83333333%}
+  .col-xl-offset-10_5{margin-left:87.5%}
+  .col-xl-offset-9_5{margin-left:79.16666667%}
+  .col-xl-offset-8_5{margin-left:70.83333333%}
+  .col-xl-offset-7_5{margin-left:62.5%}
+  .col-xl-offset-6_5{margin-left:54.16666667%}
+  .col-xl-offset-5_5{margin-left:45.83333333%}
+  .col-xl-offset-4_5{margin-left:37.5%}
+  .col-xl-offset-3_5{margin-left:29.16666667%}
+  .col-xl-offset-2_5{margin-left:20.83333333%}
+  .col-xl-offset-1_5{margin-left:12.5%}
+  .col-xl-offset-0_5{margin-left:4.16666667%}
+}

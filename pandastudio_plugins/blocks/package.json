@@ -1,0 +1,17 @@
+{
+	"name": "nirvana-blocks",
+	"version": "2.0.0",
+	"description": "PANDA Studio blocks for the niRvana theme",
+	"author": "michaelliunsky",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"check-engines": "wp-scripts check-engines"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.6.0",
+		"@wordpress/server-side-render": "^6.28.0"
+	}
+}

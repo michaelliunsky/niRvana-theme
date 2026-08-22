@@ -143,7 +143,7 @@ function custom_columns($column, $post_id)
             }
             break;
         case 'pictures':
-            foreach ((array)$meta as $pic) {
+            foreach ((array) $meta as $pic) {
                 echo '<div style="width:80px;height:80px;border-radius:4px;background:url('.$pic.') no-repeat center center / cover;display:inline-block;margin-right:5px"></div>';
             }
             break;

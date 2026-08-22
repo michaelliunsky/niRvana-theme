@@ -1,122 +1,88 @@
-let autoNightTimer = null;
-/** 获取当天结束时间的UTC字符串 */
-function getCookieExpireTime() {
-  const end = new Date();
-  end.setHours(23, 59, 59, 999);
-  return end.toUTCString();
+const THEME_KEY = "nirvana-theme";
+const THEME_PREFS = ["light", "dark", "system"];
+let systemThemeMql = null;
+
+function getThemePref() {
+  try {
+    const pref = localStorage.getItem(THEME_KEY);
+    if (THEME_PREFS.indexOf(pref) !== -1) return pref;
+  } catch (e) {}
+  return "system";
 }
 
-/** 获取指定Cookie值（不存在返回空字符串） */
-function getCookie(name) {
-  if (typeof document === "undefined" || !document.cookie) return "";
-  const cookie = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith(name + "="));
-  if (!cookie) return "";
-  return decodeURIComponent(cookie.split("=")[1] || "");
+function setThemePref(pref) {
+  try {
+    localStorage.setItem(THEME_KEY, pref);
+  } catch (e) {}
 }
 
-/** 设置Cookie（使用当天结束为过期时间） */
-function setCookie(name, value) {
-  const v = encodeURIComponent(String(value));
-  document.cookie = `${name}=${v}; path=/; expires=${getCookieExpireTime()}`;
+function systemPrefersDark() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
-/** 删除指定Cookie */
-function deleteCookie(name) {
-  document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+function resolvedDark(pref) {
+  return pref === "dark" || (pref === "system" && systemPrefersDark());
 }
 
-/** 应用深色模式状态 */
-function applyNightMode(isNight) {
-  document.body.classList.toggle("night", isNight);
-  const selector = document.querySelector(".colorSwitch");
-  if (selector)
-    selector.className = `colorSwitch fas ${isNight ? "fa-sun" : "fa-moon"}`;
+function themeIcon(pref) {
+  if (pref === "system") return "fa-adjust";
+  if (pref === "dark") return "fa-moon";
+  return "fa-sun";
 }
 
-/** 切换深色模式并保存状态 */
-function switchNightMode() {
-  const willBeNight = !document.body.classList.contains("night");
-  applyNightMode(willBeNight);
-  setCookie("night", willBeNight ? "1" : "0");
-}
+const THEME_LABELS = { system: "跟随系统", light: "浅色", dark: "深色" };
 
-/** 解析时间字符串为分钟数 */
-function parseTimeToMinutes(timeStr) {
-  if (typeof timeStr !== "string") return null;
-
-  const timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
-  if (!timeRegex.test(timeStr.trim())) {
-    return null;
+function applyTheme(pref) {
+  const dark = resolvedDark(pref);
+  document.documentElement.classList.toggle("night", dark);
+  document.documentElement.style.colorScheme = dark ? "dark" : "light";
+  const icon = document.querySelector(".colorSwitch");
+  if (icon) {
+    icon.className = `colorSwitch fas ${themeIcon(pref)}`;
+    const tip = icon.closest("[data-description]");
+    if (tip) tip.dataset.description = THEME_LABELS[pref];
   }
-
-  const parts = timeStr.split(":");
-  const h = parseInt(parts[0], 10);
-  const m = parseInt(parts[1], 10);
-
-  if (h < 0 || h > 23 || m < 0 || m > 59) {
-    return null;
-  }
-
-  return h * 60 + m;
 }
 
-/** 初始化深色模式 */
-function initNightMode() {
+function onSystemThemeChange() {
+  if (getThemePref() === "system") applyTheme("system");
+}
+
+function bindSystemThemeListener(pref) {
+  const mql = window.matchMedia("(prefers-color-scheme: dark)");
+  if (systemThemeMql) {
+    systemThemeMql.removeEventListener("change", onSystemThemeChange);
+    systemThemeMql = null;
+  }
+  if (pref === "system") {
+    systemThemeMql = mql;
+    mql.addEventListener("change", onSystemThemeChange);
+  }
+}
+
+function switchTheme() {
+  const cur = getThemePref();
+  const next =
+    cur === "system" ? "light" : cur === "light" ? "dark" : "system";
+  setThemePref(next);
+  applyTheme(next);
+  bindSystemThemeListener(next);
+}
+
+function initTheme() {
   const config = (window.pandastudio_framework || {}).dark_mode || {};
-  const { enable = "unchecked", auto = "unchecked" } = config;
-
-  // 先清理旧定时器，避免重复注册
-  if (autoNightTimer) {
-    clearInterval(autoNightTimer);
-    autoNightTimer = null;
+  if (config.enable !== "checked") {
+    document.documentElement.classList.remove("night");
+    document.documentElement.style.colorScheme = "light";
+    if (systemThemeMql) {
+      systemThemeMql.removeEventListener("change", onSystemThemeChange);
+      systemThemeMql = null;
+    }
+    return;
   }
-
-  // 未启用深色模式时删除cookie
-  if (enable !== "checked") {
-    deleteCookie("night");
-    return applyNightMode(false);
-  }
-
-  // 如果已有 cookie，直接按 cookie 生效。
-  const nightCookie = getCookie("night");
-  if (nightCookie !== "") {
-    return applyNightMode(nightCookie === "1");
-  }
-
-  if (auto !== "checked") {
-    deleteCookie("night");
-    return applyNightMode(false);
-  }
-
-  const DEFAULT_TIMES = { start: "19:00", end: "07:00" };
-  const startMinutes =
-    parseTimeToMinutes(config.time_start) !== null &&
-    parseTimeToMinutes(config.time_start) !== undefined
-      ? parseTimeToMinutes(config.time_start)
-      : parseTimeToMinutes(DEFAULT_TIMES.start);
-  const endMinutes =
-    parseTimeToMinutes(config.time_end) !== null &&
-    parseTimeToMinutes(config.time_end) !== undefined
-      ? parseTimeToMinutes(config.time_end)
-      : parseTimeToMinutes(DEFAULT_TIMES.end);
-
-  const checkAutoNight = () => {
-    // 自动模式下，如果用户后来手动设置 cookie，就不再覆盖用户的选择
-    if (getCookie("night") !== "") return;
-
-    const now = new Date();
-    const nowMinutes = now.getHours() * 60 + now.getMinutes();
-    const isNight =
-      startMinutes > endMinutes
-        ? nowMinutes >= startMinutes || nowMinutes < endMinutes
-        : nowMinutes >= startMinutes && nowMinutes < endMinutes;
-    applyNightMode(isNight);
-  };
-
-  checkAutoNight();
-  autoNightTimer = setInterval(checkAutoNight, 60000);
+  const pref = getThemePref();
+  applyTheme(pref);
+  bindSystemThemeListener(pref);
 }
 
 /**
@@ -145,7 +111,6 @@ function addCopyButtonToCodeBlock(codeBlock) {
     z-index: 1000;
   `;
 
-  // 鼠标悬停效果
   copyButton.addEventListener("mouseenter", () => {
     copyButton.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
   });
@@ -154,7 +119,6 @@ function addCopyButtonToCodeBlock(codeBlock) {
     copyButton.style.backgroundColor = "rgba(200, 200, 200, 0.2)";
   });
 
-  // 复制功能
   copyButton.addEventListener("click", () => {
     const range = document.createRange();
     range.selectNode(codeElement);
@@ -166,12 +130,10 @@ function addCopyButtonToCodeBlock(codeBlock) {
     document.execCommand("copy");
     selection.removeAllRanges();
 
-    // 更新按钮状态
     copyButton.innerText = "Copied!";
     copyButton.style.backgroundColor = "#333";
     copyButton.style.color = "#fff";
 
-    // 3秒后恢复原始状态
     setTimeout(() => {
       copyButton.innerText = "Copy Code";
       copyButton.style.backgroundColor = "rgba(200, 200, 200, 0.2)";
@@ -179,27 +141,24 @@ function addCopyButtonToCodeBlock(codeBlock) {
     }, 3000);
   });
 
-  // 添加复制按钮到代码块
   codeBlock.style.position = "relative";
   codeBlock.insertBefore(copyButton, codeElement);
 }
 
-/**
- * 初始化代码块样式和功能
- */
 function initCodeBlocks() {
-  // 为所有代码块添加复制按钮
   document.querySelectorAll(".wp-block-code").forEach(addCopyButtonToCodeBlock);
 }
 
-// 主初始化函数
-document.addEventListener("DOMContentLoaded", () => {
+// floatTools 按钮由 theme.js 的 jQVue 模板动态 append，晚于 DOMContentLoaded；
+// load 时再刷一次保证图标/tooltip 对应当前档
+function initAll() {
+  initTheme();
   initCodeBlocks();
-  initNightMode();
+}
+
+document.addEventListener("DOMContentLoaded", initAll);
+window.addEventListener("load", () => {
+  initTheme();
 });
 
-// AJAX加载完成后重新初始化
-add_action("ajax_render_complete", () => {
-  initNightMode();
-  initCodeBlocks();
-});
+add_action("ajax_render_complete", initAll);

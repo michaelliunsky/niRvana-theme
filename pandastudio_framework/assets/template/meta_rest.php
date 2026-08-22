@@ -94,9 +94,6 @@ function pandastudio_framework_create_json_meta_box()
     echo '<div id="vue_rest">';
     ?>
     <template>
-        <span v-if="false" style="color: red;">您的浏览器不支持ECMAScript 5，请更换至IE9及以上版本</span>
-    </template>
-    <template>
         <el-tabs v-model="tabIndex" v-loading="loading" v-show="show" class="panda_framework_metabox_tab" type="card">
             <el-tab-pane v-for="tab in tabs" v-if="gear_show(tab.gear_name,tab.gear_value)">
                 <span slot="label"><i :class="tab.icon" class="fa"></i> {{tab.title}}</span>

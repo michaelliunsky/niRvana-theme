@@ -224,10 +224,26 @@
           {
             "type": "select",
             "selects": [
-              { "label": "首页", "value": "home", "description": "" },
-              { "label": "文章内容页", "value": "single", "description": "" },
-              { "label": "分类页", "value": "archive", "description": "" },
-              { "label": "页面", "value": "page", "description": "" }
+              {
+                "label": "首页",
+                "value": "home",
+                "description": ""
+              },
+              {
+                "label": "文章内容页",
+                "value": "single",
+                "description": ""
+              },
+              {
+                "label": "分类页",
+                "value": "archive",
+                "description": ""
+              },
+              {
+                "label": "页面",
+                "value": "page",
+                "description": ""
+              }
             ],
             "name": "show_on",
             "label": "显示在",
@@ -239,6 +255,15 @@
         "gear_name": "",
         "gear_value": "",
         "decoration": "1、图标请从<a target=\"_blank\" href=\"https://fontawesome.com/icons\">FontAwesome6</a>图标中选择，复制&lt;i&gt;标签即可，如：&lt;i class=&quot;fab fa-apple&quot;&gt;&lt;/i&gt;</li><br>\n2、对边栏的排序仅改变边栏名称与图标。内部的小工具顺序及位置请前往“外观/小工具”进行调整<br>\n3、新增边栏后，若页面未显示“外观/小工具”菜单，请刷新页面后再试。在此处清空边栏（数量为0）将不再显示“外观/小工具”菜单<br>\n注：由于此图标库实时更新，若选择的图标太新，则可能不显示。此时请联系主题开发者更新主题内的图标库<br>\n4、为了更好地让搜索引擎索引，因此边栏的任何数据都不会被搜索引擎。边栏内容被伪装成脚本进行加载。故，边栏中若自定义HTML，请不要再次出现script标签，若需要，则务必将尖括号转义，可写为%3cscript%3e<br>\n左侧尖括号的转移符为：%3c<br>\n右侧尖括号的转移符为：%3e<br>"
+      },
+      {
+        "type": "switch",
+        "label": "固定侧边栏",
+        "value": "checked",
+        "name": "sidebar_fixed_switcher",
+        "decoration": "开启后，文章/页面/归档/友链页的侧边栏在滚动时固定显示；关闭则随页面滚动",
+        "gear_name": "",
+        "gear_value": ""
       },
       {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">分类通用显示</span>",
@@ -319,36 +344,7 @@
         "label": "深色模式",
         "name": "enable_dark_mode",
         "value": "",
-        "decoration": "启用后，显示开关，用户可在页面上切换深色模式"
-      },
-      {
-        "type": "switch",
-        "label": "自动切换深色模式",
-        "name": "auto_dark_mode",
-        "value": "",
-        "gear_name": "enable_dark_mode",
-        "gear_value": "checked",
-        "decoration": "启用后，当用户没有手动切换深色模式时，自动根据时间段切换深色模式"
-      },
-      {
-        "type": "input",
-        "label": "深色模式开始时间",
-        "name": "dark_mode_time_start",
-        "value": "19:00",
-        "placeholder": "如：19:00",
-        "decoration": "请输入24小时制时间，例如 19:00",
-        "gear_name": "enable_dark_mode",
-        "gear_value": "checked"
-      },
-      {
-        "type": "input",
-        "label": "深色模式结束时间",
-        "name": "dark_mode_time_end",
-        "value": "07:00",
-        "placeholder": "如：07:00",
-        "decoration": "请输入24小时制时间，例如 07:00",
-        "gear_name": "enable_dark_mode",
-        "gear_value": "checked"
+        "decoration": "启用后显示切换按钮。用户可在浅色、深色、跟随系统三档间循环；默认跟随系统，选择会长期记住"
       }
     ],
     "gear_name": "",
@@ -384,12 +380,12 @@
           {
             "label": "滚动图片",
             "value": "imageflow",
-            "description": "使用“滚动图片”"
+            "description": "使用“文章横幅图”"
           },
           {
             "label": "滚动图片-全宽",
             "value": "imageflow-full",
-            "description": "使用“滚动图片”"
+            "description": "使用“文章横幅图”"
           },
           {
             "label": "扁平",
@@ -400,6 +396,16 @@
             "label": "扁平-全宽",
             "value": "coverflow-flat-full",
             "description": "使用“特色图片”"
+          },
+          {
+            "label": "扁平卡片流",
+            "value": "flatflow",
+            "description": "使用“特色图片”"
+          },
+          {
+            "label": "封面流-头图背景",
+            "value": "auto",
+            "description": "使用“特色图片”及“文章横幅图”"
           }
         ],
         "name": "frontpage_carousels_type",
@@ -420,44 +426,18 @@
         "subLabel": "头条文章",
         "subLabelWidth": "60px",
         "displayAsTable": true,
-        "types": [{ "type": "singleSelect", "name": "post", "label": "文章" }],
+        "types": [
+          {
+            "type": "singleSelect",
+            "name": "post",
+            "label": "文章"
+          }
+        ],
         "value": [],
         "name": "headLine",
-        "decoration": "关闭“随机滚动文章”后生效。要使滚动文章显示图片，必须在对应的“文章编辑页”中添加“滚动图片”",
+        "decoration": "关闭“随机滚动文章”后生效。要使滚动文章显示图片，必须在对应的“文章编辑页”中添加“文章横幅图”",
         "gear_name": "headLine_random",
         "gear_value": ""
-      },
-      {
-        "type": "inputNumber",
-        "label": "“最新文章”数量",
-        "value": 0,
-        "min": 1,
-        "max": 99,
-        "step": 1,
-        "name": "newest_num",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
-        "type": "input",
-        "label": "“最新文章”文本",
-        "value": "",
-        "placeholder": "如：最新文章",
-        "name": "newest_text",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
-        "type": "input",
-        "label": "“全部文章”地址",
-        "value": "",
-        "placeholder": "所有分类文章地址",
-        "name": "index_time_url",
-        "decoration": "新建“页面”，选择“全部文章时间排序”。将页面地址填写在此处",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
       },
       {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">首页文章</span>",
@@ -477,25 +457,21 @@
       },
       {
         "type": "radio",
-        "label": "“全部文章”形式",
-        "value": "",
-        "radios": [
-          { "label": "列表显示", "value": "list" },
-          { "label": "卡片显示", "value": "card" },
-          { "label": "博客显示", "value": "" }
-        ],
-        "name": "all_posts_display_type",
-        "decoration": "",
-        "gear_name": "index_newest",
-        "gear_value": "checked"
-      },
-      {
-        "type": "radio",
         "label": "默认样式",
         "value": "",
         "radios": [
-          { "label": "卡片", "value": "cards" },
-          { "label": "列表", "value": "" }
+          {
+            "label": "卡片",
+            "value": "cards"
+          },
+          {
+            "label": "列表",
+            "value": ""
+          },
+          {
+            "label": "卡片-角标",
+            "value": "cards-tag"
+          }
         ],
         "name": "frontpage_postlist_type",
         "decoration": "",
@@ -590,7 +566,11 @@
         "subLabelWidth": "100px",
         "displayAsTable": true,
         "types": [
-          { "type": "categoriesSelect", "name": "cats", "label": "文章分类" },
+          {
+            "type": "categoriesSelect",
+            "name": "cats",
+            "label": "文章分类"
+          },
           {
             "type": "input",
             "placeholder": "显示名称",
@@ -618,8 +598,16 @@
           {
             "type": "select",
             "selects": [
-              { "label": "列表显示", "value": "lists", "description": "" },
-              { "label": "卡片显示", "value": "cards", "description": "" }
+              {
+                "label": "列表显示",
+                "value": "lists",
+                "description": ""
+              },
+              {
+                "label": "卡片显示",
+                "value": "cards",
+                "description": ""
+              }
             ],
             "name": "type",
             "label": "显示形式"
@@ -676,7 +664,7 @@
         "value": "",
         "placeholder": "如：评论后可查看此区域内容",
         "name": "need_reply_tip",
-        "decoration": "使用短代码将需要隐藏的内容包裹起来，如：[need_reply] 此处的内容仅评论可见 [/need_reply]",
+        "decoration": "在文章编辑器中插入「回复可见」区块，被包裹的内容仅评论后可查看",
         "gear_name": "",
         "gear_value": ""
       },
@@ -750,6 +738,16 @@
         ],
         "name": "single_title_widthout_headImg_type",
         "decoration": "",
+        "gear_name": "",
+        "gear_value": ""
+      },
+      {
+        "type": "colorPicker",
+        "label": "缩略图角标背景色",
+        "value": "",
+        "showAlpha": false,
+        "name": "img_top_tag_color",
+        "decoration": "需先在「首页 → 默认样式」启用“卡片-角标”，此处颜色用于缩略图左上角标签",
         "gear_name": "",
         "gear_value": ""
       },
@@ -914,7 +912,7 @@
       },
       {
         "label": "文章图像",
-        "decoration": "为保证最好的显示效果，本主题的文章应包含以下3种文章图像：<br>\n<b>1、特色图片：</b>WordPress默认文章图像。用于首页“最新文章”以及“列表/卡片”文章展示模式，建议尺寸：512×458px。（<span style=\"color:red\">注：必须设置</span>）<br>\n<b>2、文章头图：</b>用于文章内容顶部图像，建议尺寸：1920×400px（不建议添加文案）（注：可不设置）<br>\n<b>3、滚动图片：</b>用于滚动图片的“滚动图片风格”，建议尺寸：1920×400px（建议添加少量文案）（注：若使用Coverflow风格可不设置）<br>",
+        "decoration": "为保证最好的显示效果，本主题的文章应包含以下2种文章图像：<br>\n<b>1、特色图片：</b>WordPress默认文章图像。用于首页“最新文章”以及“列表/卡片”文章展示模式，建议尺寸：512×458px。（<span style=\"color:red\">注：必须设置</span>）<br>\n<b>2、文章横幅图：</b>用于文章内容顶部大图及“滚动图片”轮播，建议尺寸：1920×400px（不建议添加文案）（注：可不设置）<br>",
         "value": ""
       },
       {
@@ -961,12 +959,32 @@
           {
             "label": "滚动图片",
             "value": "imageflow",
-            "description": "使用“滚动图片”"
+            "description": "使用“文章横幅图”"
           },
           {
             "label": "滚动图片-全宽",
             "value": "imageflow-full",
-            "description": "使用“滚动图片”"
+            "description": "使用“文章横幅图”"
+          },
+          {
+            "label": "扁平",
+            "value": "coverflow-flat",
+            "description": "使用“特色图片”"
+          },
+          {
+            "label": "扁平-全宽",
+            "value": "coverflow-flat-full",
+            "description": "使用“特色图片”"
+          },
+          {
+            "label": "扁平卡片流",
+            "value": "flatflow",
+            "description": "使用“特色图片”"
+          },
+          {
+            "label": "封面流-头图背景",
+            "value": "auto",
+            "description": "使用“特色图片”及“文章横幅图”"
           }
         ],
         "name": "category_carousels_type",
@@ -981,12 +999,20 @@
         "subLabelWidth": "100px",
         "displayAsTable": true,
         "types": [
-          { "type": "categorySelect", "name": "cat", "label": "文章分类" },
-          { "type": "singleSelect", "name": "post", "label": "文章" }
+          {
+            "type": "categorySelect",
+            "name": "cat",
+            "label": "文章分类"
+          },
+          {
+            "type": "singleSelect",
+            "name": "post",
+            "label": "文章"
+          }
         ],
         "value": [],
         "name": "fixed_cat_carousels",
-        "decoration": "分类页顶部默认显示本分类的随机文章，填写后，可固定指定分类的滚动图片为指定文章",
+        "decoration": "分类页顶部默认显示本分类的随机文章，填写后，可固定指定分类的轮播为指定文章",
         "gear_name": "disable_cat_carousels",
         "gear_value": ""
       },
@@ -1004,12 +1030,24 @@
         "subLabelWidth": "100px",
         "displayAsTable": true,
         "types": [
-          { "type": "categorySelect", "name": "cat", "label": "文章分类" },
+          {
+            "type": "categorySelect",
+            "name": "cat",
+            "label": "文章分类"
+          },
           {
             "type": "select",
             "selects": [
-              { "label": "列表显示", "value": "lists", "description": "" },
-              { "label": "卡片显示", "value": "cards", "description": "" }
+              {
+                "label": "列表显示",
+                "value": "lists",
+                "description": ""
+              },
+              {
+                "label": "卡片显示",
+                "value": "cards",
+                "description": ""
+              }
             ],
             "name": "type",
             "label": "展示形式"
@@ -1051,9 +1089,21 @@
         "label": "相册封面",
         "value": "",
         "selects": [
-          { "label": "相册第一张", "value": "first", "description": "" },
-          { "label": "相册最后一张", "value": "last", "description": "" },
-          { "label": "随机相册图片", "value": "", "description": "默认" }
+          {
+            "label": "相册第一张",
+            "value": "first",
+            "description": ""
+          },
+          {
+            "label": "相册最后一张",
+            "value": "last",
+            "description": ""
+          },
+          {
+            "label": "随机相册图片",
+            "value": "",
+            "description": "默认"
+          }
         ],
         "name": "gallery_thumbnail",
         "decoration": ""
@@ -1101,19 +1151,6 @@
         "decoration": "",
         "gear_name": "",
         "gear_value": ""
-      },
-      {
-        "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">边栏文本</span>",
-        "decoration": "",
-        "value": ""
-      },
-      {
-        "type": "input",
-        "label": "原图比例",
-        "value": "",
-        "placeholder": "如：保持原图比例",
-        "name": "sidebar_gallery_showBox_contain_tooltip",
-        "decoration": ""
       },
       {
         "label": "<span class=\"form_decoration\" style=\"font-weight:bold;padding-left:10px;border-left:3px solid currentColor;\">相册分类</span>",
@@ -1171,29 +1208,6 @@
     ]
   },
   {
-    "title": "留言板",
-    "icon": "fa-pen-to-square",
-    "labelWidth": "130px",
-    "content": [
-      {
-        "type": "input",
-        "label": "留言板地址",
-        "value": "",
-        "placeholder": "http://",
-        "name": "guestbook_href",
-        "decoration": "新建页面，启用页面的评论功能"
-      },
-      {
-        "type": "input",
-        "label": "链接 / 提示",
-        "value": "",
-        "placeholder": "如：给我留言",
-        "name": "guestbook_tooltip",
-        "decoration": "任何指向此页面的链接或提示"
-      }
-    ]
-  },
-  {
     "title": "404",
     "icon": "fa-chain-broken",
     "labelWidth": "130px",
@@ -1203,8 +1217,14 @@
         "label": "404页面框架",
         "value": "",
         "radios": [
-          { "label": "包含框架", "value": "" },
-          { "label": "空白", "value": "blank" }
+          {
+            "label": "包含框架",
+            "value": ""
+          },
+          {
+            "label": "空白",
+            "value": "blank"
+          }
         ],
         "name": "404_type",
         "decoration": "",
@@ -1244,16 +1264,6 @@
         "value": "",
         "name": "design_font",
         "decoration": "使用简约无衬线的<a href=\"https://fonts.google.com/specimen/Play\" target=\"_blank\" style=\"text-decoration:none;\"> Play </a>字体来显示页面上的英文、数字、符号。此字体由 Jonas Hecksher 设计"
-      },
-      {
-        "type": "input",
-        "label": "边栏固定提示",
-        "value": "",
-        "placeholder": "如：边栏固定",
-        "name": "sidebar_fixed_switcher_tip",
-        "decoration": "",
-        "gear_name": "sidebar_fixed_switcher",
-        "gear_value": "checked"
       },
       {
         "type": "switch",
@@ -1360,9 +1370,18 @@
         "label": " ",
         "value": "",
         "radios": [
-          { "label": "CSS", "value": "" },
-          { "label": "Javascript", "value": "js" },
-          { "label": "function.php", "value": "function" }
+          {
+            "label": "CSS",
+            "value": ""
+          },
+          {
+            "label": "Javascript",
+            "value": "js"
+          },
+          {
+            "label": "function.php",
+            "value": "function"
+          }
         ],
         "name": "custom_code",
         "decoration": "",

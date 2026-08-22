@@ -2,9 +2,12 @@
 global $carousels_attrs, $carousels_contents;
 $safe_carousels = array();
 for ( $i = 0; $i < count( $carousels_contents ); $i++ ) {
-	if ( $carousels_contents[ $i ]['slider_img'] ) {
+	if ( $carousels_contents[ $i ]['head_img'] ) {
 		$safe_carousels[] = $carousels_contents[ $i ];
 	}
+}
+if ( count( $safe_carousels ) < 1 ) {
+	return;
 }
 ?>
 <div class="container coverflow-wrapper dark-slider">
@@ -15,7 +18,7 @@ for ( $i = 0; $i < count( $carousels_contents ); $i++ ) {
 			?>
 			<div class="page"
 				post-id="<?php echo $item['id']; ?>"
-				style="background-image: url(<?php echo $item['slider_img']; ?>);">
+				style="background-image: url(<?php echo $item['head_img']; ?>);">
 				<a class="container flex-row-middle coverflow"
 					href="<?php echo $item['href']; ?>"></a>
 			</div>

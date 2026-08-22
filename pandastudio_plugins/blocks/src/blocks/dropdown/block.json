@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "pandastudio/dropdown",
+	"version": "2.0.0",
+	"title": "下拉菜单",
+	"icon": "menu",
+	"category": "pandastudio-block-category",
+	"attributes": {
+		"id": {
+			"type": "string"
+		},
+		"btn_type": {
+			"type": "string"
+		},
+		"btn_label": {
+			"type": "string"
+		},
+		"lists": {
+			"type": "array"
+		}
+	},
+	"supports": {
+		"html": false
+	}
+}

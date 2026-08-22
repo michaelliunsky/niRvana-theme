@@ -26,17 +26,16 @@ switch ( $posttype ) {
         break;
 }
 $thumbnail_top_tag    = _meta( 'img_top_tag' ) ? '<span class="thumbnail_top_tag" style="background-color:' . _opt( 'img_top_tag_color' ) . '">' . _meta( 'img_top_tag' ) . '</span>' : '';
-$thumbnail_bottom_tag = _meta( 'img_bottom_tag' ) ? '<span class="thumbnail_bottom_tag" style="background-color:' . _opt( 'img_bottom_tag_color' ) . '">' . _meta( 'img_bottom_tag' ) . '</span>' : '';
 ?>
 <div class="card">
     <a href="<?php the_permalink(); ?>" class="cover"
        style="background-image: url(<?php echo $thumbnail; ?>);"
        showas='padding'>
-        <?php echo $thumbnail_top_tag . $thumbnail_bottom_tag; ?>
+        <?php echo $thumbnail_top_tag; ?>
     </a>
     <a href="<?php the_permalink(); ?>" showas='img'>
         <img src="<?php echo $thumbnail; ?>" class="cover" alt="">
-        <?php echo $thumbnail_top_tag . $thumbnail_bottom_tag; ?>
+        <?php echo $thumbnail_top_tag; ?>
     </a>
     <div class="meta">
         <div class="date">

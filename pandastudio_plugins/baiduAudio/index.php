@@ -20,15 +20,18 @@ function add_baiduAudio_translation_array($translation_array)
             set_cache('bd_audio_tok', ['access_token' => $bd_response['access_token'], 'session_key' => $bd_response['session_key']], $bd_response['expires_in'] * 0.9);
         }
     }
-    $translation_array['baiduAudio'] = array_merge(get_cache('bd_audio_tok'), array(	'spd' => get_option('baidu_ai_audio_spd') ? get_option('baidu_ai_audio_spd') : 5,'pit' => get_option('baidu_ai_audio_pit') ? get_option('baidu_ai_audio_pit') : 5,'per' => get_option('baidu_ai_audio_per') ? get_option('baidu_ai_audio_per') : 0,'enable' => get_option('baidu_ai_audio_enable') == 'checked'
+    $bd_tok = get_cache('bd_audio_tok');
+    $bd_tok = is_array($bd_tok) ? $bd_tok : array();
+    $translation_array['baiduAudio'] = array_merge($bd_tok, array(	'spd' => get_option('baidu_ai_audio_spd') ? get_option('baidu_ai_audio_spd') : 5,'pit' => get_option('baidu_ai_audio_pit') ? get_option('baidu_ai_audio_pit') : 5,'per' => get_option('baidu_ai_audio_per') ? get_option('baidu_ai_audio_per') : 0,'enable' => get_option('baidu_ai_audio_enable') == 'checked'
             ));
     return $translation_array;
 }
 add_filter('modify_pandastudio_options', 'add_baiduAudio_to_options');
 function add_baiduAudio_to_options($options)
 {
-    $new_file = file_get_contents("baiduAudio_option.json", 1);
+    $new_file = file_get_contents(__DIR__ . "/baiduAudio_option.json", false);
     $new_arr = json_decode($new_file, true);
+    $new_arr = is_array($new_arr) ? $new_arr : array();
     $newOptions = array_merge($options, $new_arr);
     return $newOptions;
 }

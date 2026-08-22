@@ -33,7 +33,7 @@ if ( get_option( 'headLine_random' ) != 'checked' ) {
 		$carouselsID_query->the_post();
 		$cpids[] = $post->ID;
 	}
-	wp_reset_query();
+	wp_reset_postdata();
 }
 get_topSlider( $cpids, _opt( 'frontpage_carousels_type' ) );
 ?>
@@ -53,14 +53,13 @@ get_topSlider( $cpids, _opt( 'frontpage_carousels_type' ) );
 			global $nav_category_list_type;
 			$frontpage_postlist_type = _opt( 'frontpage_postlist_type' );
 			$show_type = $frontpage_postlist_type ? $frontpage_postlist_type : 'lists';
-			$nav_category_list_type = $show_type;
+			$nav_category_list_type = $show_type === 'cards-tag' ? 'cards' : $show_type;
 			include 'assets/template/nav-category.php';
 			?>
 			<div class="col-xs-12">
 				<div class="row">
-					<div class="row postLists <?php echo $show_type; ?> <?php echo ( _opt( 'enable_post_list_waterfall' ) ? 'waterfall' : '' ); ?>" height-to="sidebar">
+					<div class="row postLists <?php echo $show_type === 'cards-tag' ? 'cards-tag cards' : $show_type; ?> <?php echo ( _opt( 'enable_post_list_waterfall' ) ? 'waterfall' : '' ); ?>" height-to="sidebar">
 						<?php
-						wp_reset_query();
 						if ( get_query_var( 'paged' ) ) {
 							$paged = get_query_var( 'paged' );
 						} elseif ( get_query_var( 'page' ) ) {
@@ -77,10 +76,11 @@ get_topSlider( $cpids, _opt( 'frontpage_carousels_type' ) );
 							the_post();
 							?>
 							<div class="col-xxs-6 col-xs-4 col-sm-6 col-md-4 col-lg-3 post-card-wrapper">
-								<?php include 'assets/template/postlist-post.php'; ?>
+								<?php include $show_type === 'cards-tag' ? 'assets/template/postlist-post-thumbnailtag.php' : 'assets/template/postlist-post.php'; ?>
 							</div>
 							<?php
 						}
+						wp_reset_query();
 						?>
 					</div>
 				</div>

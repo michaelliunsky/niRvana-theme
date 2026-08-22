@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pandastudio/tips",
+  "version": "2.0.0",
+  "title": "提示框",
+  "icon": "info",
+  "category": "pandastudio-block-category",
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "typeClass": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "html": false
+  }
+}

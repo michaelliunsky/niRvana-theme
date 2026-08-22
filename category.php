@@ -26,14 +26,14 @@ if ( _opt( 'disable_cat_carousels' ) != 'checked' ) {
 		while ( $carouselsID_query->have_posts() ) {
 			$carouselsID_query->the_post();
 			if ( strstr( _opt( 'category_carousels_type' ), 'imageflow' ) ) {
-				if ( get_post_meta( $post->ID, '分类slider图片地址', true ) ) {
+				if ( get_post_meta( $post->ID, '文章横幅图', true ) ) {
 					$cpids[] = $post->ID;
 				}
 			} else {
 				$cpids[] = $post->ID;
 			}
 		}
-		wp_reset_query();
+		wp_reset_postdata();
 	}
 }
 get_topSlider( $cpids, _opt( 'category_carousels_type' ) );

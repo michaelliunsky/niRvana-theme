@@ -5,7 +5,11 @@ var metaCfg = window.nirvanaMetaConfig || {},
 function nirvanaMetaBoot() {
   var postID = metaCfg.postID,
     postType = metaCfg.postType;
-  jQuery.get(restRoute + "pandastudio/framework/get_posttype_and_meta_json", function(t) {
+  jQuery.ajax({
+    url: restRoute + "pandastudio/framework/get_posttype_and_meta_json",
+    type: "GET",
+    headers: { "X-WP-Nonce": restNonce },
+    success: function(t) {
     "string" == typeof t && (t = JSON.parse(t));
     for (var e = t.meta, n = [], a = 0; a < e.length; a++) e[a].screen.indexOf(postType) >= 0 && n.push(e[a]);
     n <= 0 && jQuery("#pandastudio_framework_meta,label[for='pandastudio_framework_meta-hide']").remove(), jQuery(function() {
@@ -28,6 +32,7 @@ function nirvanaMetaBoot() {
         return {
           tabIndex: "0",
           loading: !0,
+          loaded: !1,
           show: !0,
           tabs: n
         }
@@ -70,7 +75,7 @@ function nirvanaMetaBoot() {
                 default:
                   a.tabs[e].content[n].value = t[a.tabs[e].content[n].name]
               }
-          a.syncHiddenInputs(), a.loading = !1
+          a.loaded = !0, a.syncHiddenInputs(), a.loading = !1
         }).fail(function() {
           a.loading = !1, a.show = !1, a.$alert("连接服务器失败或后台读取出错！", "设置项读取失败", {
             confirmButtonText: "确定"
@@ -79,6 +84,7 @@ function nirvanaMetaBoot() {
       },
       methods: {
         syncHiddenInputs: function() {
+          if (!this.loaded) return;
           var box = this.$el;
           for (var e = 0; e < this.tabs.length; e++)
             for (var n = 0; n < this.tabs[e].content.length; n++) {
@@ -183,7 +189,7 @@ function nirvanaMetaBoot() {
         }
       }
     })
-  }).fail(function() {
+  }}).fail(function() {
     alert("MetaBox数据获取失败！请检查：\n1、WordPress版本大于4.7\n2、Rest API是否被插件关闭\n3、服务器配置不正确导致“固定链接”故障，请将“设置-固定链接”设置为“朴素”并保存\n4、请检查“设置-常规”，WordPress安装地址是否与当前浏览器地址栏的地址不一致？")
   });
 }

@@ -54,7 +54,7 @@ get_gallery_slider( $post_id, $type );
 		</div>
 		<div class="<?php echo $right_class; ?>">
 			<div class="row">
-				<div class="sidebar sidebar-affix">
+				<div class="sidebar<?php echo _opt('sidebar_fixed_switcher') == 'checked' ? ' sidebar-affix' : ''; ?>">
 					<div manual-template="sidebarMenu"></div>
 					<div manual-template="sidebar"></div>
 				</div>

@@ -5,7 +5,7 @@ if ( 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 
 if ( post_password_required() ) {
     echo '<div id="comments">';
-    echo '<div class="nopassword">' . __( 'This post is protected. Enter the password to view any comments.', 'nirvana' ) . '</div>';
+    echo '<div class="nopassword">' . __( 'This post is protected. Enter the password to view any comments.', 'niRvana' ) . '</div>';
     echo '</div><!-- .comments -->';
     return;
 }
@@ -35,9 +35,8 @@ if ( comments_open() || get_comments_number() > 0 ) : ?>
                     }
 
                     $img_src   = esc_url( get_stylesheet_directory_uri() . '/faces/' . ( isset( $face['name'] ) ? $face['name'] : '' ) . '.' . $cmt_face_fmt );
-                    $type_attr = isset( $face['type'] ) ? $face['type'] : '';
-                    $name_attr = isset( $face['name'] ) ? $face['name'] : '';
-                    $cmt_face_imgs .= '<img src="' . $img_src . '" @click="this.addCommentFace(\'[face ' . esc_attr( $type_attr ) . '=' . esc_attr( $name_attr ) . ']\')">';
+                    $face_html = '<img src=&quot;' . $img_src . '&quot; class=&quot;cmt_faces&quot;>';
+                    $cmt_face_imgs .= '<img src="' . $img_src . '" @click="this.addCommentFace(\'' . $face_html . '\')">';
                 }
                 ?>
                 <div class="popover_faces hidden">
