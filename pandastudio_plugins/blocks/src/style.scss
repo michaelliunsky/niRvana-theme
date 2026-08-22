@@ -28,8 +28,7 @@
 .tip.inlineBlock{display:inline-block}
 .tip.error p{padding:0!important}
 
-.panda.tipSelector{margin-bottom:15px}
-.panda.tipSelector:after,.panda.tipSelector:before,.panda_options:after,.panda_options:before{content:" ";display:table;clear:both}
+.panda.tipSelector{margin-bottom:15px;display:flow-root}
 .panda.tipSelector button{position:relative;border:0;float:left;width:24px;height:24px;border-radius:50%;display:inline-block;outline:1px solid transparent;-webkit-transition:.25s;transition:.25s}
 .panda.tipSelector button:not([typeselected=selected]):hover{-webkit-transform:scale(1.2);transform:scale(1.2);cursor:pointer;opacity:.8;-webkit-transition:.25s;transition:.25s}
 .panda.tipSelector button+button{margin-left:10px}
@@ -267,10 +266,8 @@ border-right-color:#20a0ff}
 transform:translateY(6px);
 -webkit-box-shadow:0 3px 3px rgba(32,160,255,.35);
 box-shadow:0 3px 3px rgba(32,160,255,.35)}
-.pf_user_info:after,.pf_user_info:before{
-content:"";
-display:table;
-clear:both}
+.pf_user_info{
+display:flow-root}
 .pf_user_info .authorImg{
 background-size:cover;
 background-repeat:no-repeat;
@@ -540,6 +537,29 @@ html.night .pf_hotposts .summary{
 color:#cad1db}
 html.night .pf_user_info .meta .name{
 color:#8492a6}
+
+/* widgettitle 基础样式：与前台 assets/css/style.css 保持一致（编辑器画布无主题 CSS，需在此提供） */
+h2.widgettitle{
+position:relative;
+margin:0;
+padding-bottom:8px;
+color:#738192;
+font-size:14px;
+border-bottom:1px solid #d8e0ea;
+box-shadow:0 1px rgba(255,255,255,.5);
+transition:.25s}
+h2.widgettitle::after{
+content:"";
+position:absolute;
+display:inline-block;
+height:3px;
+background:linear-gradient(#58b7ff 30%,#20a0ff 70%);
+border-radius:3px;
+bottom:-2px;
+left:0;
+width:30px;
+box-shadow:0 3px 4px rgba(32,160,255,.5);
+transition:.25s}
 
 /* widgettitle hover: block wrapper (migrated from li:hover>h2.widgettitle) */
 .pf_microblog:hover .widgettitle,.pf_tag_cloud:hover .widgettitle,.pf_user_info:hover .widgettitle,.pf_hotposts:hover .widgettitle{color:#20a0ff}
