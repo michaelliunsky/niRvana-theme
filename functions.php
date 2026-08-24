@@ -16,20 +16,31 @@ $niRvanaThemeUpdateChecker = PucFactory::buildUpdateChecker(
     get_template_directory() . '/functions.php',
     'niRvana'
 );
-//初次使用时发送安装量统计信息 (数据仅用于统计安装量)
-function post_analytics_info()
-{
-    $nirvana_version = wp_get_theme()->get('Version');
-    $domain = urlencode($_SERVER['HTTP_HOST']);
-    $url = 'https://blog.mkliu.top/source/stats/index.php?domain=' . $domain . '&version=' . urlencode($nirvana_version);
-    $response = wp_safe_remote_get($url, array(
-        'user-agent' => 'niRvanaTheme'
-    ));
-    update_option('nirvana_has_inited', 'true');
+function nirvana_send_stats_once() {
+    if (get_option('nirvana_stats_sent')) {
+        return;
+    }
+
+    $url = add_query_arg([
+        'domain'  => $_SERVER['HTTP_HOST'],
+        'version' => wp_get_theme()->get('Version'),
+    ], 'https://blog.mkliu.top/source/stats/index.php');
+
+    wp_safe_remote_get($url, [
+        'user-agent' => 'niRvanaTheme',
+        'timeout'    => 2,
+        'blocking'   => false,
+    ]);
+
+    update_option('nirvana_stats_sent', true);
 }
-if (get_option('nirvana_has_inited') != 'true') {
-    post_analytics_info();
-}
+add_action('init', 'nirvana_send_stats_once', 1);
+
+add_action('upgrader_process_complete', function ($upgrader, $options) {
+    if ($options['action'] === 'update' && $options['type'] === 'theme') {
+        delete_option('nirvana_stats_sent');
+    }
+}, 10, 2);
 //文章图片灯箱
 function auto_post_link($content)
 {
