@@ -109,9 +109,7 @@ new jQVue({
         },
         onInit: function(t, n) {
           if ("image" == $("#coverflow[pandaSlider]").attr("type")) return !1;
-          e.sliderIniteColorAndBlurImg($("#coverflow[pandaSlider]").find(".page")), e.sliderRenderBackground(t, n), e.$waitColorInit = setInterval(function() {
-            $(n).data("background-color") && (e.sliderRenderBackground(t, n), clearInterval(e.$waitColorInit))
-          }, 100)
+          e.sliderRenderBackground(t, n, !0), e.sliderIniteColorAndBlurImg($("#coverflow[pandaSlider]").find(".page"), n)
         }
       }), "image" != $("#coverflow[pandaSlider]").attr("type") && $("#coverflow").circleMagic({
         elem: "#coverflow",
@@ -128,92 +126,161 @@ new jQVue({
           $("#flatflow[pandaSlider]").find(".navigator").appendTo($("#flatflow[pandaSlider]").parent())
         }
       });
-      var t = $("#flatflow .page"),
-        n = $("#flatflow").data("allPages");
-      $.merge(t, n || []).each(function(t, n) {
-        if (void 0 !== $(n).attr("blured"));
-        else {
-          var i = $(n).children(".cover").css("background-image");
-          if (i = i.replace(/^url\(["']?/, "").replace(/["']?\)$/, "")) {
-            var o = new Image;
-            o.crossOrigin = "anonymous", o.onload = function() {
-              var t = (new ColorThief).getColor(o),
-                r = e.rgbToHsl(t[0], t[1], t[2]);
-              r[2] = 40 <= r[2] ? 40 : r[2] <= 20 ? 20 : r[2], r[1] = 10 < r[1] && r[1] < 70 ? 70 : r[1];
-              var s = "rgb(" + (t = e.hslToRgb(r[0], r[1], r[2]))[0] + "," + t[1] + "," + t[2] + ")",
-                a = r;
-              a[0] = 0 < a[0] - 10 ? a[0] - 10 : a[0] - 10 + 360, a[1] = 20 < a[1] && a[1] < 50 ? 1.2 * a[1] : a[1], a[2] = a[2] < 30 ? 1.5 * a[2] : a[2] < 50 ? 1.2 * a[2] : a[2];
-              var l = e.hslToRgb(a[0], a[1], a[2]),
-                c = "rgb(" + l[0] + "," + l[1] + "," + l[2] + ")";
-              if ($(n).css("background", "linear-gradient(170deg," + s + " 30%," + c + ")"), 80 < r[2] ? ($(n).find(".title").addClass("light_color"), $(n).find(".description").addClass("light_color")) : ($(n).find(".title").addClass("dark_color"), $(n).find(".description").addClass("dark_color")), e.canFilterBlur()) {
-                $(n).attr("blured", "css");
-                var u = $("<div>");
-                u.addClass("filterBlured"), u.css("background-image", "url(" + i + ")");
-                var d = $("<div>");
-                d.addClass("filterBlured_wrap"), d.append(u), $(n).append(d)
-              }
-            }, o.src = i
+      var t = $.merge($("#flatflow .page"), $("#flatflow").data("allPages") || []),
+        n = {};
+      t.each(function(i, o) {
+        if (void 0 !== $(o).attr("blured")) return;
+        var r = $(o).children(".cover").css("background-image");
+        r = r ? r.replace(/^url\(["']?/, "").replace(/["']?\)$/, "") : "";
+        r && (n[r] || (n[r] = [])).push(o)
+      }), $.each(n, function(i, o) {
+        e.loadCanvasImage(i, function(r) {
+          if (!r) return;
+          var s;
+          try {
+            s = (new ColorThief).getColor(r)
+          } catch (a) {
+            return
           }
-        }
+          var l = e.rgbToHsl(s[0], s[1], s[2]);
+          l[2] = 40 <= l[2] ? 40 : l[2] <= 20 ? 20 : l[2], l[1] = 10 < l[1] && l[1] < 70 ? 70 : l[1];
+          var c = "rgb(" + (s = e.hslToRgb(l[0], l[1], l[2]))[0] + "," + s[1] + "," + s[2] + ")",
+            u = l.slice();
+          u[0] = 0 < u[0] - 10 ? u[0] - 10 : u[0] - 10 + 360, u[1] = 20 < u[1] && u[1] < 50 ? 1.2 * u[1] : u[1], u[2] = u[2] < 30 ? 1.5 * u[2] : u[2] < 50 ? 1.2 * u[2] : u[2];
+          var d = e.hslToRgb(u[0], u[1], u[2]),
+            h = "rgb(" + d[0] + "," + d[1] + "," + d[2] + ")",
+            p = e.canFilterBlur();
+          $(o).each(function(f, m) {
+            if ($(m).css("background", "linear-gradient(170deg," + c + " 30%," + h + ")"), 80 < l[2] ? ($(m).find(".title").addClass("light_color"), $(m).find(".description").addClass("light_color")) : ($(m).find(".title").addClass("dark_color"), $(m).find(".description").addClass("dark_color")), p && void 0 === $(m).attr("blured")) {
+              $(m).attr("blured", "css");
+              var g = $("<div>");
+              g.addClass("filterBlured"), g.css("background-image", "url(" + i + ")");
+              var v = $("<div>");
+              v.addClass("filterBlured_wrap"), v.append(g), $(m).append(v)
+            }
+          })
+        })
       })
     },
-    sliderRenderBackground: function(e, t) {
-      var n = $(t).find(".card").css("background-image"),
-        i = (n && n.replace(/^url\(["']?/, "").replace(/["']?\)$/, ""), $("<div>"));
-      if (i.addClass("imgColor").css({
-          background: $(t).data("background-color") ? $(t).data("background-color") : "linear-gradient(120deg,#2c4867,#6187af)",
-          display: "none"
-        }), $(t).hasClass("hasHeadImg") || $("#coverflow").append(i), 1 == $("#coverflow .imgColor").length ? i.delay(0).fadeIn(100) : i.delay(100).fadeIn(500), $("#coverflow .imgColor").not(i).delay(700).fadeOut(0, function() {
-          $(this).remove()
-        }), i = null, "flat" != $("#coverflow[pandaSlider]").attr("type") && $(t).data("background-image")) {
-        var o = $("<div>");
-        o.addClass("imgBlur").css({
+    loadCanvasImage: function(e, t) {
+      var n = new Image,
+        i = !1,
+        o = function(e) {
+          i || (i = !0, t(e))
+        };
+      try {
+        var r = new URL(e, location.href);
+        // 同域不带 CORS 才能命中 CSS 背景那次缓存, 跨域才需要 anonymous 才能进 canvas
+        "data:" !== r.protocol && "blob:" !== r.protocol && r.origin !== location.origin && (n.crossOrigin = "anonymous")
+      } catch (s) {
+        n.crossOrigin = "anonymous"
+      }
+      n.onload = function() {
+        o(n)
+      }, n.onerror = function() {
+        o(null)
+      }, n.src = e, n.complete && n.naturalWidth && o(n)
+    },
+    sliderRenderBackground: function(e, t, n) {
+      var i = $(t).data("background-color") ? $(t).data("background-color") : "linear-gradient(120deg,#2c4867,#6187af)";
+      if (!$(t).hasClass("hasHeadImg"))
+        if (n && $("#coverflow .imgColor").length) $("#coverflow .imgColor").last().css("background", i);
+        else {
+          var o = $("<div>");
+          o.addClass("imgColor").css({
+            background: i,
+            display: "none"
+          }), $("#coverflow").append(o), n || 1 == $("#coverflow .imgColor").length ? o.delay(0).fadeIn(100) : o.delay(100).fadeIn(500), $("#coverflow .imgColor").not(o).delay(700).fadeOut(0, function() {
+            $(this).remove()
+          })
+        }
+      if ("flat" != $("#coverflow[pandaSlider]").attr("type") && $(t).data("background-image")) {
+        var r = $("<div>");
+        r.addClass("imgBlur").css({
           "background-image": "url(" + $(t).data("background-image") + ")",
           display: "none"
-        }), $(window).width() < 768 && o.css("animation-duration", "5s"), 1600 < $(window).width() && o.css("animation-duration", "15s"), this.is_chrome() && o.addClass("noAnimation"), $(t).hasClass("hasHeadImg") && o.addClass("useHeadImg").css({
+        }), $(window).width() < 768 && r.css("animation-duration", "5s"), 1600 < $(window).width() && r.css("animation-duration", "15s"), this.is_chrome() && r.addClass("noAnimation"), $(t).hasClass("hasHeadImg") && r.addClass("useHeadImg").css({
           "background-image": "url(" + $(t).attr("headImg") + ")"
-        }), $("#coverflow").append(o), o.delay(100).fadeIn(500), $("#coverflow .imgBlur").not(o).delay(700).fadeOut(0, function() {
+        }), $("#coverflow").append(r), n ? r.delay(0).fadeIn(100) : r.delay(100).fadeIn(500), $("#coverflow .imgBlur").not(r).delay(700).fadeOut(0, function() {
           $(this).remove()
-        }), o = null
+        })
       }
-      var r = $(t).data("main-color") ? $(t).data("main-color") : "dark-slider";
-      $("body").removeClass("dark-slider").removeClass("light-slider").addClass(r)
+      var s = $(t).data("main-color") ? $(t).data("main-color") : "dark-slider";
+      $("body").removeClass("dark-slider").removeClass("light-slider").addClass(s)
     },
-    sliderIniteColorAndBlurImg: function(e) {
-      var t = this;
-      $(e).each(function(e, n) {
-        var i = $(n).find(".card").css("background-image"),
-          o = i ? i.replace(/^url\(["']?/, "").replace(/["']?\)$/, "") : "";
-        if (o) {
-          var r = new Image;
-          r.crossOrigin = "anonymous", r.onload = function() {
-            var e = new ColorThief,
-              i = e.getColor(r),
-              o = i,
-              s = t.rgbToHsl(o[0], o[1], o[2]);
-            s[2] = 40 <= s[2] ? 40 : s[2] <= 15 ? 15 : s[2], s[1] = 10 < s[1] && s[1] < 40 ? s[1] + 10 : s[1], s[2] <= 70 ? $(n).data("main-color", "dark-slider") : $(n).data("main-color", "light-slider");
-            var a = "rgb(" + (o = t.hslToRgb(s[0], s[1], s[2]))[0] + "," + o[1] + "," + o[2] + ")",
-              l = s;
-            l[0] = 0 < l[0] - 15 ? l[0] - 15 : l[0] - 15 + 360, l[1] = 20 < l[1] && l[1] < 50 ? 1.2 * l[1] : l[1], l[2] = l[2] < 30 ? 1.5 * l[2] : l[2] < 50 ? 1.2 * l[2] : l[2];
-            var c = t.hslToRgb(l[0], l[1], l[2]),
-              u = "rgb(" + c[0] + "," + c[1] + "," + c[2] + ")";
-            if ($(n).data("background-color", "linear-gradient(120deg," + a + " 20%," + u + " 80%)"), "flat" != $("#coverflow[pandaSlider]").attr("type")) {
-              var d = r.width,
-                h = r.height,
-                p = parseInt(100 / (d / h)),
-                f = document.createElement("canvas");
-              f.width = 100, f.height = p;
-              var m = f.getContext("2d");
-              m.drawImage(r, 0, 0, d, h, 0, 0, 100, p);
-              var g = $(window).width() < 768 ? 6 : 3;
-              StackBlur.canvasRGB(f, 0, 0, r.width, r.height, g);
-              var v = f.toDataURL();
-              $(n).data("background-image", v)
+    sliderIniteColorAndBlurImg: function(e, t) {
+      var n = this,
+        i = {},
+        o = [],
+        r = function(e) {
+          var t = $(e).find(".card").css("background-image");
+          return t ? t.replace(/^url\(["']?/, "").replace(/["']?\)$/, "") : ""
+        };
+      $(e).each(function(e, t) {
+        var n = r(t);
+        n && (i[n] ? i[n].push(t) : (i[n] = [t], o.push(n)))
+      });
+      var s = t ? r(t) : "",
+        a = function(e, t) {
+          n.loadCanvasImage(e, function(o) {
+            if (!o) return t && t();
+            var r;
+            try {
+              r = (new ColorThief).getColor(o)
+            } catch (s) {
+              return t && t()
             }
-            r = v = i = e = f = m = null
-          }, r.src = o
-        }
-      })
+            var a = r,
+              l = n.rgbToHsl(a[0], a[1], a[2]);
+            l[2] = 40 <= l[2] ? 40 : l[2] <= 15 ? 15 : l[2], l[1] = 10 < l[1] && l[1] < 40 ? l[1] + 10 : l[1];
+            var c = l[2] <= 70 ? "dark-slider" : "light-slider",
+              u = "rgb(" + (a = n.hslToRgb(l[0], l[1], l[2]))[0] + "," + a[1] + "," + a[2] + ")",
+              d = l.slice();
+            d[0] = 0 < d[0] - 15 ? d[0] - 15 : d[0] - 15 + 360, d[1] = 20 < d[1] && d[1] < 50 ? 1.2 * d[1] : d[1], d[2] = d[2] < 30 ? 1.5 * d[2] : d[2] < 50 ? 1.2 * d[2] : d[2];
+            var h = n.hslToRgb(d[0], d[1], d[2]),
+              p = "rgb(" + h[0] + "," + h[1] + "," + h[2] + ")",
+              f = "linear-gradient(120deg," + u + " 20%," + p + " 80%)",
+              m;
+            if ("flat" != $("#coverflow[pandaSlider]").attr("type")) {
+              var g = o.width,
+                v = o.height,
+                b = parseInt(100 / (g / v)),
+                y = document.createElement("canvas");
+              y.width = 100, y.height = b;
+              var w = y.getContext("2d");
+              w.drawImage(o, 0, 0, g, v, 0, 0, 100, b);
+              var k = $(window).width() < 768 ? 6 : 3;
+              StackBlur.canvasRGB(y, 0, 0, o.width, o.height, k), m = y.toDataURL()
+            }
+            $(i[e]).each(function(e, t) {
+              $(t).data("background-color", f), $(t).data("main-color", c), m && $(t).data("background-image", m)
+            });
+            var x = $("#coverflow .current .page").get(0);
+            x && -1 !== $.inArray(x, i[e]) && n.sliderRenderBackground(0, x, !0), t && t()
+          })
+        },
+        l = function() {
+          var e = o.filter(function(e) {
+              return e !== s
+            }),
+            t = 0,
+            i = function() {
+              if (!(t >= e.length)) {
+                var n = e[t++];
+                a(n, function() {
+                  window.requestIdleCallback ? requestIdleCallback(i, {
+                    timeout: 200
+                  }) : setTimeout(i, 0)
+                })
+              }
+            };
+          i()
+        };
+      s && i[s] ? a(s, function() {
+        window.requestIdleCallback ? requestIdleCallback(l, {
+          timeout: 200
+        }) : setTimeout(l, 0)
+      }) : l()
     },
     canBackdropBlur: function() {
       return !(!window.CSS || !window.CSS.supports) && CSS.supports("(backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px))")
