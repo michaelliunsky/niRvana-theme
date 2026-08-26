@@ -66,7 +66,7 @@ new jQVue({
       }
     }), this.load_blog_options(), 0 < $("#coverflow[pandaSlider]").length && this.init_coverflow(), 0 < $("#flatflow[pandaSlider]").length && this.init_flatflow(), this.init_sidebar(), 0 < $(".topNav[pandaTab]").length && this.init_navbar(), 0 < $(".categoryNav[pandaTab]").length && this.init_categoryNavbar(), 0 < $(".display-switcher[pandaTab]").length && this.init_displaySwitcher(), 0 < $(".panda_pagi[pandaTab]").length && this.init_pagination(), this.parse_sidebar_height(), this.images_onload(function() {
       console.log("Img Load End")
-    }), this.init_comments(), this.is_Mobile() || $('[data-toggle="tooltip"]').tooltip({
+    }), this.init_comments(), $('[data-toggle="tooltip"]').tooltip({
       container: "body"
     }), this.single_scrollspy(), $(document).on("keyup", ".fullscreen_search .searchbox input", function(t) {
       $(this).prop("comStart") || (t.preventDefault(), 13 == (t.keyCode ? t.keyCode : t.which) && e.global_search())
@@ -95,13 +95,6 @@ new jQVue({
   methods: {
     init_coverflow: function() {
       var e = this;
-      if ("flat" != $("#coverflow[pandaSlider]").attr("type")) {
-        if (e.is_Mac_Chrome() || e.is_Android()) {
-          var t = $("#coverflow[pandaSlider]").attr("view");
-          2 < (t = parseInt(t)) && $("#coverflow[pandaSlider]").attr("view", "2")
-        }
-        e.is_Android() && (t = $("#coverflow[pandaSlider]").attr("view"), 2 < (t = parseInt(t)) && $("#coverflow[pandaSlider]").attr("view", "2"), $(".home #coverflow[pandaSlider],.category #coverflow[pandaSlider],.single #coverflow[pandaSlider]").not("[type]").attr("type", "flat"))
-      }
       $("#coverflow[pandaSlider]").pandaSlider("init", "", {
         onChange: function(t, n) {
           if ("image" == $("#coverflow[pandaSlider]").attr("type")) return !1;
@@ -199,7 +192,7 @@ new jQVue({
         r.addClass("imgBlur").css({
           "background-image": "url(" + $(t).data("background-image") + ")",
           display: "none"
-        }), $(window).width() < 768 && r.css("animation-duration", "5s"), 1600 < $(window).width() && r.css("animation-duration", "15s"), this.is_chrome() && r.addClass("noAnimation"), $(t).hasClass("hasHeadImg") && r.addClass("useHeadImg").css({
+        }), $(window).width() < 768 && r.css("animation-duration", "5s"), 1600 < $(window).width() && r.css("animation-duration", "15s"), $(t).hasClass("hasHeadImg") && r.addClass("useHeadImg").css({
           "background-image": "url(" + $(t).attr("headImg") + ")"
         }), $("#coverflow").append(r), n ? r.delay(0).fadeIn(100) : r.delay(100).fadeIn(500), $("#coverflow .imgBlur").not(r).delay(700).fadeOut(0, function() {
           $(this).remove()
@@ -323,23 +316,30 @@ new jQVue({
       }
       return [360 * i, 100 * o, 100 * a]
     },
-    is_Mobile: function() {
-      var e = navigator.userAgent;
-      return navigator.appVersion, !!(!!e.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) | (-1 < e.indexOf("Android") || -1 < e.indexOf("Linux")) | -1 < e.indexOf("iPhone") | -1 < e.indexOf("iPad"))
+    prefersCoarsePointer: function() {
+      return !!(window.matchMedia && window.matchMedia("(hover: none) and (pointer: coarse)").matches)
     },
-    is_Android: function() {
-      var e = navigator.userAgent;
-      return navigator.appVersion, !!(-1 < e.indexOf("Android") || -1 < e.indexOf("Linux"))
+    applyNavScrolling: function(e) {
+      var t = $(e);
+      if (this.prefersCoarsePointer()) t.pandaTab("hideScrolling"), t.pandaTab("useNativeScrolling");
+      else {
+        t.pandaTab("disableNativeScrolling");
+        var n = t.children("ul").get(0);
+        n && 0 < n.scrollWidth - n.clientWidth && t.pandaTab("makeScrolling")
+      }
     },
-    is_Mac_Chrome: function() {
-      var e = navigator.userAgent;
-      return !!(-1 < e.indexOf("Macintosh") & -1 < e.indexOf("Chrome/"))
-    },
-    is_mac: function() {
-      return -1 < navigator.userAgent.indexOf("Macintosh")
-    },
-    is_chrome: function() {
-      return -1 < navigator.userAgent.indexOf("Chrome/")
+    watchNavScrolling: function() {
+      if (this._navScrollWatch) return;
+      this._navScrollWatch = !0;
+      if (!window.matchMedia) return;
+      var e = this,
+        t = window.matchMedia("(hover: none) and (pointer: coarse)"),
+        n = function() {
+          $(".topNav[pandaTab],.categoryNav[pandaTab]").each(function() {
+            e.applyNavScrolling(this)
+          })
+        };
+      t.addEventListener ? t.addEventListener("change", n) : t.addListener && t.addListener(n)
     },
     init_sidebar: function() {
       var e = this;
@@ -434,14 +434,14 @@ new jQVue({
         $(".main-nav").removeClass("float").removeClass("flat").addClass(e)
       }
       var t = this;
-      $(".topNav[pandaTab]").pandaTab("init", 250), this.is_Mobile() && $(".topNav[pandaTab]").pandaTab("useNativeScrolling"), e(), $(window).on("resize", function() {
+      $(".topNav[pandaTab]").pandaTab("init", 250), this.applyNavScrolling($(".topNav[pandaTab]")), this.watchNavScrolling(), e(), $(window).on("resize", function() {
         e()
       }), $(window).on("scroll", function() {
         e()
       })
     },
     init_categoryNavbar: function() {
-      $(".categoryNav[pandaTab]").pandaTab(), this.is_Mobile() && $(".categoryNav[pandaTab]").pandaTab("useNativeScrolling")
+      $(".categoryNav[pandaTab]").pandaTab(), this.applyNavScrolling($(".categoryNav[pandaTab]")), this.watchNavScrolling()
     },
     parse_nav_class_style: function(e) {
       var t = "float";
@@ -476,7 +476,7 @@ new jQVue({
           var n = Mustache.render(e.post_list, {
             data: t
           });
-          n = $(n), e.is_Mobile() && $(n).find(".card").removeClass("card").addClass("low_cpu_card"), $(".fullscreen_search .postLists").html(n), e.make_masonry(), $(".fullscreen_search .postLists img").imgcomplete(function() {
+          n = $(n), $(".fullscreen_search .postLists").html(n), e.make_masonry(), $(".fullscreen_search .postLists img").imgcomplete(function() {
             e.make_masonry()
           }), $(".fullscreen_search .postLists").addClass("visible"), $(".fullscreen_search .searchbox").css("margin-top", "10vh"), $(".fullscreen_search .searchbox .button .icon").empty(), $(".fullscreen_search .searchbox .button .icon").append('<i class="fas fa-search"></i>'), $(".fullscreen_search .searchbox input, .fullscreen_search .searchbox .button").each(function() {
             this.removeAttribute("disabled")
