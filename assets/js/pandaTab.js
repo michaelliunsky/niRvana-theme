@@ -108,6 +108,7 @@
       },
       makeScrolling: function(t) {
         if (!e(t).children("ul").data("pandaTab_init")) return !1;
+        if (e(t).children("ul").hasClass("native-scrolling")) return !1;
         if (e(t).children("ul").data("scrolling")) return !1;
         var n = e("<span>").addClass("prev");
         n.append(e(t).attr("prev-text")), e(t).prepend(n);

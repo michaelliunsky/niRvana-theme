@@ -16,20 +16,31 @@ $niRvanaThemeUpdateChecker = PucFactory::buildUpdateChecker(
     get_template_directory() . '/functions.php',
     'niRvana'
 );
-//初次使用时发送安装量统计信息 (数据仅用于统计安装量)
-function post_analytics_info()
-{
-    $nirvana_version = wp_get_theme()->get('Version');
-    $domain = urlencode($_SERVER['HTTP_HOST']);
-    $url = 'https://blog.mkliu.top/source/stats/index.php?domain=' . $domain . '&version=' . urlencode($nirvana_version);
-    $response = wp_safe_remote_get($url, array(
-        'user-agent' => 'niRvanaTheme'
-    ));
-    update_option('nirvana_has_inited', 'true');
+function nirvana_send_stats_once() {
+    if (get_option('nirvana_stats_sent')) {
+        return;
+    }
+
+    $url = add_query_arg([
+        'domain'  => $_SERVER['HTTP_HOST'],
+        'version' => wp_get_theme()->get('Version'),
+    ], 'https://blog.mkliu.top/source/stats/index.php');
+
+    wp_safe_remote_get($url, [
+        'user-agent' => 'niRvanaTheme',
+        'timeout'    => 2,
+        'blocking'   => false,
+    ]);
+
+    update_option('nirvana_stats_sent', true);
 }
-if (get_option('nirvana_has_inited') != 'true') {
-    post_analytics_info();
-}
+add_action('init', 'nirvana_send_stats_once', 1);
+
+add_action('upgrader_process_complete', function ($upgrader, $options) {
+    if ($options['action'] === 'update' && $options['type'] === 'theme') {
+        delete_option('nirvana_stats_sent');
+    }
+}, 10, 2);
 //文章图片灯箱
 function auto_post_link($content)
 {
@@ -438,24 +449,28 @@ function pf_global_search($query_arg)
 function pf_post_ding(int $post_id): int
 {
     $meta_key = 'bigfa_ding';
-    $current   = max(0, (int) get_post_meta($post_id, $meta_key, true));
-    $expire    = time() + 99999999;
-    $host   = wp_parse_url(home_url(), PHP_URL_HOST) ?: ($_SERVER['HTTP_HOST'] ?? '');
-    $host   = sanitize_text_field(wp_unslash($host));
-    $domain = 'localhost' !== $host ? $host : '';
-    $cookie_options = [
-        'expires'  => $expire,
-        'path'     => '/',
-        'secure'   => false,
-        'httponly' => false,
-        'samesite' => 'Strict',
-    ];
-    if ('' !== $domain) {
-        $cookie_options['domain'] = $domain;
+    $current  = max(0, (int) get_post_meta($post_id, $meta_key, true));
+    if (!is_post_publicly_viewable($post_id)) {
+        return $current;
     }
-    setcookie('bigfa_ding_' . $post_id, (string) $post_id, $cookie_options);
+    $cookie = 'bigfa_ding_' . $post_id;
+    if (isset($_COOKIE[$cookie])) {
+        return $current;
+    }
     $new = $current + 1;
     update_post_meta($post_id, $meta_key, $new);
+    $cookie_options = array(
+        'expires'  => time() + (3 * YEAR_IN_SECONDS),
+        'path'     => COOKIEPATH ? COOKIEPATH : '/',
+        'secure'   => is_ssl(),
+        'httponly' => true,
+        'samesite' => 'Lax',
+    );
+    if (COOKIE_DOMAIN) {
+        $cookie_options['domain'] = COOKIE_DOMAIN;
+    }
+    setcookie($cookie, (string) $post_id, $cookie_options);
+    $_COOKIE[$cookie] = (string) $post_id;
     return $new;
 }
 function pf_faq($query)
@@ -1085,28 +1100,10 @@ function pre_validate_comment_span(array $commentdata): array
             );
         }
     }
-    $post_id             = isset($commentdata['comment_post_ID']) ? (int) $commentdata['comment_post_ID'] : 0;
-    $bigfa_ding_value    = isset($_POST['big_fa_ding']) ? sanitize_text_field(wp_unslash($_POST['big_fa_ding'])) : '';
-    $cookie_key          = 'bigfa_ding_' . $post_id;
-    if (0 !== $post_id && ! isset($_COOKIE[ $cookie_key ]) && 'on' === $bigfa_ding_value) {
-        $ding = get_post_meta($post_id, 'bigfa_ding', true);
-        $ding = is_numeric($ding) ? (int) $ding : 0;
-        update_post_meta($post_id, 'bigfa_ding', $ding + 1);
-        $host   = wp_parse_url(home_url(), PHP_URL_HOST);
-        $domain = ('localhost' !== $host) ? $host : '';
-        $expire = time() + 99999999;
-        setcookie(
-            $cookie_key,
-            (string) $post_id,
-            array(
-                'expires'  => $expire,
-                'path'     => '/',
-                'domain'   => $domain,
-                'secure'   => false,
-                'httponly' => false,
-                'samesite' => 'Strict',
-            )
-        );
+    $post_id          = isset($commentdata['comment_post_ID']) ? (int) $commentdata['comment_post_ID'] : 0;
+    $bigfa_ding_value = isset($_POST['big_fa_ding']) ? sanitize_text_field(wp_unslash($_POST['big_fa_ding'])) : '';
+    if (0 !== $post_id && 'on' === $bigfa_ding_value) {
+        pf_post_ding($post_id);
     }
     return $commentdata;
 }

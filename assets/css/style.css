@@ -79,9 +79,6 @@ outline:0!important;
 text-decoration:none;
 -webkit-appearance:none;
 -moz-appearance:none}
-.noAnimation{
--webkit-animation:none!important;
-animation:none!important}
 #wrapper{
 padding-top:58px;
 background:url(../../extend/imgs/bl.png) no-repeat fixed bottom left,url(../../extend/imgs/tr.png) no-repeat fixed top right,#f0f2f7;
@@ -2997,7 +2994,7 @@ position:absolute}
 background:#20a0ff;
 position:absolute;
 z-index:1}
-.comment-reply-login,.low_cpu_card .date,.low_cpu_card .summary{
+.comment-reply-login{
 display:none}
 .bypostauthor>div .name:before{
 content:"\f007";
@@ -3744,51 +3741,6 @@ box-shadow:0 15px 20px rgba(31,45,61,.5)}
 .fullscreen_search .postLists.cards .card:hover{
 -webkit-box-shadow:0 5px 8px rgba(31,45,61,.75);
 box-shadow:0 5px 8px rgba(31,45,61,.75)}
-.low_cpu_card{
--webkit-box-shadow:0 13px 15px rgba(31,45,61,5);
-box-shadow:0 13px 15px rgba(31,45,61,5);
-border-radius:13px;
-margin-bottom:30px}
-.low_cpu_card img{
-width:100%;
-border-radius:13px 13px 0 0}
-.low_cpu_card .meta{
-padding:8px 15px;
-background:#fff;
-border-radius:0 0 13px 13px}
-.low_cpu_card h2{
-font-size:16px;
-color:#475669;
-margin:6px 0 0;
--webkit-transition:color .25s;
-transition:color .25s}
-.low_cpu_card h2:hover{
-color:#20a0ff}
-.low_cpu_card a{
-color:inherit;
-text-decoration:none}
-.low_cpu_card .tags{
-margin-top:10px;
--webkit-transition:.25s;
-transition:.25s}
-.low_cpu_card .tags a{
-display:inline-block;
-font-size:10px;
-line-height:20px;
-padding:0 10px;
-color:#20a0ff;
-position:relative}
-.low_cpu_card .tags a:before{
-content:"";
-position:absolute;
-left:0;
-top:0;
-right:0;
-bottom:0;
-color:inherit;
-background:currentColor;
-border-radius:20px;
-opacity:.15}
 .wechat-cover-wrapper{
 position:fixed;
 z-index:2000;
