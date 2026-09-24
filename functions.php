@@ -50,16 +50,6 @@ function auto_post_link($content)
     return preg_replace($pattern, $replacement, $content);
 }
 add_filter('the_content', 'auto_post_link', 0);
-//调用每日一图作为登录页背景
-function custom_login_head()
-{
-    $str = file_get_contents('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1');
-    if (preg_match("/\/(.+?).jpg/", $str, $matches)) {
-        $imgurl = 'https://s.cn.bing.net'.$matches[0];
-    }
-    echo'<style type="text/css">body{background: url('.$imgurl.');background-image:url('.$imgurl.');-moz-border-image: url('.$imgurl.');}</style>';
-}
-add_action('login_head', 'custom_login_head');
 //预计阅读时间
 function count_words_read_time()
 {
