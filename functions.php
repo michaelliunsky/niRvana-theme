@@ -527,7 +527,7 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
     }
     global $wp_query, $paged;
     $max_page = $wp_query->max_num_pages;
-    if ($max_page == 1 & get_option('hide_pagi_only_1') == "checked") {
+    if ($max_page == 1 && get_option('hide_pagi_only_1') == "checked") {
         return;
     }
     if (empty($paged)) {
@@ -570,7 +570,7 @@ function p_link($i, $title = "", $linktype = "", $disabled = "")
     } else {
         $linktext = $linktype;
     }
-    if ($disabled == 'pagenav next disabled' | $disabled == 'pagenav prev disabled') {
+    if ($disabled == 'pagenav next disabled' || $disabled == 'pagenav prev disabled') {
         echo "<li class='$disabled'><a class='page-numbers'>{$linktext}</a></li>";
     } else {
         echo "<li class='$disabled'><a class='page-numbers' href='", esc_html(get_pagenum_link($i)) , "'>{$linktext}</a></li>";
