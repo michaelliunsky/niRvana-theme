@@ -1133,27 +1133,6 @@ function hex2rgba($color, $opacity = false)
     }
     return $output;
 }
-function pd_get_thumbnail_by_url($img_url)
-{
-    $attr = wp_upload_dir();
-    $base_url = $attr['baseurl'] . "/";
-    $path = str_replace($base_url, "", $img_url);
-    $path = preg_replace('/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $path);
-    if ($path) {
-        global $wpdb;
-        $post_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_value = '{$path}'");
-        $post_id = $post_id ? $post_id : false;
-    } else {
-        $post_id = false;
-    }
-    $image_info = wp_get_attachment_image_src($post_id, 'thumbnail');
-    if ($image_info) {
-        $thumbImg = $image_info[0];
-    } else {
-        $thumbImg = $img_url;
-    }
-    return $thumbImg;
-}
 function is_search_robot()
 {
     $agent = strtolower(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
@@ -1440,7 +1419,6 @@ function get_gallery_slider($postId = 0, $type = false)
                 $carousels_contents[] = array(
                     "id" => $postId,
                     "full_img" => $img_url,
-                    "thumbnail_img" => pd_get_thumbnail_by_url($img_url) ,
                 );
             }
         }
