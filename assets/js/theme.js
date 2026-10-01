@@ -675,7 +675,12 @@ new jQVue({
         }), $("#comment_faces_toggle").popover({
           container: "body",
           animation: !0,
-          content: $(".popover_faces").clone().removeClass("hidden"),
+          content: function() {
+            var t = $(".popover_faces").clone().removeClass("hidden");
+            return t.find("img[data-src]").each(function() {
+              this.src = this.getAttribute("data-src")
+            }), t
+          },
           html: !0,
           placement: "top",
           trigger: "focus"
