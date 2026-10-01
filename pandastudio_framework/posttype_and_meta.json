@@ -275,6 +275,7 @@
       {
         "name": "相册",
         "type": "gallery",
+        "has_archive": true,
         "allow_categorys": true,
         "supports": [
           "title",
@@ -308,6 +309,7 @@
       {
         "name": "常见问题",
         "type": "faq",
+        "has_archive": false,
         "allow_categorys": false,
         "supports": [
           "title"
@@ -327,6 +329,7 @@
       {
         "name": "友情链接",
         "type": "favlinks",
+        "has_archive": false,
         "allow_categorys": true,
         "supports": [
           "title"
@@ -346,6 +349,7 @@
       {
         "name": "轻博客",
         "type": "microblog",
+        "has_archive": false,
         "allow_categorys": false,
         "supports": [
           "editor"

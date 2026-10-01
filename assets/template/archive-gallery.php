@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+global $nav_category_list_type;
+if ( ! $nav_category_list_type ) {
+	$nav_category_list_type = 'cards';
+}
+get_header();
+?>
 <div class="container postListsModel no-display-switcher">
 	<div class="row">
 		<?php

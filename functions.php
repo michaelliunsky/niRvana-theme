@@ -150,42 +150,6 @@ add_action('save_post', 'clear_db_cache_archives_list');
 add_action('comment_post', 'clear_db_cache_archives_list');
 add_action('delete_comment', 'clear_db_cache_archives_list');
 add_action('wp_set_comment_status', 'clear_db_cache_archives_list');
-//说说页面
-add_action('init', 'my_custom_shuoshuo_init');
-function my_custom_shuoshuo_init()
-{
-    $labels = array(
-        'name' => '说说',
-        'singular_name' => '说说',
-        'all_items' => '所有说说',
-        'add_new' => '发表说说',
-        'add_new_item' => '撰写新说说',
-        'edit_item' => '编辑说说',
-        'new_item' => '新说说',
-        'view_item' => '查看说说',
-        'search_items' => '搜索说说',
-        'not_found' => '暂无说说',
-        'not_found_in_trash' => '回收站中没有说说',
-        'parent_item_colon' => '',
-        'menu_name' => '说说'
-    );
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'query_var' => true,
-        'rewrite' => true,
-        'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_position' => null,
-        'supports' => array('title','editor','author'),
-        'menu_icon' => 'dashicons-megaphone'
-    );
-    register_post_type('shuoshuo', $args);
-}
 //评论插入代码
 add_action('pf_comment_form_after_face', 'pf_add_comment_form_insert_code');
 function pf_add_comment_form_insert_code()
@@ -323,7 +287,7 @@ function pf_rest_search($data)
     $query_arg = $data->get_param('arg');
     $query_arg = is_array($query_arg) ? $query_arg : array();
     $allowed = array('s', 'search_prod_title', 'post_type');
-    $post_types = array('post', 'gallery', 'page', 'faq', 'shuoshuo', 'favlinks', 'microblog');
+    $post_types = array('post', 'gallery', 'page', 'faq', 'favlinks', 'microblog');
     foreach ($query_arg as $key => $value) {
         if (!in_array($key, $allowed, true)) {
             unset($query_arg[$key]);
@@ -563,7 +527,7 @@ function wp_nav($p = 2, $showSummary = true, $showPrevNext = true, $style = 'pag
     }
     global $wp_query, $paged;
     $max_page = $wp_query->max_num_pages;
-    if ($max_page == 1 & get_option('hide_pagi_only_1') == "checked") {
+    if ($max_page == 1 && get_option('hide_pagi_only_1') == "checked") {
         return;
     }
     if (empty($paged)) {
@@ -606,7 +570,7 @@ function p_link($i, $title = "", $linktype = "", $disabled = "")
     } else {
         $linktext = $linktype;
     }
-    if ($disabled == 'pagenav next disabled' | $disabled == 'pagenav prev disabled') {
+    if ($disabled == 'pagenav next disabled' || $disabled == 'pagenav prev disabled') {
         echo "<li class='$disabled'><a class='page-numbers'>{$linktext}</a></li>";
     } else {
         echo "<li class='$disabled'><a class='page-numbers' href='", esc_html(get_pagenum_link($i)) , "'>{$linktext}</a></li>";
@@ -1133,27 +1097,6 @@ function hex2rgba($color, $opacity = false)
     }
     return $output;
 }
-function pd_get_thumbnail_by_url($img_url)
-{
-    $attr = wp_upload_dir();
-    $base_url = $attr['baseurl'] . "/";
-    $path = str_replace($base_url, "", $img_url);
-    $path = preg_replace('/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $path);
-    if ($path) {
-        global $wpdb;
-        $post_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_value = '{$path}'");
-        $post_id = $post_id ? $post_id : false;
-    } else {
-        $post_id = false;
-    }
-    $image_info = wp_get_attachment_image_src($post_id, 'thumbnail');
-    if ($image_info) {
-        $thumbImg = $image_info[0];
-    } else {
-        $thumbImg = $img_url;
-    }
-    return $thumbImg;
-}
 function is_search_robot()
 {
     $agent = strtolower(isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '');
@@ -1440,7 +1383,6 @@ function get_gallery_slider($postId = 0, $type = false)
                 $carousels_contents[] = array(
                     "id" => $postId,
                     "full_img" => $img_url,
-                    "thumbnail_img" => pd_get_thumbnail_by_url($img_url) ,
                 );
             }
         }

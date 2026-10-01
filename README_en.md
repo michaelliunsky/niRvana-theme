@@ -28,7 +28,6 @@ typecho version : [github.com/michaelliunsky/typecho-theme-niRvana](https://gith
 **Writing & Content**
 
 - **UI Style Blocks** – 10 content blocks and 4 widget blocks (tips, collapse, dropdown menus, modals, download buttons, carousels, post showcases, reply-to-view, Bilibili embeds, and more), inserted right from the editor.
-- **Quick Posts (Shuoshuo)** – A short-form posting feature for capturing your thoughts anytime, anywhere.
 - **Syntax Highlighting** – Automatic code highlighting with one-click copy.
 - **Thumbnail Badges** – Add configurable badge text and colors to post thumbnails.
 
