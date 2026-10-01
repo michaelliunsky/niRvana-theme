@@ -178,7 +178,7 @@ function my_custom_shuoshuo_init()
         'query_var' => true,
         'rewrite' => true,
         'capability_type' => 'post',
-        'has_archive' => true,
+        'has_archive' => false,
         'hierarchical' => false,
         'menu_position' => null,
         'supports' => array('title','editor','author'),

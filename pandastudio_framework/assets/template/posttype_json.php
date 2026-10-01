@@ -26,7 +26,7 @@ foreach ($myPostTypes['posttypes'] as $postType) {
                 'show_in_rest' => $postType['show_in_rest'] ?? false,
                 'taxonomies' => array(),
                 'menu_icon' => $postType['menu_icon'],
-                'has_archive' => true
+                'has_archive' => !empty($postType['has_archive'])
             ));
         }
     );
