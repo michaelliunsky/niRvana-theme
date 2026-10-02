@@ -16,7 +16,7 @@
 		}
 	},
 	"supports": {
-		"align": [ "left", "center", "right", "wide", "full" ],
+		"align": [ "center" ],
 		"html": false
 	}
 }

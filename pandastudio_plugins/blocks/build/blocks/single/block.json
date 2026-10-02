@@ -17,11 +17,7 @@
   },
   "supports": {
     "align": [
-      "left",
-      "center",
-      "right",
-      "wide",
-      "full"
+      "center"
     ],
     "html": false
   }
