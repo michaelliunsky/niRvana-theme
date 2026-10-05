@@ -4647,7 +4647,7 @@ background:var(--nv-accent);
 -webkit-transition:.25s;
 transition:.25s}
 html.night .vcard .meta{
-border-bottom:1px solid var(--nv-text)1a}
+border-bottom:1px solid #8492a61a}
 html.night .floatTools .tool-button{
 background:-webkit-gradient(linear,left top,left bottom,from(#334159),to(#3f4d67));
 text-shadow:0 1px #334148;
@@ -4806,7 +4806,7 @@ border-right:5px solid transparent;
 border-bottom:5px solid var(--nv-surface-2)}
 html.night .main-nav .login .login-main .user-type{
 color:#8b9bb0;
-border-bottom:1px solid var(--nv-text)2e}
+border-bottom:1px solid #8492a62e}
 html.night .panda_pagi[pandaTab]>.menu{
 background:#3b4963;
 -webkit-box-shadow:0 1px #334159,0 5px 10px #3c4a64 inset;
@@ -4907,13 +4907,13 @@ border:1px solid var(--nv-text);
 -webkit-box-shadow:0 3px 5px var(--nv-surface-2);
 box-shadow:0 3px 5px var(--nv-surface-2)}
 html.night .dashbox_wrapper .list{
-border-bottom:1px solid var(--nv-text)4f}
+border-bottom:1px solid #8492a64f}
 html.night .dashbox_wrapper .list:hover{
 background:rgba(0,0,0,.15)}
 html.night .form-box,html.night .swal2-popup{
 background:var(--nv-surface-2)}
 html.night .coin2member__list{
-border-bottom:1px solid var(--nv-text)38}
+border-bottom:1px solid #8492a638}
 html.night .el-input__inner{
 background-color:var(--nv-surface);
 border:1px solid}
@@ -5079,7 +5079,7 @@ color:#d8e0ea}
 html.night .tk_account_safe .layui-input,html.night .tk_account_safe .layui-select,html.night .tk_account_safe .layui-textarea{
 background-color:var(--nv-surface);
 color:var(--nv-text-muted);
-border-color:var(--nv-text-muted)4d}
+border-color:#99a9bf4d}
 html.night .el-textarea_inner,html.night .tk-pop-modify-form li input{
 background-color:var(--nv-surface);
 border:1px solid;
@@ -5133,7 +5133,7 @@ border:1px solid var(--nv-text)}
 html.night #yuecz .amounts li,html.night .pay-m-group li{
 border-color:#515f73}
 html.night .layui-layer-title,html.night .layui-tab-title{
-border-bottom:1px solid var(--nv-text-muted)4d}
+border-bottom:1px solid #99a9bf4d}
 html.night .layui-layer{
 background-color:var(--nv-surface-2)}
 html.night .layui-layer-title{
