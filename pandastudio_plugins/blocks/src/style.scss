@@ -3,8 +3,10 @@
 	--nv-page-bg:#e1e5eb;
 	--nv-surface:#fff;
 	--nv-surface-2:#f9fafc;
+	--nv-card:#fff;
 	--nv-text:#475669;
 	--nv-text-muted:#738192;
+	--nv-prose:#657487;
 	--nv-border:#d8e0ea;
 	--nv-hairline:rgba(255,255,255,.5);
 	--nv-accent:#20a0ff;
@@ -14,8 +16,10 @@ html.night{
 	--nv-page-bg:#28374a;
 	--nv-surface:#28374a;
 	--nv-surface-2:#34425a;
+	--nv-card:#34425a;
 	--nv-text:#8492a6;
 	--nv-text-muted:#99a9bf;
+	--nv-prose:#99a9bf;
 	--nv-border:#34425a;
 	--nv-hairline:#34425a;
 }
@@ -173,9 +177,9 @@ z-index:1;
 display:inline-block;
 font-size:12px;
 padding:0 10px;
-background:#fff;
+background:var(--nv-card);
 border-radius:7px;
-color:#738192;
+color:var(--nv-text-muted);
 transition:.25s}
 .pf_tag_cloud>.link>li,.pf_tag_cloud>.navigator>li{
 display:block;
@@ -463,7 +467,7 @@ box-shadow:0 2px 4px rgba(31,45,61,.35)}
 margin-left:15px}
 .pf_hotposts h4{
 font-size:15px;
-color:#657487;
+color:var(--nv-prose);
 margin-top:4px;
 margin-bottom:4px;
 line-height:1.4em;
@@ -471,7 +475,7 @@ line-height:1.4em;
 transition:.25s}
 .pf_hotposts .summary{
 font-size:12px;
-color:#657487}
+color:var(--nv-prose)}
 .pf_hotposts .summary i{
 color:#aab3bf;
 margin-right:3px;
@@ -480,7 +484,7 @@ transition:.25s}
 .pf_hotposts li:hover .summary .fa-heart{
 color:#ff4949}
 .pf_hotposts li:hover .summary .fa-comments{
-color:#20a0ff}
+color:var(--nv-accent)}
 .pf_hotposts li:hover h4{
 color:#475669}
 html.night .pf_microblog>ul::after,html.night .pf_microblog>ul::before{
@@ -494,11 +498,9 @@ html.night .pf_tag_cloud>.navigator:after,html.night .pf_tag_cloud>.navigator:be
 background:linear-gradient(#334148,#99a9bf);
 box-shadow:0 0 0 1px #a4b2c673 inset,0 0 0 2px #263238 inset,0 4px 3px #334148}
 html.night .pf_microblog>ul,html.night .pf_tag_cloud>.navigator{
-border-left:1px solid #34425a;
--webkit-box-shadow:1px 0 #34425a inset;
-box-shadow:1px 0 #34425a inset}
-html.night .pf_tag_cloud>.tag>li>a{
-background-color:#34425a}
+border-left:1px solid var(--nv-border);
+-webkit-box-shadow:1px 0 var(--nv-border) inset;
+box-shadow:1px 0 var(--nv-border) inset}
 html.night .pf_tag_cloud>ul>li:before{
 background:#99a9bf;
 box-shadow:0 0 0 1px #334148 inset,0 0 0 2px #334148 inset}
@@ -554,7 +556,7 @@ color:#99a9bf;
 html.night .pf_hotposts h4{
 color:#cad1db}
 html.night .pf_hotposts h4:hover{
-color:#20a0ff}
+color:var(--nv-accent)}
 html.night .pf_hotposts .summary{
 color:#cad1db}
 

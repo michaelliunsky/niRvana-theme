@@ -8,8 +8,10 @@
 	--nv-page-bg:#e1e5eb;
 	--nv-surface:#fff;
 	--nv-surface-2:#f9fafc;
+	--nv-card:#fff;
 	--nv-text:#475669;
 	--nv-text-muted:#738192;
+	--nv-prose:#657487;
 	--nv-border:#d8e0ea;
 	--nv-hairline:rgba(255,255,255,.5);
 	--nv-accent:#20a0ff;
@@ -19,8 +21,10 @@ html.night{
 	--nv-page-bg:#28374a;
 	--nv-surface:#28374a;
 	--nv-surface-2:#34425a;
+	--nv-card:#34425a;
 	--nv-text:#8492a6;
 	--nv-text-muted:#99a9bf;
+	--nv-prose:#99a9bf;
 	--nv-border:#34425a;
 	--nv-hairline:#34425a;
 }
