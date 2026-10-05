@@ -837,7 +837,7 @@ opacity:1;
 -webkit-transition:.25s;
 transition:.25s}
 .long-model{
-border-top:1px solid #d8e0ea;
+border-top:1px solid var(--nv-border);
 -webkit-box-shadow:0 1px 0 rgba(255,255,255,.5) inset;
 box-shadow:0 1px 0 rgba(255,255,255,.5) inset;
 padding-top:30px;
@@ -1274,7 +1274,7 @@ transition:.25s}
 content:"";
 border-left:4px solid transparent;
 border-right:4px solid transparent;
-border-bottom:4px solid #fff;
+border-bottom:4px solid var(--nv-surface);
 position:absolute;
 top:-4px;
 left:24px;
@@ -1540,7 +1540,7 @@ text-overflow:ellipsis;
 -webkit-transition:color .25s;
 transition:color .25s}
 .postLists.cards .card h2:hover{
-color:#20a0ff}
+color:var(--nv-accent)}
 .postLists.cards .card a{
 color:inherit;
 text-decoration:none}
@@ -1668,7 +1668,7 @@ text-overflow:ellipsis;
 -webkit-transition:color .25s;
 transition:color .25s}
 .postLists.lists .card h2:hover{
-color:#20a0ff}
+color:var(--nv-accent)}
 .postLists.lists .card a{
 color:inherit;
 text-decoration:none}
@@ -1764,7 +1764,7 @@ color:#8492a6;
 -webkit-transition:.25s;
 transition:.25s}
 .postLists.lists .card:hover .description{
-color:#475669}
+color:var(--nv-text)}
 .postLists .readMore a{
 text-decoration:none;
 display:inline-block;
@@ -2034,7 +2034,7 @@ width:unset}
 padding-left:30px;
 padding-right:30px;
 height:78px;
-background:#f9fafc;
+background:var(--nv-surface-2);
 border-top:1px solid #f0f2f7;
 margin-top:40px;
 text-align:right}
@@ -2677,7 +2677,7 @@ box-shadow:0 20px 40px rgba(31,45,61,.5);
 border-radius:10px;
 overflow:hidden}
 .modal-footer{
-background:#f9fafc}
+background:var(--nv-surface-2)}
 .btn-primary.active,.btn-primary:active,.open>.dropdown-toggle.btn-primary{
 background-color:#1287e9;
 border-color:#1287e9;
@@ -2853,8 +2853,8 @@ resize:none;
 -webkit-transition:.25s;
 transition:.25s}
 .comment-input:focus{
-background:#fff;
-border-color:#20a0ff;
+background:var(--nv-surface);
+border-color:var(--nv-accent);
 -webkit-box-shadow:0 0 0 3px rgba(32,160,255,.2)!important;
 box-shadow:0 0 0 3px rgba(32,160,255,.2)!important;
 -webkit-transition:.25s;
@@ -3494,7 +3494,7 @@ position:relative}
 .chatList.server .chat_pop{
 float:left;
 margin-left:13px;
-background:#fff;
+background:var(--nv-surface);
 border:1px solid #d3dce6;
 -webkit-box-shadow:0 3px 6px rgba(31,45,61,.1);
 box-shadow:0 3px 6px rgba(31,45,61,.1)}
@@ -3505,7 +3505,7 @@ position:absolute;
 top:10px;
 content:""}
 .chatList.server .chat_pop:before{
-border-right:5px solid #fff;
+border-right:5px solid var(--nv-surface);
 z-index:1;
 left:-4px}
 .chatList.server .chat_pop:after{
@@ -3848,7 +3848,7 @@ text-shadow:0 1px #fff}
 .favlink-card .description{
 font-size:13px;
 color:#8492a6;
-text-shadow:0 1px #fff}
+text-shadow:0 1px var(--nv-surface)}
 .favlink-card .icon{
 position:absolute;
 width:65px;
@@ -4605,9 +4605,6 @@ html.night .postLists .readMore{
 background:linear-gradient(90deg,rgba(254,254,255,0),var(--nv-surface-2),rgba(202,209,219,0)) 0 0/100% 1px no-repeat,linear-gradient(90deg,rgba(255,255,255,0),var(--nv-surface-2),rgba(255,255,255,0)) 0 1px/100% 1px no-repeat,radial-gradient(ellipse 50% 50% at 50% 0,#263343,rgba(202,209,219,0)) 0 2px no-repeat}
 html.night .postLists .readMore:before{
 background:radial-gradient(ellipse 50% 50% at 50% bottom,rgba(247,247,247,0),rgba(255,255,255,0))}
-html.night .article_wrapper.post .share-modal{
-background:var(--nv-surface-2);
-border-top:1px solid var(--nv-surface-2)}
 html.night article .title_style_01{
 color:#cad1db}
 html.night article .title_style_01:after{
@@ -4660,8 +4657,6 @@ background:linear-gradient(var(--nv-surface),#728094 88%,#8e99a9)}
 html.night .favlink-card .title{
 text-shadow:0 1px var(--nv-surface-2);
 color:#b2cff9}
-html.night .favlink-card .description{
-text-shadow:0 1px var(--nv-surface)}
 html.night .post_nav>.nav>li a{
 background:#263238}
 html.night .post_nav>.nav>li a::before{
@@ -4691,20 +4686,14 @@ html.night .long-model-wrapper .long-model:nth-child(odd) .postLists.lists .card
 background:linear-gradient(90deg,var(--nv-surface),var(--nv-surface))}
 html.night .postLists.cards .card .date:after,html.night .postLists.cards .card .meta,html.night .postLists.cards .card .tags:after,html.night .postLists.cards .card .tags:before{
 background:linear-gradient(90deg,var(--nv-surface-2),var(--nv-surface-2))}
-html.night .long-model{
-border-top:1px solid var(--nv-surface-2)}
 html.night .long-model-wrapper+#footer{
 border-top:1px solid var(--nv-surface);
 -webkit-box-shadow:0 1px 0 #354455 inset,0 1px 0 #324053;
 box-shadow:0 1px 0 #354455 inset,0 1px 0 #324053}
 html.night .postLists.cards .card h2{
 color:#d8e0ea}
-html.night .postLists.cards .card h2:hover{
-color:var(--nv-accent)}
 html.night .postLists.lists .card h2{
 color:#d8e0ea}
-html.night .postLists.lists .card h2:hover{
-color:var(--nv-accent)}
 html.night .music-player-wrapper .player-main,html.night .pm-notice ul{
 -webkit-box-shadow:0 15px 20px rgba(31,45,61,.2),0 0 0 1px rgba(166,172,182,.5),0 0 0 1px var(--nv-surface-2) inset;
 box-shadow:0 15px 20px rgba(31,45,61,.2),0 0 0 1px rgba(166,172,182,.5),0 0 0 1px var(--nv-surface-2) inset;
@@ -4739,8 +4728,6 @@ html.night .chatList.server .chat_pop{
 background:var(--nv-surface);
 color:#738192;
 border:1px solid var(--nv-text)}
-html.night .chatList.server .chat_pop:before{
-border-right:5px solid var(--nv-surface)}
 html.night .chat_form .chat_input{
 text-shadow:0 1px #fff00;
 color:var(--nv-text-muted);
@@ -4791,8 +4778,6 @@ border-bottom:1px solid #99a9bf2b}
 html.night .pandaTabWrap .sub-menu{
 background:var(--nv-surface);
 box-shadow:0 4px 8px #00033}
-html.night .pandaTabWrap>.sub-menu:before{
-border-bottom:4px solid var(--nv-surface)}
 html.night .pandaTabWrap .sub-menu>li>a{
 color:#8b9bb0}
 html.night .pandaTabWrap .sub-menu>li>a:hover{
@@ -4824,8 +4809,6 @@ background:linear-gradient(var(--nv-surface-2),#1f2d3d);
 box-shadow:0 6px 6px var(--nv-surface),0 10px 10px rgba(31,45,61,.15),0 -1px 2px #3c4a64 inset}
 html.night .postLists.lists .card .description{
 color:var(--nv-text-muted)}
-html.night .postLists.lists .card:hover .description{
-color:var(--nv-text)}
 html.night .filter--content .filter-tab a,html.night .postLists.cards .card .summary,html.night .postLists.lists .card .summary{
 color:var(--nv-text-muted)}
 html.night .filter--content{

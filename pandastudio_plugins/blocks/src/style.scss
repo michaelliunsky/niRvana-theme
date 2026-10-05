@@ -186,7 +186,7 @@ display:block;
 list-style:none}
 .pf_tag_cloud>.tag>li:hover>a{
 color:#fff;
-background:#20a0ff;
+background:var(--nv-accent);
 -webkit-transform:translateY(5px);
 transform:translateY(5px)}
 .pf_tag_cloud>.tag>li:hover{
@@ -508,11 +508,6 @@ html.night .pf_tag_cloud>.navigator>li a:after{
 background:#99a9bf;
 -webkit-box-shadow:0 0 0 1px #334148 inset,0 0 0 2px #334148 inset;
 box-shadow:0 0 0 1px #334148 inset,0 0 0 2px #324047 inset}
-html.night .pf_tag_cloud>.tag>li:hover>a{
-color:#fff;
-background:#20a0ff;
--webkit-transform:translateY(5px);
-transform:translateY(5px)}
 html.night .pf_tag_cloud>.link>li a{
 text-shadow:0 1px #fff0}
 html.night .pf_microblog>ul .main::before{
