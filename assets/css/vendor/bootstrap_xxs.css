@@ -1,3 +1,4 @@
+@layer vendor {
 /* [+] col-xxs- */
 .col-xxs-1, .col-xxs-2, .col-xxs-3, .col-xxs-4, .col-xxs-5, .col-xxs-6, .col-xxs-7, .col-xxs-8, .col-xxs-9, .col-xxs-10, .col-xxs-11, .col-xxs-12 {
     min-height: 1px;
@@ -207,4 +208,5 @@
     .visible-xxs-inline-block {
         display: inline-block !important;
     }
+}
 }

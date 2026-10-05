@@ -1,0 +1,216 @@
+/* split from style.css lines 1085-1299; keep order */
+.main-nav{
+height:58px;
+opacity:1;
+position:fixed;
+left:0;
+top:0;
+right:0;
+z-index:998;
+-webkit-transition:.5s;
+transition:.5s}
+.main-nav.before_view{
+opacity:0}
+.main-nav.flat{
+background:0 0;
+-webkit-box-shadow:0 1px #d8e0ea,0 0 transparent,0 2px rgba(255,255,255,1);
+box-shadow:0 1px #d8e0ea,0 0 transparent,0 2px rgba(255,255,255,1)}
+.main-nav.float{
+background:rgba(255,255,255,.98);
+-webkit-box-shadow:0 1px rgba(64,79,93,.05),0 4px 6px rgba(31,45,61,.08),0 -10px rgba(255,255,255,0);
+box-shadow:0 1px rgba(64,79,93,.05),0 4px 6px rgba(31,45,61,.08),0 -10px rgba(255,255,255,0);
+-webkit-transition:all .5s,background 0s;
+transition:all .5s,background 0s}
+@supports ((-webkit-backdrop-filter:none) or (backdrop-filter:none)){
+.main-nav.float{
+background:rgba(255,255,255,.9);
+-webkit-transition:all .5s;
+transition:all .5s}
+.main-nav{
+-webkit-backdrop-filter:blur(8px);
+backdrop-filter:blur(8px)}
+}
+.topNav[pandaTab]{
+position:relative}
+.topNav[pandaTab]>.menu{
+position:relative;
+padding:0;
+white-space:nowrap;
+margin:0;
+height:67px;
+line-height:58px;
+text-align:right}
+.topNav[pandaTab]>.prev+.menu{
+overflow:hidden;
+-webkit-mask-image:-webkit-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,1) 10px,rgba(0,0,0,1) 51%,rgba(0,0,0,0) 51%),-webkit-linear-gradient(right,rgba(0,0,0,0),rgba(0,0,0,1) 10px,rgba(0,0,0,1) 51%,rgba(0,0,0,0) 51%);
+mask-image:linear-gradient(90deg,rgba(0,0,0,0),rgba(0,0,0,1) 10px,rgba(0,0,0,1) 51%,rgba(0,0,0,0) 51%),linear-gradient(-90deg,rgba(0,0,0,0),rgba(0,0,0,1) 10px,rgba(0,0,0,1) 51%,rgba(0,0,0,0) 51%)}
+.topNav[pandaTab]>.menu.native-scrolling{
+overflow-x:auto;
+-webkit-overflow-scrolling:touch}
+.topNav[pandaTab]>.menu>li{
+display:inline-block;
+cursor:pointer}
+.topNav[pandaTab]>.menu>li>a{
+display:block;
+text-decoration:none;
+position:relative;
+-webkit-transition:.25s;
+transition:.25s;
+font-size:14px;
+padding:0 15px;
+color:var(--nv-text-muted)}
+.topNav[pandaTab]>.menu>li.current-menu-ancestor>a,.topNav[pandaTab]>.menu>li.current-menu-item>a,.topNav[pandaTab]>.menu>li:hover>a{
+color:var(--nv-accent)}
+.topNav[pandaTab]>.menu>li>.sub-menu{
+display:none}
+.topNav[pandaTab] .anchor{
+top:57px;
+position:relative;
+-webkit-transition:cubic-bezier(.3,1.5,.5,1) .7s;
+transition:cubic-bezier(.3,1.5,.5,1) .7s}
+.topNav[pandaTab] .anchor.has_sub_menu{
+opacity:0!important}
+.topNav[pandaTab] .anchor:before{
+content:"";
+display:block;
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:3px;
+background:#20a0ff;
+background:-webkit-gradient(linear,left top,left bottom,color-stop(30%,#58b7ff),color-stop(70%,#20a0ff));
+background:-webkit-linear-gradient(#58b7ff 30%,#20a0ff 70%);
+background:linear-gradient(#58b7ff 30%,#20a0ff 70%);
+border-radius:3px;
+-webkit-box-shadow:0 3px 4px rgba(32,160,255,.6);
+box-shadow:0 3px 4px rgba(32,160,255,.6)}
+.topNav[pandaTab] .prev+.menu .anchor:before{
+left:10px;
+right:10px}
+.topNav[pandaTab] .anchor.has_sub_menu:before{
+opacity:1;
+border-bottom-width:3px;
+-webkit-transition:.25s;
+transition:.25s}
+.pandaTabWrap>.sub-menu.show{
+-webkit-transform:scaleY(1);
+transform:scaleY(1);
+visibility:visible;
+opacity:1;
+-webkit-transition:.25s;
+transition:.25s}
+.pandaTabWrap .sub-menu li:hover>.sub-menu{
+visibility:visible}
+.topNav[pandaTab]>.next,.topNav[pandaTab]>.prev{
+color:#738192;
+position:absolute;
+line-height:56px;
+top:0;
+display:inline-block;
+cursor:pointer;
+text-align:center;
+width:20px;
+opacity:.6;
+-webkit-transition:.25s;
+transition:.25s}
+.topNav[pandaTab]>.prev{
+left:0}
+.topNav[pandaTab]>.next{
+right:0}
+.topNav[pandaTab]>.next.disabled,.topNav[pandaTab]>.prev.disabled{
+cursor:not-allowed;
+opacity:.2;
+-webkit-transition:.25s;
+transition:.25s}
+.pandaTabWrap .sub-menu{
+list-style:none;
+position:absolute;
+z-index:999;
+text-align:left;
+background:var(--nv-surface);
+margin-top:-5px;
+border-radius:5px;
+-webkit-box-shadow:0 20px 25px -5px rgba(31,45,61,.25),-5px -5px 15px -5px rgba(31,45,61,.15),0 0 0 1px rgba(64,79,93,.05);
+box-shadow:0 20px 25px -5px rgba(31,45,61,.25),-5px -5px 15px -5px rgba(31,45,61,.15),0 0 0 1px rgba(64,79,93,.05);
+padding:5px 0;
+-webkit-transform:scaleY(.01) scaleX(.6);
+transform:scaleY(.01) scaleX(.6);
+-webkit-transform-origin:24px 0;
+transform-origin:24px 0;
+opacity:0;
+visibility:hidden;
+-webkit-transition:.25s;
+transition:.25s}
+@supports ((-webkit-backdrop-filter:none) or (backdrop-filter:none)){
+.pandaTabWrap .sub-menu{
+background:rgba(255,255,255,.9);
+-webkit-backdrop-filter:blur(8px);
+backdrop-filter:blur(8px)}
+}
+.pandaTabWrap .sub-menu>li>a{
+display:block;
+padding:10px 20px;
+color:#657487;
+text-decoration:none;
+white-space:nowrap;
+position:relative;
+-webkit-transition:.25s;
+transition:.25s}
+.pandaTabWrap li.menu-item-has-children>a{
+padding-right:32px}
+.pandaTabWrap li.menu-item-has-children>a:after{
+content:"\f105";
+font-family:"Font Awesome 5 Free";
+font-weight:700;
+opacity:.3;
+position:absolute;
+right:14px}
+.pandaTabWrap .sub-menu>li.current-menu-item>a{
+color:#20a0ff}
+.pandaTabWrap .sub-menu>li>a:hover{
+color:#fff;
+background:#20a0ff;
+-webkit-transition:.25s;
+transition:.25s}
+.pandaTabWrap .sub-menu .sub-menu{
+position:absolute;
+left:calc(100% - 10px);
+margin-top:-36px;
+border-radius:5px;
+padding:5px 0;
+-webkit-transform:scaleY(.6) scaleX(.1);
+transform:scaleY(.6) scaleX(.1);
+-webkit-transform-origin:-15px 0;
+transform-origin:-15px 0;
+border-top:none;
+opacity:0;
+-webkit-transition:.25s;
+transition:.25s}
+.pandaTabWrap>.sub-menu:before{
+content:"";
+border-left:4px solid transparent;
+border-right:4px solid transparent;
+border-bottom:4px solid var(--nv-surface);
+position:absolute;
+top:-4px;
+left:24px;
+z-index:1}
+@supports ((-webkit-backdrop-filter:none) or (backdrop-filter:none)){
+.pandaTabWrap>.sub-menu:before{
+border-bottom:4px solid rgba(255,255,255,.86)}
+}
+.pandaTabWrap>.sub-menu:after{
+content:"";
+border-left:5px solid transparent;
+border-right:5px solid transparent;
+border-bottom:5px solid rgba(64,79,93,.1);
+position:absolute;
+top:-5px;
+left:23px}
+.pandaTabWrap .sub-menu li:hover>.sub-menu{
+-webkit-transform:scaleX(1);
+transform:scaleX(1);
+opacity:1;
+-webkit-transition:.25s;
+transition:.25s}

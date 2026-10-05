@@ -1,3 +1,4 @@
+@layer vendor {
 /*!
 * Patch Bootstrap CSS to 24 columns grid - v3.3.0
 * Copyright (c) 2018 Thach Nguyen; Licensed MIT
@@ -343,3 +344,4 @@
 
 .full-width { width: 100%; }
 .full-height { height: 100%; }
+}

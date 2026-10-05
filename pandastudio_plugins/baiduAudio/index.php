@@ -2,10 +2,12 @@
 
 function add_baiduAudio_js()
 {
-    echo '<script src="' . get_stylesheet_directory_uri() . '/pandastudio_plugins/baiduAudio/baiduAudio.js"></script>';
-    echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/pandastudio_plugins/baiduAudio/baiduAudio.css"/>';
+    $uri = get_stylesheet_directory_uri() . '/pandastudio_plugins/baiduAudio';
+    $ver = wp_get_theme()->get('Version');
+    wp_enqueue_style('nirvana-baidu-audio', $uri . '/baiduAudio.css', array(), $ver);
+    wp_enqueue_script('nirvana-baidu-audio', $uri . '/baiduAudio.js', array('jquery'), $ver, true);
 }
-add_action('wp_footer', 'add_baiduAudio_js');
+add_action('wp_enqueue_scripts', 'add_baiduAudio_js');
 add_filter('modify_pandastudio_translation_array', 'add_baiduAudio_translation_array');
 function add_baiduAudio_translation_array($translation_array)
 {

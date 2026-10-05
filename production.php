@@ -52,6 +52,7 @@ if ($is_production) {
         'assets/js/theme.js'
     );
     $dev_styles = array(
+        'assets/css/layers.css',
         'assets/css/vendor/bootstrap.min.css',
         'assets/css/vendor/bootstrap_xxs.css',
         'assets/css/vendor/bootstrap_24.css',
@@ -61,7 +62,14 @@ if ($is_production) {
         'assets/css/jv-element.css',
         'assets/css/user-center-login.css',
         'assets/css/tokens.css',
-        'assets/css/style.css',
+        'assets/css/theme/base.css',
+        'assets/css/theme/nav.css',
+        'assets/css/theme/lists.css',
+        'assets/css/theme/article.css',
+        'assets/css/theme/comments.css',
+        'assets/css/theme/overlay.css',
+        'assets/css/theme/responsive.css',
+        'assets/css/theme/night.css',
         'assets/css/highlightjs.css'
     );
     add_action('wp_enqueue_scripts', function () use ($theme_version, $theme_uri, $dev_scripts, $dev_styles) {
