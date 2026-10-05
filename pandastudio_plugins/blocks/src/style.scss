@@ -1,3 +1,25 @@
+/* Editor has no theme CSS — keep in sync with assets/css/tokens.css */
+:root{
+	--nv-page-bg:#e1e5eb;
+	--nv-surface:#fff;
+	--nv-surface-2:#f9fafc;
+	--nv-text:#475669;
+	--nv-text-muted:#738192;
+	--nv-border:#d8e0ea;
+	--nv-hairline:rgba(255,255,255,.5);
+	--nv-accent:#20a0ff;
+	--nv-accent-soft:#58b7ff;
+}
+html.night{
+	--nv-page-bg:#28374a;
+	--nv-surface:#28374a;
+	--nv-surface-2:#34425a;
+	--nv-text:#8492a6;
+	--nv-text-muted:#99a9bf;
+	--nv-border:#34425a;
+	--nv-hairline:#34425a;
+}
+
 .pf_inspectorTitle{color:#555d66;padding:16px}
 .marginT2{margin-top:2px}
 .marginT5{margin-top:5px}
@@ -103,7 +125,7 @@
 .title_style_01{position:relative;color:#8492a6;margin-bottom:15px;padding-bottom:10px}
 .title_style_01 h2,.title_style_01 h3,.title_style_01 p{font-size:20px!important;margin:0!important;font-weight:400!important;line-height:1!important;color:inherit}
 .title_style_01:after{content:"";display:block;width:calc(100% + 30px);height:1px;background:#eff2f7;position:absolute;bottom:0;left:-15px}
-.title_style_01:before{content:"";display:block;width:30px;height:3px;background:-webkit-gradient(linear,left top,left bottom,color-stop(30%,#58b7ff),color-stop(70%,#20a0ff));background:linear-gradient(#58b7ff 30%,#20a0ff 70%);position:absolute;bottom:-1px;left:0;z-index:1;border-radius:3px;-webkit-box-shadow:0 3px 3px rgba(32,160,255,.4);box-shadow:0 3px 3px rgba(32,160,255,.4)}
+.title_style_01:before{content:"";display:block;width:30px;height:3px;background:-webkit-gradient(linear,left top,left bottom,color-stop(30%,#58b7ff),color-stop(70%,#20a0ff));background:linear-gradient(var(--nv-accent-soft) 30%,var(--nv-accent) 70%);position:absolute;bottom:-1px;left:0;z-index:1;border-radius:3px;-webkit-box-shadow:0 3px 3px rgba(32,160,255,.4);box-shadow:0 3px 3px rgba(32,160,255,.4)}
 .title_style_02{position:relative;color:#8492a6;margin-bottom:20px;z-index:1;margin-top:20px}
 .title_style_02:before{content:"";position:absolute;bottom:-11px;width:2px;height:40px;background:#f9fafc;left:0;width:100%;z-index:-1;border-radius:0 6px 6px 0;border-left:2px solid #20a0ff;-webkit-box-shadow:1px 0 #fff inset;box-shadow:1px 0 #fff inset}
 .title_style_02 h2,.title_style_02 h3,.title_style_02 p{font-size:18px!important;margin-bottom:0;margin-left:15px;text-shadow:0 1px #fff;font-weight:400!important;line-height:1!important;color:inherit}
@@ -284,9 +306,9 @@ padding-left:15px}
 .pf_user_info .meta .name{
 font-size:18px;
 margin-top:7px;
-color:#475669}
+color:var(--nv-text)}
 .pf_user_info .meta .description{
-color:#738192;
+color:var(--nv-text-muted);
 font-size:13px;
 margin-top:4px}
 .pf_microblog>ul{
@@ -535,25 +557,23 @@ html.night .pf_hotposts h4:hover{
 color:#20a0ff}
 html.night .pf_hotposts .summary{
 color:#cad1db}
-html.night .pf_user_info .meta .name{
-color:#8492a6}
 
 /* widgettitle 基础样式：与前台 assets/css/style.css 保持一致（编辑器画布无主题 CSS，需在此提供） */
 h2.widgettitle{
 position:relative;
 margin:0;
 padding-bottom:8px;
-color:#738192;
+color:var(--nv-text-muted);
 font-size:14px;
-border-bottom:1px solid #d8e0ea;
-box-shadow:0 1px rgba(255,255,255,.5);
+border-bottom:1px solid var(--nv-border);
+box-shadow:0 1px var(--nv-hairline);
 transition:.25s}
 h2.widgettitle::after{
 content:"";
 position:absolute;
 display:inline-block;
 height:3px;
-background:linear-gradient(#58b7ff 30%,#20a0ff 70%);
+background:linear-gradient(var(--nv-accent-soft) 30%,var(--nv-accent) 70%);
 border-radius:3px;
 bottom:-2px;
 left:0;
@@ -562,5 +582,5 @@ box-shadow:0 3px 4px rgba(32,160,255,.5);
 transition:.25s}
 
 /* widgettitle hover: block wrapper (migrated from li:hover>h2.widgettitle) */
-.pf_microblog:hover .widgettitle,.pf_tag_cloud:hover .widgettitle,.pf_user_info:hover .widgettitle,.pf_hotposts:hover .widgettitle{color:#20a0ff}
+.pf_microblog:hover .widgettitle,.pf_tag_cloud:hover .widgettitle,.pf_user_info:hover .widgettitle,.pf_hotposts:hover .widgettitle{color:var(--nv-accent)}
 .pf_microblog:hover .widgettitle::after,.pf_tag_cloud:hover .widgettitle::after,.pf_user_info:hover .widgettitle::after,.pf_hotposts:hover .widgettitle::after{width:45px}

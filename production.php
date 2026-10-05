@@ -60,6 +60,7 @@ if ($is_production) {
         'assets/css/fontawesome.css',
         'assets/css/jv-element.css',
         'assets/css/user-center-login.css',
+        'assets/css/tokens.css',
         'assets/css/style.css',
         'assets/css/highlightjs.css'
     );

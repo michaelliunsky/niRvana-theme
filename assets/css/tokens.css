@@ -1,0 +1,26 @@
+/*!
+ * niRvana color tokens.
+ * html.night swaps this table; components should use var(--nv-*).
+ * Keep in sync with the copy at the top of
+ * pandastudio_plugins/blocks/src/style.scss (editor has no theme CSS).
+ */
+:root{
+	--nv-page-bg:#e1e5eb;
+	--nv-surface:#fff;
+	--nv-surface-2:#f9fafc;
+	--nv-text:#475669;
+	--nv-text-muted:#738192;
+	--nv-border:#d8e0ea;
+	--nv-hairline:rgba(255,255,255,.5);
+	--nv-accent:#20a0ff;
+	--nv-accent-soft:#58b7ff;
+}
+html.night{
+	--nv-page-bg:#28374a;
+	--nv-surface:#28374a;
+	--nv-surface-2:#34425a;
+	--nv-text:#8492a6;
+	--nv-text-muted:#99a9bf;
+	--nv-border:#34425a;
+	--nv-hairline:#34425a;
+}

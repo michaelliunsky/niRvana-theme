@@ -66,7 +66,7 @@ background:url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZGF0YS1
 .send_email_nonce+input{
 padding-right:50px}
 body,html{
-background:#e1e5eb}
+background:var(--nv-page-bg)}
 body{
 min-width:320px;
 font-size:14px;
@@ -1817,11 +1817,11 @@ h2.widgettitle{
 position:relative;
 margin:0;
 padding-bottom:8px;
-color:#738192;
+color:var(--nv-text-muted);
 font-size:14px;
-border-bottom:1px solid #d8e0ea;
--webkit-box-shadow:0 1px rgba(255,255,255,.5);
-box-shadow:0 1px rgba(255,255,255,.5);
+border-bottom:1px solid var(--nv-border);
+-webkit-box-shadow:0 1px var(--nv-hairline);
+box-shadow:0 1px var(--nv-hairline);
 -webkit-transition:.25s;
 transition:.25s}
 h2.widgettitle::after{
@@ -1829,10 +1829,10 @@ content:"";
 position:absolute;
 display:inline-block;
 height:3px;
-background:#20a0ff;
-background:-webkit-gradient(linear,left top,left bottom,color-stop(30%,#58b7ff),color-stop(70%,#20a0ff));
-background:-webkit-linear-gradient(#58b7ff 30%,#20a0ff 70%);
-background:linear-gradient(#58b7ff 30%,#20a0ff 70%);
+background:var(--nv-accent);
+background:-webkit-gradient(linear,left top,left bottom,color-stop(30%,var(--nv-accent-soft)),color-stop(70%,var(--nv-accent)));
+background:-webkit-linear-gradient(var(--nv-accent-soft) 30%,var(--nv-accent) 70%);
+background:linear-gradient(var(--nv-accent-soft) 30%,var(--nv-accent) 70%);
 border-radius:3px;
 bottom:-2px;
 left:0;
@@ -1842,11 +1842,11 @@ box-shadow:0 3px 4px rgba(32,160,255,.5);
 -webkit-transition:.25s;
 transition:.25s}
 li:hover .widgettitle{
-color:#20a0ff}
+color:var(--nv-accent)}
 li:hover .widgettitle::after{
 width:45px}
 .sidebar[data-id="sidebar-0"]:hover .widgettitle{
-color:#20a0ff}
+color:var(--nv-accent)}
 .sidebar[data-id="sidebar-0"]:hover .widgettitle::after{
 width:45px}
 .widget_meta>ul{
@@ -4486,7 +4486,7 @@ height:330px}
 height:400px}
 }
 
-html.night .pm-chat-search-box,h2.widgettitle{
+html.night .pm-chat-search-box{
 border-bottom:1px solid #d8e0ea}
 html.night .chat_form .chat_input{
 -webkit-box-shadow:0 1px #fff,0 2px 2px rgba(31,45,61,.06) inset}
@@ -4507,10 +4507,6 @@ background:linear-gradient(#3c4a5d,#263445);
 box-shadow:0 5px 5px rgba(26,33,36,.38),0 0 4px 20px transparent inset,0 -1px 2px transparent inset;
 -webkit-transition:.35s;
 transition:.35s}
-html.night .widgettitle{
-color:#99a9bf;
-border-bottom:1px solid #34425a;
-box-shadow:0 1px #34425a}
 html.night .ticket-item-info{
 color:#99a9bf;
 border-bottom:1px solid #2e3f53;
@@ -4565,7 +4561,7 @@ color:#99a9bf;
 transition:.25s;
 box-shadow:0 10px 13px rgba(31,45,61,.4),0 0 1px rgba(31,45,61,.1)}
 html.night #wrapper{
-background-color:#28374a!important;
+background-color:var(--nv-page-bg)!important;
 background-image:none}
 html.night #comment,html.night .ticket_input{
 background-color:#28374a;
